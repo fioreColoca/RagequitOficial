@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+/*package ar.edu.unlam.tallerweb1.modelo;
 
 
 
@@ -24,7 +24,7 @@ public class Publicacion {
 	private Integer buff; //aun nose bien como funcionara buff
 	/*private Date fechaHora;*/
 	
-	@OneToOne
+	/*@OneToOne
 	private Categoria categoria;
 	
 	@OneToMany
@@ -79,4 +79,4 @@ public class Publicacion {
 	}
 
 	
-}
+}*/
