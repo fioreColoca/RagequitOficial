@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+/*package ar.edu.unlam.tallerweb1.modelo;
 
 import java.sql.Date;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class Comentario {
 	/* ES UNARIA  DUDA CON EL IMPORT DE DATE*/
-	@Id
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -20,7 +20,7 @@ public class Comentario {
 	private Integer buff; /* nose tampoco :C */
 	
 	
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -54,4 +54,4 @@ public class Comentario {
 	
 	
 	
-}
+}*/
