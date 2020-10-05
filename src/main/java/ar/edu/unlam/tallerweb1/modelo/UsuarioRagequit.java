@@ -1,5 +1,7 @@
 /*package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class UsuarioRagequit {
 	private String apellido;
 	private String email;
 	private String password;
-	
+	private Date fechaNacimiento;
 	
 	public Long getId() {
 		return id;
