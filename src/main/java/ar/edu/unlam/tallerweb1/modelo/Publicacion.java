@@ -2,6 +2,7 @@
 
 
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class Publicacion {
 	private String mensaje;
 	private Integer cantidadLikes;
 	private Integer buff; //aun nose bien como funcionara buff
-	/*private Date fechaHora;*/
+	private Date fechaHora;
 	
-	/*@OneToOne
+	@OneToOne
 	private Categoria categoria;
 	
 	@OneToMany
