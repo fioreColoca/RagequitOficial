@@ -1,4 +1,4 @@
-/*package ar.edu.unlam.tallerweb1.modelo;
+ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -30,12 +30,12 @@ public class UsuarioRagequit {
 	private Integer contadorSeguidores;
 
 	// Array de seguidores
-	@ManyToMany
-	private List<Usuario> arraySeguidores = new LinkedList<Usuario>();
+	//@ManyToMany
+	//private List<Usuario> arraySeguidores = new LinkedList<Usuario>();
 	
 	// Array de Suscriptores
-	@ManyToMany
-	private List<Usuario> arraySuscriptores = new LinkedList<Usuario>();
+	//@ManyToMany
+	//private List<Usuario> arraySuscriptores = new LinkedList<Usuario>();
 	
 	
 
@@ -135,4 +135,4 @@ public class UsuarioRagequit {
 		this.contadorSeguidores = contadorSeguidores;
 	}
 
-}*/
+}
