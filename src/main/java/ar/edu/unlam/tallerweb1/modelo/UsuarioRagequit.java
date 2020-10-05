@@ -1,4 +1,4 @@
-/*package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
 
@@ -50,7 +50,14 @@ public class UsuarioRagequit {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	
 	
 
-}*/
+}
