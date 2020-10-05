@@ -23,11 +23,11 @@ public class Publicacion {
 	private Integer contadorLikes;
 	private Date fechaHora;
 	
-	@ManyToOne
-	private Categoria categoria;
+//	@ManyToOne
+//	private Categoria categoria;
 	
-	@OneToMany
-	private List <Comentario> comentarios = new LinkedList<Comentario>();
+//	@OneToMany
+//	private List <Comentario> comentarios = new LinkedList<Comentario>();
 
 	public Long getId() {
 		return id;
@@ -45,28 +45,36 @@ public class Publicacion {
 		this.mensaje = mensaje;
 	}
 
-	public Integer getCantidadLikes() {
+	public Integer getContadorLikes() {
 		return contadorLikes;
 	}
 
-	public void setCantidadLikes(Integer cantidadLikes) {
-		this.contadorLikes = cantidadLikes;
+	public void setContadorLikes(Integer contadorLikes) {
+		this.contadorLikes = contadorLikes;
+	}
+
+	public Date getFechaHora() {
+		return fechaHora;
+	}
+
+	public void setFechaHora(Date fechaHora) {
+		this.fechaHora = fechaHora;
 	}
 
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+//	public Categoria getCategoria() {
+//		return categoria;
+//	}
+//
+//	public void setCategoria(Categoria categoria) {
+//		this.categoria = categoria;
+//	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public List<Comentario> getComentarios() {
-		return comentarios;
-	}
-
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
+//	public List<Comentario> getComentarios() {
+//		return comentarios;
+//	}
+//
+//	public void setComentarios(List<Comentario> comentarios) {
+//		this.comentarios = comentarios;
+//	}
 }
