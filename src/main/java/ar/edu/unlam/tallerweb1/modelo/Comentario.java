@@ -35,7 +35,4 @@ public abstract  class Comentario {  /* asbtract para clases que por si solas no
 		this.cantidadLikes = cantidadLikes;
 	}
 	
-	
-	
-	
 }*/
