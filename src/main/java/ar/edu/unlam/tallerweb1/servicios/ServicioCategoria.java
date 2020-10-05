@@ -1,8 +1,8 @@
-package ar.edu.unlam.tallerweb1.repositorios;
+package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 
-public interface RepositorioCategoria {
+public interface ServicioCategoria {
 	
 	void crearCategoria(Categoria categoria);
 	

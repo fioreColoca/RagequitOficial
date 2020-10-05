@@ -15,8 +15,17 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Long crearCategoria(Categoria categoria) {
-		return (Long)sessionFactory.getCurrentSession().save(categoria);
+	public void crearCategoria(Categoria categoria) {
+		sessionFactory.getCurrentSession().save(categoria);
+		
 	}
+
+	@Override
+	public Categoria mostrarCategoriaPorId(Long id) {
+		return sessionFactory.getCurrentSession().get(Categoria.class, id);
+	}
+
+
+	
 
 }
