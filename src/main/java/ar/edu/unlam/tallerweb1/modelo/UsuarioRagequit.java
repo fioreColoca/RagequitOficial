@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+/*package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
 
@@ -60,4 +60,4 @@ public class UsuarioRagequit {
 	
 	
 
-}
+}*/
