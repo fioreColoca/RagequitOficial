@@ -21,9 +21,9 @@ public class ServicioUsuarioRagequitImpl implements ServicioUsuarioRagequit {
 	}
 
 	@Override
-	public UsuarioRagequit mostrarUsuario(UsuarioRagequit usuarioRagequit) {
+	public UsuarioRagequit mostrarUsuario(Long id) {
 
-		return repositorioUsuarioRagequit.mostrarUsuarioPorId(usuarioRagequit.getId());
+		return repositorioUsuarioRagequit.mostrarUsuarioPorId(id);
 	}
 
 //	@Override

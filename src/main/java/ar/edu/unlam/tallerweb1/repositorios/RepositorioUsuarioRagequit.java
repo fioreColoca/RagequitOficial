@@ -6,4 +6,5 @@ public interface RepositorioUsuarioRagequit {
 	void guardarUsuario(UsuarioRagequit usuarioRagequit);
 
 	UsuarioRagequit mostrarUsuarioPorId(Long id);
+	
 }
