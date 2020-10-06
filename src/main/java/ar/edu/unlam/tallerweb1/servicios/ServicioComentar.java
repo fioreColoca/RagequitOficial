@@ -6,4 +6,6 @@ public interface ServicioComentar {
 	
 	 Long enviarComentario(Comentario comentario);
 
+	Comentario mostrarComentario(Long id);
+
 }

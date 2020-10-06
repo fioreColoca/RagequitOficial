@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -19,27 +21,32 @@ public class ControladorComentario {
 	@Inject
 	private ServicioComentar servicioComentario;
 	
-	@RequestMapping(path="/Comentario")
+	@RequestMapping(path="/comentario")
 	public ModelAndView comentar() {
 		return new ModelAndView("comentarioEscribir");
 	}
 	
 	
-	@RequestMapping(path="/VerComentario", method = RequestMethod.GET)
+	@RequestMapping(path="/verComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value="comentarioMandar",required = true) String comentarioMensaje) {
+		
+		java.util.Date fecha = new Date(); /* DATE DE JAVA NO DE SQL, NO SE COMO LO TRABAJARA SQL*/
 					
 		Comentario comentario= new Comentario();
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setCantidadLikes(0);
+		comentario.setFechaHora(fecha);
 		/*comentario.setCantidadLikes(cantidadLikes);*/
+		Long id = comentario.getId();
 		
 		Long idComentario = servicioComentario.enviarComentario(comentario);
+		/*Comentario mostrarComentario = servicioComentario.mostrarComentario(id);*/
+		
 		ModelMap modelo = new ModelMap();
-		modelo.put("idpublicacion", idComentario);
 		modelo.put("comentario",comentario);
 		
-		return new ModelAndView("comentarioEscribir",modelo);
+		return new ModelAndView("comentarioVer",modelo);
 	}
 	
 	

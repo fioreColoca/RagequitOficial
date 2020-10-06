@@ -21,4 +21,13 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		return (Long)session.save(comentario);	
 	}
 
+
+	@Override
+	public Comentario mostrarComentario(Long id) {
+		return sessionFactory.getCurrentSession().get(Comentario.class,id);
+	}
+
+
+
+
 }

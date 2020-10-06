@@ -21,4 +21,10 @@ public class ServicioComentarImpl implements ServicioComentar {
 		return  repositorioComentar.enviarComentario(comentario);
 	}
 
+
+	@Override
+	public Comentario mostrarComentario(Long id) {
+		return repositorioComentar.mostrarComentario(id);
+	}
+
 }

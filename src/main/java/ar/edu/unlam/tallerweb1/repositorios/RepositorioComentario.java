@@ -6,4 +6,6 @@ public interface RepositorioComentario {
 	
 	public Long enviarComentario(Comentario comentario);
 
+	public Comentario mostrarComentario(Long id);
+
 }
