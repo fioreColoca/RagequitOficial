@@ -1,11 +1,11 @@
-/*package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo;
 
 public class ComentarioSuscripto extends Comentario{
 	
 	String mensajePremium;
 
 	/* Duda con herencia */
-	/*public String getMensajePremium() {
+	public String getMensajePremium() {
 		return mensajePremium;
 	}
 
@@ -13,4 +13,3 @@ public class ComentarioSuscripto extends Comentario{
 		this.mensajePremium = mensajePremium;
 	}
 }
-*/
