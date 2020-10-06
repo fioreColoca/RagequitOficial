@@ -1,4 +1,4 @@
-/*package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo;
 
 import java.sql.Date;
 
@@ -8,16 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public abstract  class Comentario {  /* asbtract para clases que por si solas no existen en la vida real */
+public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas no existen en la vida real */
 	/* ES UNARIA  DUDA CON EL IMPORT DE DATE*/
-	/*@Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private Date fechaHora;
 	private Integer cantidadLikes;
+	private String mensaje; /* no deberia de ir, pero no se hacer herencia foraneas */
+	
 	public Long getId() {
 		return id;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -35,4 +43,4 @@ public abstract  class Comentario {  /* asbtract para clases que por si solas no
 		this.cantidadLikes = cantidadLikes;
 	}
 	
-}*/
+}

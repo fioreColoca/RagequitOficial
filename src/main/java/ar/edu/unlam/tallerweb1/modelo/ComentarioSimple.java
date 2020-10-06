@@ -1,10 +1,10 @@
-/*package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo;
 
 public class ComentarioSimple extends Comentario{
 		
 	/* Duda con la herencia y si va o no Entity */
 	
-	/*String mensajeSimple;
+	String mensajeSimple;
 
 	public String getMensajeSimple() {
 		return mensajeSimple;
@@ -14,4 +14,3 @@ public class ComentarioSimple extends Comentario{
 		this.mensajeSimple = mensajeSimple;
 	}
 }
-*/
