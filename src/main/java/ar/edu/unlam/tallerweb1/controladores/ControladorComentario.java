@@ -21,6 +21,7 @@ public class ControladorComentario {
 	@Inject
 	private ServicioComentar servicioComentario;
 	
+	
 	@RequestMapping(path="/comentario")
 	public ModelAndView comentar() {
 		return new ModelAndView("comentarioEscribir");
@@ -50,5 +51,26 @@ public class ControladorComentario {
 	}
 	
 	
+	@RequestMapping(path="/borrarComentario")
+	public ModelAndView eliminarComentario() {
+		
+		Long id = (long) 1;
+		servicioComentario.borrarComentario(id);
+		return new ModelAndView("comentarioVer");
+	}
+	
+	
+	@RequestMapping(path="/meGustaComentario")
+	public ModelAndView darLikeComentario() {
+		Long id = (long) 1;
+		servicioComentario.darLikeComentario(id);
+		return new ModelAndView("comentarioVer");
+	}
+	
+	
+	/*@RequestMapping(path="/mostrarRespuesta")
+	public ModelAndView respuesta() {
+		return new ModelAndView("comentarioEscribir");
+	}*/
 
 }

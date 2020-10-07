@@ -11,6 +11,7 @@
 	<form action="verComentario">
 		<label for="comentarioMandar"><p> Escribe tu comentario </p></label>
         <input  type="text" id="comentarioMandar" name="comentarioMandar">
+        <button type="submit" >Responder</button>
 	</form>
 	
 

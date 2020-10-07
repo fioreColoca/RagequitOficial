@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -28,6 +30,25 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 	}
 
 
+	@Override /* COMO HACER ESTO FUNCIONAL A LA PAGINA */
+	public void borrarComentario(Long id) {
+		Comentario comentario = mostrarComentario(id);
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(comentario);
+	}
+
+
+	@Override /* DUDA SI TENGO QUE LLEGAR HASTA ACÁ PARA MODIFICAR DATOS */
+	public void darLikeComentario(Long id) {
+		Comentario comentario = mostrarComentario(id);
+		comentario.setCantidadLikes(comentario.getCantidadLikes()+1);
+	}
+
+
+	@Override
+	public List<Comentario> verListaComentarios() {
+		return sessionFactory.getCurrentSession().createCriteria(Comentario.class).list();
+	}
 
 
 }
