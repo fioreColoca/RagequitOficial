@@ -1,14 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>Login</title>
-    </head>
-
-    <body>
+<%@ include file="header.jsp"%>
         <form action="mostrarUsuario">
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre">
@@ -22,6 +12,4 @@
             <input type="submit">
 
         </form>
-    </body>
-
-    </html>
+<%@ include file="footer.jsp"%>
