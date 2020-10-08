@@ -19,8 +19,8 @@ public class Lista {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@OneToMany
-//	private List <Categoria> categorias = new LinkedList<Categoria>();
+	@OneToMany
+	private List <Categoria> categorias;
 
 	public Long getId() {
 		return id;
@@ -30,13 +30,13 @@ public class Lista {
 		this.id = id;
 	}
 
-//	public List<Categoria> getCategorias() {
-//		return categorias;
-//	}
-//
-//	public void setCategorias(List<Categoria> categorias) {
-//		this.categorias = categorias;
-//	}
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 	
 	
 }
