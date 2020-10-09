@@ -1,5 +1,4 @@
 <%@ include file="header.jsp"%>
-<<<<<<< HEAD
           <main>
             <section>
                     <p>
