@@ -26,7 +26,7 @@
       	<textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3"></textarea>
       </div>
       <div class="text-right">
-      	<button class="btn btn-primary " type="submit">Publicar</button>
+      	<button class="btn btn-warning " type="submit">Publicar</button>
       </div>
       
     </form>
