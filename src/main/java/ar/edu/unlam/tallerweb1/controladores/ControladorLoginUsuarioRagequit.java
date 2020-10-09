@@ -20,10 +20,11 @@ public class ControladorLoginUsuarioRagequit {
 	@RequestMapping(path = "/loginUsuarioRagequit")
 	public ModelAndView crearUsuario() {
 		ModelMap modelo = new ModelMap();
-		modelo.put("title","Login");
-		return new ModelAndView("crearUsuario",modelo);
+		modelo.put("title", "Login");
+		return new ModelAndView("crearUsuario", modelo);
 	}
-	//esto verifica que se cree el usuario 
+
+	// esto verifica que se cree el usuario
 	@RequestMapping(path = "mostrarUsuario")
 	public ModelAndView mostrarUsuarioCreado(@RequestParam(value = "nombre", required = false) String name,
 			@RequestParam(value = "apellido", required = false) String surname,
@@ -36,13 +37,13 @@ public class ControladorLoginUsuarioRagequit {
 		usuario.setNombre(name);
 		usuario.setEmail(email);
 		servicioUsuarioRagequit.crearUsuario(usuario);
-		
-		modelo.put("nombre",name);
-		modelo.put("apellido",surname);
-		modelo.put("email",email);
+
+		modelo.put("nombre", name);
+		modelo.put("apellido", surname);
+		modelo.put("email", email);
 
 		modelo.put("usuario", usuario);
-		modelo.put("title","Registrado");
+		modelo.put("title", "Registrado");
 		return new ModelAndView("mostrarUsuario", modelo);
 	}
 }
