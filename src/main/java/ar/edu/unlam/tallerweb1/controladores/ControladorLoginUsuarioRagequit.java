@@ -19,7 +19,9 @@ public class ControladorLoginUsuarioRagequit {
 
 	@RequestMapping(path = "/loginUsuarioRagequit")
 	public ModelAndView crearUsuario() {
-		return new ModelAndView("crearUsuario");
+		ModelMap modelo = new ModelMap();
+		modelo.put("title","Login");
+		return new ModelAndView("crearUsuario",modelo);
 	}
 	//esto verifica que se cree el usuario 
 	@RequestMapping(path = "mostrarUsuario")
