@@ -7,7 +7,7 @@
 	 <small>${comentario.getFechaHora()}</small>
 	</div>
 	<form action="meGustaComentario">
-	<button type="submit" >Like</button>
+	<button type="submit" >Likee</button>
 	</form> <!--  Esto tiene pìnta de hacerse de una manera mas limpia -->
 	
 	
