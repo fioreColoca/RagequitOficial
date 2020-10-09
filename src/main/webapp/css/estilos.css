@@ -1,11 +1,10 @@
 @charset "ISO-8859-1";
-/***********HEADER***********/
-
+/***********GENERAL***********/
 body {
-    background: #eeeeee;
+    background: #0a4573;
     font-family: 'Varela Round', sans-serif;
 }
-
+/***********HEADER***********/
 .navbar {
     color: #fff;
     background: #04233b !important;
