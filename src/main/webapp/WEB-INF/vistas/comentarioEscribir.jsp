@@ -1,21 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Escribir comentario</title>
-</head>
-<body>
+<%@ include file="header.jsp"%>
 
-	<form action="verComentario">
-		<label for="comentarioMandar"><p> Escribe tu comentario </p></label>
-        <input  type="text" id="comentarioMandar" name="comentarioMandar">
-        <button type="submit" >Responder</button>
+
+<div class="container">
+	<form action="verComentario" class="container">
+	
+		<div class="aling-center"><label for="comentarioMandar"><p > Escribe tu comentario </p></label></div>
+        <div><textarea   id="comentarioMandar" name="comentarioMandar" class="form-control" rows="3" placeholder="comentar"></textarea></div>
+        <div><button type="submit" >Responder</button></div>
 	</form>
 	
-
-
-
-</body>
-</html>
+</div>	
+	
+<%@ include file="footer.jsp"%>
