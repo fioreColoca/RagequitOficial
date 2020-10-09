@@ -1,12 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Publicar</title>
-</head>
-<body>
+<%@ include file="header.jsp"%>
 <h1>Publicar</h1>
 <form action="confirmacionRegistroPublicacion">
         <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
@@ -30,5 +22,4 @@
 		</select>
         <button type="submit">Publicar</button>
     </form>
-</body>
-</html>
+<%@ include file="footer.jsp"%>
