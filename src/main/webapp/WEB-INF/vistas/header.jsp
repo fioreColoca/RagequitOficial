@@ -24,6 +24,7 @@
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <img src="img/perrito.jpg" alt="Perfil">
+                
 
             </button>
             <img src="img/Logo-RageQuitPNG.png" alt="Logo" class="logo">
