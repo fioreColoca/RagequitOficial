@@ -19,9 +19,11 @@
          		<option value="uwu">uwu</option>
          		<option value="comida">Comida</option>
          		<option value="social">Social</option>
+			<option value="social">Reggeton</option>
          	</optgroup>	
 		</select>
         <button type="submit">Publicar</button>
     </form>
 </main>
 <%@ include file="footer.jsp"%>
+

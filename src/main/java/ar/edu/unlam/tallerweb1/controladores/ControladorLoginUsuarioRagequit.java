@@ -35,11 +35,14 @@ public class ControladorLoginUsuarioRagequit {
 		usuario.setApellido(surname);
 		usuario.setNombre(name);
 		usuario.setEmail(email);
-
 		servicioUsuarioRagequit.crearUsuario(usuario);
-		servicioUsuarioRagequit.mostrarUsuario(id);
-		modelo.put("usuario", usuario);
+		
+		modelo.put("nombre",name);
+		modelo.put("apellido",surname);
+		modelo.put("email",email);
 
+		modelo.put("usuario", usuario);
+		modelo.put("title","Registrado");
 		return new ModelAndView("mostrarUsuario", modelo);
 	}
 }
