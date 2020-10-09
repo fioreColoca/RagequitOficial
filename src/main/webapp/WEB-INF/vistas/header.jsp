@@ -12,9 +12,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/estilos.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        
 
 
 <<<<<<< HEAD
@@ -56,9 +54,11 @@
                                 Cerrar sesi&oacute;n</a>
                             </div>
                         </div>
-                        <a href="#" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> <a href="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
+                        <a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> 
+                        <a href="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Lista</span></a>
-                        <a href="#" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Login</span></a> <a href="#" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
+                        <a href="loginUsuarioRagequit" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Login</span></a> 
+                        <a href="registrarPublicacion" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>xd</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-bell"></i><span>jejje</span></a>
 

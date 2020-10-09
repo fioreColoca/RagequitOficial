@@ -19,7 +19,9 @@ public class ControladorLoginUsuarioRagequit {
 
 	@RequestMapping(path = "/loginUsuarioRagequit")
 	public ModelAndView crearUsuario() {
-		return new ModelAndView("crearUsuario");
+		ModelMap modelo = new ModelMap();
+		modelo.put("title","Login");
+		return new ModelAndView("crearUsuario",modelo);
 	}
 	//esto verifica que se cree el usuario 
 	@RequestMapping(path = "mostrarUsuario")
@@ -33,11 +35,14 @@ public class ControladorLoginUsuarioRagequit {
 		usuario.setApellido(surname);
 		usuario.setNombre(name);
 		usuario.setEmail(email);
-
 		servicioUsuarioRagequit.crearUsuario(usuario);
-		servicioUsuarioRagequit.mostrarUsuario(id);
-		modelo.put("usuario", usuario);
+		
+		modelo.put("nombre",name);
+		modelo.put("apellido",surname);
+		modelo.put("email",email);
 
+		modelo.put("usuario", usuario);
+		modelo.put("title","Registrado");
 		return new ModelAndView("mostrarUsuario", modelo);
 	}
 }

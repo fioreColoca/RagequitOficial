@@ -1,11 +1,18 @@
 @charset "ISO-8859-1";
-/***********HEADER***********/
-
+/***********GENERAL***********/
 body {
-    background: #eeeeee;
+    background: #0a4573;
     font-family: 'Varela Round', sans-serif;
 }
-
+main{
+	padding: 1em;
+	color: #fff;
+}
+.info{
+	font-size: larger!important;
+	color:#fff!important;
+}
+/***********HEADER***********/
 .navbar {
     color: #fff;
     background: #04233b !important;
@@ -224,7 +231,7 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
 footer {
-    border-top: 2px solid #fff;
+    border-top: 2px solid #f4a117;
 }
 
 .card {

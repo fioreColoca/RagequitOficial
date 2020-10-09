@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Publicar</title>
-</head>
-<body>
+<%@ include file="header.jsp"%>
+<main>
 <h1>Publicar</h1>
 <form action="confirmacionRegistroPublicacion">
         <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
@@ -26,9 +19,11 @@
          		<option value="uwu">uwu</option>
          		<option value="comida">Comida</option>
          		<option value="social">Social</option>
+				<option value="social">Reggeton</option>
          	</optgroup>	
 		</select>
         <button type="submit">Publicar</button>
     </form>
-</body>
-</html>
+</main>
+<%@ include file="footer.jsp"%>
+

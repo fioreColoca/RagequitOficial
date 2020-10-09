@@ -1,4 +1,5 @@
 <%@ include file="header.jsp"%>
+        <main>
         <form action="mostrarUsuario">
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre">
@@ -12,4 +13,5 @@
             <input type="submit">
 
         </form>
+        </main>
 <%@ include file="footer.jsp"%>

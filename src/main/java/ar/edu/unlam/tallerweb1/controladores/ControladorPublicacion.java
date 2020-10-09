@@ -19,7 +19,10 @@ public class ControladorPublicacion {
 
 	@RequestMapping(path="/registrarPublicacion")
 	public ModelAndView registrarPublicacion() {
-		return new ModelAndView("publicacionRegistrar");
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("title","Publicar");
+		return new ModelAndView("publicacionRegistrar", modelo);
 	}
 	
 	@RequestMapping(path= "/confirmacionRegistroPublicacion", method = RequestMethod.GET)
@@ -34,6 +37,7 @@ public class ControladorPublicacion {
 		
 		Long idpublicacion = servicioPublicacion.guardarPublicacion(publicacion);
 		
+		modelo.put("title","Publicaci&oacute;n");
 		modelo.put("idpublicacion", idpublicacion);
 		modelo.put("publicacion",publicacion);
 		
