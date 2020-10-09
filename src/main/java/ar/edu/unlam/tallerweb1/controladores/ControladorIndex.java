@@ -7,10 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ControladorIndex {
-	@RequestMapping(path="home")
-	public ModelAndView index() {
-		ModelMap modelo= new ModelMap();
-		modelo.put("title","RageQuit | Inicio");
-		return new ModelAndView("home",modelo);
+
+	@RequestMapping(path = "/home")
+	public ModelAndView crearUsuario() {
+		ModelMap modelo = new ModelMap();
+		String aux = "Inicio";
+		modelo.put("title", aux);
+		return new ModelAndView("home", modelo);
 	}
 }
