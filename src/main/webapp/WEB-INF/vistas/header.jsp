@@ -13,16 +13,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/estilos.css">
         
-
-
-<<<<<<< HEAD
-<body>
-    <header>
-        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <img src="img/perrito.jpg" alt="Perfil">
                 
-=======
+
     </head>
 
     <body>
@@ -30,7 +22,7 @@
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <img src="https://i.ibb.co/RQBSWvX/Whats-App-Image-2020-04-13-at-18-07-28.jpg" alt="Perfil">
->>>>>>> ff7ea52eb753ae8fecfc55cecc601e1f413de4ae
+
 
             </button>
                 <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
