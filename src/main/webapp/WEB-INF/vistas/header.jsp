@@ -12,19 +12,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/estilos.css">
-        
-                
-
     </head>
-
     <body>
         <header>
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <img src="https://i.ibb.co/RQBSWvX/Whats-App-Image-2020-04-13-at-18-07-28.jpg" alt="Perfil">
-
-
-            </button>
+               		<img src="https://i.ibb.co/RQBSWvX/Whats-App-Image-2020-04-13-at-18-07-28.jpg" alt="Perfil">
+            	</button>
                 <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
                 <!-- Collection of nav links, forms, and other content for toggling -->
                 <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
@@ -53,7 +47,6 @@
                         <a href="registrarPublicacion" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>xd</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-bell"></i><span>jejje</span></a>
-
                     </div>
                 </div>
             </nav>
