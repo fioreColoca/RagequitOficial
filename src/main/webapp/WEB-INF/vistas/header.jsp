@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/estilos.css">
         
-
+                
 
     </head>
 
@@ -22,6 +22,7 @@
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <img src="https://i.ibb.co/RQBSWvX/Whats-App-Image-2020-04-13-at-18-07-28.jpg" alt="Perfil">
+
 
             </button>
                 <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
@@ -45,8 +46,8 @@
                                 Cerrar sesi&oacute;n</a>
                             </div>
                         </div>
-                        <a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> 
-                        <a href="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
+				    	 <a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> 
+                        <a href="comentario" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Lista</span></a>
                         <a href="loginUsuarioRagequit" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Login</span></a> 
                         <a href="registrarPublicacion" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
