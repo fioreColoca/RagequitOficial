@@ -4,6 +4,10 @@ body {
     background: #0a4573;
     font-family: 'Varela Round', sans-serif;
 }
+main{
+	padding: 1em;
+	color: #fff;
+}
 /***********HEADER***********/
 .navbar {
     color: #fff;
