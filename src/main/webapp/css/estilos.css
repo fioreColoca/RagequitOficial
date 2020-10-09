@@ -8,6 +8,10 @@ main{
 	padding: 1em;
 	color: #fff;
 }
+.info{
+	font-size: larger!important;
+	color:#fff!important;
+}
 /***********HEADER***********/
 .navbar {
     color: #fff;
@@ -227,7 +231,7 @@ main{
 
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
 footer {
-    border-top: 2px solid #fff;
+    border-top: 2px solid #f4a117;
 }
 
 .card {
