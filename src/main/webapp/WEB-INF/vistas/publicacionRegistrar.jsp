@@ -1,4 +1,5 @@
 <%@ include file="header.jsp"%>
+<main>
 <h1>Publicar</h1>
 <form action="confirmacionRegistroPublicacion">
         <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
@@ -22,4 +23,5 @@
 		</select>
         <button type="submit">Publicar</button>
     </form>
+</main>
 <%@ include file="footer.jsp"%>
