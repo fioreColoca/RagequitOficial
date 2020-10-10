@@ -34,9 +34,8 @@
     	<input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
 	  </div>
       <div class="text-right">
-      	<button class="btn btn-warning " type="submit">Publicar</button>
-      </div>
-      
+      	<button class="btn btn-warning" type="submit">Publicar</button>
+      </div>    
     </form>
 </main>
 <%@ include file="footer.jsp"%>
