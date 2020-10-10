@@ -5,7 +5,7 @@
                     <div class="col-md-4 col-sm-11 col-xs-11">
                         <div class="footer-text pull-left">
                             <div class="d-flex">
-                                <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
+                                <img src="img/logo.png" alt="Logo" class="logo">
                                 <h1 style="color: #f4a117">RageQuit</h1>
                             </div>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi non pariatur numquam animi nam at impedit odit nisi.</p>
