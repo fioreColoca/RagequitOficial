@@ -22,12 +22,23 @@ public class Publicacion {
 	private String mensaje;
 	private Integer contadorLikes;
 	private Date fechaHora;
+	private String urlImagen;
+	private String urlVideo;
+	private TipoPublicacion tipo;
 	
 //	@ManyToOne
 //	private Categoria categoria;
 	
 //	@OneToMany
-//	private List <Comentario> comentarios = new LinkedList<Comentario>();
+//	private List <Comentario> comentarios;
+
+	public TipoPublicacion getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoPublicacion tipo) {
+		this.tipo = tipo;
+	}
 
 	public Long getId() {
 		return id;
@@ -60,6 +71,24 @@ public class Publicacion {
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;
 	}
+
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+
+	public String getUrlVideo() {
+		return urlVideo;
+	}
+
+	public void setUrlVideo(String urlVideo) {
+		this.urlVideo = urlVideo;
+	}
+	
+	
 
 
 //	public Categoria getCategoria() {
