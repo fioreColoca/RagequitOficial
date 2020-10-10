@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +12,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Lista {
+public class Biblioteca {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

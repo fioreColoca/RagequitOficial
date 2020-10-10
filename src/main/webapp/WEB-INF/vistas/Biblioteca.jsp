@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Lista de Contenido</title>
+<title>Biblioteca de Contenido</title>
 </head>
 
 <body>
-	<form action="Lista">
+	<form action="Biblioteca">
 		<label for="filtro">Filtrar contenido por Genero</label> 
 			<select name="filtro" id="filtro">
 				<option value="Juego">Juego</option>

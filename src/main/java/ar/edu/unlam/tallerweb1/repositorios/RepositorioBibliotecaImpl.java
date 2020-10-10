@@ -6,18 +6,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Lista;
+import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 
 @Repository
-public class RepositorioListaImpl implements RepositorioLista {
+public class RepositorioBibliotecaImpl implements RepositorioBiblioteca {
 	
 	@Inject
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Long crearLista(Lista lista) {
+	public Long crearBiblioteca(Biblioteca biblioteca) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Long)session.save(lista);
+		return (Long)session.save(biblioteca);
 	}
 
 }
