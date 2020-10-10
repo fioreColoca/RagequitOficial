@@ -10,7 +10,7 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email">
             <br>
-            <input type="submit">
+            <input type="submit" >
 
         </form>
         </main>
