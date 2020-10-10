@@ -17,7 +17,7 @@
         <header>
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-               		<img src="https://i.ibb.co/RQBSWvX/Whats-App-Image-2020-04-13-at-18-07-28.jpg" alt="Perfil">
+               		<img src="img/logo.png" alt="Perfil">
             	</button>
                 <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
                 <!-- Collection of nav links, forms, and other content for toggling -->
@@ -29,7 +29,7 @@
                     </form>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Santiago Fagliano <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="img/santiago.jpeg" class="avatar" alt="Avatar"> Santiago Fagliano <b class="caret"></b></a>
                             <div class="dropdown-menu">
                                 <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i>
                                 Perfil</a> <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i>
