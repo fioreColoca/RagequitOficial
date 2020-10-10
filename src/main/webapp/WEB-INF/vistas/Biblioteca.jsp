@@ -1,13 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Biblioteca de Contenido</title>
-</head>
+<%@ include file="header.jsp"%>
 
-<body>
+<main>
 	<form action="Biblioteca">
 		<label for="filtro">Filtrar contenido por Genero</label> 
 			<select name="filtro" id="filtro">
@@ -27,5 +20,6 @@
 	</form>
 
 
-</body>
-</html>
+</main>
+
+<%@ include file="footer.jsp"%>
