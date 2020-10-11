@@ -4,7 +4,8 @@
 <form action="confirmacionRegistroPublicacion">
 	<div class="form-inline justify-content-sm-end">
     	<label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
-      	<select class="custom-select my-1 mr-sm-2" name="categoriaPublicacion" id="categoriaPublicacion" >
+      	<select class="custom-select my-1 mr-sm-2" name="categoriaPublicacion" id="categoriaPublicacion" required>
+      		<option value="" selected disabled>Elegir</option>
         	<optgroup label="Juegos">
          		<option value="valorant">Valorant</option>
          		<option value="smite">Smite</option>
@@ -23,7 +24,7 @@
       </div>
       <div class="form-group">
       	<label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
-      	<textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3"></textarea>
+      	<textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3" required></textarea>
       </div>
       <div class="form-row">
       	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-image col-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:#f4a117">
