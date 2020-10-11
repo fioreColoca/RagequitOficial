@@ -20,7 +20,8 @@
 					</div>		
   					<div class="text-right">
   						<h4>${categoria}</h4>
-  						<p>${publicacion.getFechaHora()}</p>
+  						<p class="text-white-50">${publicacion.getFechaHora().getHours()}:${publicacion.getFechaHora().getMinutes()}hs 
+  						${publicacion.getFechaHora().getDate()}/${publicacion.getFechaHora().getMonth()}/${publicacion.getFechaHora().getYear()}</p>
   					</div>	
 				</div>
   				<div class="text-left p-3 bg-light text-dark">
