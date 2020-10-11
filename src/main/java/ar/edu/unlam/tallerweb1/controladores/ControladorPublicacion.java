@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.TipoPublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 @Controller
 public class ControladorPublicacion {
@@ -30,8 +28,8 @@ public class ControladorPublicacion {
 	
 	@RequestMapping(path= "/confirmacionRegistroPublicacion", method = RequestMethod.GET)
 	public ModelAndView confirmacionPublicacion(
-			@RequestParam(value = "mensajePublicacion", required = false) String mensajePublicacion,
-			@RequestParam(value = "categoriaPublicacion", required = false) String categoriaPublicacion
+			@RequestParam(value = "mensajePublicacion", required = true) String mensajePublicacion,
+			@RequestParam(value = "categoriaPublicacion", required = true) String categoriaPublicacion
 			) {
 		Date fecha = new Date();
 		Publicacion publicacion = new Publicacion();
@@ -39,6 +37,7 @@ public class ControladorPublicacion {
 		
 		publicacion.setMensaje(mensajePublicacion);
 		publicacion.setFechaHora(fecha);
+		publicacion.setCategoria(categoriaPublicacion);
 		
 		servicioPublicacion.guardarPublicacion(publicacion);
 		
@@ -49,4 +48,4 @@ public class ControladorPublicacion {
 		
 		return new ModelAndView("publicacionRegistradaConfirmacion", modelo);
 	}
-}	
+}
