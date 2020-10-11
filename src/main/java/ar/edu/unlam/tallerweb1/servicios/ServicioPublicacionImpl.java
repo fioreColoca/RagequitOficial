@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +24,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 		return repositorioPublicacion.guardarPublicacion(publicacion);
 	}
+
+	@Override
+	public List<Publicacion> buscarPublicacionesPorCategoria(String categoria) {
+		return repositorioPublicacion.buscarPublicacionesPorCategoria(categoria);
+	}
+
+	
 
 }
