@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
@@ -19,5 +22,15 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 		Session session = sessionFactory.getCurrentSession();
 		return (Long)session.save(publicacion);
 	}
+
+	@Override
+	public List<Publicacion> buscarPublicacionesPorCategoria(String categoria) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Publicacion.class)
+				.add(Restrictions.eq("categoria", categoria))
+				.list();
+	}
+	
+	
 
 }
