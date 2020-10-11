@@ -40,10 +40,9 @@ public class ControladorPublicacion {
 		publicacion.setMensaje(mensajePublicacion);
 		publicacion.setFechaHora(fecha);
 		
-		Long idpublicacion = servicioPublicacion.guardarPublicacion(publicacion);
+		servicioPublicacion.guardarPublicacion(publicacion);
 		
 		modelo.put("title","Publicaci&oacute;n");
-		modelo.put("idpublicacion", idpublicacion);
 		modelo.put("publicacion",publicacion);
 		
 		modelo.put("categoria", categoriaPublicacion);
