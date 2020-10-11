@@ -26,11 +26,29 @@ public class Publicacion {
 	private String urlVideo;
 	private TipoPublicacion tipo;
 	
+	private String categoria;
 //	@ManyToOne
 //	private Categoria categoria;
 	
 //	@OneToMany
 //	private List <Comentario> comentarios;
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+//	public List<Comentario> getComentarios() {
+//		return comentarios;
+//	}
+
+//	public void setComentarios(List<Comentario> comentarios) {
+//		this.comentarios = comentarios;
+//	}
+
 
 	public TipoPublicacion getTipo() {
 		return tipo;
@@ -86,9 +104,7 @@ public class Publicacion {
 
 	public void setUrlVideo(String urlVideo) {
 		this.urlVideo = urlVideo;
-	}
-	
-	
+	}	
 
 
 //	public Categoria getCategoria() {
