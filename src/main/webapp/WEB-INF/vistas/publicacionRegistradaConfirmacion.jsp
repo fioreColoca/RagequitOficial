@@ -28,10 +28,10 @@
   					<p class="comment-text">${publicacion.getMensaje()}</p>
   				</div>
   				<div class="d-flex justify-content-around bg-primary p-2">
-  					<i class="fa fa-thumbs-o-up"></i>
-  					<i class="fa fa-commenting-o"></i>
-  					<i class="fa fa-share"></i>
-  					<i class="fa fa-gg"></i>
+  					<i class="fa fa-thumbs-o-up btn btn-outline-warning"></i>
+  					<i class="fa fa-commenting-o btn btn-outline-warning"></i>
+  					<i class="fa fa-share-alt btn btn-outline-warning"></i>
+  					<i class="fa fa-gg btn btn-outline-warning"></i>
   				</div>
   			</div>
   		</div>
