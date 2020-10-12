@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,7 +31,7 @@ public class ControladorPublicacion {
 	public ModelAndView confirmacionPublicacion(
 			@RequestParam(value = "mensajePublicacion", required = true) String mensajePublicacion,
 			@RequestParam(value = "categoriaPublicacion", required = true) String categoriaPublicacion
-			) {
+			) throws Exception {
 		Date fecha = new Date();
 		Publicacion publicacion = new Publicacion();
 		ModelMap modelo = new ModelMap();
@@ -39,13 +40,47 @@ public class ControladorPublicacion {
 		publicacion.setFechaHora(fecha);
 		publicacion.setCategoria(categoriaPublicacion);
 		
-		servicioPublicacion.guardarPublicacion(publicacion);
+		try {
+			servicioPublicacion.guardarPublicacion(publicacion);
+		}catch(Exception e){
+			String error = e.getMessage();
+			modelo.put("error", error);
+		}
 		
 		modelo.put("title","Publicaci&oacute;n");
 		modelo.put("publicacion",publicacion);
-		
 		modelo.put("categoria", categoriaPublicacion);
 		
 		return new ModelAndView("publicacionRegistradaConfirmacion", modelo);
+	}
+	/*****************************PROBAR TRAER UNA LISTA DE PUBLICACIONES*************************************/
+	
+	@RequestMapping(path= "/publicar", method = RequestMethod.GET)
+	public ModelAndView publicarLista(
+			@RequestParam(value = "mensajePublicacion", required = false) String mensajePublicacion,
+			@RequestParam(value = "categoriaPublicacion", required = false) String categoriaPublicacion
+			) throws Exception {
+		Date fecha = new Date();
+		Publicacion publicacion = new Publicacion();
+		ModelMap modelo = new ModelMap();
+		
+		publicacion.setMensaje(mensajePublicacion);
+		publicacion.setFechaHora(fecha);
+		publicacion.setCategoria(categoriaPublicacion);
+		
+		try {
+			servicioPublicacion.guardarPublicacion(publicacion);
+		}catch(Exception e){
+			String error = e.getMessage();
+			modelo.put("error", error);
+		}
+		
+		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		
+	
+		modelo.put("title","Publicaci&oacute;n");
+		modelo.put("publicaciones",publicaciones);
+		
+		return new ModelAndView("publicacionLista", modelo);
 	}
 }
