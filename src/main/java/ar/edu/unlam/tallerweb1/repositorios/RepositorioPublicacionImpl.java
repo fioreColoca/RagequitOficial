@@ -30,6 +30,13 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 				.add(Restrictions.eq("categoria", categoria))
 				.list();
 	}
+
+	@Override
+	public List<Publicacion> buscarPublicaciones() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Publicacion.class)
+				.list();
+	}
 	
 	
 

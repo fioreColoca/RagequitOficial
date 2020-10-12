@@ -11,5 +11,7 @@ public interface RepositorioPublicacion {
 
 	List<Publicacion> buscarPublicacionesPorCategoria(String categoria);
 
+	List<Publicacion> buscarPublicaciones();
+
 
 }
