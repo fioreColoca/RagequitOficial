@@ -20,14 +20,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	private RepositorioPublicacion repositorioPublicacion;
 
 	@Override
-	public Long guardarPublicacion(Publicacion publicacion) {
-		
+	public Long guardarPublicacion(Publicacion publicacion) throws Exception {
+		if(publicacion.getCategoria().isEmpty()) { 
+			throw new Exception("Categoria vacia.");
+		}
 		return repositorioPublicacion.guardarPublicacion(publicacion);
 	}
 
 	@Override
 	public List<Publicacion> buscarPublicacionesPorCategoria(String categoria) {
 		return repositorioPublicacion.buscarPublicacionesPorCategoria(categoria);
+	}
+
+	@Override
+	public List<Publicacion> buscarPublicaciones() {
+		return repositorioPublicacion.buscarPublicaciones();
 	}
 
 	
