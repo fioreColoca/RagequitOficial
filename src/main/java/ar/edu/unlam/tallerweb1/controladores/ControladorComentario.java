@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 
 
@@ -30,7 +31,8 @@ public class ControladorComentario {
 	
 	@RequestMapping(path="/verComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
-			@RequestParam(value="comentarioMandar",required = true) String comentarioMensaje) {
+			@RequestParam(value="comentarioMandar",required = true)String comentarioMensaje,
+			@RequestParam(value="boton",required = true)String tipoBoton){
 		
 		java.util.Date fecha = new Date(); /* DATE DE JAVA NO DE SQL, NO SE COMO LO TRABAJARA SQL*/
 					
@@ -38,6 +40,7 @@ public class ControladorComentario {
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
+		servicioComentario.tipoComentario(tipoBoton, comentario);
 		/*comentario.setCantidadLikes(cantidadLikes);*/
 		Long id = comentario.getId();
 		
@@ -49,22 +52,28 @@ public class ControladorComentario {
 		
 		return new ModelAndView("comentarioVer",modelo);
 	}
-	
+		
 	
 	@RequestMapping(path="/borrarComentario")
-	public ModelAndView eliminarComentario() {
+	public ModelAndView eliminarComentario(
+			@RequestParam(value="botonBorrar",required = true)Long idComentario) {
 		
-		Long id = (long) 1;
-		servicioComentario.borrarComentario(id);
-		return new ModelAndView("comentarioVer");
+		servicioComentario.borrarComentario(idComentario);
+		return new ModelAndView("comentarioEscribir");
 	}
 	
 	
 	@RequestMapping(path="/meGustaComentario")
-	public ModelAndView darLikeComentario() {
-		Long id = (long) 1;
-		servicioComentario.darLikeComentario(id);
-		return new ModelAndView("comentarioVer");
+	public ModelAndView darLikeComentario(
+		@RequestParam(value="botonLike",required = true)Long idLike) {
+		
+		Comentario comentario =servicioComentario.mostrarComentario(idLike);
+		servicioComentario.darLikeComentario(idLike);
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("comentario",comentario);
+		
+		return new ModelAndView("comentarioVer",modelo);
 	}
 	
 	

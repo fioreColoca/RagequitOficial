@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 
 @Service
@@ -43,4 +44,22 @@ public class ServicioComentarImpl implements ServicioComentar {
 		return repositorioComentar.verListaComentarios();
 	}
 
+	@Override
+	public void tipoComentario(String boton,Comentario comentario) {
+		switch (boton) {
+		case "comun":
+			comentario.setTipo(ComentarioTipo.COMUN);
+			break;
+		case "premium":
+			comentario.setTipo(ComentarioTipo.SUSCRIPTOR);		
+			break;
+		default:
+			break;
+		}
+
+	}
+
+
 }
+
+
