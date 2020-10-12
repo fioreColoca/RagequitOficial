@@ -4,6 +4,7 @@
     <html lang="es">
 
     <head>
+    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" href="img/ragequit.ico" type="image/x-icon"/>
@@ -45,7 +46,7 @@
                         <a href="comentario" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Lista</span></a>
                         <a href="loginUsuarioRagequit" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Login</span></a> 
-                        <a href="registrarPublicacion" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
+                        <a href="publicar" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>xd</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-bell"></i><span>jejje</span></a>
                     </div>
