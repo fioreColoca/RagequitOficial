@@ -24,7 +24,9 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 	private Long id;
 	
 	@OneToMany (fetch=FetchType.EAGER)
-	private List<Comentario> respuesta = new LinkedList<Comentario>();
+	private List<Comentario> respuesta;
+	
+	private String mensaje;
 	
 	@Column(name="fecha_hora")
 	private Date fechaHora;
@@ -32,34 +34,63 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 	@Column(name="cantidad_likes")
 	private Integer cantidadLikes;
 	
+	@Column(name="tipo_de_comentario")
+	private ComentarioTipo tipo;
 	
-	private String mensaje; /* no deberia de ir, pero no se hacer herencia foraneas */
-	
-	/* GETTERS AND SETTERS */
-	
+	/* ---------- GETERS AND SETERS ---------- */
+
+
 	public Long getId() {
 		return id;
 	}
-	public String getMensaje() {
-		return mensaje;
-	}
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public List<Comentario> getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(List<Comentario> respuesta) {
+		this.respuesta = respuesta;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
 	public Date getFechaHora() {
 		return fechaHora;
 	}
+
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;
 	}
+
 	public Integer getCantidadLikes() {
 		return cantidadLikes;
 	}
+
 	public void setCantidadLikes(Integer cantidadLikes) {
 		this.cantidadLikes = cantidadLikes;
 	}
+
+	public ComentarioTipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(ComentarioTipo tipo) {
+		this.tipo = tipo;
+	}
+	
+
+	
+
+		
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
 @Service
@@ -20,8 +21,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	private RepositorioPublicacion repositorioPublicacion;
 
 	@Override
-	public Long guardarPublicacion(Publicacion publicacion) {
-		
+	public Long guardarPublicacion(Publicacion publicacion) throws Exception {
+		if(publicacion.getCategoria().isEmpty()) { 
+			throw new Exception("Categoria vacia.");
+		}
 		return repositorioPublicacion.guardarPublicacion(publicacion);
 	}
 
@@ -30,6 +33,24 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return repositorioPublicacion.buscarPublicacionesPorCategoria(categoria);
 	}
 
+	@Override
+	public List<Publicacion> buscarPublicaciones() {
+		return repositorioPublicacion.buscarPublicaciones();
+	}
 	
+	@Override
+	public Publicacion obtenerPublicacion(Long id) {
+		
+		return repositorioPublicacion.obtenerPublicacion(id);
+	}
+
+	@Override
+	public void borrarPublicacion(Long id) {
+		repositorioPublicacion.borrarPublicacion(id);
+		
+	}
+
+	
+
 
 }

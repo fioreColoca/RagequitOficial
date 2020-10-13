@@ -24,7 +24,7 @@ public class Publicacion {
 	private Date fechaHora;
 	private String urlImagen;
 	private String urlVideo;
-	private TipoPublicacion tipo;
+	private PublicacionTipo tipo;
 	
 	private String categoria;
 //	@ManyToOne
@@ -50,11 +50,11 @@ public class Publicacion {
 //	}
 
 
-	public TipoPublicacion getTipo() {
+	public PublicacionTipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoPublicacion tipo) {
+	public void setTipo(PublicacionTipo tipo) {
 		this.tipo = tipo;
 	}
 

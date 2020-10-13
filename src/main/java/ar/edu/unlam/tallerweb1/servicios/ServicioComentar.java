@@ -9,11 +9,13 @@ public interface ServicioComentar {
 	 Long enviarComentario(Comentario comentario);
 
 	 Comentario mostrarComentario(Long id);
-	
+	 	
 	 void borrarComentario(Long id);
 	 
 	 void darLikeComentario(Long id);
 	 
 	 List<Comentario> listaDeComentarios();
+	 
+	 void tipoComentario(String boton,Comentario comentario);
 
 }
