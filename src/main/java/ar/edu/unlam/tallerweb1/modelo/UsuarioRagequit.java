@@ -16,7 +16,7 @@ public class UsuarioRagequit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	//comentario de fio
 	private String nombreUsuario;
 	private Date fechaCreacion;
 	private Date fechaNacimiento;
