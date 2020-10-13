@@ -38,6 +38,21 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 				.list();
 	}
 	
+	@Override
+	public Publicacion obtenerPublicacion(Long id) {
+		
+		return sessionFactory.getCurrentSession().get(Publicacion.class, id);
+	}
+
+	@Override
+	public void borrarPublicacion(Long id) {
+		Publicacion publicacion = obtenerPublicacion(id);
+		sessionFactory.getCurrentSession().delete(publicacion);
+		
+	}
+
+	
+	
 	
 
 }
