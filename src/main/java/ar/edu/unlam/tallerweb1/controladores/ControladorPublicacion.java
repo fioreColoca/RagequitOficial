@@ -90,22 +90,8 @@ public class ControladorPublicacion {
 	public ModelAndView borrarPublicacion(
 			@RequestParam(value = "botonBorrar", required = false) Long id
 			) throws Exception {
-		
-		ModelMap modelo = new ModelMap();
-		
 		servicioPublicacion.borrarPublicacion(id);
 		
-		String mensaje = "Publicacion borrada con exito!";
-		
-		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
-		
-		
-		
-		modelo.put("publicaciones",publicaciones);
-		
-		modelo.put("title","Publicaci&oacute;n");
-		modelo.put("mensaje",mensaje);
-		
-		return new ModelAndView("publicacionRegistradaConfirmacion", modelo);
+		return new ModelAndView("redirect:/publicar");
 	}
 }
