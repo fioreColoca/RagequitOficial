@@ -60,7 +60,7 @@ public class ControladorComentario {
 			@RequestParam(value="botonBorrar",required = true)Long idComentario) {
 		
 		servicioComentario.borrarComentario(idComentario);
-		return new ModelAndView("comentarioEscribir");
+		return new ModelAndView("redirect:/comentario");
 	}
 	
 	
