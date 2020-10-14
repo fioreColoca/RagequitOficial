@@ -46,7 +46,6 @@
                         <a href="comentario" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Comentarios</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Lista</span></a>
                         <a href="loginUsuarioRagequit" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Login</span></a> 
-                        <a href="publicar" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Publicacion</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>xd</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fa fa-bell"></i><span>jejje</span></a>
                     </div>
