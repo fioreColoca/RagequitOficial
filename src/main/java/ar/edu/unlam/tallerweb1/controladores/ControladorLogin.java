@@ -74,4 +74,9 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
+	@RequestMapping(path = "registrar")
+	public ModelAndView registrar() {
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView("crearUsuario",modelo);
+	}
 }
