@@ -76,12 +76,12 @@ public class ControladorPublicacion {
 			String error = e.getMessage();
 			modelo.put("error", error);
 		}
-		
+		Integer anio = servicioPublicacion.devolverAnio(publicacion);
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
-		
 	
 		modelo.put("title","Publicaci&oacute;n");
 		modelo.put("publicaciones",publicaciones);
+		modelo.put("anio", anio);
 		
 		return new ModelAndView("publicacionLista", modelo);
 	}
@@ -98,6 +98,7 @@ public class ControladorPublicacion {
 		String mensaje = "Publicacion borrada con exito!";
 		
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		
 		
 		
 		modelo.put("publicaciones",publicaciones);
