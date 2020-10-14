@@ -44,6 +44,7 @@ public class ControladorComentario {
 		/*comentario.setCantidadLikes(cantidadLikes);*/
 		Long id = comentario.getId();
 		
+		
 		Long idComentario = servicioComentario.enviarComentario(comentario);
 		/*Comentario mostrarComentario = servicioComentario.mostrarComentario(id);*/
 		

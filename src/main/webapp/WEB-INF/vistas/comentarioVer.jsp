@@ -13,7 +13,7 @@
 		<div class="container col-md-10 col-lg-11 justify-content-center"> 
 		
 				<h5>Nombre de usuario</h5>	 	
-			 	<small>${comentario.getFechaHora().getDate()} / ${comentario.getFechaHora().getMonth()} / ${comentario.getFechaHora().getYear()}</small>
+			 	<small>   ${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()} hs ${comentario.getFechaHora().getDate()} / ${comentario.getFechaHora().getMonth()} / ${comentario.getFechaHora().getYear() + 1900 }  </small>
 				<p>En respuesta a: </p>
 				
 				<div class="container colorComentario">
@@ -33,6 +33,7 @@
 					</svg>
 				</button>
 			</form> <!--  Esto tiene pìnta de hacerse de una manera mas limpia -->
+			 
 		</div>
 		
 		<div class="ml-1">
@@ -61,7 +62,8 @@
 	
 		</div>
 	 </div>
-</div>
+</div> 
+
 </main>	
 
 	<!--  ACA NO VA EL ESTILO, ES PROVISORIO -->
