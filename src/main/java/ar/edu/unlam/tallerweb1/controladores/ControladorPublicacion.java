@@ -20,40 +20,6 @@ public class ControladorPublicacion {
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
 
-	@RequestMapping(path="/registrarPublicacion")
-	public ModelAndView registrarPublicacion() {
-		ModelMap modelo = new ModelMap();
-		
-		modelo.put("title","Publicar");
-		return new ModelAndView("publicacionRegistrar", modelo);
-	}
-	
-	@RequestMapping(path= "/confirmacionRegistroPublicacion", method = RequestMethod.GET)
-	public ModelAndView confirmacionPublicacion(
-			@RequestParam(value = "mensajePublicacion", required = true) String mensajePublicacion,
-			@RequestParam(value = "categoriaPublicacion", required = true) String categoriaPublicacion
-			) throws Exception {
-		Date fecha = new Date();
-		Publicacion publicacion = new Publicacion();
-		ModelMap modelo = new ModelMap();
-		
-		publicacion.setMensaje(mensajePublicacion);
-		publicacion.setFechaHora(fecha);
-		publicacion.setCategoria(categoriaPublicacion);
-		
-		try {
-			servicioPublicacion.guardarPublicacion(publicacion);
-		}catch(Exception e){
-			String error = e.getMessage();
-			modelo.put("error", error);
-		}
-				
-		modelo.put("title","Publicaci&oacute;n");
-		modelo.put("publicacion",publicacion);
-		modelo.put("categoria", categoriaPublicacion);
-		
-		return new ModelAndView("publicacionRegistradaConfirmacion", modelo);
-	}
 	/*****************************PROBAR TRAER UNA LISTA DE PUBLICACIONES*************************************/
 	
 	@RequestMapping(path= "/publicar", method = RequestMethod.GET)
