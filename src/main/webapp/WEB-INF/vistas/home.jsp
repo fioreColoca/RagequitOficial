@@ -2,8 +2,8 @@
           <main>
             <section>
                     <p>
-                        <a class="btn btn-warning " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Presione aqui para mas informaci&oacute;n...
+                        <a class="btn btn-warning " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >
+                        Presione aqu&iacute; para mas informaci&oacute;n...
                     </a>
 
                     </p>

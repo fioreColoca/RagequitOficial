@@ -42,8 +42,9 @@
                                 Cerrar sesi&oacute;n</a>
                             </div>
                         </div>
-				    	 <a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> 
+				    	<a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a> 
                         <a href="comentario" class="nav-item nav-link"><i class="fas fa-comments"></i><span>Comentarios</span></a>
+                        <a href="categoria" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span>Categoria</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Lista</span></a>
                         <a href="registrar" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i><span>Login</span></a> 
                         <a href="#" class="nav-item nav-link"><i class="fas fa-trophy"></i><span>xd</span></a>

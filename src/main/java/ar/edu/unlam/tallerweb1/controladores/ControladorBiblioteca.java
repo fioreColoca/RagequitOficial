@@ -20,6 +20,15 @@ public class ControladorBiblioteca {
 	
 	@RequestMapping(path="/Biblioteca")
 	public ModelAndView biblioteca() {
+		
+		Biblioteca biblioteca = new Biblioteca();
+		ModelMap modelo = new ModelMap();
+		
+		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
+		
+		modelo.put("idBiblioteca", idbiblioteca);
+		modelo.put("Biblioteca", biblioteca);
+		
 		return new ModelAndView("Biblioteca");
 	}
 	

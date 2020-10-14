@@ -7,5 +7,6 @@ public interface ServicioCategoria {
 	void crearCategoria(Categoria categoria);
 	
 	Categoria mostrarCategoriaPorId(Long id);
+	
 
 }

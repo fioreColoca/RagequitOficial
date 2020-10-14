@@ -21,4 +21,10 @@ public class ServicioBibliotecaImpl implements ServicioBiblioteca {
 		return repositorioBiblioteca.crearBiblioteca(biblioteca);
 	}
 
+	@Override
+	public Biblioteca obtenerBiblioteca(Long id) {
+		
+		return repositorioBiblioteca.obtenerBiblioteca(id);
+	}
+
 }

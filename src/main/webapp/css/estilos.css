@@ -222,6 +222,14 @@ main {
 	}
 }
 
+/**HOME**/
+
+#collapseExample{
+	margin:80px !important;
+	background-color: #0000;
+}
+
+
 /*********Registrar***********/
 .divider-text {
 	position: relative;
