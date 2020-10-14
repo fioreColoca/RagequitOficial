@@ -17,5 +17,7 @@ public interface ServicioComentar {
 	 List<Comentario> listaDeComentarios();
 	 
 	 void tipoComentario(String boton,Comentario comentario);
+	
+	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
 	 
 }

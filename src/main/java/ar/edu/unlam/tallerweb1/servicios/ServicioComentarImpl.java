@@ -61,6 +61,11 @@ public class ServicioComentarImpl implements ServicioComentar {
 
 	}
 
+	@Override
+	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
+		return repositorioComentar.mostrarComentarioPorPublicacion(idPublicacion);
+	}
+
 
 }
 
