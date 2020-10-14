@@ -2,14 +2,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,8 +28,8 @@ public class Publicacion {
 //	@ManyToOne
 //	private Categoria categoria;
 	
-//	@OneToMany
-//	private List <Comentario> comentarios;
+	@OneToMany
+	private List <Comentario> comentarios;
 	
 	public String getCategoria() {
 		return categoria;
@@ -40,15 +38,6 @@ public class Publicacion {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-
-//	public List<Comentario> getComentarios() {
-//		return comentarios;
-//	}
-
-//	public void setComentarios(List<Comentario> comentarios) {
-//		this.comentarios = comentarios;
-//	}
-
 
 	public PublicacionTipo getTipo() {
 		return tipo;
@@ -115,11 +104,11 @@ public class Publicacion {
 //		this.categoria = categoria;
 //	}
 
-//	public List<Comentario> getComentarios() {
-//		return comentarios;
-//	}
-//
-//	public void setComentarios(List<Comentario> comentarios) {
-//		this.comentarios = comentarios;
-//	}
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 }

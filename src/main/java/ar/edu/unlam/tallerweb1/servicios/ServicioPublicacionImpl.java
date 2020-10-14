@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.PublicacionTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
 @Service
