@@ -8,11 +8,13 @@
                             <img src="img/logo.png" alt="Logo" class="logo">
                             <h1 style="color: #f4a117">RageQuit</h1>
                         </div>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi non pariatur numquam animi nam at impedit odit nisi.</p>
+                        <p class="card-text">
+                            Bienvenido a la p&aacute;gina oficial de RageQuit, una p&aacute;gina donde encontraras diversi&oacute;n gamer por donde lo veas. ¡Que lo disfrutes!
+                        </p>
                         <div class="social mt-2 mb-3">
-                            <i class="fab fa-facebook"></i>
-                            <i class="fab fa-instagram"></i>
-                            <i class="fab fa-twitter"></i>
+                            <a><i class="fab fa-facebook"></i></a>
+                            <a> <i class="fab fa-instagram"></i></a>
+                            <a><i class="fab fa-twitter"></i></a>
                             <a href="https://github.com/fioreColoca/RagequitOficial.git"><i
                                     class="fab fa-github"></i></a>
                             <a href="https://trello.com/b/Lrzl5zNW/taller-web-version-elcodismo"> <i class="fab fa-trello"></i></a>
@@ -23,7 +25,7 @@
                 <div class="col-md-2 col-sm-4 col-xs-4">
                     <h5 class="heading">Services</h5>
                     <ul>
-                        <li>IT Consulting -</li>
+                        <li>IT Consulting</li>
                         <li>Development</li>
                         <li>Cloud</li>
                         <li>DevOps & Support</li>

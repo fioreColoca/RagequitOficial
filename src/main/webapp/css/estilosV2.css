@@ -306,12 +306,13 @@ hr {
 	border-width: 3px
 }
 
-.social>i {
+.social>a {
 	padding: 1%;
-	font-size: 15px
+	font-size: 15px;
+	color: #646771;
 }
 
-.social>i:hover {
+.social>a:hover {
 	color: #f4a117;
 	cursor: pointer
 }
