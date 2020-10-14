@@ -5,5 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 public interface RepositorioBiblioteca {
 	
 	Long crearBiblioteca (Biblioteca biblioteca);
+	
+	Biblioteca obtenerBiblioteca(Long id);
 
 }
