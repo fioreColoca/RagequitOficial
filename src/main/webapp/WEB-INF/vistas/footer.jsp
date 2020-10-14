@@ -10,7 +10,11 @@
                         </div>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi non pariatur numquam animi nam at impedit odit nisi.</p>
                         <div class="social mt-2 mb-3">
-                            <i class="fa fa-facebook-official fa-lg"></i> <i class="fa fa-instagram fa-lg"></i> <i class="fa fa-twitter fa-lg"></i> <i class="fab fa-github"></i>
+                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-twitter"></i>
+                            <a href="https://github.com/fioreColoca/RagequitOficial.git"><i
+                                    class="fab fa-github"></i></a>
                             <a href="https://trello.com/b/Lrzl5zNW/taller-web-version-elcodismo"> <i class="fab fa-trello"></i></a>
                         </div>
                     </div>
