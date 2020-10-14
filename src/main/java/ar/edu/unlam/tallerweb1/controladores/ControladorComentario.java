@@ -67,8 +67,9 @@ public class ControladorComentario {
 	public ModelAndView darLikeComentario(
 		@RequestParam(value="botonLike",required = true)Long idLike) {
 		
-		Comentario comentario =servicioComentario.mostrarComentario(idLike);
+		
 		servicioComentario.darLikeComentario(idLike);
+		Comentario comentario =servicioComentario.mostrarComentario(idLike);
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("comentario",comentario);
