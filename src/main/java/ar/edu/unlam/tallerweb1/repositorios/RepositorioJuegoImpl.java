@@ -4,9 +4,11 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Juego;
 
+@Repository
 public class RepositorioJuegoImpl implements RepositorioJuego {
 
 	@Inject

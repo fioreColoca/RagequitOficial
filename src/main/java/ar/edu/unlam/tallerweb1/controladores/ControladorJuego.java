@@ -14,7 +14,6 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioJuego;
 public class ControladorJuego {
 
 	@Inject
-	
 	private ServicioJuego servicioJuego;
 	
 	@RequestMapping(path="/Juego")
