@@ -13,11 +13,11 @@
                         </p>
                         <div class="social mt-2 mb-3">
                             <a><i class="fab fa-facebook"></i></a>
-                            <a> <i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/ragequitoficial/" target="_blank"> <i class="fab fa-instagram"></i></a>
                             <a><i class="fab fa-twitter"></i></a>
-                            <a href="https://github.com/fioreColoca/RagequitOficial.git"><i
+                            <a href="https://github.com/fioreColoca/RagequitOficial.git" target="_blank"><i
                                     class="fab fa-github"></i></a>
-                            <a href="https://trello.com/b/Lrzl5zNW/taller-web-version-elcodismo"> <i class="fab fa-trello"></i></a>
+                            <a href="https://trello.com/b/Lrzl5zNW/taller-web-version-elcodismo" target="_blank"> <i class="fab fa-trello"></i></a>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                    <div class="pull-right mr-4 d-flex policy">
+                    <div class="pull-right mr-4 d-flex policy justify-content-end">
                         <div>Terms of Use</div>
                         <div>Privacy Policy</div>
                         <div>Cookie Policy</div>
