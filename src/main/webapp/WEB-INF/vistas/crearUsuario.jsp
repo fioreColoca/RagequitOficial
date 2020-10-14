@@ -1,5 +1,5 @@
 <%@ include file="header.jsp"%>
-        <main>
+        <main style="background: linear-gradient(#04233b, #f4a117);">
         <form action="mostrarUsuario">
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre">
