@@ -44,6 +44,7 @@ public class ControladorComentario {
 		/*comentario.setCantidadLikes(cantidadLikes);*/
 		Long id = comentario.getId();
 		
+		
 		Long idComentario = servicioComentario.enviarComentario(comentario);
 		/*Comentario mostrarComentario = servicioComentario.mostrarComentario(id);*/
 		
@@ -59,7 +60,7 @@ public class ControladorComentario {
 			@RequestParam(value="botonBorrar",required = true)Long idComentario) {
 		
 		servicioComentario.borrarComentario(idComentario);
-		return new ModelAndView("comentarioEscribir");
+		return new ModelAndView("redirect:/comentario");
 	}
 	
 	

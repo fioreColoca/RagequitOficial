@@ -12,9 +12,10 @@ public interface RepositorioComentario {
 
 	 void borrarComentario(Long id);
 
-	 void darLikeComentario(Long id);
+	 /*void darLikeComentario(Long id); */
 	 
 	 List<Comentario> verListaComentarios();
-	
+
+	 List<Comentario> mostrarComentarioPorPublicacion(String usuario); 
 	
 }

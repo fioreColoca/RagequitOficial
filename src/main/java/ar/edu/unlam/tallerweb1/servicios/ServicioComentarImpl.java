@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,7 +37,13 @@ public class ServicioComentarImpl implements ServicioComentar {
 
 	@Override
 	public void darLikeComentario(Long id) {
-		repositorioComentar.darLikeComentario(id);
+		Comentario comentario = mostrarComentario(id);
+		
+		if(comentario.getCantidadLikes()==0) {
+			comentario.setCantidadLikes(comentario.getCantidadLikes()+1);
+		}else {
+			comentario.setCantidadLikes(comentario.getCantidadLikes()-1);
+		}
 	}
 
 	@Override
