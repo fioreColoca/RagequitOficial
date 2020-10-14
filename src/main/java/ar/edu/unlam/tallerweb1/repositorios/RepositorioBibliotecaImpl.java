@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 
+
 @Repository
 public class RepositorioBibliotecaImpl implements RepositorioBiblioteca {
 	
@@ -18,6 +19,12 @@ public class RepositorioBibliotecaImpl implements RepositorioBiblioteca {
 	public Long crearBiblioteca(Biblioteca biblioteca) {
 		Session session = sessionFactory.getCurrentSession();
 		return (Long)session.save(biblioteca);
+	}
+
+	@Override
+	public Biblioteca obtenerBiblioteca(Long id) {
+		
+		return sessionFactory.getCurrentSession().get(Biblioteca.class, id);
 	}
 
 }
