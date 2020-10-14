@@ -19,9 +19,9 @@
         <header>
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <img src="img/logo.png" alt="Perfil">
-            </button>
-                <img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo">
+                	<img src="img/logo.png" alt="Perfil">
+            	</button>
+                <a href="home"><img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo"></a>
                 <!-- Collection of nav links, forms, and other content for toggling -->
                 <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
                     <form class="navbar-form form-inline">
