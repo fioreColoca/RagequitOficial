@@ -12,5 +12,5 @@ public interface ServicioPublicacion {
 	List<Publicacion> buscarPublicaciones();
 	Publicacion obtenerPublicacion(Long id);
 	void borrarPublicacion(Long id);
-
+	Integer devolverAnio(Publicacion publicacion);
 }
