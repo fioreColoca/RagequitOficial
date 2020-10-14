@@ -42,6 +42,8 @@ public class ControladorIndex {
 			modelo.put("error", error);
 		}
 		Integer anio = servicioPublicacion.devolverAnio(publicacion);
+		
+
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
 	
 		modelo.put("title", "Inicio");
@@ -56,6 +58,16 @@ public class ControladorIndex {
 			@RequestParam(value = "botonBorrar", required = false) Long id
 			) throws Exception {
 		servicioPublicacion.borrarPublicacion(id);
+		
+		return new ModelAndView("redirect:/home");
+	}
+	
+	@RequestMapping(path= "/filtrarCategoria", method = RequestMethod.GET)
+	public ModelAndView borrarPublicacion(
+			@RequestParam(value = "filtarPublicacionCategoria", required = false) String filtrarPublicacionCategoria
+			) throws Exception {
+		
+		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
 		
 		return new ModelAndView("redirect:/home");
 	}

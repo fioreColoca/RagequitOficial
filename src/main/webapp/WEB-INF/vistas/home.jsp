@@ -9,7 +9,6 @@
                     </p>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body info">
-                    
                         Bienvenido a la p&aacute;gina oficial de RageQuit, en estos momentos la pagina se encuentra en construccion. Pero puede pasar a examinar nuestras diferentes ar&eacute;as. Saludos, comision directiva de RageQuit.
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-joystick" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f4a117">
                         <path
@@ -58,6 +57,34 @@
       <div class="text-right">
       	<button class="btn btn-warning" type="submit">Publicar</button>
       </div>    
+    </form>
+</section>
+<hr>
+<section>
+	<form action="filtrarCategoria">
+		<div class="form-inline justify-content-sm-end">
+    		<label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por categorias</b></label>
+      		<select class="custom-select my-1 mr-sm-2" name="filtarPublicacionCategoria" id="filtarPublicacionCategoria" required>
+      			<option value="" selected disabled>Elegir</option>
+        			<optgroup label="Juegos">
+         				<option value="valorant">Valorant</option>
+         				<option value="smite">Smite</option>
+         				<option value="counter-strike">Counter-Strike</option>
+         				<option value="among us">Among Us</option>
+         			</optgroup>
+  					<optgroup label="Otros">
+         				<option value="anime">Anime</option>
+         				<option value="arte">Arte</option>
+         				<option value="uwu">uwu</option>
+         				<option value="comida">Comida</option>
+         				<option value="social">Social</option>
+						<option value="social">Reggeton</option>
+         			</optgroup>	
+			</select>   
+			<div class="text-right">
+      			<button class="btn btn-warning" type="submit">Filtrar</button>
+      		</div> 	
+      </div>
     </form>
 </section>
 <section>
