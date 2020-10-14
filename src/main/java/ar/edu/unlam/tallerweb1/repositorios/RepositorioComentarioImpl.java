@@ -38,6 +38,7 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		session.delete(comentario);
 	}
 
+	
 
 	@Override
 	public List<Comentario> verListaComentarios() {
@@ -46,10 +47,12 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 
 	
 	@Override
-	public List<Comentario> mostrarComentarioPorPublicacion(String idPublicacion) {
-		return sessionFactory.getCurrentSession().createCriteria(Comentario.class).add(Restrictions.eq("idPublicacion",idPublicacion))
+	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
+		return sessionFactory.getCurrentSession().createCriteria(Comentario.class).add(Restrictions.eq("publicacion_id",idPublicacion))
 		.list();
 	}
 
+	
+	
 
 }
