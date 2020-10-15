@@ -37,4 +37,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.uniqueResult();
 	}
 
+	@Override
+	public void registrarUsuario(Usuario usuario) {
+		sessionFactory.getCurrentSession().save(usuario);
+	}
+
 }

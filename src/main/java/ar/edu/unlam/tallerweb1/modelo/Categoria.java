@@ -12,6 +12,9 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	
+	private CategoriaTipo tipoCategoria;
+	
 	public Long getId() {
 		return id;
 	}
@@ -25,7 +28,13 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 	
+	public CategoriaTipo getTipoCategoria() {
+		return tipoCategoria;
+	}
 
+	public void setTipoCategoria(CategoriaTipo tipo) {
+		this.tipoCategoria = tipo;
+	}
 	
 
 }

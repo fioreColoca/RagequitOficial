@@ -17,7 +17,8 @@
 				<option value="Social">Social</option>
 			</select>
 			<button type="submit">Filtrar</button>
-	</form>
+	</form><br>
+	
 
 
 </main>

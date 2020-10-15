@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -11,17 +14,22 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 @Transactional
 public class ServicioCategoriaImp implements ServicioCategoria {
 	
-	private RepositorioCategoria servicioCategoria;
+	@Inject
+	private RepositorioCategoria repositorioCategoria;
 
 	@Override
 	public void crearCategoria(Categoria categoria) {
-		servicioCategoria.crearCategoria(categoria);
+		repositorioCategoria.crearCategoria(categoria);
 	}
 
 	@Override
 	public Categoria mostrarCategoriaPorId(Long id) {
-		return servicioCategoria.mostrarCategoriaPorId(id);
+		return repositorioCategoria.mostrarCategoriaPorId(id);
 	}
 
+	@Override
+	public List<Categoria> mostrarCategorias() {
+		return repositorioCategoria.mostrarCategorias();
+	}
 	
 }

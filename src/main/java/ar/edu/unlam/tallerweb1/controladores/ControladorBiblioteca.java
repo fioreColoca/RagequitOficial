@@ -18,12 +18,21 @@ public class ControladorBiblioteca {
 	@Inject
 	private ServicioBiblioteca servicioBiblioteca;
 	
-	@RequestMapping(path="/Biblioteca")
+	@RequestMapping(path="/biblioteca")
 	public ModelAndView biblioteca() {
+		
+		Biblioteca biblioteca = new Biblioteca();
+		ModelMap modelo = new ModelMap();
+		
+		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
+		
+		modelo.put("idBiblioteca", idbiblioteca);
+		modelo.put("Biblioteca", biblioteca);
+		
 		return new ModelAndView("Biblioteca");
 	}
 	
-	@RequestMapping(path="/Biblioteca", method = RequestMethod.GET)
+	@RequestMapping(path="/biblioteca", method = RequestMethod.GET)
 	public ModelAndView bibliotecaDesplegada(
 			@RequestParam(value = "filtro", required = false) String filtro
 			) {
