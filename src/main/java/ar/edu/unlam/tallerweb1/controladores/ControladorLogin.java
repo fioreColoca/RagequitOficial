@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -89,6 +91,7 @@ public class ControladorLogin {
 	@RequestMapping(path = "registrar")
 	public ModelAndView registrar() {
 		ModelMap modelo = new ModelMap();
+		modelo.put("title","Login");
 		return new ModelAndView("crearUsuario",modelo);
 	}
 
@@ -98,7 +101,7 @@ public class ControladorLogin {
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "telefono", required = false) String telefono,
 			@RequestParam(value = "usuario", required = false) String usuario,
-			@RequestParam(value = "contrasenia", required = false) String contrasenia) {
+			@RequestParam(value = "contrasenia", required = false) String contrasenia){
 		ModelMap modelo = new ModelMap();
 		Usuario usuariov1= new Usuario();
 		usuariov1.setApellido(apellido);
