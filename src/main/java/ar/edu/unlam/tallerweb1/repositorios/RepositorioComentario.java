@@ -14,6 +14,8 @@ public interface RepositorioComentario {
 	 
 	 List<Comentario> verListaComentarios();
 
-	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion); 
+	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
+
+	 List<Comentario> mostrarTodosLosComentarios(); 
 	
 }

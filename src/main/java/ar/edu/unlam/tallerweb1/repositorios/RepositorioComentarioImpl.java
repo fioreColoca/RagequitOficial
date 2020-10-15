@@ -52,6 +52,14 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		.list();
 	}
 
+
+	@Override
+	public List<Comentario> mostrarTodosLosComentarios() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Comentario.class)
+				.list();
+	}
+
 	
 	
 

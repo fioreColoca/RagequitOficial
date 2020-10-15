@@ -20,4 +20,6 @@ public interface ServicioComentar {
 	
 	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
 	 
+	 List<Comentario> mostrarTodosLosComentarios();
+	 
 }

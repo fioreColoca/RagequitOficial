@@ -1,11 +1,7 @@
 <%@ include file="header.jsp"%>
-    <main>
+ <div class="container p-3 mb-2 colorCeleste text-white">
 
-
-
-        <div class="container p-3 mb-2 colorCeleste text-white">
-
-            <div class="row">
+            <div class="row mb-4">
 
                 <div class="d-flex flex-row user-info mb-3 col-md-2 col-lg-1 justify-content-center">
                     <img class="rounded-circle" src="img/santiago.jpeg" width="50" height="50">
@@ -43,9 +39,13 @@
                         </div>
 
                         <div class="ml-3">
+                        
+                        <form method="" action="comentario">
                             <button type="submit" class="text-warning btn btn-outline-warning">
                             <i class="far fa-comment-dots"></i>
-                        </button>
+                        	</button>
+                        </form> 
+                        
                         </div>
 
                         <div class="ml-3">
@@ -87,6 +87,17 @@
 
             </div>
     </main>
+
+    <!--  ACA NO VA EL ESTILO, ES PROVISORIO -->
+    <style>
+        .colorCeleste {
+            background: #287EB0;
+        }
+        
+        .colorComentario {
+            background: #eceff0;
+        }
+    </style>
 
     <!--  ACA NO VA EL ESTILO, ES PROVISORIO -->
     <style>

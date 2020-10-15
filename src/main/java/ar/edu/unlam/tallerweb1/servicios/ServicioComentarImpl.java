@@ -66,6 +66,11 @@ public class ServicioComentarImpl implements ServicioComentar {
 		return repositorioComentar.mostrarComentarioPorPublicacion(idPublicacion);
 	}
 
+	@Override
+	public List<Comentario> mostrarTodosLosComentarios() {
+		return repositorioComentar.mostrarTodosLosComentarios();
+	}
+
 
 }
 
