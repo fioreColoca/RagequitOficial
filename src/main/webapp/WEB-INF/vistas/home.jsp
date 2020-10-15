@@ -21,13 +21,10 @@
             </div>
         </section>
         <section>
-        	<form:form action="/guardarPublicacion" method="POST" modelAttribute="publicacion">
+        	<form:form action="guardarPublicacion" method="POST" modelAttribute="publicacion">
         		<div class="form-inline justify-content-sm-end">
                     <label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
-                    <form:select path="" class="custom-select my-1 mr-sm-2" name="categoriaPublicacion"id="categoriaPublicacion" required>
-                    	
-                    </form:select>
-                    <select class="custom-select my-1 mr-sm-2" name="categoriaPublicacion" id="categoriaPublicacion" required>
+					<form:select path="categoria" class="custom-select my-1 mr-sm-2" id="categoriaPublicacion">
                     <option value="" selected disabled>Elegir</option>
                     <optgroup label="Juegos">
                         <option value="valorant">Valorant</option>
@@ -43,11 +40,11 @@
                         <option value="social">Social</option>
                         <option value="social">Reggeton</option>
                     </optgroup>
-                </select>
+                	</form:select>
                 </div>
                 <div class="form-group">
                     <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
-                    <textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3" required></textarea>
+                    <form:textarea path="mensaje" id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3" />
                 </div>
                 <div class="form-row">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-image col-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:#f4a117">
@@ -100,10 +97,14 @@
                     <button class="btn btn-warning" type="submit">Publicar</button>
                 </div>
             </form>-->
+            <c:if test="${not empty errorCategoriaVacia}">
+			        <h4 class="text-danger"><span>${errorCategoriaVacia}</span></h4>
+			        <br>
+		    </c:if>
         </section>
         <hr>
         <section>
-            <form action="filtrarCategoria">
+            <form action="">
                 <div class="form-inline justify-content-sm-end">
                     <label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por
                         categorias</b></label>
@@ -125,19 +126,15 @@
                     </optgroup>
                 </select>
                     <div class="text-right">
-                        <button class="btn btn-warning" type="submit">Filtrar</button>
+                        <button class="btn btn-warning" >Filtrar</button>
                     </div>
                 </div>
-            </form>
-            <c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
-			        <br>
-		    </c:if>	
+            </form>	
         <section>
         </section>
         <section>
             <c:if test="${not empty publicaciones}">
-                <c:forEach items="${publicaciones}" var="publicacion">
+                <c:forEach items="${publicaciones}" var="publicacionDelFor">
                     <div class="container mt-5 mb-5">
                         <div class="d-flex justify-content-center row">
                             <div class="col-md-10">
@@ -150,17 +147,17 @@
                                         <img class="rounded-circle" src="img/santiago.jpeg" width="100">
                                     </div>
                                     <div class="text-right">
-                                        <h4>${publicacion.getCategoria()}</h4>
+                                        <h4>${publicacionDelFor.getCategoria()}</h4>
                                         <p class="text-white-50">
-                                            ${publicacion.getFechaHora().getHours()}:${publicacion.getFechaHora().getMinutes()}hs ${publicacion.getFechaHora().getDate()}/${publicacion.getFechaHora().getMonth()}/${anio}
+                                            ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}/${anio}
                                         </p>
-                                        <button type="button" class="btn btn-outline-warning botonBorrar" data-toggle="modal" data-target="#borrarPublicacion" data-id="${publicacion.getId()}">
+                                        <button type="button" class="btn btn-outline-warning botonBorrar" data-toggle="modal" data-target="#borrarPublicacion" data-id="${publicacionDelFor.getId()}">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                     </div>
                                 </div>
                                 <div class="text-left p-3 bg-light text-dark">
-                                    <p class="comment-text">${publicacion.getMensaje()}</p>
+                                    <p class="comment-text">${publicacionDelFor.getMensaje()}</p>
                                 </div>
                                 <div class="d-flex justify-content-around bg-primary p-2">
                                     <i class="far fa-thumbs-up btn btn-outline-warning"></i>
