@@ -26,7 +26,7 @@
 
                         <div>
                             <form action="meGustaComentario">
-                                <button type="submit" value=" ${comentario.getId()}" name="botonLike" class="text-warning btn btn-outline-warning">
+                                <button type="submit" value="${comentario.getId()}" name="botonLike" class="text-warning btn btn-outline-warning">
                                 <i class="fas fa-star"></i>
                             </button>
                             </form>
@@ -84,6 +84,7 @@
                     </div>
                 </div>
 
+            </div>
 
             </div>
     </main>
