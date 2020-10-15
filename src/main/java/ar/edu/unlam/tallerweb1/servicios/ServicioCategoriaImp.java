@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -25,5 +27,9 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		return repositorioCategoria.mostrarCategoriaPorId(id);
 	}
 
+	@Override
+	public List<Categoria> mostrarCategorias() {
+		return repositorioCategoria.mostrarCategorias();
+	}
 	
 }
