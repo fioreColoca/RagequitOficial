@@ -278,8 +278,8 @@ main {
     color: #fff;
 }
 
-.input-group-prepend {
-    width: 42px !important;
+.input-group-text {
+    width: 42px!important;
 }
 
 .registrarUsuario input {
