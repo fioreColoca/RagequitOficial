@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -7,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 
 
 @Repository
@@ -26,5 +29,6 @@ public class RepositorioBibliotecaImpl implements RepositorioBiblioteca {
 		
 		return sessionFactory.getCurrentSession().get(Biblioteca.class, id);
 	}
+
 
 }

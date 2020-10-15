@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,14 @@ public class ControladorCategoria {
 		return new ModelAndView("categoria");
 	}
 	
+	
 	@RequestMapping("/confirmacionCategoria")
 	public ModelAndView categoriaExitosa(
 			@RequestParam(value = "categoria", required = false) String tipoCategoria,
-			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) {
+			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) throws Exception {
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
+		
 
 		if(tipoCategoria.equals("Juegos")) {
 			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
@@ -40,9 +44,11 @@ public class ControladorCategoria {
 		
 		servicioCategoria.crearCategoria(categoria);
 		
-		modelo.put("categoria", categoria);
+		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		
+		modelo.put("categoriaCreada", categoria);
+		modelo.put("categorias", categorias);
 		return new ModelAndView("confirmacionCategoria",modelo);
 	}
-	
 
 }

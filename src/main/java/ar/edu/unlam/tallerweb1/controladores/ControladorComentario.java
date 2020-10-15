@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
-import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 
 
@@ -46,10 +46,14 @@ public class ControladorComentario {
 		
 		
 		Long idComentario = servicioComentario.enviarComentario(comentario);
+		
+		List<Comentario>comentarios = servicioComentario.mostrarTodosLosComentarios();
 		/*Comentario mostrarComentario = servicioComentario.mostrarComentario(id);*/
 		
 		ModelMap modelo = new ModelMap();
+		modelo.put("comentarios",comentarios);
 		modelo.put("comentario",comentario);
+
 		
 		return new ModelAndView("comentarioVer",modelo);
 	}
@@ -71,8 +75,10 @@ public class ControladorComentario {
 		
 		servicioComentario.darLikeComentario(idLike);
 		Comentario comentario =servicioComentario.mostrarComentario(idLike);
-		
+		List<Comentario>comentarios = servicioComentario.mostrarTodosLosComentarios();
+
 		ModelMap modelo = new ModelMap();
+		modelo.put("comentarios",comentarios);
 		modelo.put("comentario",comentario);
 		
 		return new ModelAndView("comentarioVer",modelo);

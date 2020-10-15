@@ -18,7 +18,7 @@ public class ControladorBiblioteca {
 	@Inject
 	private ServicioBiblioteca servicioBiblioteca;
 	
-	@RequestMapping(path="/Biblioteca")
+	@RequestMapping(path="/biblioteca")
 	public ModelAndView biblioteca() {
 		
 		Biblioteca biblioteca = new Biblioteca();
@@ -32,7 +32,7 @@ public class ControladorBiblioteca {
 		return new ModelAndView("Biblioteca");
 	}
 	
-	@RequestMapping(path="/Biblioteca", method = RequestMethod.GET)
+	@RequestMapping(path="/biblioteca", method = RequestMethod.GET)
 	public ModelAndView bibliotecaDesplegada(
 			@RequestParam(value = "filtro", required = false) String filtro
 			) {

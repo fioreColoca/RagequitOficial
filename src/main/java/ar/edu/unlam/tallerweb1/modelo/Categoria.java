@@ -34,9 +34,7 @@ public class Categoria {
 
 	public void setTipoCategoria(CategoriaTipo tipo) {
 		this.tipoCategoria = tipo;
-	} 
-	
-
+	}
 	
 
 }
