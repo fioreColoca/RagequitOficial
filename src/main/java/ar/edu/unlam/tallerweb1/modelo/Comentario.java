@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,8 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas no existen en la vida real */
@@ -26,6 +25,9 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 	@OneToMany (fetch=FetchType.EAGER)
 	private List<Comentario> respuesta;
 	
+	@ManyToOne
+	private Publicacion publicacion;
+
 	private String mensaje;
 	
 	@Column(name="fecha_hora")
@@ -88,9 +90,13 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 		this.tipo = tipo;
 	}
 	
+	public Publicacion getPublicacion() {
+		return publicacion;
+	}
 
-	
+	public void setPublicacion(Publicacion publicacion) {
+		this.publicacion = publicacion;
+	}
 
 		
-	
 }

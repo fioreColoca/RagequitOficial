@@ -38,13 +38,7 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		session.delete(comentario);
 	}
 
-
-	/*@Override /* DUDA SI TENGO QUE LLEGAR HASTA ACÁ PARA MODIFICAR DATOS */
-	/*public void darLikeComentario(Long id) {
-		Comentario comentario = mostrarComentario(id);
-		comentario.setCantidadLikes(comentario.getCantidadLikes()+1);
-	}*/
-
+	
 
 	@Override
 	public List<Comentario> verListaComentarios() {
@@ -53,10 +47,12 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 
 	
 	@Override
-	public List<Comentario> mostrarComentarioPorPublicacion(String usuario) {
-		return sessionFactory.getCurrentSession().createCriteria(Comentario.class).add(Restrictions.eq("nombre",usuario))
+	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
+		return sessionFactory.getCurrentSession().createCriteria(Comentario.class).add(Restrictions.eq("publicacion_id",idPublicacion))
 		.list();
 	}
 
+	
+	
 
 }

@@ -38,12 +38,7 @@ public class ServicioComentarImpl implements ServicioComentar {
 	@Override
 	public void darLikeComentario(Long id) {
 		Comentario comentario = mostrarComentario(id);
-		
-		if(comentario.getCantidadLikes()==0) {
-			comentario.setCantidadLikes(comentario.getCantidadLikes()+1);
-		}else {
-			comentario.setCantidadLikes(comentario.getCantidadLikes()-1);
-		}
+		comentario.setCantidadLikes(comentario.getCantidadLikes() + 1);
 	}
 
 	@Override
@@ -64,6 +59,11 @@ public class ServicioComentarImpl implements ServicioComentar {
 			break;
 		}
 
+	}
+
+	@Override
+	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
+		return repositorioComentar.mostrarComentarioPorPublicacion(idPublicacion);
 	}
 
 
