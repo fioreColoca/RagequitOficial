@@ -2,7 +2,7 @@
 <main>
 	<section>
 		<div>
-	 		<form action="confirmacionCategoria">
+	 		<form action="agregarCategoria">
 		<label for="filtro">Filtrar contenido por categoria</label> 
 			<select name="categoria" id="categoria">
 				<option value="Juegos">Juegos</option>
