@@ -27,7 +27,7 @@
 
 				<%--Bloque que es visible si el elemento error no está vacío	--%>
 				<c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
+			        <h4><span>${errorCategoriaVacia}</span></h4>
 			        <br>
 		        </c:if>	
 			</div>

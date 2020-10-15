@@ -21,8 +21,15 @@ public class ControladorIndex {
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
 	
-	@RequestMapping(path= "/home", method = RequestMethod.GET)
-	public ModelAndView irAlHome(
+	@RequestMapping(path="home")
+	public ModelAndView irAlHome() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("title", "Inicio");
+		return new ModelAndView("home", modelo);
+	}
+	
+	@RequestMapping(path= "/guardarPublicacion", method = RequestMethod.GET)
+	public ModelAndView guardarPublicacion(
 			@RequestParam(value = "mensajePublicacion", required = false) String mensajePublicacion,
 			@RequestParam(value = "categoriaPublicacion", required = false) String categoriaPublicacion
 			) throws Exception {
@@ -39,18 +46,20 @@ public class ControladorIndex {
 			servicioPublicacion.guardarPublicacion(publicacion);
 		}catch(Exception e){
 			String error = e.getMessage();
-			modelo.put("error", error);
+			modelo.put("errorCategoriaVacia", error);
 		}
-		Integer anio = servicioPublicacion.devolverAnio(publicacion);
 		
-
-		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		return new ModelAndView("redirect:/mostrarListaPublicacion", modelo);
+	}
 	
-		modelo.put("title", "Inicio");
-		modelo.put("publicaciones",publicaciones);
-		modelo.put("anio", anio);
+/*	@RequestMapping(path="/mostrarListaPublicacion")
+	public ModelAndView mostrarPublicacion() {
+		ModelMap modelo = new ModelMap();
 		
-		return new ModelAndView("home", modelo);
+		
+		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		
+		return new ModelAndView("redirect:home",modelo);
 	}
 	
 	@RequestMapping(path= "/borrarPublicacion", method = RequestMethod.GET)
@@ -59,9 +68,9 @@ public class ControladorIndex {
 			) throws Exception {
 		servicioPublicacion.borrarPublicacion(id);
 		
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/mostrarListaPublicacion");
 	}
-	
+	*/
 	
 	@RequestMapping(path= "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView borrarPublicacion(
@@ -70,6 +79,6 @@ public class ControladorIndex {
 		
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
 		
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:home");
 	}
 }
