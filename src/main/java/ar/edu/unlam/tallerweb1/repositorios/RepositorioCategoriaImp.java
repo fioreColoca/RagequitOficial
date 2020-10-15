@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +27,10 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 		return sessionFactory.getCurrentSession().get(Categoria.class, id);
 	}
 
+	@Override
+	public List<Categoria> mostrarCategorias() {
+		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
+	}
 
-	
 
 }
