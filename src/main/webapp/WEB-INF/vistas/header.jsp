@@ -46,7 +46,7 @@
                             class="fas fa-comments"></i><span>Comentarios</span></a>
                         <a href="categoria" class="nav-item nav-link"><i
                             class="fas fa-gamepad"></i><span>Categoria</span></a>
-                        <a href="#" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Lista</span></a>
+                        <a href="biblioteca" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Lista</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fas fa-trophy"></i><span>xd</span></a>
                         <a href="#" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span>jejje</span></a>
                         <a href="registrar" class="nav-item nav-link"><i
