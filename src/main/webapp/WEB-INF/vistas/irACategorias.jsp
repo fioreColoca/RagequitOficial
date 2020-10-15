@@ -3,7 +3,7 @@
 	<section>
 		
 		<section>
-		<h3>¡Se cre&oacute; con &eacute;xito! Tipo: ${categoriaCreada.getTipoCategoria()} Nombre: ${categoriaCreada.getNombre()}</h3>
+		<h3>¡Tu categoria se guard&oacute; con &eacute;xito!</h3>
 		<p> Estas categorias fueron creadas: </p>
 		<c:if test="${not empty categorias}">
     		<c:forEach items="${categorias}" var="categoria">
@@ -21,3 +21,5 @@
 	</section>
 </main>
 <%@ include file="footer.jsp"%>
+
+<!--Tipo: ${categoriaCreada.getTipoCategoria()} Nombre: ${categoriaCreada.getNombre()}-->
