@@ -91,26 +91,18 @@ public class ControladorLogin {
 	@RequestMapping(path = "registrar")
 	public ModelAndView registrar() {
 		ModelMap modelo = new ModelMap();
-		modelo.put("title","Login");
-		return new ModelAndView("crearUsuario",modelo);
+		Usuario usuario1 = new Usuario();
+		modelo.put("usuario", usuario1);
+		modelo.put("title", "Login");
+		return new ModelAndView("crearUsuario", modelo);
 	}
 
 	@RequestMapping(path = "/registrando")
-	public ModelAndView registrarUsuario(@RequestParam(value = "nombre", required = false) String nombre,
-			@RequestParam(value = "apellido", required = false) String apellido,
-			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "telefono", required = false) String telefono,
-			@RequestParam(value = "usuario", required = false) String usuario,
-			@RequestParam(value = "contrasenia", required = false) String contrasenia){
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
-		Usuario usuariov1= new Usuario();
-		usuariov1.setApellido(apellido);
-		usuariov1.setEmail(email);
-		usuariov1.setNombre(nombre);
-		usuariov1.setNombreUsuario(usuario);
-		usuariov1.setPassword(contrasenia);
-		usuariov1.setRol("Admin");
-		servicioLogin.registrarUsuario(usuariov1);
-		return new ModelAndView("redirect:/login",modelo);
+		usuario1.setRol("admin");
+
+		servicioLogin.registrarUsuario(usuario1);
+		return new ModelAndView("redirect:/login", modelo);
 	}
 }
