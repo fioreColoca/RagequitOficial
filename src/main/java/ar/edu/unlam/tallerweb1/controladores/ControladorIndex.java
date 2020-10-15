@@ -62,6 +62,7 @@ public class ControladorIndex {
 		return new ModelAndView("redirect:/home");
 	}
 	
+	
 	@RequestMapping(path= "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView borrarPublicacion(
 			@RequestParam(value = "filtarPublicacionCategoria", required = false) String filtrarPublicacionCategoria

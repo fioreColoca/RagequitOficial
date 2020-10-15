@@ -18,7 +18,7 @@ public class Publicacion {
 	private Long id;
 	
 	private String mensaje;
-	private Integer contadorLikes;
+	private Integer cantidadLikes;
 	private Date fechaHora;
 	private String urlImagen;
 	private String urlVideo;
@@ -63,12 +63,12 @@ public class Publicacion {
 		this.mensaje = mensaje;
 	}
 
-	public Integer getContadorLikes() {
-		return contadorLikes;
+	public Integer getCantidadLikes() {
+		return cantidadLikes;
 	}
 
-	public void setContadorLikes(Integer contadorLikes) {
-		this.contadorLikes = contadorLikes;
+	public void setCantidadLikes(Integer cantidadLikes) {
+		this.cantidadLikes = cantidadLikes;
 	}
 
 	public Date getFechaHora() {

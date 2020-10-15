@@ -54,7 +54,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 		return anio;
 	}
-
 	
 
 
