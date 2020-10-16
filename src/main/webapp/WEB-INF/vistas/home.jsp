@@ -66,7 +66,7 @@
         </section>
         <hr>
         <section>
-            <form action="">
+            <form action="filtrarCategoria">
                 <div class="form-inline justify-content-sm-end">
                     <label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por
                         categorias</b></label>
@@ -88,7 +88,7 @@
                     </optgroup>
                 </select>
                     <div class="text-right">
-                        <button class="btn btn-warning" >Filtrar</button>
+                        <button class="btn btn-warning" type="submit">Filtrar</button>
                     </div>
                 </div>
             </form>	

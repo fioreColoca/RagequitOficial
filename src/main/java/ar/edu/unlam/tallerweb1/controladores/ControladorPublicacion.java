@@ -31,6 +31,7 @@ public class ControladorPublicacion {
 		modelo.put("title", "Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
+		
 		return new ModelAndView("home", modelo);
 	}
 
@@ -44,6 +45,12 @@ public class ControladorPublicacion {
 			servicioPublicacion.guardarPublicacion(publicacion);
 		} catch (publicacionVaciaException e) {
 			String error = e.getMessage();
+			
+			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+			modelo.put("title", "Inicio");
+			modelo.put("publicaciones", publicaciones);
+			modelo.put("publicacion", publicacion);
+			
 			modelo.put("errorCategoriaVacia", error);
 			return new ModelAndView("home", modelo);
 		}
@@ -59,7 +66,7 @@ public class ControladorPublicacion {
 		return new ModelAndView("redirect:/home");
 	}
 
-	/*@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
+	@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView filtrarPublicacion(
 			@RequestParam(value = "filtarPublicacionCategoria", required = false) String filtrarPublicacionCategoria)
 			throws Exception {
@@ -67,7 +74,9 @@ public class ControladorPublicacion {
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
 		modelo.put("publicaciones", publicaciones);
-
+		modelo.put("title", "Inicio");
+		modelo.put("publicacion", publicacion);
+		
 		return new ModelAndView("home", modelo);
-	}*/
+	}
 }
