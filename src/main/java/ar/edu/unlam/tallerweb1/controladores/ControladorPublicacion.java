@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import ar.edu.unlam.tallerweb1.excepciones.publicacionVaciaException;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
@@ -42,13 +42,13 @@ public class ControladorPublicacion {
 
 		try {
 			servicioPublicacion.guardarPublicacion(publicacion);
-		} catch (Exception e) {
+		} catch (publicacionVaciaException e) {
 			String error = e.getMessage();
 			modelo.put("errorCategoriaVacia", error);
 			return new ModelAndView("home", modelo);
 		}
 		
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/home", modelo);
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.GET)
@@ -64,6 +64,7 @@ public class ControladorPublicacion {
 			@RequestParam(value = "filtarPublicacionCategoria", required = false) String filtrarPublicacionCategoria)
 			throws Exception {
 		ModelMap modelo = new ModelMap();
+		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
 		modelo.put("publicaciones", publicaciones);
 

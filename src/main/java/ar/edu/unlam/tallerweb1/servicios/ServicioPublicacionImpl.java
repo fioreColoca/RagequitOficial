@@ -20,9 +20,17 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 	@Override
 	public Long guardarPublicacion(Publicacion publicacion) throws publicacionVaciaException {
-		if(publicacion.getCategoria().isEmpty()) { 
-			throw new publicacionVaciaException("Categoria vacia.");
+		String categoriaPublicacion = publicacion.getCategoria();
+		String mensajePublicacion = publicacion.getMensaje();
+		
+		if(categoriaPublicacion.isEmpty() & mensajePublicacion.isEmpty()) { 
+			throw new publicacionVaciaException("Mensaje y categoria son obligatorios.");
+		}else if(mensajePublicacion.isEmpty()){
+			throw new publicacionVaciaException("Mensaje esta vacio.");
+		}else if(categoriaPublicacion.isEmpty()) {
+			throw new publicacionVaciaException("Categoria esta vacia.");
 		}
+		
 		return repositorioPublicacion.guardarPublicacion(publicacion);
 	}
 
