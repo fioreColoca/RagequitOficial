@@ -72,8 +72,16 @@ public class ControladorPublicacion {
 			throws Exception {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
-		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
-		modelo.put("publicaciones", publicaciones);
+		
+		if(filtrarPublicacionCategoria.equals("todas")) {
+			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+			modelo.put("publicaciones", publicaciones);
+		}else {
+			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
+			modelo.put("publicaciones", publicaciones);
+		}
+		
+		
 		modelo.put("title", "Inicio");
 		modelo.put("publicacion", publicacion);
 		

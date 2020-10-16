@@ -71,7 +71,7 @@
                     <label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por
                         categorias</b></label>
                     <select class="custom-select my-1 mr-sm-2" name="filtarPublicacionCategoria" id="filtarPublicacionCategoria" required>
-                    <option value="" selected disabled>Elegir</option>
+                    <option value="todas" selected>Todas</option>
                     <optgroup label="Juegos">
                         <option value="valorant">Valorant</option>
                         <option value="smite">Smite</option>
