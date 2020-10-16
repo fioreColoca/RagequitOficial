@@ -18,8 +18,8 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	private RepositorioCategoria repositorioCategoria;
 
 	@Override
-	public void crearCategoria(Categoria categoria) {
-		repositorioCategoria.crearCategoria(categoria);
+	public void guardarCategoria(Categoria categoria) {
+		repositorioCategoria.guardarCategoria(categoria);
 	}
 
 	@Override

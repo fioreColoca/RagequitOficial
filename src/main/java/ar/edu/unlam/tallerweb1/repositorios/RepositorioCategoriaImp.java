@@ -17,7 +17,7 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void crearCategoria(Categoria categoria) {
+	public void guardarCategoria(Categoria categoria) {
 		sessionFactory.getCurrentSession().save(categoria);
 		
 	}
