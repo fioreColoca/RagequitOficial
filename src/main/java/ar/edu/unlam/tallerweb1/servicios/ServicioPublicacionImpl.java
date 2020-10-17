@@ -56,12 +56,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 	}
 
-	@Override
+	/*@Override
 	public Integer devolverAnio(Publicacion publicacion) {
 		Integer anio =((Integer)publicacion.getFechaHora().getYear()) + 1900;
 		
 		return anio;
-	}
+	}*/
 	
 
 

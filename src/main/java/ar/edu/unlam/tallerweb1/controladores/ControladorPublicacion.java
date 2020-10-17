@@ -28,6 +28,7 @@ public class ControladorPublicacion {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+
 		modelo.put("title", "Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
