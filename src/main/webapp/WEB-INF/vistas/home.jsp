@@ -122,10 +122,26 @@
                                     <p class="comment-text">${publicacionDelFor.getMensaje()}</p>
                                 </div>
                                 <div class="d-flex justify-content-around bg-primary p-2">
-                                    <i class="far fa-thumbs-up btn btn-outline-warning"></i>
-                                    <i class="far fa-comment-dots btn btn-outline-warning"></i>
-                                    <i class="fas fa-share-alt btn btn-outline-warning"></i>
-                                    <i class="fab fa-gg btn btn-outline-warning"></i>
+                                	<form >
+                                		<div>
+                                			<button class="btn btn-outline-warning" value="${publicacionDelFor.getId()}" name="idPublicacionADarLike"><i class="far fa-thumbs-up"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="far fa-comment-dots"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="fab fa-gg"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="fas fa-share-alt"></i></button>
+                                		</div>
+                                	</form>
                                 </div>
                             </div>
                         </div>
