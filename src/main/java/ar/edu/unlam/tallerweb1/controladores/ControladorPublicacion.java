@@ -41,6 +41,7 @@ public class ControladorPublicacion {
 		Date fecha = new Date();
 		ModelMap modelo = new ModelMap();
 		publicacion.setFechaHora(fecha);
+		publicacion.setCantidadLikes(0);
 
 		try {
 			servicioPublicacion.guardarPublicacion(publicacion);
