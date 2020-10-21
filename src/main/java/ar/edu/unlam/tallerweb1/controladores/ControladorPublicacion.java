@@ -30,11 +30,18 @@ public class ControladorPublicacion {
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(
 			@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
-			@RequestParam(value = "errorCategoria", required = false) String errorCategoria
+			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
+			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar
 			) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		
+		if(!(categoriaAMostrar==null)) {
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
+			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+		}
+		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
 		modelo.put("title", "Inicio");
@@ -88,23 +95,15 @@ public class ControladorPublicacion {
 
 	@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView filtrarPublicacion(
-			@RequestParam(value = "filtarPublicacionCategoria", required = false) String filtrarPublicacionCategoria)
-			throws Exception {
-		ModelMap modelo = new ModelMap();
-		Publicacion publicacion = new Publicacion();
+			@RequestParam(value = "filtarPublicacionCategoria", required = false) Long idCategoria){
 		
-		if(filtrarPublicacionCategoria.equals("todas")) {
-			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
-			modelo.put("publicaciones", publicaciones);
-		}else {
-			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(filtrarPublicacionCategoria);
-			modelo.put("publicaciones", publicaciones);
+		
+		if(!(idCategoria == -1)) {
+			Long categoriaAMostrar = null; 
+			categoriaAMostrar = idCategoria;
+			return new ModelAndView("redirect:/home?categoriaAMostrar="+categoriaAMostrar);
 		}
 		
-		
-		modelo.put("title", "Inicio");
-		modelo.put("publicacion", publicacion);
-		
-		return new ModelAndView("home", modelo);
+		return new ModelAndView("redirect:/home");
 	}
 }

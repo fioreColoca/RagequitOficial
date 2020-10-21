@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
@@ -26,7 +25,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 
 	@Override
-	public List<Publicacion> buscarPublicacionesPorCategoria(String categoria) {
+	public List<Publicacion> buscarPublicacionesPorCategoria(Categoria categoria) {
 		return repositorioPublicacion.buscarPublicacionesPorCategoria(categoria);
 	}
 
