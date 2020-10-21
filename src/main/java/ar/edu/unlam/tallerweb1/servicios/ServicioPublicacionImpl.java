@@ -7,7 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unlam.tallerweb1.excepciones.publicacionVaciaException;
+
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
@@ -19,17 +20,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	private RepositorioPublicacion repositorioPublicacion;
 
 	@Override
-	public Long guardarPublicacion(Publicacion publicacion) throws publicacionVaciaException {
-		String categoriaPublicacion = publicacion.getCategoria();
-		String mensajePublicacion = publicacion.getMensaje();
-		
-		if(categoriaPublicacion.isEmpty() & mensajePublicacion.isEmpty()) { 
-			throw new publicacionVaciaException("Mensaje y categoria son obligatorios.");
-		}else if(mensajePublicacion.isEmpty()){
-			throw new publicacionVaciaException("Mensaje esta vacio.");
-		}else if(categoriaPublicacion.isEmpty()) {
-			throw new publicacionVaciaException("Categoria esta vacia.");
-		}
+	public Long guardarPublicacion(Publicacion publicacion){
 		
 		return repositorioPublicacion.guardarPublicacion(publicacion);
 	}

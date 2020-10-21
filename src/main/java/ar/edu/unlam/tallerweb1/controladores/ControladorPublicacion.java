@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.excepciones.publicacionVaciaException;
+
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
@@ -22,16 +24,25 @@ public class ControladorPublicacion {
 
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
+	@Inject
+	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping(path = "home")
-	public ModelAndView irAlHome() {
+	public ModelAndView irAlHome(
+			@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
+			@RequestParam(value = "errorCategoria", required = false) String errorCategoria
+			) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
 		modelo.put("title", "Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
+		modelo.put("categorias", categorias);
+		modelo.put("errorMensaje", errorMensaje);
+		modelo.put("errorCategoria", errorCategoria);
 		
 		return new ModelAndView("home", modelo);
 	}
@@ -40,24 +51,31 @@ public class ControladorPublicacion {
 	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion) {
 		Date fecha = new Date();
 		ModelMap modelo = new ModelMap();
+		
+		
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
-
-		try {
-			servicioPublicacion.guardarPublicacion(publicacion);
-		} catch (publicacionVaciaException e) {
-			String error = e.getMessage();
-			
-			List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
-			modelo.put("title", "Inicio");
-			modelo.put("publicaciones", publicaciones);
-			modelo.put("publicacion", publicacion);
-			
-			modelo.put("errorCategoriaVacia", error);
-			return new ModelAndView("home", modelo);
+		
+		String errorCategoria = null;
+		String errorMensaje = null;
+		if(publicacion.getCategoriaId() == -1) {
+			errorCategoria = "Falta elegir categoria";
+		}else {
+			Long idCategoria = publicacion.getCategoriaId();
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(idCategoria);
+			publicacion.setCategoria(categoria);
 		}
 		
-		return new ModelAndView("redirect:/home", modelo);
+		if(publicacion.getMensaje().isEmpty()) {
+			errorMensaje = "La publicacion no puede tener un mensaje vacio";
+		}
+		
+		if(errorCategoria == null && errorMensaje == null) {
+			servicioPublicacion.guardarPublicacion(publicacion);
+		}
+		
+		
+		return new ModelAndView("redirect:/home?errorMensaje=" + errorMensaje +"&errorCategoria="+errorCategoria);
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.GET)
