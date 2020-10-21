@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBiblioteca;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
 @Controller
 public class ControladorBiblioteca {
 	
 	@Inject
 	private ServicioBiblioteca servicioBiblioteca;
+	@Inject
+	private ServicioCategoria servicioCategoria;
 	
 	@RequestMapping(path="/biblioteca")
 	public ModelAndView biblioteca() {
@@ -26,15 +32,18 @@ public class ControladorBiblioteca {
 		
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
 		
-		modelo.put("idBiblioteca", idbiblioteca);
-		modelo.put("Biblioteca", biblioteca);
+		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		
-		return new ModelAndView("Biblioteca");
+		modelo.put("categorias", categorias);		
+		modelo.put("idBiblioteca", idbiblioteca);
+		modelo.put("biblioteca", biblioteca);
+		
+		return new ModelAndView("biblioteca", modelo);
 	}
 	
-	@RequestMapping(path="/biblioteca", method = RequestMethod.GET)
+	@RequestMapping(path="/bibliotecaFiltrada", method = RequestMethod.GET)
 	public ModelAndView bibliotecaDesplegada(
-			@RequestParam(value = "filtro", required = false) String filtro
+			@RequestParam(value = "filtro", required = false) Long categoriaId
 			) {
 		Biblioteca biblioteca = new Biblioteca();
 		ModelMap modelo = new ModelMap();
@@ -42,11 +51,17 @@ public class ControladorBiblioteca {
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
 		
 		modelo.put("idBiblioteca", idbiblioteca);
-		modelo.put("Biblioteca", biblioteca);
+		modelo.put("biblioteca", biblioteca);
 		
-		modelo.put("filtro", filtro);
 		
-		return new ModelAndView("Biblioteca", modelo);
+		if(!(categoriaId == -1)) {
+			Long categoriaAMostrar = null; 
+			categoriaAMostrar = categoriaId;
+			return new ModelAndView("redirect:/biblioteca?categoriaAMostrar="+categoriaAMostrar);
+		}
+			
+		
+		return new ModelAndView("redirect:/biblioteca", modelo);
 	}
 	
 	

@@ -14,29 +14,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas no existen en la vida real */
-	
-	/* ES UNARIA  DUDA CON EL IMPORT DE DATE*/
+public class Comentario { 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany (fetch=FetchType.EAGER)
-	private List<Comentario> respuesta;
-	
 	@ManyToOne
 	private Publicacion publicacion;
+	
+	@ManyToOne
+	private Comentario respuesta;
 
 	private String mensaje;
 	
-	@Column(name="fecha_hora")
 	private Date fechaHora;
 	
-	@Column(name="cantidad_likes")
 	private Integer cantidadLikes;
 	
-	@Column(name="tipo_de_comentario")
+	public Comentario getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(Comentario respuesta) {
+		this.respuesta = respuesta;
+	}
+
 	private ComentarioTipo tipo;
 	
 	/* ---------- GETERS AND SETERS ---------- */
@@ -48,14 +51,6 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public List<Comentario> getRespuesta() {
-		return respuesta;
-	}
-
-	public void setRespuesta(List<Comentario> respuesta) {
-		this.respuesta = respuesta;
 	}
 
 	public String getMensaje() {
@@ -98,5 +93,4 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 		this.publicacion = publicacion;
 	}
 
-		
 }

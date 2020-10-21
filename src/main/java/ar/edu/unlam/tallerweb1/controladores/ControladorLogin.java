@@ -8,16 +8,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ControladorLogin {
 
+	// La anotacion @Autowired indica a Spring que se debe utilizar el contructor
+	// como mecanismo de inyección de dependencias,
+	// es decir, qeue lo parametros del mismo deben ser un bean de spring y el
+	// framewrok automaticamente pasa como parametro
+	// el bean correspondiente, en este caso, un objeto de una clase que implemente
+	// la interface ServicioLogin,
+	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un
+	// paquete de los indicados en
+	// applicationContext.xml
 	// La anotacion @Autowired indica a Spring que se debe utilizar el contructor
 	// como mecanismo de inyección de dependencias,
 	// es decir, qeue lo parametros del mismo deben ser un bean de spring y el
@@ -97,7 +103,7 @@ public class ControladorLogin {
 		return new ModelAndView("crearUsuario", modelo);
 	}
 
-	@RequestMapping(path = "/registrando")
+	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
 		usuario1.setRol("admin");
