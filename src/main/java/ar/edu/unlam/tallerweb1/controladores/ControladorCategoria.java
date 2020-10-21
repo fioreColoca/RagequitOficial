@@ -59,6 +59,14 @@ public class ControladorCategoria {
 		return new ModelAndView("irACategorias", modelo);
 	}
 	
+	@RequestMapping(path = "/borrarCategoria", method = RequestMethod.GET)
+	public ModelAndView borrarCategoria(
+			@RequestParam(value = "botonBorrar", required = false) Long id){
+		servicioCategoria.borrarCategoria(id);
+
+		return new ModelAndView("redirect:/irACategorias");
+	}
+	
 	
 	/*@RequestMapping("/confirmacionCategoria")
 	public ModelAndView categoriaExitosa(
