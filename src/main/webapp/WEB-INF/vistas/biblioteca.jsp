@@ -1,7 +1,7 @@
 <%@ include file="header.jsp"%>
 
 <main>
-	<form action="Biblioteca">
+	<form action="biblioteca">
 		<label for="filtro">Filtrar contenido por Genero</label> 
 			<select name="filtro" id="filtro">
 				<option value="Juego">Juego</option>

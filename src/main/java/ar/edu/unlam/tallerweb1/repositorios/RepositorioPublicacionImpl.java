@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 
 @Repository
@@ -24,7 +25,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 	}
 
 	@Override
-	public List<Publicacion> buscarPublicacionesPorCategoria(String categoria) {
+	public List<Publicacion> buscarPublicacionesPorCategoria(Categoria categoria) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Publicacion.class)
 				.add(Restrictions.eq("categoria", categoria))
