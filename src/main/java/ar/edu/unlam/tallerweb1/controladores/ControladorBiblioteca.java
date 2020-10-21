@@ -27,9 +27,9 @@ public class ControladorBiblioteca {
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
 		
 		modelo.put("idBiblioteca", idbiblioteca);
-		modelo.put("Biblioteca", biblioteca);
+		modelo.put("biblioteca", biblioteca);
 		
-		return new ModelAndView("Biblioteca");
+		return new ModelAndView("biblioteca", modelo);
 	}
 	
 	@RequestMapping(path="/biblioteca", method = RequestMethod.GET)
@@ -42,11 +42,11 @@ public class ControladorBiblioteca {
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
 		
 		modelo.put("idBiblioteca", idbiblioteca);
-		modelo.put("Biblioteca", biblioteca);
+		modelo.put("biblioteca", biblioteca);
 		
 		modelo.put("filtro", filtro);
 		
-		return new ModelAndView("Biblioteca", modelo);
+		return new ModelAndView("biblioteca", modelo);
 	}
 	
 	
