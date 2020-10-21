@@ -24,22 +24,24 @@
         	<form:form action="guardarPublicacion" method="POST" modelAttribute="publicacion">
         		<div class="form-inline justify-content-sm-end">
                     <label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
-					<form:select path="categoria" class="custom-select my-1 mr-sm-2" id="categoriaPublicacion">
-                    	<option value="" selected>Elegir</option>
-                    	<optgroup label="Juegos">
-                        	<option value="valorant">Valorant</option>
-                        	<option value="smite">Smite</option>
-                        	<option value="counter-strike">Counter-Strike</option>
-                        	<option value="among us">Among Us</option>
-                    	</optgroup>
-                    	<optgroup label="Otros">
-                        	<option value="anime">Anime</option>
-                        	<option value="arte">Arte</option>
-                        	<option value="uwu">uwu</option>
-                        	<option value="comida">Comida</option>
-                        	<option value="social">Social</option>
-                        	<option value="social">Reggeton</option>
-                    	</optgroup>
+                    <form:select path="categoriaId" class="custom-select my-1 mr-sm-2" id="categoriaPublicacion">
+                    	<option value="-1" selected>Elegir</option>
+                  			<c:if test="${not empty categorias}">
+                  				<optgroup label="Juegos">
+                  					<c:forEach items="${categorias}" var="categoriaDelFor">
+                  						<c:if test="${categoriaDelFor.getTipoCategoria() == 'JUEGOS'}">
+                  							<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}</option>
+                  						</c:if>
+                  					</c:forEach>
+                  				</optgroup>
+                  				<optgroup label="Otros">
+                  					<c:forEach items="${categorias}" var="categoriaDelFor">
+                  						<c:if test="${categoriaDelFor.getTipoCategoria() == 'VARIOS'}">
+                  							<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}</option>
+                  						</c:if>
+                  					</c:forEach>
+                    			</optgroup>
+                  			</c:if>
                 	</form:select>
                 </div>
                 <div class="form-group">
@@ -59,8 +61,12 @@
                     <button class="btn btn-warning" type="submit">Publicar</button>
                 </div>
         	</form:form>
-            <c:if test="${not empty errorCategoriaVacia}">
-			        <h4 class="text-danger"><span>${errorCategoriaVacia}</span></h4>
+            <c:if test="${errorCategoria != 'null'}">
+			        <h4 class="text-danger"><span>${errorCategoria}</span></h4>
+			        <br>
+		    </c:if>
+		    <c:if test="${errorMensaje != 'null'}">
+			        <h4 class="text-danger"><span>${errorMensaje}</span></h4>
 			        <br>
 		    </c:if>
         </section>
@@ -71,22 +77,24 @@
                     <label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por
                         categorias</b></label>
                     <select class="custom-select my-1 mr-sm-2" name="filtarPublicacionCategoria" id="filtarPublicacionCategoria" required>
-                    <option value="todas" selected>Todas</option>
-                    <optgroup label="Juegos">
-                        <option value="valorant">Valorant</option>
-                        <option value="smite">Smite</option>
-                        <option value="counter-strike">Counter-Strike</option>
-                        <option value="among us">Among Us</option>
-                    </optgroup>
-                    <optgroup label="Otros">
-                        <option value="anime">Anime</option>
-                        <option value="arte">Arte</option>
-                        <option value="uwu">uwu</option>
-                        <option value="comida">Comida</option>
-                        <option value="social">Social</option>
-                        <option value="social">Reggeton</option>
-                    </optgroup>
-                </select>
+                    	<option value="-1" selected>Todas</option>
+                  			<c:if test="${not empty categorias}">
+                  				<optgroup label="Juegos">
+                  					<c:forEach items="${categorias}" var="categoriaDelFor">
+                  						<c:if test="${categoriaDelFor.getTipoCategoria() == 'JUEGOS'}">
+                  							<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}</option>
+                  						</c:if>
+                  					</c:forEach>
+                  				</optgroup>
+                  				<optgroup label="Otros">
+                  					<c:forEach items="${categorias}" var="categoriaDelFor">
+                  						<c:if test="${categoriaDelFor.getTipoCategoria() == 'VARIOS'}">
+                  							<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}</option>
+                  						</c:if>
+                  					</c:forEach>
+                    			</optgroup>
+                  			</c:if>
+                	</select>
                     <div class="text-right">
                         <button class="btn btn-warning" type="submit">Filtrar</button>
                     </div>
@@ -109,7 +117,7 @@
                                         <img class="rounded-circle" src="img/santiago.jpeg" width="100">
                                     </div>
                                     <div class="text-right">
-                                        <h4>${publicacionDelFor.getCategoria()}</h4>
+                                        <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
                                         <p class="text-white-50">
                                             ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}
                                         </p>
@@ -122,10 +130,26 @@
                                     <p class="comment-text">${publicacionDelFor.getMensaje()}</p>
                                 </div>
                                 <div class="d-flex justify-content-around bg-primary p-2">
-                                    <i class="far fa-thumbs-up btn btn-outline-warning"></i>
-                                    <i class="far fa-comment-dots btn btn-outline-warning"></i>
-                                    <i class="fas fa-share-alt btn btn-outline-warning"></i>
-                                    <i class="fab fa-gg btn btn-outline-warning"></i>
+                                	<form >
+                                		<div>
+                                			<button class="btn btn-outline-warning" value="${publicacionDelFor.getId()}" name="idPublicacionADarLike"><i class="far fa-thumbs-up"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="far fa-comment-dots"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="fab fa-gg"></i></button>
+                                		</div>
+                                	</form>
+                                	<form>
+                                		<div>
+                                			<button type="submit" class="btn btn-outline-warning"><i class="fas fa-share-alt"></i></button>
+                                		</div>
+                                	</form>
                                 </div>
                             </div>
                         </div>
