@@ -6,7 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 
 public interface RepositorioCategoria {
 	
-	void crearCategoria(Categoria categoria);
+	void guardarCategoria(Categoria categoria);
 	
 	Categoria mostrarCategoriaPorId(Long id);
 	

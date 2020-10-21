@@ -27,9 +27,9 @@ public class Publicacion {
 	private String categoria;
 //	@ManyToOne
 //	private Categoria categoria;
-	
-	@OneToMany
-	private List <Comentario> comentarios;
+//	
+//	@OneToMany
+//	private List <Comentario> comentarios;
 	
 	public String getCategoria() {
 		return categoria;
@@ -104,11 +104,11 @@ public class Publicacion {
 //		this.categoria = categoria;
 //	}
 
-	public List<Comentario> getComentarios() {
-		return comentarios;
-	}
-
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
+//	public List<Comentario> getComentarios() {
+//		return comentarios;
+//	}
+//
+//	public void setComentarios(List<Comentario> comentarios) {
+//		this.comentarios = comentarios;
+//	}
 }
