@@ -36,12 +36,12 @@
 						<div class=" container row">
 
 							<div>
-								<form:form method="POST" action="meGustaComentario">
+								<form action="meGustaComentario">
 									<button type="submit" value="${comentario.getId()}"
 										name="botonLike" class="btn btn-outline-warning botonBorrar">
 										<i class="fas fa-star"></i>
 									</button>
-								</form:form>
+								</form>
 								<!--  Esto tiene pìnta de hacerse de una manera mas limpia -->
 
 							</div>
@@ -110,12 +110,12 @@
 						<div class="container row">
 
 							<div>
-								<form:form method="POST" action="meGustaComentario">
+								<form action="meGustaComentario">
 									<button type="submit" value="${comentario.getId()}"
 										name="botonLike" class="btn btn-outline-warning botonBorrar">
 										<i class="fas fa-star"></i>
 									</button>
-								</form:form>
+								</form>
 								<!--  Esto tiene pìnta de hacerse de una manera mas limpia -->
 
 							</div>

@@ -45,7 +45,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para guardar comentarios ----------- */
-	@RequestMapping(path = "/guardarComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
 			@RequestParam(value = "boton", required = true) String tipoBoton) {
@@ -78,7 +78,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para borrar likear ----------- */
-	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.GET)
 	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike) {
 
 		servicioComentario.darLikeComentario(idLike);
