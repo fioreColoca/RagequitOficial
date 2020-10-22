@@ -51,15 +51,13 @@
 							</div>
 
 							<div class="ml-3">
-
-								<form method="" action="comentario">
 									<button type="button"
-										class="btn btn-outline-warning botonBorrar"
+										class="btn btn-outline-warning responderComentario"
 										data-toggle="modal" data-target="#responderComentario"
-										data-id="${comentario.getId()}">
+										data-id="${comentario.getId()}" >
 										<i class="far fa-comment-dots"></i>
 									</button>
-								</form>
+								
 
 							</div>
 
@@ -109,7 +107,7 @@
 
 						<p>${comentario.getTipo()}</p>
 
-						<div class=" container row">
+						<div class="container row">
 
 							<div>
 								<form:form method="POST" action="meGustaComentario">
@@ -130,9 +128,9 @@
 
 								<form method="" action="comentario">
 									<button type="button"
-										class="btn btn-outline-warning botonBorrar"
+										class="btn btn-outline-warning responderComentario"
 										data-toggle="modal" data-target="#responderComentario"
-										value="${comentario.getId()}" name="idComentario">
+										data-id="${comentario.getId()}" name="idComentario">
 										<i class="far fa-comment-dots"></i>
 									</button>
 								</form>
@@ -196,8 +194,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header colorCeleste p-3">
-				<form:form action="responderComentario" class="container"
-					method="POST">
+				<form action="responderComentario" class="container"
+					method="GET">
 					<p>Respondiendo a</p>
 					<div>
 						<textarea id="respuestaMandar" name="respuestaMandar"
@@ -205,20 +203,24 @@
 							required></textarea>
 					</div>
 
+									${comentario.getId()};
+
 					<br>
-					<div class="row">
-
+					<div class="row responderComent" id="">
+						<!--<label class="sr-only" name="boton" value="comun">-->
 						<div class="col-md-6 col-lg-6 mt-6 mb-3">
-							<button type="submit" class="btn btn-warning" value="comun"
-								name="boton">Responder</button>
+							<input type="hidden" name="idComentario" id="responderComentario"/>
+							<button type="submit" class="btn btn-warning"
+								name="boton" value="comun" >Responder</button>
 						</div>
-
+						
+						<!--  <label class="sr-only" name="boton" value="comun">-->
 						<div class="col-md-6 col-lg-6 mt-6">
 							<button type="submit" class="btn btn-warning" value="premium"
-								name="boton">Responder Premium</button>
+								name="boton" >Responder Premium</button>
 						</div>
 					</div>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>
