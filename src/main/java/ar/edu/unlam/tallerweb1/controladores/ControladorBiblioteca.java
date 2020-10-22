@@ -37,7 +37,8 @@ public class ControladorBiblioteca {
 		modelo.put("categorias", categorias);		
 		modelo.put("idBiblioteca", idbiblioteca);
 		modelo.put("biblioteca", biblioteca);
-		
+		modelo.put("title", "RageQuit | Biblioteca");
+
 		return new ModelAndView("biblioteca", modelo);
 	}
 	
