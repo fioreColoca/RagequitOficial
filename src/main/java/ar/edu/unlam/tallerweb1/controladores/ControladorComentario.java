@@ -24,7 +24,9 @@ public class ControladorComentario {
 	/* ---------- Pagina para comentar ----------- */
 	@RequestMapping(path = "/comentario")
 	public ModelAndView comentar() {
-		return new ModelAndView("comentarioEscribir");
+		ModelMap modelo = new ModelMap();
+		modelo.put("title", "RageQuit | Comentarios");
+		return new ModelAndView("comentarioEscribir", modelo);
 	}
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
@@ -40,6 +42,7 @@ public class ControladorComentario {
 
 		modelo.put("comentarios", comentarios);
 		modelo.put("comentario", comentario);
+		modelo.put("title", "RageQuit | Comentarios Hechos");
 
 		return new ModelAndView("comentarioVer", modelo);
 	}
@@ -59,8 +62,7 @@ public class ControladorComentario {
 		ModelMap modelo = new ModelMap();
 		modelo.put("comentario", comentario);
 
-		
-		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0,1).equals(" ")){
+		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
 		}
 		servicioComentario.enviarComentario(comentario);
@@ -100,18 +102,16 @@ public class ControladorComentario {
 		servicioComentario.tipoComentario(tipoBoton, respuesta);
 		ModelMap modelo = new ModelMap();
 		modelo.put("comentario", respuesta);
-		
+
 		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
 		respuesta.setRespuesta(comentario);
-		
-		
-		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0,1).equals(" ")){
+
+		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
 		}
-		
+
 		servicioComentario.enviarComentario(respuesta);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
-
 
 }
