@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlam.tallerweb1.excepciones.comentarioVacioException;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
@@ -20,12 +19,7 @@ public class ServicioComentarImpl implements ServicioComentar {
 	private RepositorioComentario repositorioComentar;
 
 	@Override
-	public Long enviarComentario(Comentario comentario) throws comentarioVacioException {
-		String comentarioContenido = comentario.getMensaje();
-
-		if (comentarioContenido.isEmpty() || comentarioContenido.substring(0,1).equals(" ")) {
-			throw new comentarioVacioException("Ingrese un comentario.");
-		}
+	public Long enviarComentario(Comentario comentario){
 		return repositorioComentar.enviarComentario(comentario);
 	}
 

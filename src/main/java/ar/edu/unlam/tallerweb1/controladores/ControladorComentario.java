@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.excepciones.comentarioVacioException;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 
@@ -27,7 +26,6 @@ public class ControladorComentario {
 	public ModelAndView comentar() {
 		return new ModelAndView("comentarioEscribir");
 	}
-	
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
 	@RequestMapping(path = "/comentarioVisualizacion")
@@ -36,43 +34,40 @@ public class ControladorComentario {
 		ModelMap modelo = new ModelMap();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 
+		if (comentarios.isEmpty()) {
+			return new ModelAndView("redirect:/comentario", modelo);
+		}
+
 		modelo.put("comentarios", comentarios);
 		modelo.put("comentario", comentario);
-		
+
 		return new ModelAndView("comentarioVer", modelo);
 	}
-	
 
 	/* ---------- Pagina para guardar comentarios ----------- */
-	@RequestMapping(path = "/verComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/guardarComentario", method = RequestMethod.POST)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String tipoBoton) throws comentarioVacioException {
+			@RequestParam(value = "boton", required = true) String tipoBoton) {
 
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
-		Integer anio = servicioComentario.devolverAnio(comentario);
 		servicioComentario.tipoComentario(tipoBoton, comentario);
 		ModelMap modelo = new ModelMap();
 		modelo.put("comentario", comentario);
-		modelo.put("anio", anio);
 
-		try {
-			servicioComentario.enviarComentario(comentario);
-		} catch (comentarioVacioException e) {
-			String error = e.getMessage();
-			modelo.put("error", error);
-			return new ModelAndView("redirect:/comentario", modelo);
+		
+		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0,1).equals(" ")){
+			return new ModelAndView("redirect:/comentario");
 		}
-		return new ModelAndView("redirect:/comentarioVisualizacion", modelo);
-
+		servicioComentario.enviarComentario(comentario);
+		return new ModelAndView("redirect:/comentarioVisualizacion");
 
 	}
 
-	
 	/* ---------- Pagina para borrar comentarios ----------- */
 
 	@RequestMapping(path = "/borrarComentario")
@@ -81,8 +76,7 @@ public class ControladorComentario {
 		servicioComentario.borrarComentario(idComentario);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
-	
-	
+
 	/* ---------- Pagina para borrar likear ----------- */
 	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.POST)
 	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike) {
@@ -90,52 +84,33 @@ public class ControladorComentario {
 		servicioComentario.darLikeComentario(idLike);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
-	
 
 	/* ---------- Pagina para responder comentarios ----------- */
-	@RequestMapping(path = "/comentarioMandar", method = RequestMethod.POST)
-	public ModelAndView responderComentario(@RequestParam(value = "idComentario", required = true) Long idComentario,
-			@RequestParam(value = "respuestaMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String boton) throws comentarioVacioException {
+	@RequestMapping(path = "/responderComentario", method = RequestMethod.POST)
+	public ModelAndView guardarRespuesta(
+			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
+			/* @RequestParam(value = "idComentario", required = true) Long idComentario, */
+			@RequestParam(value = "boton", required = true) String tipoBoton) {
 
 		java.util.Date fecha = new Date();
-
 		Comentario respuesta = new Comentario();
-		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
-		servicioComentario.enviarComentario(respuesta);
-
-		respuesta.setMensaje(comentarioMensaje);
 		respuesta.setCantidadLikes(0);
 		respuesta.setFechaHora(fecha);
-
-		String direccion = "comentarioEscribir";
-		try {
-			servicioComentario.enviarComentario(comentario);
-			direccion = "comentarioVer";
-		} catch (comentarioVacioException e) {
-			String error = e.getMessage();
-			direccion = "comentarioEscribir";
-		}
-
-		servicioComentario.tipoComentario(boton, respuesta);
-		servicioComentario.enviarComentario(respuesta);
-		respuesta.setRespuesta(comentario);
-
-		/*
-		 * List<Comentario> respuestaListado =
-		 * servicioComentario.respuestaListado(comentario);
-		 */
+		respuesta.setMensaje(respuestaMensaje);
+		servicioComentario.tipoComentario(tipoBoton, respuesta);
 		ModelMap modelo = new ModelMap();
-		modelo.put("respuesta", respuesta);
-		return new ModelAndView(direccion, modelo);
-
-		/* no funciona todavia uhmm */
-
+		modelo.put("comentario", respuesta);
+		
+		Comentario comentario = servicioComentario.mostrarComentario((long) 1);
+		respuesta.setRespuesta(comentario);
+		
+		
+		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0,1).equals(" ")){
+			return new ModelAndView("redirect:/comentario");
+		}
+		servicioComentario.enviarComentario(respuesta);
+		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
 
-	/*
-	 * @RequestMapping(path="/mostrarRespuesta") public ModelAndView respuesta() {
-	 * return new ModelAndView("comentarioEscribir"); }
-	 */
 
 }

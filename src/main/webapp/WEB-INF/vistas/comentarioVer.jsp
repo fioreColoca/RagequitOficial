@@ -22,7 +22,8 @@
 						<small>
 							${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
 							hs ${comentario.getFechaHora().getDate()} /
-							${comentario.getFechaHora().getMonth()} / ${anio} </small>
+							${comentario.getFechaHora().getMonth()} /
+							${comentario.getFechaHora().getYear()+ 1900 }</small>
 						<p>En respuesta a:</p>
 
 						<div class="container colorComentario rounded">
@@ -97,7 +98,8 @@
 						<small>
 							${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
 							hs ${comentario.getFechaHora().getDate()} /
-							${comentario.getFechaHora().getMonth()} / ${anio} </small>
+							${comentario.getFechaHora().getMonth()}
+							/${comentario.getFechaHora().getYear()+ 1900 } </small>
 						<p>En respuesta a:</p>
 
 						<div class="container colorComentario rounded">
@@ -130,7 +132,7 @@
 									<button type="button"
 										class="btn btn-outline-warning botonBorrar"
 										data-toggle="modal" data-target="#responderComentario"
-										data-id="${comentario.getId()}">
+										value="${comentario.getId()}" name="idComentario">
 										<i class="far fa-comment-dots"></i>
 									</button>
 								</form>
@@ -194,7 +196,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header colorCeleste p-3">
-				<form action="comentarioMandar" class="container">
+				<form:form action="responderComentario" class="container"
+					method="POST">
 					<p>Respondiendo a</p>
 					<div>
 						<textarea id="respuestaMandar" name="respuestaMandar"
@@ -204,17 +207,18 @@
 
 					<br>
 					<div class="row">
-						<input type="hidden" name="idComentario"
-							value="${comentario.getId()}">
+
 						<div class="col-md-6 col-lg-6 mt-6 mb-3">
 							<button type="submit" class="btn btn-warning" value="comun"
 								name="boton">Responder</button>
 						</div>
+
 						<div class="col-md-6 col-lg-6 mt-6">
 							<button type="submit" class="btn btn-warning" value="premium"
 								name="boton">Responder Premium</button>
 						</div>
 					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>

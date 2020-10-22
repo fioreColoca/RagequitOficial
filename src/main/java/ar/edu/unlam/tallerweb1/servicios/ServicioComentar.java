@@ -2,12 +2,11 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.excepciones.comentarioVacioException;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 
 public interface ServicioComentar {
 	
-	 Long enviarComentario(Comentario comentario) throws comentarioVacioException;
+	 Long enviarComentario(Comentario comentario);
 
 	 Comentario mostrarComentario(Long id);
 	 	
