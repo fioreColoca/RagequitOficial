@@ -99,7 +99,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario1 = new Usuario();
 		modelo.put("usuario", usuario1);
-		modelo.put("title", "Login");
+		modelo.put("title", "Registrar Usuario");
 		return new ModelAndView("crearUsuario", modelo);
 	}
 
