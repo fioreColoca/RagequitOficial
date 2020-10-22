@@ -45,7 +45,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para guardar comentarios ----------- */
-	@RequestMapping(path = "/guardarComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
 			@RequestParam(value = "boton", required = true) String tipoBoton) {
@@ -78,7 +78,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para borrar likear ----------- */
-	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.GET)
 	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike) {
 
 		servicioComentario.darLikeComentario(idLike);
@@ -86,10 +86,10 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para responder comentarios ----------- */
-	@RequestMapping(path = "/responderComentario", method = RequestMethod.POST)
+	@RequestMapping(path = "/responderComentario", method = RequestMethod.GET)
 	public ModelAndView guardarRespuesta(
 			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
-			/* @RequestParam(value = "idComentario", required = true) Long idComentario, */
+			@RequestParam(value = "idComentario", required = true) Long idComentario,
 			@RequestParam(value = "boton", required = true) String tipoBoton) {
 
 		java.util.Date fecha = new Date();
@@ -101,13 +101,14 @@ public class ControladorComentario {
 		ModelMap modelo = new ModelMap();
 		modelo.put("comentario", respuesta);
 		
-		Comentario comentario = servicioComentario.mostrarComentario((long) 1);
+		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
 		respuesta.setRespuesta(comentario);
 		
 		
 		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0,1).equals(" ")){
 			return new ModelAndView("redirect:/comentario");
 		}
+		
 		servicioComentario.enviarComentario(respuesta);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
