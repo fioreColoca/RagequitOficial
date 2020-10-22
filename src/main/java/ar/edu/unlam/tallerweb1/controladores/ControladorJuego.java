@@ -26,8 +26,8 @@ public class ControladorJuego {
 		
 		modelo.put("idJuego", idJuego);
 		modelo.put("Juego", juego);
-		
-		return new ModelAndView("Juego");
+		modelo.put("title", "RageQuit | Juego");
+		return new ModelAndView("Juego",modelo);
 	}
 }
 
