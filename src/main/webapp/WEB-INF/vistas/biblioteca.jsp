@@ -21,7 +21,6 @@
 			<div class="row">
 				<c:forEach items="${categorias}" var="categoriaDelFor">
 					<div class="col-md-4">
-
 						<div class="card mb-4">
 							<h2>${categoriaDelFor.getNombre()}</h2>
 						</div>
