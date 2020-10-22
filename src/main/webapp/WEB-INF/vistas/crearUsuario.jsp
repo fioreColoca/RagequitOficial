@@ -1,11 +1,11 @@
 <%@ include file="header.jsp"%>
     <main style="padding:0;">
-        <div class="card bg-light">
+        <div class="card bg-normal">
 
             <article class="card-body mx-auto" style="max-width: 400px;">
 
-                <h4 class="card-title mt-3 text-center">Crear Cuenta</h4>
-                <p class="text-center">Empiece con su cuenta gratuita</p>
+                <h4 class="card-title mt-3 text-center text-white">Crear Cuenta</h4>
+                <p class="text-center text-white">Empiece con su cuenta gratuita</p>
 
                 <form:form class="registrarUsuario" action="registrando" method="POST" modelAttribute="usuario">
 
@@ -69,7 +69,7 @@
                     </div>
 
                     <!-- form-group// -->
-                    <p class="text-center">¿Ya tienes una cuenta? <a href="login">Iniciar Sesi&oacute;n</a></p>
+                    <p class="text-center text-white">¿Ya tienes una cuenta? <a href="login" class="login">Iniciar Sesi&oacute;n</a></p>
 
                 </form:form>
             </article>

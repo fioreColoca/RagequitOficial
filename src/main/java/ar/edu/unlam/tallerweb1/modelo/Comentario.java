@@ -2,16 +2,13 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Comentario { 
@@ -25,12 +22,20 @@ public class Comentario {
 	
 	@ManyToOne
 	private Comentario respuesta;
+	
+	@Transient
+	private Long respuestaId;
 
 	private String mensaje;
 	
 	private Date fechaHora;
 	
 	private Integer cantidadLikes;
+	
+
+	private ComentarioTipo tipo;
+	
+	/* ---------- GETERS AND SETERS ---------- */
 	
 	public Comentario getRespuesta() {
 		return respuesta;
@@ -40,10 +45,6 @@ public class Comentario {
 		this.respuesta = respuesta;
 	}
 
-	private ComentarioTipo tipo;
-	
-	/* ---------- GETERS AND SETERS ---------- */
-
 
 	public Long getId() {
 		return id;
@@ -51,6 +52,14 @@ public class Comentario {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getRespuestaId() {
+		return respuestaId;
+	}
+
+	public void setRespuestaId(Long respuestaId) {
+		this.respuestaId = respuestaId;
 	}
 
 	public String getMensaje() {

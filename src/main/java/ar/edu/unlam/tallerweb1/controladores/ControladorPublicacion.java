@@ -44,7 +44,7 @@ public class ControladorPublicacion {
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
-		modelo.put("title", "Inicio");
+		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
