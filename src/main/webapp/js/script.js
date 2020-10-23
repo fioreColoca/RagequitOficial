@@ -9,7 +9,4 @@ $(document).ready(function(){
     	$(".responderComent #responderComentario").val( miComentarioId );
 	});
 	
-	$('#test').click(function(){
-		alert('Boton clickeado');
-	});
 });
