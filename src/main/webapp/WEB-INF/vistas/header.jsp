@@ -30,7 +30,7 @@
                         </div>
                     </form>
                     <div class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown d-none">
                             <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="img/santiago.jpeg" class="avatar" alt="Avatar"> Santiago Fagliano <b class="caret"></b></a>
                             <div class="dropdown-menu">
                                 <a href="#" class="dropdown-item"><i class="fas fa-user-circle"></i>
@@ -41,14 +41,14 @@
                                 Cerrar sesi&oacute;n</a>
                             </div>
                         </div>
-                        <a href="home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Inicio</span></a>
+                        <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
                         <a href="comentario" class="nav-item nav-link"><i
                             class="fas fa-comments"></i><span>Comentarios</span></a>
                         <a href="categoria" class="nav-item nav-link"><i
                             class="fas fa-gamepad"></i><span>Categoria</span></a>
-                        <a href="biblioteca" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Lista</span></a>
-                        <a href="#" class="nav-item nav-link"><i class="fas fa-trophy"></i><span>xd</span></a>
-                        <a href="#" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span>jejje</span></a>
+                        <a href="biblioteca" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Biblioteca</span></a>
+                        <a href="#" class="nav-item nav-link"><i class="fas fa-trophy"></i><span> ejemplo </span></a>
+                        <a href="#" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span> ejemplo </span></a>
                         <a href="registrar" class="nav-item nav-link"><i
                             class="fas fa-sign-in-alt"></i><span>Login</span></a>
                     </div>

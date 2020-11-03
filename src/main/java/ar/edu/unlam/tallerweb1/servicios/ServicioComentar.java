@@ -22,4 +22,8 @@ public interface ServicioComentar {
 	 
 	 List<Comentario> mostrarTodosLosComentarios();
 	 
+	 List<Comentario> respuestaListado(Comentario comentario);
+
+	 Integer devolverAnio(Comentario comentario);
+	 
 }

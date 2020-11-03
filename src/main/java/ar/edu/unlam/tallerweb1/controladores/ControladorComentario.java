@@ -15,79 +15,103 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 
-
 @Controller
 public class ControladorComentario {
-	
+
 	@Inject
 	private ServicioComentar servicioComentario;
-	
-	
-	@RequestMapping(path="/comentario")
+
+	/* ---------- Pagina para comentar ----------- */
+	@RequestMapping(path = "/comentario")
 	public ModelAndView comentar() {
-		return new ModelAndView("comentarioEscribir");
+		ModelMap modelo = new ModelMap();
+		modelo.put("title", "RageQuit | Comentarios");
+		return new ModelAndView("comentarioEscribir", modelo);
 	}
-	
-	
-	@RequestMapping(path="/verComentario", method = RequestMethod.GET)
+
+	/* ---------- Pagina para imprimir comentarios ----------- */
+	@RequestMapping(path = "/comentarioVisualizacion")
+	public ModelAndView verComentario() {
+		Comentario comentario = new Comentario();
+		ModelMap modelo = new ModelMap();
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
+
+		if (comentarios.isEmpty()) {
+			return new ModelAndView("redirect:/comentario", modelo);
+		}
+
+		modelo.put("comentarios", comentarios);
+		modelo.put("comentario", comentario);
+		modelo.put("title", "RageQuit | Comentarios Hechos");
+
+		return new ModelAndView("comentarioVer", modelo);
+	}
+
+	/* ---------- Pagina para guardar comentarios ----------- */
+	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
-			@RequestParam(value="comentarioMandar",required = true)String comentarioMensaje,
-			@RequestParam(value="boton",required = true)String tipoBoton){
-		
-		java.util.Date fecha = new Date(); /* DATE DE JAVA NO DE SQL, NO SE COMO LO TRABAJARA SQL*/
-					
-		Comentario comentario= new Comentario();
-		comentario.setMensaje(comentarioMensaje);
+			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
+			@RequestParam(value = "boton", required = true) String tipoBoton) {
+
+		java.util.Date fecha = new Date();
+		Comentario comentario = new Comentario();
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
+		comentario.setMensaje(comentarioMensaje);
 		servicioComentario.tipoComentario(tipoBoton, comentario);
-		/*comentario.setCantidadLikes(cantidadLikes);*/
-		Long id = comentario.getId();
-		
-		
-		Long idComentario = servicioComentario.enviarComentario(comentario);
-		
-		List<Comentario>comentarios = servicioComentario.mostrarTodosLosComentarios();
-		/*Comentario mostrarComentario = servicioComentario.mostrarComentario(id);*/
-		
 		ModelMap modelo = new ModelMap();
-		modelo.put("comentarios",comentarios);
-		modelo.put("comentario",comentario);
+		modelo.put("comentario", comentario);
 
-		
-		return new ModelAndView("comentarioVer",modelo);
+		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
+			return new ModelAndView("redirect:/comentario");
+		}
+		servicioComentario.enviarComentario(comentario);
+		return new ModelAndView("redirect:/comentarioVisualizacion");
+
 	}
-		
-	
-	@RequestMapping(path="/borrarComentario")
-	public ModelAndView eliminarComentario(
-			@RequestParam(value="botonBorrar",required = true)Long idComentario) {
-		
+
+	/* ---------- Pagina para borrar comentarios ----------- */
+
+	@RequestMapping(path = "/borrarComentario")
+	public ModelAndView eliminarComentario(@RequestParam(value = "botonBorrar", required = true) Long idComentario) {
+
 		servicioComentario.borrarComentario(idComentario);
-		return new ModelAndView("redirect:/comentario");
+		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
-	
-	
-	@RequestMapping(path="/meGustaComentario")
-	public ModelAndView darLikeComentario(
-		@RequestParam(value="botonLike",required = true)Long idLike) {
-		
-		
-		servicioComentario.darLikeComentario(idLike);
-		Comentario comentario =servicioComentario.mostrarComentario(idLike);
-		List<Comentario>comentarios = servicioComentario.mostrarTodosLosComentarios();
 
-		ModelMap modelo = new ModelMap();
-		modelo.put("comentarios",comentarios);
-		modelo.put("comentario",comentario);
-		
-		return new ModelAndView("comentarioVer",modelo);
+	/* ---------- Pagina para borrar likear ----------- */
+	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.GET)
+	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike) {
+
+		servicioComentario.darLikeComentario(idLike);
+		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
-	
-	
-	/*@RequestMapping(path="/mostrarRespuesta")
-	public ModelAndView respuesta() {
-		return new ModelAndView("comentarioEscribir");
-	}*/
+
+	/* ---------- Pagina para responder comentarios ----------- */
+	@RequestMapping(path = "/responderComentario", method = RequestMethod.GET)
+	public ModelAndView guardarRespuesta(
+			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
+			@RequestParam(value = "idComentario", required = true) Long idComentario,
+			@RequestParam(value = "boton", required = true) String tipoBoton) {
+
+		java.util.Date fecha = new Date();
+		Comentario respuesta = new Comentario();
+		respuesta.setCantidadLikes(0);
+		respuesta.setFechaHora(fecha);
+		respuesta.setMensaje(respuestaMensaje);
+		servicioComentario.tipoComentario(tipoBoton, respuesta);
+		ModelMap modelo = new ModelMap();
+		modelo.put("comentario", respuesta);
+
+		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
+		respuesta.setRespuesta(comentario);
+
+		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
+			return new ModelAndView("redirect:/comentario");
+		}
+
+		servicioComentario.enviarComentario(respuesta);
+		return new ModelAndView("redirect:/comentarioVisualizacion");
+	}
 
 }

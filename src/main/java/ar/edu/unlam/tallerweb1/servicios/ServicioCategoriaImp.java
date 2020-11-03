@@ -21,7 +21,6 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void guardarCategoria(Categoria categoria) {
 		repositorioCategoria.guardarCategoria(categoria);
 	}
-
 	@Override
 	public Categoria mostrarCategoriaPorId(Long id) {
 		return repositorioCategoria.mostrarCategoriaPorId(id);
@@ -30,6 +29,12 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	@Override
 	public List<Categoria> mostrarCategorias() {
 		return repositorioCategoria.mostrarCategorias();
+	}
+	
+	@Override
+	public void borrarCategoria(Long id) {
+		repositorioCategoria.borrarCategoria(id);
+		
 	}
 	
 }

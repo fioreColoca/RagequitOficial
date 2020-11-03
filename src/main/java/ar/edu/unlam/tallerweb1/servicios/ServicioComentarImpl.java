@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,14 +14,13 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 @Service
 @Transactional
 public class ServicioComentarImpl implements ServicioComentar {
-	
+
 	@Inject
 	private RepositorioComentario repositorioComentar;
 
-
 	@Override
-	public Long enviarComentario(Comentario comentario) {
-		return  repositorioComentar.enviarComentario(comentario);
+	public Long enviarComentario(Comentario comentario){
+		return repositorioComentar.enviarComentario(comentario);
 	}
 
 	@Override
@@ -47,19 +45,20 @@ public class ServicioComentarImpl implements ServicioComentar {
 	}
 
 	@Override
-	public void tipoComentario(String boton,Comentario comentario) {
+	public void tipoComentario(String boton, Comentario comentario) {
 		switch (boton) {
 		case "comun":
 			comentario.setTipo(ComentarioTipo.COMUN);
 			break;
 		case "premium":
-			comentario.setTipo(ComentarioTipo.SUSCRIPTOR);		
+			comentario.setTipo(ComentarioTipo.SUSCRIPTOR);
 			break;
 		default:
 			break;
 		}
-
+		
 	}
+
 
 	@Override
 	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
@@ -71,7 +70,15 @@ public class ServicioComentarImpl implements ServicioComentar {
 		return repositorioComentar.mostrarTodosLosComentarios();
 	}
 
+	@Override
+	public List<Comentario> respuestaListado(Comentario comentario) {
+		return repositorioComentar.respuestaListado(comentario);
+	}
+
+	@Override
+	public Integer devolverAnio(Comentario comentario) {
+		Integer anio = ((Integer) comentario.getFechaHora().getYear()) + 1900;
+		return anio;
+	}
 
 }
-
-

@@ -32,5 +32,11 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
 	}
 
+	@Override
+	public void borrarCategoria(Long id) {
+		Categoria categoria = mostrarCategoriaPorId(id);
+		sessionFactory.getCurrentSession().delete(categoria);
+	}
+
 
 }

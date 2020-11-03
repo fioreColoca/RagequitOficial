@@ -2,13 +2,13 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Publicacion {
@@ -23,21 +23,22 @@ public class Publicacion {
 	private String urlImagen;
 	private String urlVideo;
 	private PublicacionTipo tipo;
-	
-	private String categoria;
-//	@ManyToOne
-//	private Categoria categoria;
+	@Transient
+	private Long categoriaId;
+//	private String categoria;
+	@ManyToOne
+	private Categoria categoria;
 //	
 //	@OneToMany
 //	private List <Comentario> comentarios;
 	
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
+//	public String getCategoria() {
+//		return categoria;
+//	}
+//
+//	public void setCategoria(String categoria) {
+//		this.categoria = categoria;
+//	}
 
 	public PublicacionTipo getTipo() {
 		return tipo;
@@ -96,13 +97,23 @@ public class Publicacion {
 	}	
 
 
-//	public Categoria getCategoria() {
-//		return categoria;
-//	}
-//
-//	public void setCategoria(Categoria categoria) {
-//		this.categoria = categoria;
-//	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(Long categoriaId) {
+		this.categoriaId = categoriaId;
+	}
+	
+	
 
 //	public List<Comentario> getComentarios() {
 //		return comentarios;

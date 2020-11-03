@@ -2,44 +2,48 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
-public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas no existen en la vida real */
-	
-	/* ES UNARIA  DUDA CON EL IMPORT DE DATE*/
+public class Comentario { 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany (fetch=FetchType.EAGER)
-	private List<Comentario> respuesta;
-	
 	@ManyToOne
 	private Publicacion publicacion;
+	
+	@ManyToOne
+	private Comentario respuesta;
+	
+	@Transient
+	private Long respuestaId;
 
 	private String mensaje;
 	
-	@Column(name="fecha_hora")
 	private Date fechaHora;
 	
-	@Column(name="cantidad_likes")
 	private Integer cantidadLikes;
 	
-	@Column(name="tipo_de_comentario")
+
 	private ComentarioTipo tipo;
 	
 	/* ---------- GETERS AND SETERS ---------- */
+	
+	public Comentario getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(Comentario respuesta) {
+		this.respuesta = respuesta;
+	}
 
 
 	public Long getId() {
@@ -50,12 +54,12 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 		this.id = id;
 	}
 
-	public List<Comentario> getRespuesta() {
-		return respuesta;
+	public Long getRespuestaId() {
+		return respuestaId;
 	}
 
-	public void setRespuesta(List<Comentario> respuesta) {
-		this.respuesta = respuesta;
+	public void setRespuestaId(Long respuestaId) {
+		this.respuestaId = respuestaId;
 	}
 
 	public String getMensaje() {
@@ -98,5 +102,4 @@ public /*abstrat*/  class Comentario {  /* asbtract para clases que por si solas
 		this.publicacion = publicacion;
 	}
 
-		
 }

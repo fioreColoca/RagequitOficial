@@ -3,11 +3,11 @@
 /***********GENERAL***********/
 
 body {
-    background: #0a4573;
     font-family: 'Varela Round', sans-serif;
 }
 
 main {
+    background-color: #0A4573;
     padding: 1em;
     color: #fff;
 }
@@ -15,6 +15,24 @@ main {
 .info {
     font-size: larger !important;
     color: #fff !important;
+}
+
+.bg-fondo {
+    background-color: #04233b;
+}
+
+.btn-naranja {
+    background-color: #f4a117;
+}
+
+.btn-naranja:hover {
+    background-color: #fdb714;
+    color: #000;
+}
+
+.btn-outline-naranja {
+    color: #f4a117;
+    border-color: #f4a117;
 }
 
 
@@ -241,6 +259,67 @@ main {
     background-color: #0000;
 }
 
+.hoverIcons .btn:hover {
+    color: #fdb714 !important;
+}
+
+
+/*********Login***********/
+
+#login .card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+#login .card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+#login .card-signin .card-body {
+    padding: 2rem;
+}
+
+#login .form-signin {
+    width: 100%;
+}
+
+#login .form-signin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+#login .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#login .form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+#login .form-label-group>input,
+#login .form-label-group>label {
+    padding: var(- -input-padding-y) var(- -input-padding-x);
+}
+
+#login .btn-google {
+    color: white;
+    background-color: #ea4335;
+}
+
+#login .btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+
 
 /*********Registrar***********/
 
@@ -268,6 +347,14 @@ main {
     z-index: 1;
 }
 
+.login {
+    color: #f58220;
+}
+
+.login:hover {
+    color: #fdb714;
+}
+
 .btn-facebook {
     background-color: #405D9D;
     color: #fff;
@@ -279,11 +366,75 @@ main {
 }
 
 .input-group-text {
-    width: 42px!important;
+    width: 42px !important;
 }
 
 .registrarUsuario input {
     width: 274px;
+}
+
+.bg-normal {
+    background-color: #0A4573 !important;
+}
+
+
+/***********Categoria***********/
+
+.pad-2 {
+    padding: 2em !important;
+}
+
+.anchoCategoria {
+    width: 85%;
+    margin: auto;
+}
+
+.text-size-categoria {
+    font-size: large;
+}
+
+@media screen and (max-width:700px) {
+    .botonBloque {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .anchoCategoria {
+        width: 100%;
+    }
+}
+
+.ajustarIrCategoria {
+    max-width: 30em;
+    margin: auto;
+}
+
+.subirDiv {
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
+
+.volverACategoria {
+    text-decoration: none;
+    color: #fff;
+}
+
+.volverACategoria:hover {
+    text-decoration: none;
+    color: #f58220;
+}
+
+
+/***********BIBLIOTECA***********/
+
+.borde-naranja {
+    border: 2px solid #f58220;
+}
+
+.text-naranjaClaro {
+    color: #fdb714;
 }
 
 
