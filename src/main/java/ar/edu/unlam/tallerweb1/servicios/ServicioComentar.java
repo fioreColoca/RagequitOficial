@@ -13,9 +13,7 @@ public interface ServicioComentar {
 	 void borrarComentario(Long id);
 	 
 	 void darLikeComentario(Long id);
-	 
-	 List<Comentario> listaDeComentarios();
-	 
+	 	 
 	 void tipoComentario(String boton,Comentario comentario);
 	
 	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
@@ -24,6 +22,6 @@ public interface ServicioComentar {
 	 
 	 List<Comentario> respuestaListado(Comentario comentario);
 
-	 Integer devolverAnio(Comentario comentario);
-	 
+	/* Integer devolverAnio(Comentario comentario); */
+	 	 
 }

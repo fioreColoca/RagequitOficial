@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 
 @Controller
@@ -58,9 +59,8 @@ public class ControladorComentario {
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
+		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, comentario);
-		ModelMap modelo = new ModelMap();
-		modelo.put("comentario", comentario);
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
@@ -99,9 +99,9 @@ public class ControladorComentario {
 		respuesta.setCantidadLikes(0);
 		respuesta.setFechaHora(fecha);
 		respuesta.setMensaje(respuestaMensaje);
+		respuesta.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, respuesta);
-		ModelMap modelo = new ModelMap();
-		modelo.put("comentario", respuesta);
+	
 
 		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
 		respuesta.setRespuesta(comentario);
