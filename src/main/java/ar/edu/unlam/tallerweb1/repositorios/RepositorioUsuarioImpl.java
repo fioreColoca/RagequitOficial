@@ -39,6 +39,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
+		
 		sessionFactory.getCurrentSession().save(usuario);
 	}
 
