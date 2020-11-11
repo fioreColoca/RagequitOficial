@@ -13,13 +13,10 @@ public interface RepositorioComentario {
 
 	 void borrarComentario(Long id);
 	 
-	 List<Comentario> verListaComentarios();
-
 	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
 
 	 List<Comentario> mostrarTodosLosComentarios();
 
 	 List<Comentario> respuestaListado(Comentario comentario); 
-	
-	
+	 	
 }

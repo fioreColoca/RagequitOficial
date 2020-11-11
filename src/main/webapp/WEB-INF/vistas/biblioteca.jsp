@@ -1,6 +1,7 @@
 <%@ include file="header.jsp"%>
 
 <main>
+
     <section class="border-bottom mb-2">
         <h3>¡Bienvenido a la seccion Biblioteca!</h3>
     </section>
@@ -38,6 +39,7 @@
             </div>
         </div>
     </section>
+
 
 </main>
 

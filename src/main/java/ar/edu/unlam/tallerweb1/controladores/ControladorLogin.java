@@ -107,7 +107,8 @@ public class ControladorLogin {
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
-		usuario1.setRol("admin");
+
+		usuario1.setRol("usuario");
 
 		servicioLogin.registrarUsuario(usuario1);
 		return new ModelAndView("redirect:/login", modelo);

@@ -24,6 +24,7 @@
             </div>
         </div>
     </section>
+    <c:if test="${not empty usuarioRol}">
     <section>
         <div>
             <h3 class="border-bottom text-center mb-4">Inicio</h3>
@@ -79,6 +80,7 @@
             <br>
         </c:if>
     </section>
+    </c:if>
     <hr>
     <section>
         <form action="filtrarCategoria">
