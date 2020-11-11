@@ -80,7 +80,6 @@ public class ControladorComentario {
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, comentario);
 		
-		
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");

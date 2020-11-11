@@ -4,9 +4,11 @@ $(document).ready(function(){
     	$(".modal-footer #botonBorrar").val( miElementoId );
 	});
 
-$(document).on("click", ".responderComentario", function () {
-    var miComentarioId = $(this).data('id');
-    $(".responderComent #responderComentario").val( miComentarioId );
-}); 
+	$('.responderComentario').click(function () {
+    	var miComentarioId = $(this).data('id');
+    	$(".responderComent #responderComentario").val( miComentarioId );
+	});
+	
+});
 
 
