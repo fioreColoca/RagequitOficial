@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +32,8 @@ public class ControladorPublicacion {
 	public ModelAndView irAlHome(
 			@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
 			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
-			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar
+			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
+			HttpServletRequest request
 			) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
@@ -42,6 +44,12 @@ public class ControladorPublicacion {
 			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 		}
 		
+		String rol = request.getSession().getAttribute("ROL") != null
+
+				 ? (String) request.getSession().getAttribute("ROL")
+
+				 : "";
+		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
 		modelo.put("title", "RageQuit | Inicio");
@@ -50,6 +58,7 @@ public class ControladorPublicacion {
 		modelo.put("categorias", categorias);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
+		modelo.put("usuarioRol", rol);
 		
 		return new ModelAndView("home", modelo);
 	}
