@@ -6,4 +6,5 @@ $(document).on("click", ".botonBorrar", function () {
 $(document).on("click", ".responderComentario", function () {
     var miComentarioId = $(this).data('id');
     $(".responderComent #responderComentario").val( miComentarioId );
-});
+}); 
+

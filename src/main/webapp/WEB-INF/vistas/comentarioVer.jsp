@@ -52,10 +52,9 @@
 													value="${comentario.getId()}" name="botonLike">
 													<i class="far fa-thumbs-up"></i>
 												</button>
-												<button type="button" class="verListadoLikes"
-													data-toggle="modal" data-target="#verListado"
-													data-id="${comentario.getId()}">
-													${comentario.getCantidadLikes()}</button>
+												<a class="verListadoLikes" data-toggle="modal"
+													href="#verListado" data-id="${comentario.getId()}">
+													${comentario.getCantidadLikes()}</a>
 											</div>
 										</form>
 										<div class="ml-3">
@@ -135,10 +134,9 @@
 													value="${comentario.getId()}" name="botonLike">
 													<i class="far fa-thumbs-up"></i>
 												</button>
-												<button type="button" class="verListadoLikes"
-													data-toggle="modal" data-target="#verListado"
-													data-id="${comentario.getId()}">
-													${comentario.getCantidadLikes()}</button>
+												<a class="verListadoLikes" data-toggle="modal"
+													href="#verListado" data-id="${comentario.getId()}">
+													${comentario.getCantidadLikes()}</a>
 											</div>
 										</form>
 										<div class="ml-3">
@@ -224,10 +222,9 @@
 															value="${respuesta.getId()}" name="botonLike">
 															<i class="far fa-thumbs-up"></i>
 														</button>
-														<button type="button" class="verListadoLikes"
-															data-toggle="modal" data-target="#verListado"
-															data-id="${comentario.getId()}">
-															${comentario.getCantidadLikes()}</button>
+														<a class="verListadoLikes" data-toggle="modal"
+															href="#verListado" data-id="${comentario.getId()}">
+															${respuesta.getCantidadLikes()}</a>
 													</div>
 												</form>
 
@@ -316,10 +313,9 @@
 															value="${respuesta.getId()}" name="botonLike">
 															<i class="far fa-thumbs-up"></i>
 														</button>
-														<button type="button" class="verListadoLikes"
-															data-toggle="modal" data-target="#verListado"
-															data-id="${comentario.getId()}">
-															${comentario.getCantidadLikes()}</button>
+														<a class="verListadoLikes" data-toggle="modal"
+															href="#verListado" data-id="${comentario.getId()}">
+															${respuesta.getCantidadLikes()}</a>
 													</div>
 												</form>
 
@@ -441,6 +437,7 @@
 			<div class="modal-content">
 				<div class="modal-header bg-fondo p-3 container">
 					<h4>Marcado como Me gusta por</h4>
+
 				</div>
 			</div>
 		</div>
