@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Comentario { 
@@ -23,8 +22,8 @@ public class Comentario {
 	@ManyToOne
 	private Comentario respuesta;
 	
-	@Transient
-	private Long respuestaId;
+	/*@Transient
+	private Long respuestaId;*/
 
 	private String mensaje;
 	
@@ -32,6 +31,7 @@ public class Comentario {
 	
 	private Integer cantidadLikes;
 	
+	private ComentarioEstado estado;
 
 	private ComentarioTipo tipo;
 	
@@ -54,13 +54,13 @@ public class Comentario {
 		this.id = id;
 	}
 
-	public Long getRespuestaId() {
+	/*public Long getRespuestaId() {
 		return respuestaId;
 	}
 
 	public void setRespuestaId(Long respuestaId) {
 		this.respuestaId = respuestaId;
-	}
+	}*/
 
 	public String getMensaje() {
 		return mensaje;
@@ -101,5 +101,14 @@ public class Comentario {
 	public void setPublicacion(Publicacion publicacion) {
 		this.publicacion = publicacion;
 	}
+
+	public ComentarioEstado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(ComentarioEstado estado) {
+		this.estado = estado;
+	}
+	
 
 }
