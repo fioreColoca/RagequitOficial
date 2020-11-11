@@ -1,7 +1,10 @@
 <%@ include file="header.jsp"%>
 <main>
+
 	<br>
+
 	<c:if test="${not empty comentarios}">
+
 		<c:forEach items="${comentarios}" var="comentario">
 			<!--  COMUN  -->
 			<c:set var="tipoComentario" value="${comentario.getTipo()}"></c:set>
@@ -33,9 +36,9 @@
 										${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
 										hs ${comentario.getFechaHora().getDate()} /
 										${comentario.getFechaHora().getMonth()} /
-										${comentario.getFechaHora().getYear()+ 1900}
-										<p>En respuesta a:</p>
-									</small>
+										${comentario.getFechaHora().getYear()+ 1900} </small>
+
+									<p>En respuesta a:</p>
 
 									<div class="container colorComentario rounded">
 										<p class="text-dark !important p-3">${comentario.getMensaje()}</p>
@@ -49,7 +52,10 @@
 													value="${comentario.getId()}" name="botonLike">
 													<i class="far fa-thumbs-up"></i>
 												</button>
-												<spam>${comentario.getCantidadLikes()}</spam>
+												<button type="button" class="verListadoLikes"
+													data-toggle="modal" data-target="#verListado"
+													data-id="${comentario.getId()}">
+													${comentario.getCantidadLikes()}</button>
 											</div>
 										</form>
 										<div class="ml-3">
@@ -116,10 +122,8 @@
 										${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
 										hs ${comentario.getFechaHora().getDate()} /
 										${comentario.getFechaHora().getMonth()}
-										/${comentario.getFechaHora().getYear()+ 1900 }
-										<p>En respuesta a:</p>
-									</small>
-
+										/${comentario.getFechaHora().getYear()+ 1900 } </small>
+									<p>En respuesta a:</p>
 
 									<div class="container colorComentario rounded">
 										<p class="text-dark !important p-3">${comentario.getMensaje()}</p>
@@ -131,7 +135,10 @@
 													value="${comentario.getId()}" name="botonLike">
 													<i class="far fa-thumbs-up"></i>
 												</button>
-												<spam>${comentario.getCantidadLikes()}</spam>
+												<button type="button" class="verListadoLikes"
+													data-toggle="modal" data-target="#verListado"
+													data-id="${comentario.getId()}">
+													${comentario.getCantidadLikes()}</button>
 											</div>
 										</form>
 										<div class="ml-3">
@@ -169,19 +176,17 @@
 				</c:if>
 			</c:if>
 
-
 			<div class="ml-5">
 				<c:forEach items="${comentarios}" var="respuesta">
-					<!--  COMUN  -->
+
+					<!--  RESPUESTA COMUN  -->
 					<c:set var="tipoRespuesta" value="${respuesta.getTipo()}"></c:set>
 					<c:if test="${tipoRespuesta=='COMUN'}">
 						<c:set var="RespuestaDe"
 							value="${respuesta.getRespuesta().getId()}"></c:set>
 						<c:set var="comentarioId" value="${comentario.getId()}"></c:set>
 						<c:if test="${RespuestaDe==comentarioId}">
-
 							<div class="container p-3 mb-2 bg-fondo text-white">
-
 								<div class="row mb-4">
 
 									<div
@@ -189,6 +194,8 @@
 										<img class="rounded-circle border border-dark"
 											src="img/santiago.jpeg" width="50" height="50">
 									</div>
+
+
 									<div
 										class="container col-md-10 col-lg-11 justify-content-center">
 
@@ -204,11 +211,8 @@
 												${comentario.getFechaHora().getHours()}:${respuesta.getFechaHora().getMinutes()}
 												hs ${respuesta.getFechaHora().getDate()} /
 												${respuesta.getFechaHora().getMonth()} /
-												${respuesta.getFechaHora().getYear()+ 1900}
-												<p>En respuesta a:</p>
-											</small>
-
-
+												${respuesta.getFechaHora().getYear()+ 1900} </small>
+											<p>En respuesta a:</p>
 											<div class="container colorComentario rounded">
 												<p class="text-dark !important p-3">${respuesta.getMensaje()}</p>
 											</div>
@@ -217,14 +221,16 @@
 												<form action="meGustaComentario">
 													<div>
 														<button class="btn btn-outline-naranja"
-															value="${respuesta.getId()}"
-															"
-                                                name="botonLike">
+															value="${respuesta.getId()}" name="botonLike">
 															<i class="far fa-thumbs-up"></i>
 														</button>
-														<spam>${respuesta.getCantidadLikes()}</spam>
+														<button type="button" class="verListadoLikes"
+															data-toggle="modal" data-target="#verListado"
+															data-id="${comentario.getId()}">
+															${comentario.getCantidadLikes()}</button>
 													</div>
 												</form>
+
 												<div class="ml-3">
 													<button type="button"
 														class="btn btn-outline-naranja responderComentario"
@@ -233,6 +239,7 @@
 														<i class="far fa-comment-dots"></i>
 													</button>
 												</div>
+
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -243,6 +250,7 @@
 														</button>
 													</div>
 												</form>
+
 												<form>
 													<div>
 														<button type="submit" class="btn btn-outline-naranja">
@@ -250,59 +258,57 @@
 														</button>
 													</div>
 												</form>
+
 											</div>
+
 										</c:if>
 									</div>
 								</div>
 							</div>
 						</c:if>
 					</c:if>
+
 					<!--  COMUN  -->
 
-
-					<!--  PREMIUM -->
+					<!--  RESPUESTA PREMIUM  -->
 
 					<c:if test="${tipoRespuesta=='SUSCRIPTOR'}">
 						<c:set var="RespuestaDe"
 							value="${respuesta.getRespuesta().getId()}"></c:set>
-
 						<c:set var="comentarioId" value="${comentario.getId()}"></c:set>
-
 						<c:if test="${RespuestaDe==comentarioId}">
 							<div class="container p-3 mb-2 colorPremium text-white">
-
 								<div class="row mb-4">
+
 									<div
 										class="d-flex flex-row user-info mb-3 col-md-2 col-lg-1 justify-content-center">
 										<img class="rounded-circle border border-dark"
 											src="img/santiago.jpeg" width="50" height="50">
 									</div>
+
+
 									<div
 										class="container col-md-10 col-lg-11 justify-content-center">
 
 										<h4 class="border-bottom">Nombre de usuario</h4>
 
-										<c:set var="estadoComentario" value="${respuesta.getEstado()}"></c:set>
-										<c:if test="${estadoComentario=='INACTIVO'}">
-											<p>respuesta Eliminada</p>
-										</c:if>
 
-										<c:if test="${estadoComentario=='ACTIVO'}">
+										<c:set var="estadoRespuesta" value="${respuesta.getEstado()}"></c:set>
+										<c:if test="${estadoRespuesta=='INACTIVO'}">
+											<p>Respuesta Eliminada</p>
+										</c:if>
+										<c:if test="${estadoRespuesta=='ACTIVO'}">
 											<p>${respuesta.getTipo()}</p>
 
 											<small class="text-white-50">
 												${comentario.getFechaHora().getHours()}:${respuesta.getFechaHora().getMinutes()}
 												hs ${respuesta.getFechaHora().getDate()} /
-												${respuesta.getFechaHora().getMonth()}
-												/${respuesta.getFechaHora().getYear()+ 1900 }
-												<p>En respuesta a:</p>
-											</small>
-
-
+												${respuesta.getFechaHora().getMonth()} /
+												${respuesta.getFechaHora().getYear()+ 1900} </small>
+											<p>En respuesta a:</p>
 											<div class="container colorComentario rounded">
 												<p class="text-dark !important p-3">${respuesta.getMensaje()}</p>
 											</div>
-
 											<div class="hoverIcons d-flex justify-content-around p-2">
 												<form action="meGustaComentario">
 													<div>
@@ -310,9 +316,13 @@
 															value="${respuesta.getId()}" name="botonLike">
 															<i class="far fa-thumbs-up"></i>
 														</button>
-														<spam>${respuesta.getCantidadLikes()}</spam>
+														<button type="button" class="verListadoLikes"
+															data-toggle="modal" data-target="#verListado"
+															data-id="${comentario.getId()}">
+															${comentario.getCantidadLikes()}</button>
 													</div>
 												</form>
+
 												<div class="ml-3">
 													<button type="button"
 														class="btn btn-outline-naranja responderComentario"
@@ -321,6 +331,7 @@
 														<i class="far fa-comment-dots"></i>
 													</button>
 												</div>
+
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -331,6 +342,7 @@
 														</button>
 													</div>
 												</form>
+
 												<form>
 													<div>
 														<button type="submit" class="btn btn-outline-naranja">
@@ -338,25 +350,21 @@
 														</button>
 													</div>
 												</form>
+
 											</div>
+
 										</c:if>
 									</div>
 								</div>
-
-
 							</div>
+
 						</c:if>
 					</c:if>
-
 				</c:forEach>
 			</div>
-
-
-
 		</c:forEach>
 	</c:if>
 
-	<!-- TERMINA PREMIUM -->
 
 
 	<!--  MODALS -->
@@ -424,10 +432,22 @@
 		</div>
 	</div>
 
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="verListado" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header bg-fondo p-3 container">
+					<h4>Marcado como Me gusta por</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </main>
-
-<!--  TERMINA MODALS -->
-
 
 <!--  ACA NO VA EL ESTILO, ES PROVISORIO -->
 <style>
