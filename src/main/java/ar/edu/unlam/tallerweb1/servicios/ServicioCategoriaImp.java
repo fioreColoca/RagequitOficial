@@ -36,5 +36,10 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		repositorioCategoria.borrarCategoria(id);
 		
 	}
+	@Override
+	public void editarCategoria(Long id) {
+		repositorioCategoria.editarCategoria(id);
+		
+	}
 	
 }

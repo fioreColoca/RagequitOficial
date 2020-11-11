@@ -13,5 +13,7 @@ public interface ServicioCategoria {
 	List<Categoria>mostrarCategorias();
 	
 	void borrarCategoria(Long id);
+	
+	void editarCategoria(Long id);
 
 }

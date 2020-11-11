@@ -13,5 +13,7 @@ public interface RepositorioCategoria {
 	List<Categoria> mostrarCategorias();
 	
 	void borrarCategoria (Long id);
+	
+	void editarCategoria(Long id);
 
 }

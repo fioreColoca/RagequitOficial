@@ -30,6 +30,15 @@
                     </div>
                 </form>
             </div>
+            
+            <!--<c:if test="${errorCategoria != 'null'}">-->
+            <h4 class="text-danger"><span>${errorCategoria}</span></h4>
+            <br>
+        	</c:if>
+            
+            <div class="text-right subirDiv">
+            <a href="irACategorias" class="irACategorias">Ver categorias creadas</a>
+            </div>
         </article>
     </section>
 </main>

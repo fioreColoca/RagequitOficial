@@ -22,9 +22,11 @@ public class ControladorCategoria {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping("/categoria")
-	public ModelAndView irACategoria() {
+	public ModelAndView irACategoria(
+			/*@RequestParam(value = "errorCategoria", required = false) String errorCategoria*/) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("title", "RageQuit | Categoria");
+		/*modelo.put("errorCategoria", errorCategoria);*/
 
 		return new ModelAndView("categoria", modelo);
 	}
@@ -32,20 +34,27 @@ public class ControladorCategoria {
 	@RequestMapping(path = "/agregarCategoria", method = RequestMethod.GET)
 	public ModelAndView agregarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
 			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) {
+	
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
+		
+		String errorCategoria = null;
 
 		if (tipoCategoria.equals("Juegos")) {
 			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
 		} else {
 			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 		}
-
+		
+		/*if (categoria.getNombre().equals(nombreCategoria)) {
+			errorCategoria = "La categoría ya fue creada";
+		}*/
 		categoria.setNombre(nombreCategoria);
 
 		servicioCategoria.guardarCategoria(categoria);
 
 		modelo.put("categoriaCreada", categoria);
+		/*return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria);*/
 		return new ModelAndView("redirect:/irACategorias", modelo);
 	}
 
@@ -64,6 +73,13 @@ public class ControladorCategoria {
 	@RequestMapping(path = "/borrarCategoria", method = RequestMethod.GET)
 	public ModelAndView borrarCategoria(@RequestParam(value = "botonBorrar", required = false) Long id) {
 		servicioCategoria.borrarCategoria(id);
+
+		return new ModelAndView("redirect:/irACategorias");
+	}
+	
+	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
+	public ModelAndView editarCategoria(@RequestParam(value = "botonGuardar", required = false) Long id) {
+		servicioCategoria.editarCategoria(id);
 
 		return new ModelAndView("redirect:/irACategorias");
 	}
