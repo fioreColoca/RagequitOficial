@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,27 +15,43 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorComentario {
 
 	@Inject
 	private ServicioComentar servicioComentario;
+	
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	/* ---------- Pagina para comentar ----------- */
 	@RequestMapping(path = "/comentario")
-	public ModelAndView comentar() {
+	public ModelAndView comentar(HttpServletRequest request) {
+		
+		String rol = request.getSession().getAttribute("ROL") != null
+				 ? (String) request.getSession().getAttribute("ROL")
+				 : "";
+				 
 		ModelMap modelo = new ModelMap();
+		modelo.put("usuarioRol", rol);
 		modelo.put("title", "RageQuit | Comentarios");
 		return new ModelAndView("comentarioEscribir", modelo);
 	}
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
 	@RequestMapping(path = "/comentarioVisualizacion")
-	public ModelAndView verComentario() {
+	public ModelAndView verComentario(HttpServletRequest request) {
+		String rol = request.getSession().getAttribute("ROL") != null
+				 ? (String) request.getSession().getAttribute("ROL")
+				 : "";
+				 
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
+		modelo.put("usuarioRol", rol);
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 
 		if (comentarios.isEmpty()) {
@@ -52,7 +69,8 @@ public class ControladorComentario {
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String tipoBoton) {
+			@RequestParam(value = "boton", required = true) String tipoBoton,
+			HttpServletRequest request) {
 
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
@@ -61,6 +79,8 @@ public class ControladorComentario {
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, comentario);
+		
+		
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
