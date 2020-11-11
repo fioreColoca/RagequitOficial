@@ -44,10 +44,13 @@
                         <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
                         <a href="comentario" class="nav-item nav-link"><i
                             class="fas fa-comments"></i><span>Comentarios</span></a>
-                        <a href="categoria" class="nav-item nav-link"><i
-                            class="fas fa-gamepad"></i><span>Categoria</span></a>
+                        <c:if test="${usuarioRol == 'admin'}">
+                        	<a href="categoria" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span>Categoria</span></a>
+                        </c:if>
                         <a href="biblioteca" class="nav-item nav-link"><i class="fas fa-list-ul"></i><span>Biblioteca</span></a>
-                        <a href="#" class="nav-item nav-link"><i class="fas fa-trophy"></i><span> ejemplo </span></a>
+                        <c:if test="${usuarioRol == 'admin'}">
+                        	<a href="administrar" class="nav-item nav-link"><i class="fas fa-trophy"></i><span> Roles </span></a>
+                        </c:if>
                         <a href="#" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span> ejemplo </span></a>
                         <a href="registrar" class="nav-item nav-link"><i
                             class="fas fa-sign-in-alt"></i><span>Login</span></a>
