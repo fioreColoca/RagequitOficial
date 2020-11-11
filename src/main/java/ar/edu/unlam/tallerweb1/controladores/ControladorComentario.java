@@ -32,14 +32,12 @@ public class ControladorComentario {
 	@RequestMapping(path = "/comentario")
 	public ModelAndView comentar(HttpServletRequest request) {
 		
-		String rol = request.getSession().getAttribute("ROL") != null
-				 ? (String) request.getSession().getAttribute("ROL")
-				 : "";
-				 
-		ModelMap modelo = new ModelMap();
-		modelo.put("usuarioRol", rol);
-		modelo.put("title", "RageQuit | Comentarios");
-		return new ModelAndView("comentarioEscribir", modelo);
+		if (request.getSession().getAttribute("ROL") != null) {
+			ModelMap modelo = new ModelMap();
+			modelo.put("title", "RageQuit | Comentarios");
+			return new ModelAndView("comentarioEscribir", modelo);
+		}
+		return new ModelAndView("redirect:/login");
 	}
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
@@ -78,8 +76,7 @@ public class ControladorComentario {
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
-		servicioComentario.tipoComentario(tipoBoton, comentario);
-		
+		servicioComentario.tipoComentario(tipoBoton, comentario);	
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
