@@ -48,6 +48,8 @@
                         </div>
                     </div>
                     <c:if test="${not empty nombreUsuario}">
+                        
+                        <img alt="" src="${url_imagen }" class="m-auto">
                         <a class="m-auto"><span>Bienvenido ${nombreUsuario}</span></a>
                     </c:if>
                     <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>

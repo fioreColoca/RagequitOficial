@@ -34,6 +34,7 @@ public class Usuario {
 	private Integer contadorSeguidos;
 	private Integer contadorSuscriptores;
 	private Integer contadorSeguidores;
+	private String url_imagen;
 
 	// Array de seguidores
 	// @ManyToMany
@@ -145,5 +146,13 @@ public class Usuario {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public String getUrl_imagen() {
+		return url_imagen;
+	}
+
+	public void setUrl_imagen(String url_imagen) {
+		this.url_imagen = url_imagen;
 	}
 }

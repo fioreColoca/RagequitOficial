@@ -39,10 +39,17 @@ public class ControladorComentario {
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 
 				: "";
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
+
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+
 		if (request.getSession().getAttribute("ROL") != null) {
 			ModelMap modelo = new ModelMap();
 			modelo.put("title", "RageQuit | Comentarios");
 			modelo.put("usuarioRol", rol);
+			modelo.put("url_imagen", url_imagen);
 			modelo.put("nombreUsuario", nombreUsuario);
 
 			return new ModelAndView("comentarioEscribir", modelo);
@@ -55,23 +62,32 @@ public class ControladorComentario {
 	public ModelAndView verComentario(HttpServletRequest request,
 			@RequestParam(value = "nombreUsuario", required = false) String usuarioNombre
 
-			) {
+	) {
 		String rol = request.getSession().getAttribute("ROL") != null
 				? (String) request.getSession().getAttribute("ROL")
 				: "";
 		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 				: "";
-				
+
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
+
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+
 		Long usuarioId = request.getSession().getAttribute("ID") != null
-						? (Long) request.getSession().getAttribute("ID")
-						: null;
-				
+				? (Long) request.getSession().getAttribute("ID")
+				: null;
+
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
-		modelo.put("usuarioId",usuarioId);
+
+		modelo.put("url_imagen", url_imagen);
+
+		modelo.put("usuarioId", usuarioId);
 
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 		if (comentarios.isEmpty()) {
@@ -92,7 +108,6 @@ public class ControladorComentario {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-						
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setUsuario(usuario);
@@ -132,13 +147,12 @@ public class ControladorComentario {
 	public ModelAndView guardarRespuesta(
 			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
 			@RequestParam(value = "idComentario", required = true) Long idComentario,
-			@RequestParam(value = "boton", required = true) String tipoBoton,
-			HttpServletRequest request) {
+			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
 
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+
 		java.util.Date fecha = new Date();
 		Comentario respuesta = new Comentario();
 		respuesta.setCantidadLikes(0);
