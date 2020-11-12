@@ -67,8 +67,6 @@ public class ControladorPublicacion {
 	@RequestMapping(path = "/guardarPublicacion", method = RequestMethod.POST)
 	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion) {
 		Date fecha = new Date();
-		ModelMap modelo = new ModelMap();
-		
 		
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
