@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,9 +28,9 @@ public class ControladorBiblioteca {
 	
 	@RequestMapping(path="/biblioteca")
 	public ModelAndView biblioteca(
-			@RequestParam(value = "filtro", required = false) Long categoriaTipo
+			@RequestParam(value = "categoriaId", required = false) Long categoriaTipo,
+			HttpServletRequest request
 			) {
-		
 		Biblioteca biblioteca = new Biblioteca();
 		ModelMap modelo = new ModelMap();
 		
@@ -37,24 +38,30 @@ public class ControladorBiblioteca {
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		
+		
 		if(!(categoriaTipo == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaTipo);
 			categorias = servicioCategoria.mostrarCategoriaPorTipo(categoria.getTipoCategoria());
-//			Categoria categoria = servicioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
-//			categorias =  servicioBiblioteca.obtenerBibliotecaFiltradaPorCategoria(categoria);
 		}
+		
+		String rol = request.getSession().getAttribute("ROL") != null
+
+				 ? (String) request.getSession().getAttribute("ROL")
+
+				 : "";
 		
 		modelo.put("categorias", categorias);		
 		modelo.put("idBiblioteca", idbiblioteca);
 		modelo.put("biblioteca", biblioteca);
 		modelo.put("title", "RageQuit | Biblioteca");
+		modelo.put("usuarioRol", rol);
 
 		return new ModelAndView("biblioteca", modelo);
 	}
 	
 	@RequestMapping(path="/bibliotecaFiltrada", method = RequestMethod.GET)
 	public ModelAndView bibliotecaDesplegada(
-			@RequestParam(value = "filtro", required = false) Long categoriaId
+			@RequestParam(value = "categoriaId", required = false) Long categoriaId
 			) {		
 		
 		if(!(categoriaId == -1)) {

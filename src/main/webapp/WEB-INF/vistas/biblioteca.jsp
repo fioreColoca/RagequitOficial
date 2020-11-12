@@ -6,7 +6,7 @@
         <h3>¡Bienvenido a la seccion Biblioteca!</h3>
     </section>
     <section class="anchoCategoria">
-        <form action="biblioteca">
+        <form action="bibliotecaFiltrada">
             <label for="filtro">Filtrar contenido por Genero</label>
             <select class="custom-select" name="categoriaId" id="filtro">
                 <option value="-1" selected disabled>Elegir</option>

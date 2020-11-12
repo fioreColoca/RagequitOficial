@@ -39,6 +39,7 @@ public class ControladorPublicacion {
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
 		
+		
 		if(!(categoriaAMostrar==null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
 			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
