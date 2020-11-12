@@ -19,4 +19,5 @@ public interface ServicioCategoria {
 	
 	void editarCategoria(Long id);
 
+
 }
