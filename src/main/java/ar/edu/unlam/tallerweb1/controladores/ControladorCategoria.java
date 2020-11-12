@@ -69,12 +69,20 @@ public class ControladorCategoria {
 	}
 
 	@RequestMapping("/irACategorias")
-	public ModelAndView irACategorias() {
+	public ModelAndView irACategorias(
+			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		
+		String rol = request.getSession().getAttribute("ROL") != null
+
+				 ? (String) request.getSession().getAttribute("ROL")
+
+				 : "";
 
 		modelo.put("categorias", categorias);
+		modelo.put("usuarioRol", rol);
 		modelo.put("title", "RageQuit | Categoria Creadas");
 
 		return new ModelAndView("irACategorias", modelo);
