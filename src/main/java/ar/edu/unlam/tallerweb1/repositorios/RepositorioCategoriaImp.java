@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
 @Repository
 public class RepositorioCategoriaImp implements RepositorioCategoria {
@@ -36,6 +37,11 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	public void borrarCategoria(Long id) {
 		Categoria categoria = mostrarCategoriaPorId(id);
 		sessionFactory.getCurrentSession().delete(categoria);
+	}
+
+	@Override
+	public Categoria mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
+		return sessionFactory.getCurrentSession().get(Categoria.class, tipoCategoria);
 	}
 
 
