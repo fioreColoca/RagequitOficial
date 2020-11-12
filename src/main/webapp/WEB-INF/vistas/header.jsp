@@ -54,6 +54,10 @@
                         <a href="#" class="nav-item nav-link"><i class="fas fa-gamepad"></i><span> ejemplo </span></a>
                         <a href="registrar" class="nav-item nav-link"><i
                             class="fas fa-sign-in-alt"></i><span>Login</span></a>
+						<c:if test="${not empty usuarioRol}">
+							<a href="cerrarSesion" class="nav-item nav-link"><i
+                            class="fas fa-sign-in-alt"></i><span>Cerrar Sesion</span></a>
+						</c:if>
                     </div>
                 </div>
             </nav>

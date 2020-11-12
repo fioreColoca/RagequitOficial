@@ -45,9 +45,9 @@ public class ControladorPublicacion {
 		}
 		
 		String rol = request.getSession().getAttribute("ROL") != null
-
+				
 				 ? (String) request.getSession().getAttribute("ROL")
-
+						 
 				 : "";
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();

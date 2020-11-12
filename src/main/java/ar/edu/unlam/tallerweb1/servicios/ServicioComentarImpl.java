@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 
 @Service
 @Transactional
-public class ServicioComentarImpl implements ServicioComentar {
+public class ServicioComentarImpl implements ServicioComentar{
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
@@ -80,5 +81,7 @@ public class ServicioComentarImpl implements ServicioComentar {
 	 * @Override public Integer devolverAnio(Comentario comentario) { Integer anio =
 	 * ((Integer) comentario.getFechaHora().getYear()) + 1900; return anio; }
 	 */
+	
+	
 
 }

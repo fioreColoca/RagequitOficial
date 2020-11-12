@@ -21,23 +21,26 @@
             </div>
         </form>
         <br>
-
+        
+        <c:if test="${not empty categorias}">
         <div class="album py-5 ">
             <div class="container">
 
                 <div class="row">
+                
                     <c:forEach items="${categorias}" var="categoriaDelFor">
                         <div class="col-md-4">
-
                             <div class="card mb-4 borde-naranja">
-                            	<h4 class="text-white">Categoria: </h4>
-                                <p class="text-center text-naranjaClaro">${categoriaDelFor.getNombre()}</p>
+                            	<h4 class="text-white">${categoriaDelFor.getNombre()}</h4>                              
+                                <p class="text-center text-naranjaClaro">${categoriaDelFor.getTipoCategoria()}</p>
                             </div>
                         </div>
                     </c:forEach>
+                    
                 </div>
             </div>
         </div>
+        </c:if>
     </section>
 
 

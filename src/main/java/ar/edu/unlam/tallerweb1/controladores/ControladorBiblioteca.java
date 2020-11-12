@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBiblioteca;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
@@ -25,7 +26,9 @@ public class ControladorBiblioteca {
 	private ServicioCategoria servicioCategoria;
 	
 	@RequestMapping(path="/biblioteca")
-	public ModelAndView biblioteca() {
+	public ModelAndView biblioteca(
+			@RequestParam(value = "filtro", required = false) Long categoriaTipo
+			) {
 		
 		Biblioteca biblioteca = new Biblioteca();
 		ModelMap modelo = new ModelMap();
@@ -33,6 +36,13 @@ public class ControladorBiblioteca {
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		
+		if(!(categoriaTipo == null)) {
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaTipo);
+			categorias = servicioCategoria.mostrarCategoriaPorTipo(categoria.getTipoCategoria());
+//			Categoria categoria = servicioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
+//			categorias =  servicioBiblioteca.obtenerBibliotecaFiltradaPorCategoria(categoria);
+		}
 		
 		modelo.put("categorias", categorias);		
 		modelo.put("idBiblioteca", idbiblioteca);
@@ -45,24 +55,14 @@ public class ControladorBiblioteca {
 	@RequestMapping(path="/bibliotecaFiltrada", method = RequestMethod.GET)
 	public ModelAndView bibliotecaDesplegada(
 			@RequestParam(value = "filtro", required = false) Long categoriaId
-			) {
-		Biblioteca biblioteca = new Biblioteca();
-		ModelMap modelo = new ModelMap();
-		
-		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
-		
-		modelo.put("idBiblioteca", idbiblioteca);
-		modelo.put("biblioteca", biblioteca);
-		
+			) {		
 		
 		if(!(categoriaId == -1)) {
-			Long categoriaAMostrar = null; 
-			categoriaAMostrar = categoriaId;
-			return new ModelAndView("redirect:/biblioteca?categoriaAMostrar="+categoriaAMostrar);
+			return new ModelAndView("redirect:/biblioteca?categoriaId="+categoriaId);
 		}
 			
 		
-		return new ModelAndView("redirect:/biblioteca", modelo);
+		return new ModelAndView("redirect:/biblioteca");
 	}
 	
 	

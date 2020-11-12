@@ -5,10 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
 @Repository
 public class RepositorioCategoriaImp implements RepositorioCategoria {
@@ -42,6 +44,11 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	public void editarCategoria(Long id) {
 		Categoria categoria = mostrarCategoriaPorId(id);
 		sessionFactory.getCurrentSession().save(categoria);
+	}
+
+	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
+		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).add(Restrictions.eq("tipoCategoria", tipoCategoria)).list();
+
 	}
 
 
