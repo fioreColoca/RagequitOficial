@@ -31,10 +31,14 @@ public class ControladorComentario {
 	/* ---------- Pagina para comentar ----------- */
 	@RequestMapping(path = "/comentario")
 	public ModelAndView comentar(HttpServletRequest request) {
-		
+		String rol = request.getSession().getAttribute("ROL") != null
+				 ? (String) request.getSession().getAttribute("ROL")
+				 : "";
+				 
 		if (request.getSession().getAttribute("ROL") != null) {
 			ModelMap modelo = new ModelMap();
 			modelo.put("title", "RageQuit | Comentarios");
+			modelo.put("usuarioRol", rol);
 			return new ModelAndView("comentarioEscribir", modelo);
 		}
 		return new ModelAndView("redirect:/login");
@@ -46,7 +50,6 @@ public class ControladorComentario {
 		String rol = request.getSession().getAttribute("ROL") != null
 				 ? (String) request.getSession().getAttribute("ROL")
 				 : "";
-				 
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
@@ -67,10 +70,8 @@ public class ControladorComentario {
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String tipoBoton,
-			HttpServletRequest request) {
+			@RequestParam(value = "boton", required = true) String tipoBoton) {
 		
-		Usuario usuario = (Usuario) request.getSession().getAttribute("rol"); 
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setCantidadLikes(0);
@@ -78,7 +79,7 @@ public class ControladorComentario {
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, comentario);	
-		comentario.setUsuario(usuario);
+		
 		
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
