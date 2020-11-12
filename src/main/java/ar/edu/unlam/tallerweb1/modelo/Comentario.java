@@ -28,8 +28,8 @@ public class Comentario {
 	@OneToOne
 	private Usuario usuario;
 	
-	@OneToMany
-	private  List<Usuario> litadoLikes;
+/*	@OneToMany
+	private  List<Usuario> litadoLikes; */
 
 	private String mensaje;
 	
@@ -115,13 +115,13 @@ public class Comentario {
 		this.usuario = usuario;
 	}
 
-	public List<Usuario> getLitadoLikes() {
+	/*public List<Usuario> getLitadoLikes() {
 		return litadoLikes;
 	}
 
 	public void setLitadoLikes(List<Usuario> litadoLikes) {
 		this.litadoLikes = litadoLikes;
 	}
-	
+	*/
 
 }

@@ -69,7 +69,8 @@ public class ControladorComentario {
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
 			@RequestParam(value = "boton", required = true) String tipoBoton,
 			HttpServletRequest request) {
-
+		
+		Usuario usuario = (Usuario) request.getSession().getAttribute("rol"); 
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setCantidadLikes(0);
@@ -77,7 +78,8 @@ public class ControladorComentario {
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario(tipoBoton, comentario);	
-
+		comentario.setUsuario(usuario);
+		
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/comentario");
 		}
