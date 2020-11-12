@@ -54,7 +54,7 @@ public class ControladorLogin {
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando
 		// el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma dentro del modelo
-		modelo.put("title","RageQuit | Iniciar Sesion");
+		modelo.put("title", "RageQuit | Iniciar Sesion");
 		return new ModelAndView("login", modelo);
 	}
 
@@ -102,6 +102,13 @@ public class ControladorLogin {
 		modelo.put("usuario", usuario1);
 		modelo.put("title", "RageQuit | Registrar Usuario");
 		return new ModelAndView("crearUsuario", modelo);
+	}
+
+	@RequestMapping(path = "cerrarSesion")
+	public ModelAndView cerrarSesion(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		request.getSession().invalidate();
+		return new ModelAndView("redirect:/home", modelo);
 	}
 
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
