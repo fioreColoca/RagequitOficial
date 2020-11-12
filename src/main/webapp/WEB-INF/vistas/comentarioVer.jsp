@@ -66,6 +66,9 @@
 													<i class="far fa-comment-dots"></i>
 												</button>
 											</div>
+											<c:set var="idUsuario" value="${comentario.getUsuario().getId()}"></c:set>
+											<c:set var="IdUsuarioComentario" value="${usuarioId}"></c:set>
+											<c:if test="${idUsuario == IdUsuarioComentario}">
 											<form action="borrarComentario">
 												<div>
 													<button type="button"
@@ -76,6 +79,7 @@
 													</button>
 												</div>
 											</form>
+											</c:if>
 											<form>
 												<div>
 													<button type="submit" class="btn btn-outline-naranja">
@@ -149,6 +153,9 @@
 												<i class="far fa-comment-dots"></i>
 											</button>
 										</div>
+										<c:set var="idUsuario" value="${comentario.getUsuario().getId()}"></c:set>
+										<c:set var="IdUsuarioComentario" value="${usuarioId}"></c:set>
+										<c:if test="${idUsuario == IdUsuarioComentario}">
 										<form action="borrarComentario">
 											<div>
 												<button type="button"
@@ -159,6 +166,7 @@
 												</button>
 											</div>
 										</form>
+										</c:if>
 										<form>
 											<div>
 												<button type="submit" class="btn btn-outline-naranja">
@@ -238,7 +246,9 @@
 														<i class="far fa-comment-dots"></i>
 													</button>
 												</div>
-
+												<c:set var="idUsuario" value="${respuesta.getUsuario().getId()}"></c:set>
+												<c:set var="IdUsuarioRespuesta" value="${usuarioId}"></c:set>
+												<c:if test="${idUsuario == IdUsuarioRespuesta}">
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -249,6 +259,7 @@
 														</button>
 													</div>
 												</form>
+												</c:if>
 
 												<form>
 													<div>
@@ -330,6 +341,9 @@
 													</button>
 												</div>
 
+												<c:set var="idUsuario" value="${respuesta.getUsuario().getId()}"></c:set>
+												<c:set var="IdUsuarioRespuesta" value="${usuarioId}"></c:set>
+												<c:if test="${idUsuario == IdUsuarioRespuesta}">
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -340,6 +354,7 @@
 														</button>
 													</div>
 												</form>
+												</c:if>
 
 												<form>
 													<div>

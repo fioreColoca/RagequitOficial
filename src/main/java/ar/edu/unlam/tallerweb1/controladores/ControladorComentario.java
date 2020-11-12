@@ -60,22 +60,23 @@ public class ControladorComentario {
 				? (String) request.getSession().getAttribute("ROL")
 				: "";
 		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
 				: "";
+				
+		Long usuarioId = request.getSession().getAttribute("ID") != null
+						? (Long) request.getSession().getAttribute("ID")
+						: null;
 				
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("usuarioId",usuarioId);
 
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
-
 		if (comentarios.isEmpty()) {
 			return new ModelAndView("redirect:/comentario", modelo);
 		}
-
 		modelo.put("comentarios", comentarios);
 		modelo.put("comentario", comentario);
 		modelo.put("title", "RageQuit | Comentarios Hechos");
@@ -91,7 +92,7 @@ public class ControladorComentario {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+						
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setUsuario(usuario);
