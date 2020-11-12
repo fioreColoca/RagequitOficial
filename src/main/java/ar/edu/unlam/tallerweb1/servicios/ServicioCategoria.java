@@ -11,7 +11,7 @@ public interface ServicioCategoria {
 	
 	Categoria mostrarCategoriaPorId(Long id);
 	
-	Categoria mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
+	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
 	
 	List<Categoria>mostrarCategorias();
 	

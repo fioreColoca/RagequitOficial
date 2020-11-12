@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 
@@ -40,8 +41,8 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	}
 
 	@Override
-	public Categoria mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
-		return sessionFactory.getCurrentSession().get(Categoria.class, tipoCategoria);
+	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
+		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).add(Restrictions.eq("tipoCategoria", tipoCategoria)).list();
 	}
 
 

@@ -11,7 +11,7 @@ public interface RepositorioCategoria {
 	
 	Categoria mostrarCategoriaPorId(Long id);
 	
-	Categoria mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
+	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
 	
 	List<Categoria> mostrarCategorias();
 	

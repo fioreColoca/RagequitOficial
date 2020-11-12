@@ -38,7 +38,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		
 	}
 	@Override
-	public Categoria mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo) {
+	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo) {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 	}
 	
