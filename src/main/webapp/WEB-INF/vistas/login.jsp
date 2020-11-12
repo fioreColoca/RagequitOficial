@@ -73,6 +73,7 @@
 								type="submit">Iniciar sesi&oacute;n con Facebook</button>
 						</form:form>
 					</div>
+					<p class="text-center text-white">¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a></p>
 				</div>
 			</div>
 		</div>

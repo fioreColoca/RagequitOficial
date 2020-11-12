@@ -64,11 +64,11 @@
                             </span></a>
                     </c:if>
                     <c:if test="${empty usuarioRol }">
-                        <a href="registrar" class="nav-item nav-link"><i
+                        <a href="login" class="nav-item nav-link"><i
                                 class="fas fa-sign-in-alt"></i><span>Login</span></a>
                     </c:if>
                     <c:if test="${not empty usuarioRol}">
-                        <a href="cerrarSesion" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i><span>Cerrar
+                        <a href="cerrarSesion" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i><span>Cerrar
                                 Sesion</span></a>
                     </c:if>
                 </div>
