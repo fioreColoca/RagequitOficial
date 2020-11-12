@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 
 @Service
@@ -35,6 +36,10 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void borrarCategoria(Long id) {
 		repositorioCategoria.borrarCategoria(id);
 		
+	}
+	@Override
+	public Categoria mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo) {
+		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 	}
 	
 }
