@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,10 +23,19 @@ public class ControladorCategoria {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping("/categoria")
-	public ModelAndView irACategoria(
+	public ModelAndView irACategoria( 
+		HttpServletRequest request
 			/*@RequestParam(value = "errorCategoria", required = false) String errorCategoria*/) {
 		ModelMap modelo = new ModelMap();
+		
+		String rol = request.getSession().getAttribute("ROL") != null
+
+				 ? (String) request.getSession().getAttribute("ROL")
+
+				 : "";
+				 
 		modelo.put("title", "RageQuit | Categoria");
+		modelo.put("usuarioRol", rol);
 		/*modelo.put("errorCategoria", errorCategoria);*/
 
 		return new ModelAndView("categoria", modelo);
