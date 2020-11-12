@@ -27,7 +27,7 @@ public class ControladorBiblioteca {
 	
 	@RequestMapping(path="/biblioteca")
 	public ModelAndView biblioteca(
-			@RequestParam(value = "filtro", required = false) CategoriaTipo categoriaTipo
+			@RequestParam(value = "filtro", required = false) Long categoriaTipo
 			) {
 		
 		Biblioteca biblioteca = new Biblioteca();
@@ -38,8 +38,10 @@ public class ControladorBiblioteca {
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		
 		if(!(categoriaTipo == null)) {
-			Categoria categoria = servicioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
-			categorias =  servicioBiblioteca.obtenerBibliotecaFiltradaPorCategoria(categoria);
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaTipo);
+			categorias = servicioCategoria.mostrarCategoriaPorTipo(categoria.getTipoCategoria());
+//			Categoria categoria = servicioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
+//			categorias =  servicioBiblioteca.obtenerBibliotecaFiltradaPorCategoria(categoria);
 		}
 		
 		modelo.put("categorias", categorias);		

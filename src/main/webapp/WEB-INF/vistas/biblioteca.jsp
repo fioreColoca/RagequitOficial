@@ -12,7 +12,7 @@
                 <option value="-1" selected disabled>Elegir</option>
                 <c:if test="${not empty categorias}">
                     <c:forEach items="${categorias}" var="categoriaDelFor">
-                        <option value="${categoriaDelFor.getTipoCategoria()}">${categoriaDelFor.getTipoCategoria()}</option>
+                        <option value="${categoriaDelFor.getId()}">${categoriaDelFor.getTipoCategoria()}</option>
                     </c:forEach>
                 </c:if>
             </select>
