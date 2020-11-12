@@ -23,20 +23,29 @@ public class ControladorCategoria {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping("/categoria")
-	public ModelAndView irACategoria( 
-		HttpServletRequest request
-			/*@RequestParam(value = "errorCategoria", required = false) String errorCategoria*/) {
+	public ModelAndView irACategoria(HttpServletRequest request
+	/*
+	 * @RequestParam(value = "errorCategoria", required = false) String
+	 * errorCategoria
+	 */) {
 		ModelMap modelo = new ModelMap();
-		
+
 		String rol = request.getSession().getAttribute("ROL") != null
 
-				 ? (String) request.getSession().getAttribute("ROL")
+				? (String) request.getSession().getAttribute("ROL")
 
-				 : "";
-				 
+				: "";
+		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
+
+				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
+
+				: "";
+
 		modelo.put("title", "RageQuit | Categoria");
 		modelo.put("usuarioRol", rol);
-		/*modelo.put("errorCategoria", errorCategoria);*/
+		modelo.put("nombreUsuario", nombreUsuario);
+
+		/* modelo.put("errorCategoria", errorCategoria); */
 
 		return new ModelAndView("categoria", modelo);
 	}
@@ -44,10 +53,10 @@ public class ControladorCategoria {
 	@RequestMapping(path = "/agregarCategoria", method = RequestMethod.GET)
 	public ModelAndView agregarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
 			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) {
-	
+
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
-		
+
 		String errorCategoria = null;
 
 		if (tipoCategoria.equals("Juegos")) {
@@ -55,35 +64,40 @@ public class ControladorCategoria {
 		} else {
 			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 		}
-		
-		/*if (categoria.getNombre().equals(nombreCategoria)) {
-			errorCategoria = "La categoría ya fue creada";
-		}*/
+
+		/*
+		 * if (categoria.getNombre().equals(nombreCategoria)) { errorCategoria =
+		 * "La categoría ya fue creada"; }
+		 */
 		categoria.setNombre(nombreCategoria);
 
 		servicioCategoria.guardarCategoria(categoria);
 
 		modelo.put("categoriaCreada", categoria);
-		/*return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria);*/
+		/* return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria); */
 		return new ModelAndView("redirect:/irACategorias", modelo);
 	}
 
 	@RequestMapping("/irACategorias")
-	public ModelAndView irACategorias(
-			HttpServletRequest request) {
+	public ModelAndView irACategorias(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		
+
 		String rol = request.getSession().getAttribute("ROL") != null
 
-				 ? (String) request.getSession().getAttribute("ROL")
+				? (String) request.getSession().getAttribute("ROL")
 
-				 : "";
+				: "";
+		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
 
+				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
+
+				: "";
 		modelo.put("categorias", categorias);
 		modelo.put("usuarioRol", rol);
 		modelo.put("title", "RageQuit | Categoria Creadas");
+		modelo.put("nombreUsuario", nombreUsuario);
 
 		return new ModelAndView("irACategorias", modelo);
 	}
@@ -94,7 +108,7 @@ public class ControladorCategoria {
 
 		return new ModelAndView("redirect:/irACategorias");
 	}
-	
+
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
 	public ModelAndView editarCategoria(@RequestParam(value = "botonGuardar", required = false) Long id) {
 		servicioCategoria.editarCategoria(id);

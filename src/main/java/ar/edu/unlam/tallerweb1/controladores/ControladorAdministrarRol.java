@@ -18,37 +18,44 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorAdministrarRol {
-	
+
 	@Inject
 	private ServicioUsuario servicioUsuario;
-	
+
 	@RequestMapping(path = "administrar")
-	public ModelAndView irAAdministracionRol(
-			HttpServletRequest request
-			) {
+	public ModelAndView irAAdministracionRol(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		List<Usuario> usuarios = servicioUsuario.listarUsuarios();
-		
+
 		String rol = request.getSession().getAttribute("ROL") != null
 
-				 ? (String) request.getSession().getAttribute("ROL")
+				? (String) request.getSession().getAttribute("ROL")
 
-				 : "";
-		
+				: "";
+		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
+
+				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
+
+				: "";
+
 		modelo.put("listaUsuarios", usuarios);
 		modelo.put("usuarioRol", rol);
+		modelo.put("nombreUsuario", nombreUsuario);
+
 		return new ModelAndView("administrarRol", modelo);
 	}
-	
+
 	@RequestMapping(path = "/cambiarRol", method = RequestMethod.GET)
-	public ModelAndView cambiarRolUsuario(
-			@RequestParam(value = "rolUsuario", required = false) String rol,
-			@RequestParam(value = "botonCambiarRol", required = false) Long id,
-			HttpServletRequest request
-			) {
+	public ModelAndView cambiarRolUsuario(@RequestParam(value = "rolUsuario", required = false) String rol,
+			@RequestParam(value = "botonCambiarRol", required = false) Long id, HttpServletRequest request) {
+
 		servicioUsuario.cambiarRol(id, rol);
-		request.getSession().setAttribute("ROL", rol);
-		
+
+		if (id.equals(request.getSession().getAttribute("ID"))) {
+
+			request.getSession().setAttribute("ROL", rol);
+		}
+
 		return new ModelAndView("redirect:/administrar");
 	}
 }

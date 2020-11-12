@@ -6,7 +6,7 @@
             <h3>¡Tu categoria se guard&oacute; con &eacute;xito!</h3>
             <p> Estas categorias fueron creadas: </p>
             <div class="text-right subirDiv">
-                <a href="categoria" class="volverACategoria">Crear una nueva categoria</a>
+                <a href="categoria" class="volverACategoria ">Crear una nueva categoria</a>
             </div>
             <div class="row justify-content-center">
                 <c:if test="${not empty categorias}">
@@ -17,13 +17,15 @@
 
                                 <p>Tipo: ${categoria.getTipoCategoria()} Nombre: ${categoria.getNombre()}</p>
 
-                                <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal" data-target="#editarCategoria" data-id="${categoria.getId()}">
-									<i class="far fa-edit"></i>
-								</button>
+                                <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal"
+                                    data-target="#editarCategoria" data-id="${categoria.getId()}">
+                                    <i class="far fa-edit"></i>
+                                </button>
 
-                                <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal" data-target="#borrarCategoria" data-id="${categoria.getId()}">
-									<i class="far fa-trash-alt"></i>
-								</button>
+                                <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal"
+                                    data-target="#borrarCategoria" data-id="${categoria.getId()}">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
 
                             </div>
                         </div>
@@ -37,21 +39,23 @@
                     <form action="editarCategoria">
                         <div class="form-group">
                             <label for="guardarCategoria">Nombre de la categoria:</label>
-                            <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control" placeholder="Valorant, Anime, Musica ...">
+                            <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control"
+                                placeholder="Valorant, Anime, Musica ...">
                         </div>
                         <div>
                             <label for="filtro">Tipo de categoria</label>
                             <select name="categoria" id="categoria" class="custom-select">
-								<option disabled selected>Seleccione una opción</option>
-								<option value="Juegos">Juegos</option>
-								<option value="Varios">Varios</option>
-							</select>
+                                <option disabled selected>Seleccione una opción</option>
+                                <option value="Juegos">Juegos</option>
+                                <option value="Varios">Varios</option>
+                            </select>
                         </div>
                         <div class="text-right">
-                            <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar" id="botonGuardar">GUARDAR</button>
+                            <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar"
+                                id="botonGuardar">GUARDAR</button>
                         </div>
                     </form>
-                </div> 
+                </div>
             </div>
 
             <div class="modal fade" id="borrarCategoria" tabindex="-1" aria-hidden="true">
@@ -60,8 +64,8 @@
                         <div class="modal-header">
                             <h5 class="modal-title text-dark">Borrar categoria</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body text-dark">
                             <p>¿Seguro que deseas borrar la categoria?</p>
@@ -69,7 +73,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             <form action="borrarCategoria">
-                                <button type="submit" class="btn btn-danger" name="botonBorrar" id="botonBorrar">BORRAR</button>
+                                <button type="submit" class="btn btn-danger" name="botonBorrar"
+                                    id="botonBorrar">BORRAR</button>
                             </form>
 
                         </div>
