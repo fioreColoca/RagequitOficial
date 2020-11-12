@@ -4,6 +4,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,10 +27,11 @@ public class Comentario {
 	private Comentario respuesta;
 	
 	@OneToOne
-	private Usuario usuario;
+	private Usuario usuario;	
 	
-/*	@OneToMany
-	private  List<Usuario> litadoLikes; */
+	/*@Column(name = "NAME", nullable = false, length = 150)
+	@OneToMany
+	private  List<Usuario> litadoLikes;  */
 
 	private String mensaje;
 	
@@ -107,6 +109,7 @@ public class Comentario {
 	public void setEstado(ComentarioEstado estado) {
 		this.estado = estado;
 	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}

@@ -52,7 +52,10 @@ public class ControladorComentario {
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
 	@RequestMapping(path = "/comentarioVisualizacion")
-	public ModelAndView verComentario(HttpServletRequest request) {
+	public ModelAndView verComentario(HttpServletRequest request,
+			@RequestParam(value = "nombreUsuario", required = false) String usuarioNombre
+
+			) {
 		String rol = request.getSession().getAttribute("ROL") != null
 				? (String) request.getSession().getAttribute("ROL")
 				: "";
@@ -61,6 +64,7 @@ public class ControladorComentario {
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 
 				: "";
+				
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
@@ -83,10 +87,14 @@ public class ControladorComentario {
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String tipoBoton) {
-
+			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
+		comentario.setUsuario(usuario);
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
@@ -123,14 +131,20 @@ public class ControladorComentario {
 	public ModelAndView guardarRespuesta(
 			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
 			@RequestParam(value = "idComentario", required = true) Long idComentario,
-			@RequestParam(value = "boton", required = true) String tipoBoton) {
+			@RequestParam(value = "boton", required = true) String tipoBoton,
+			HttpServletRequest request) {
 
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
 		java.util.Date fecha = new Date();
 		Comentario respuesta = new Comentario();
 		respuesta.setCantidadLikes(0);
 		respuesta.setFechaHora(fecha);
 		respuesta.setMensaje(respuestaMensaje);
 		respuesta.setEstado(ComentarioEstado.ACTIVO);
+		respuesta.setUsuario(usuario);
 		servicioComentario.tipoComentario(tipoBoton, respuesta);
 
 		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
