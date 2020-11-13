@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,7 +42,20 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
+		
 		sessionFactory.getCurrentSession().save(usuario);
+	}
+
+	@Override
+	public List<Usuario> listarUsuarios() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.list();
+	}
+
+	@Override
+	public Usuario obtenerUsuarioPorId(Long id) {
+		return sessionFactory.getCurrentSession().get(Usuario.class, id);
 	}
 
 }

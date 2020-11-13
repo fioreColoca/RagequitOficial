@@ -6,7 +6,7 @@
         <h3>¡Bienvenido a la seccion Biblioteca!</h3>
     </section>
     <section class="anchoCategoria">
-        <form action="biblioteca">
+        <form action="bibliotecaFiltrada">
             <label for="filtro">Filtrar contenido por Genero</label>
             <select class="custom-select" name="categoriaId" id="filtro">
                 <option value="-1" selected disabled>Elegir</option>
@@ -21,23 +21,26 @@
             </div>
         </form>
         <br>
-
+        
+        <c:if test="${not empty categorias}">
         <div class="album py-5 ">
             <div class="container">
 
                 <div class="row">
+                
                     <c:forEach items="${categorias}" var="categoriaDelFor">
                         <div class="col-md-4">
-
                             <div class="card mb-4 borde-naranja">
-                            	<h4 class="text-white">Categoria: </h4>
-                                <p class="text-center text-naranjaClaro">${categoriaDelFor.getNombre()}</p>
+                            	<h4 class="text-white">${categoriaDelFor.getNombre()}</h4>                              
+                                <p class="text-center text-naranjaClaro">${categoriaDelFor.getTipoCategoria()}</p>
                             </div>
                         </div>
                     </c:forEach>
+                    
                 </div>
             </div>
         </div>
+        </c:if>
     </section>
 
 

@@ -2,11 +2,11 @@
 <main>
     <section>
 
-        <article class="" >
+        <article class="">
             <h3>¡Tu categoria se guard&oacute; con &eacute;xito!</h3>
             <p> Estas categorias fueron creadas: </p>
             <div class="text-right subirDiv">
-            <a href="categoria" class="volverACategoria">Crear una categoria nuevamente</a>
+                <a href="categoria" class="volverACategoria ">Crear una nueva categoria</a>
             </div>
             <div class="row justify-content-center">
                 <c:if test="${not empty categorias}">
@@ -14,18 +14,48 @@
 
                         <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
                             <div class="d-flex flex-wrap justify-content-around">
-                                <h4></h4>
-                                <p>Tipo: ${categoria.getTipoCategoria()} Nombre: ${categoria.getNombre()}
-                                </p>
+
+                                <p>Tipo: ${categoria.getTipoCategoria()} Nombre: ${categoria.getNombre()}</p>
+
+                                <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal"
+                                    data-target="#editarCategoria" data-id="${categoria.getId()}">
+                                    <i class="far fa-edit"></i>
+                                </button>
+
                                 <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal"
                                     data-target="#borrarCategoria" data-id="${categoria.getId()}">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
+
                             </div>
                         </div>
 
                     </c:forEach>
                 </c:if>
+            </div>
+
+            <div class="modal fade" id="editarCategoria" tabindex="-1" aria-hidden="true">
+                <div class="anchoCategoria bg-primary pad-2">
+                    <form action="editarCategoria">
+                        <div class="form-group">
+                            <label for="guardarCategoria">Nombre de la categoria:</label>
+                            <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control"
+                                placeholder="Valorant, Anime, Musica ...">
+                        </div>
+                        <div>
+                            <label for="filtro">Tipo de categoria</label>
+                            <select name="categoria" id="categoria" class="custom-select">
+                                <option disabled selected>Seleccione una opción</option>
+                                <option value="Juegos">Juegos</option>
+                                <option value="Varios">Varios</option>
+                            </select>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar"
+                                id="botonGuardar">GUARDAR</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="modal fade" id="borrarCategoria" tabindex="-1" aria-hidden="true">

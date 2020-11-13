@@ -8,18 +8,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 
 @Service
 @Transactional
-public class ServicioComentarImpl implements ServicioComentar {
+public class ServicioComentarImpl implements ServicioComentar{
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
 
 	@Override
-	public Long enviarComentario(Comentario comentario){
+	public Long enviarComentario(Comentario comentario) {
 		return repositorioComentar.enviarComentario(comentario);
 	}
 
@@ -30,18 +32,20 @@ public class ServicioComentarImpl implements ServicioComentar {
 
 	@Override
 	public void borrarComentario(Long id) {
-		repositorioComentar.borrarComentario(id);
+			Comentario comentario = mostrarComentario(id);
+			List <Comentario> resultado = respuestaListado(comentario);
+			
+			if (resultado == null || resultado.size() == 0) {
+				repositorioComentar.borrarComentario(id);
+			} else {
+				comentario.setEstado(ComentarioEstado.INACTIVO);
+			}
 	}
 
 	@Override
 	public void darLikeComentario(Long id) {
 		Comentario comentario = mostrarComentario(id);
 		comentario.setCantidadLikes(comentario.getCantidadLikes() + 1);
-	}
-
-	@Override
-	public List<Comentario> listaDeComentarios() {
-		return repositorioComentar.verListaComentarios();
 	}
 
 	@Override
@@ -56,9 +60,7 @@ public class ServicioComentarImpl implements ServicioComentar {
 		default:
 			break;
 		}
-		
 	}
-
 
 	@Override
 	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
@@ -75,10 +77,11 @@ public class ServicioComentarImpl implements ServicioComentar {
 		return repositorioComentar.respuestaListado(comentario);
 	}
 
-	@Override
-	public Integer devolverAnio(Comentario comentario) {
-		Integer anio = ((Integer) comentario.getFechaHora().getYear()) + 1900;
-		return anio;
-	}
+	/*
+	 * @Override public Integer devolverAnio(Comentario comentario) { Integer anio =
+	 * ((Integer) comentario.getFechaHora().getYear()) + 1900; return anio; }
+	 */
+	
+	
 
 }

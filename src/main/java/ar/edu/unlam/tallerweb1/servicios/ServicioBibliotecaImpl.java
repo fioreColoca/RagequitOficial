@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBiblioteca;
 
 @Service
@@ -33,6 +34,12 @@ public class ServicioBibliotecaImpl implements ServicioBiblioteca {
 	public List<Categoria> obtenerListaDeCategorias() {
 		
 		return null;
+	}
+
+	@Override
+	public List<Categoria> obtenerBibliotecaFiltradaPorCategoria(Categoria categoria) {
+		
+		return repositorioBiblioteca.obtenerBibliotecaFiltradaPorCategoria(categoria);
 	}
 
 }

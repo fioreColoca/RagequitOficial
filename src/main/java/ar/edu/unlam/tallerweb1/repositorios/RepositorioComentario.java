@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
-import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 
 public interface RepositorioComentario {
 	
@@ -13,13 +12,10 @@ public interface RepositorioComentario {
 
 	 void borrarComentario(Long id);
 	 
-	 List<Comentario> verListaComentarios();
-
 	 List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion);
 
 	 List<Comentario> mostrarTodosLosComentarios();
 
 	 List<Comentario> respuestaListado(Comentario comentario); 
-	
-	
+	 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -22,18 +23,20 @@ public class ServicioLoginImpl implements ServicioLogin {
 	private RepositorioUsuario servicioLoginDao;
 
 	@Autowired
-	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao){
+	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao) {
 		this.servicioLoginDao = servicioLoginDao;
 	}
 
 	@Override
-	public Usuario consultarUsuario (Usuario usuario) {
+	public Usuario consultarUsuario(Usuario usuario) {
 		return servicioLoginDao.consultarUsuario(usuario);
 	}
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
-		servicioLoginDao.registrarUsuario(usuario);		
+		
+		
+		servicioLoginDao.registrarUsuario(usuario);
 	}
 
 }

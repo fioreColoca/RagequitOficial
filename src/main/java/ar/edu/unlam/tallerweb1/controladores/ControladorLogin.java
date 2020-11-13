@@ -54,7 +54,7 @@ public class ControladorLogin {
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando
 		// el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma dentro del modelo
-		modelo.put("title","RageQuit | Iniciar Sesion");
+		modelo.put("title", "RageQuit | Iniciar Sesion");
 		return new ModelAndView("login", modelo);
 	}
 
@@ -73,6 +73,11 @@ public class ControladorLogin {
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			request.getSession().setAttribute("ID", usuarioBuscado.getId());
+			request.getSession().setAttribute("NOMBREUSUARIO", usuarioBuscado.getNombreUsuario());
+			request.getSession().setAttribute("USUARIO", usuarioBuscado);
+			request.getSession().setAttribute("URLIMAGEN", usuarioBuscado.getUrl_imagen());
+
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -104,10 +109,18 @@ public class ControladorLogin {
 		return new ModelAndView("crearUsuario", modelo);
 	}
 
+	@RequestMapping(path = "cerrarSesion")
+	public ModelAndView cerrarSesion(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		request.getSession().invalidate();
+		return new ModelAndView("redirect:/home", modelo);
+	}
+
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
-		usuario1.setRol("admin");
+
+		usuario1.setRol("usuario");
 
 		servicioLogin.registrarUsuario(usuario1);
 		return new ModelAndView("redirect:/login", modelo);

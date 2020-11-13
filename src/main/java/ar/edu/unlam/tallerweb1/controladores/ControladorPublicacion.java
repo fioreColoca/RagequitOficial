@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
@@ -28,20 +28,35 @@ public class ControladorPublicacion {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping(path = "home")
-	public ModelAndView irAlHome(
-			@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
+	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
 			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
-			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar
-			) {
+			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
+			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
-		
-		if(!(categoriaAMostrar==null)) {
+
+		if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
 			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 		}
-		
+
+		String rol = request.getSession().getAttribute("ROL") != null
+
+				? (String) request.getSession().getAttribute("ROL")
+
+				: "";
+		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
+
+				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
+
+				: "";
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
+
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+		modelo.put("url_imagen", url_imagen);
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
 		modelo.put("title", "RageQuit | Inicio");
@@ -50,7 +65,9 @@ public class ControladorPublicacion {
 		modelo.put("categorias", categorias);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
-		
+		modelo.put("usuarioRol", rol);
+		modelo.put("nombreUsuario", nombreUsuario);
+
 		return new ModelAndView("home", modelo);
 	}
 
@@ -58,36 +75,33 @@ public class ControladorPublicacion {
 	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion) {
 		Date fecha = new Date();
 		ModelMap modelo = new ModelMap();
-		
-		
+
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
-		
+
 		String errorCategoria = null;
 		String errorMensaje = null;
-		if(publicacion.getCategoriaId() == -1) {
+		if (publicacion.getCategoriaId() == -1) {
 			errorCategoria = "Falta elegir categoria";
-		}else {
+		} else {
 			Long idCategoria = publicacion.getCategoriaId();
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(idCategoria);
 			publicacion.setCategoria(categoria);
 		}
-		
-		if(publicacion.getMensaje().isEmpty()) {
+
+		if (publicacion.getMensaje().isEmpty()) {
 			errorMensaje = "La publicacion no puede tener un mensaje vacio";
 		}
-		
-		if(errorCategoria == null && errorMensaje == null) {
+
+		if (errorCategoria == null && errorMensaje == null) {
 			servicioPublicacion.guardarPublicacion(publicacion);
 		}
-		
-		
-		return new ModelAndView("redirect:/home?errorMensaje=" + errorMensaje +"&errorCategoria="+errorCategoria);
+
+		return new ModelAndView("redirect:/home?errorMensaje=" + errorMensaje + "&errorCategoria=" + errorCategoria);
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.GET)
-	public ModelAndView borrarPublicacion(
-			@RequestParam(value = "botonBorrar", required = false) Long id){
+	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id) {
 		servicioPublicacion.borrarPublicacion(id);
 
 		return new ModelAndView("redirect:/home");
@@ -95,15 +109,14 @@ public class ControladorPublicacion {
 
 	@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView filtrarPublicacion(
-			@RequestParam(value = "filtarPublicacionCategoria", required = false) Long idCategoria){
-		
-		
-		if(!(idCategoria == -1)) {
-			Long categoriaAMostrar = null; 
+			@RequestParam(value = "filtarPublicacionCategoria", required = false) Long idCategoria) {
+
+		if (!(idCategoria == -1)) {
+			Long categoriaAMostrar = null;
 			categoriaAMostrar = idCategoria;
-			return new ModelAndView("redirect:/home?categoriaAMostrar="+categoriaAMostrar);
+			return new ModelAndView("redirect:/home?categoriaAMostrar=" + categoriaAMostrar);
 		}
-		
+
 		return new ModelAndView("redirect:/home");
 	}
 }

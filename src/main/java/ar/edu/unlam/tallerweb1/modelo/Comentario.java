@@ -2,13 +2,16 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Comentario { 
@@ -23,8 +26,12 @@ public class Comentario {
 	@ManyToOne
 	private Comentario respuesta;
 	
-	@Transient
-	private Long respuestaId;
+	@OneToOne
+	private Usuario usuario;	
+	
+	/*@Column(name = "NAME", nullable = false, length = 150)
+	@OneToMany
+	private  List<Usuario> litadoLikes;  */
 
 	private String mensaje;
 	
@@ -32,6 +39,7 @@ public class Comentario {
 	
 	private Integer cantidadLikes;
 	
+	private ComentarioEstado estado;
 
 	private ComentarioTipo tipo;
 	
@@ -52,14 +60,6 @@ public class Comentario {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getRespuestaId() {
-		return respuestaId;
-	}
-
-	public void setRespuestaId(Long respuestaId) {
-		this.respuestaId = respuestaId;
 	}
 
 	public String getMensaje() {
@@ -101,5 +101,30 @@ public class Comentario {
 	public void setPublicacion(Publicacion publicacion) {
 		this.publicacion = publicacion;
 	}
+
+	public ComentarioEstado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(ComentarioEstado estado) {
+		this.estado = estado;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/*public List<Usuario> getLitadoLikes() {
+		return litadoLikes;
+	}
+
+	public void setLitadoLikes(List<Usuario> litadoLikes) {
+		this.litadoLikes = litadoLikes;
+	}
+	*/
 
 }
