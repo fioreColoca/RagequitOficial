@@ -58,4 +58,14 @@ public class ControladorAdministrarRol {
 
 		return new ModelAndView("redirect:/administrar");
 	}
+
+	public ServicioUsuario getServicioUsuario() {
+		return servicioUsuario;
+	}
+
+	public void setServicioUsuario(ServicioUsuario servicioUsuario) {
+		this.servicioUsuario = servicioUsuario;
+	}
+	
+	
 }
