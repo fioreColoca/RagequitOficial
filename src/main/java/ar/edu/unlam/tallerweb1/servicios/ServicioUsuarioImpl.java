@@ -25,8 +25,17 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public void cambiarRol(Long id, String rol) {
 		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
-		System.out.println("se cambio el rol del usuario " + usuario.getNombre() + " con rol " + usuario.getRol() + " al rol " + rol);
 		usuario.setRol(rol);
+	}
+	
+	@Override
+	public RepositorioUsuario getRepositorioUsuario() {
+		return repositorioUsuario;
+	}
+	
+	@Override
+	public void setRepositorioUsuario(RepositorioUsuario repositorioUsuario) {
+		this.repositorioUsuario = repositorioUsuario;
 	}
 
 }
