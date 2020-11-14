@@ -3,7 +3,7 @@
     <section>
 
         <article class="">
-            <h3>¡Tu categoria se guard&oacute; con &eacute;xito!</h3>
+            <h3>Categorias</h3>
             <p> Estas categorias fueron creadas: </p>
             <div class="text-right subirDiv">
                 <a href="categoria" class="volverACategoria ">Crear una nueva categoria</a>
@@ -33,10 +33,18 @@
                     </c:forEach>
                 </c:if>
             </div>
-
+            
             <div class="modal fade" id="editarCategoria" tabindex="-1" aria-hidden="true">
-                <div class="anchoCategoria bg-primary pad-2">
-                    <form action="editarCategoria">
+                <div class="modal-dialog">
+                    <div class="modal-content p-3 m-1">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark">Editar categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                       
+                       <form action="editarCategoria">
                         <div class="form-group">
                             <label for="guardarCategoria">Nombre de la categoria:</label>
                             <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control"
@@ -55,8 +63,10 @@
                                 id="botonGuardar">GUARDAR</button>
                         </div>
                     </form>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <div class="modal fade" id="borrarCategoria" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">

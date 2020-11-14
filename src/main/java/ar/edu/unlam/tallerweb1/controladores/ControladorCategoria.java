@@ -80,7 +80,7 @@ public class ControladorCategoria {
 
 		modelo.put("categoriaCreada", categoria);
 		/* return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria); */
-		return new ModelAndView("redirect:/irACategorias", modelo);
+		return new ModelAndView("redirect:/biblioteca", modelo);
 	}
 
 	@RequestMapping("/irACategorias")
