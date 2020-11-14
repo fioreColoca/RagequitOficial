@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,8 @@ public class HomeTest {
 	private ServicioPublicacion servicioPublicacionMock;
 	private Categoria categoriaMock; 
 	private RepositorioCategoria repositorioCategoriaMock;
+	private HttpServletRequest requestMock;
+	private HttpSession sessionMock;
 	
 	@Before
 	public void init() {
@@ -31,6 +35,9 @@ public class HomeTest {
 		categoriaMock = mock(Categoria.class);
 		repositorioCategoriaMock = mock(RepositorioCategoria.class);
 		servicioPublicacionMock = mock(ServicioPublicacion.class);
+		requestMock = mock(HttpServletRequest.class);
+		sessionMock = mock(HttpSession.class);
+		when(requestMock.getSession()).thenReturn(sessionMock);
 	}
 	
 	@Test
@@ -39,7 +46,7 @@ public class HomeTest {
 		when(publicacionMock.getCategoriaId()).thenReturn(-1L);
 		when(publicacionMock.getMensaje()).thenReturn("No vacio");
 		
-		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock);
+		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock, requestMock);
 		
 		
 		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorMensaje=null&errorCategoria=Falta elegir categoria");
@@ -54,7 +61,7 @@ public class HomeTest {
 		when(publicacionMock.getMensaje()).thenReturn("");
 		
 		controladorPublicacion.setServicioCategoria(servicioCategoriaMock);
-		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock);
+		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock, requestMock);
 		
 		
 		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorMensaje=La publicacion no puede tener un mensaje vacio&errorCategoria=null");
@@ -69,7 +76,7 @@ public class HomeTest {
 		
 		controladorPublicacion.setServicioCategoria(servicioCategoriaMock);
 		controladorPublicacion.setServicioPublicacion(servicioPublicacionMock);
-		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock);
+		ModelAndView modelAndView = controladorPublicacion.guardarPublicacion(publicacionMock, requestMock);
 		
 		
 		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorMensaje=null&errorCategoria=null");
