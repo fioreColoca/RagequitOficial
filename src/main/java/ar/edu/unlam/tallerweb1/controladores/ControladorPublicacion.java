@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
@@ -72,11 +73,17 @@ public class ControladorPublicacion {
 	}
 
 	@RequestMapping(path = "/guardarPublicacion", method = RequestMethod.POST)
-	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion) {
+	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request) {
 		Date fecha = new Date();
-
+		
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
+		publicacion.setUsuario(usuario);		
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
+	
 
 		String errorCategoria = null;
 		String errorMensaje = null;
@@ -91,6 +98,7 @@ public class ControladorPublicacion {
 		if (publicacion.getMensaje().isEmpty()) {
 			errorMensaje = "La publicacion no puede tener un mensaje vacio";
 		}
+
 
 		if (errorCategoria == null && errorMensaje == null) {
 			servicioPublicacion.guardarPublicacion(publicacion);

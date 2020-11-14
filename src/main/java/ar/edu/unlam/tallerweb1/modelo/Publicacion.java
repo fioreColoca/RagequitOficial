@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -28,6 +29,9 @@ public class Publicacion {
 //	private String categoria;
 	@ManyToOne
 	private Categoria categoria;
+	
+	@OneToOne
+	private Usuario usuario;
 //	
 //	@OneToMany
 //	private List <Comentario> comentarios;
@@ -111,6 +115,14 @@ public class Publicacion {
 
 	public void setCategoriaId(Long categoriaId) {
 		this.categoriaId = categoriaId;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
