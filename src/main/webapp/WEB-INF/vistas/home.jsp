@@ -118,11 +118,11 @@
                             <div class="col-12 mt-5 mb-5 rounded-lg">
                                 <div class="d-flex justify-content-around p-2 bg-fondo rounded-top">
                                     <div class="col-4 justify-content-start">
-                                        <h3>Santiago Fagliano</h3>
+                                        <h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
                                         <button class="btn btn-naranja">SEGUIR</button>
                                     </div>
                                     <div class="col-4 text-center user-info">
-                                        <img class="rounded-circle" src="img/santiago.jpeg" width="100">
+                                        <img class="rounded-circle" src="${publicacionDelFor.getUsuario().getUrl_imagen()}" width="100">
                                     </div>
                                     <div class="col-4 text-right">
                                     	<div class="d-flex justify-content-end">
