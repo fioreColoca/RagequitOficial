@@ -1,5 +1,20 @@
 <%@ include file="header.jsp"%>
 <main>
+	<section>
+		<div class="container mt-5 md-5">
+			<div class="owl-carousel owl-theme">
+			<c:if test="${not empty categorias}">
+				<c:forEach items="${categorias}" var="categoriaDelFor">
+					<c:if test="${categoriaDelFor.getTipoCategoria() == 'JUEGOS'}">				
+						<div class="item">
+         					<img class="owl-lazy" data-src="${categoriaDelFor.getUrlImagen()}">
+     					</div>
+     				</c:if>
+				</c:forEach>
+			</c:if>
+			</div>
+ 		</div>
+	</section>
     <c:if test="${not empty usuarioRol}">
         <section class="">
             <div>
@@ -110,7 +125,10 @@
                                         <img class="rounded-circle" src="img/santiago.jpeg" width="100">
                                     </div>
                                     <div class="col-4 text-right">
-                                        <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                    	<div class="d-flex justify-content-end">
+                                    		<img alt="logo" class="categoria-icon" src="${publicacionDelFor.getCategoria().getUrlIcono()}">
+                                    		<h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                    	</div>
                                         <p class="text-white-50">
                                             ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs
                                             ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}

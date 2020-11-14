@@ -263,7 +263,27 @@ main {
     color: #fdb714 !important;
 }
 
+.categoria-icon{
+	height: 32px;
+	width: auto;
+}
 
+.owl-prev{
+	left:-30px;
+}
+
+.owl-next{
+	right:-30px;
+}
+
+.owl-prev, .owl-next{
+	position:absolute;
+	top:30%;
+}
+
+.owl-theme .owl-nav [class *= "owl-"]:hover{
+	color:  #f58220;
+}
 /*********Login***********/
 
 #login .card-signin {
