@@ -1,4 +1,4 @@
-<footer>
+<footer class="">
     <div class="container-fluid sacar">
         <div class="card">
             <div class="row mb-4 ">

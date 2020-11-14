@@ -28,4 +28,5 @@
     <mvc:resources mapping="/img/categoriaIcon/**" location="/img/categoriaIcon/" />
     <mvc:resources mapping="/OwlCarousel2-2.3.4/dist/**" location="/OwlCarousel2-2.3.4/dist/" />
     <mvc:resources mapping="/OwlCarousel2-2.3.4/dist/assets/**" location="/OwlCarousel2-2.3.4/dist/assets/" />
+    <mvc:resources mapping="/img/imgUsuario/**" location="/img/imgUsuario/" />
 </beans>

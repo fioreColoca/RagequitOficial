@@ -39,10 +39,17 @@ public class ControladorComentario {
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 
 				: "";
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
+
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+
 		if (request.getSession().getAttribute("ROL") != null) {
 			ModelMap modelo = new ModelMap();
 			modelo.put("title", "RageQuit | Comentarios");
 			modelo.put("usuarioRol", rol);
+			modelo.put("url_imagen", url_imagen);
 			modelo.put("nombreUsuario", nombreUsuario);
 
 			return new ModelAndView("comentarioEscribir", modelo);
@@ -52,26 +59,40 @@ public class ControladorComentario {
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
 	@RequestMapping(path = "/comentarioVisualizacion")
-	public ModelAndView verComentario(HttpServletRequest request) {
+	public ModelAndView verComentario(HttpServletRequest request,
+			@RequestParam(value = "nombreUsuario", required = false) String usuarioNombre
+
+	) {
 		String rol = request.getSession().getAttribute("ROL") != null
 				? (String) request.getSession().getAttribute("ROL")
 				: "";
 		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
+				: "";
+
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
+
+				? (String) request.getSession().getAttribute("URLIMAGEN")
 
 				: "";
+
+		Long usuarioId = request.getSession().getAttribute("ID") != null
+				? (Long) request.getSession().getAttribute("ID")
+				: null;
+
 		Comentario comentario = new Comentario();
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
 
-		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
+		modelo.put("url_imagen", url_imagen);
 
+		modelo.put("usuarioId", usuarioId);
+
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 		if (comentarios.isEmpty()) {
 			return new ModelAndView("redirect:/comentario", modelo);
 		}
-
 		modelo.put("comentarios", comentarios);
 		modelo.put("comentario", comentario);
 		modelo.put("title", "RageQuit | Comentarios Hechos");
@@ -83,10 +104,13 @@ public class ControladorComentario {
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
-			@RequestParam(value = "boton", required = true) String tipoBoton) {
-
+			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
+		comentario.setUsuario(usuario);
 		comentario.setCantidadLikes(0);
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
@@ -123,7 +147,11 @@ public class ControladorComentario {
 	public ModelAndView guardarRespuesta(
 			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
 			@RequestParam(value = "idComentario", required = true) Long idComentario,
-			@RequestParam(value = "boton", required = true) String tipoBoton) {
+			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
+
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
 
 		java.util.Date fecha = new Date();
 		Comentario respuesta = new Comentario();
@@ -131,6 +159,7 @@ public class ControladorComentario {
 		respuesta.setFechaHora(fecha);
 		respuesta.setMensaje(respuestaMensaje);
 		respuesta.setEstado(ComentarioEstado.ACTIVO);
+		respuesta.setUsuario(usuario);
 		servicioComentario.tipoComentario(tipoBoton, respuesta);
 
 		Comentario comentario = servicioComentario.mostrarComentario(idComentario);

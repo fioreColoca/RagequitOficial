@@ -51,7 +51,12 @@ public class ControladorBiblioteca {
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 
 				: "";
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
 
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+		modelo.put("url_imagen", url_imagen);
 		modelo.put("categorias", categorias);
 		modelo.put("idBiblioteca", idbiblioteca);
 		modelo.put("biblioteca", biblioteca);

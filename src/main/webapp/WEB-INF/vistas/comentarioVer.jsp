@@ -6,6 +6,7 @@
 	<c:if test="${not empty comentarios}">
 
 		<c:forEach items="${comentarios}" var="comentario">
+
 			<!--  COMUN  -->
 			<c:set var="tipoComentario" value="${comentario.getTipo()}"></c:set>
 			<c:if test="${tipoComentario=='COMUN'}">
@@ -24,7 +25,7 @@
 							</div>
 							<div class="container col-md-10 col-lg-11 justify-content-center">
 
-								<h5 class="border-bottom">Nombre de usuario</h5>
+								<h5 class="border-bottom">${comentario.getUsuario().getNombreUsuario()}</h5>
 
 								<c:set var="estadoComentario" value="${comentario.getEstado()}"></c:set>
 								<c:if test="${estadoComentario=='INACTIVO'}">
@@ -43,46 +44,51 @@
 									<div class="container colorComentario rounded">
 										<p class="text-dark !important p-3">${comentario.getMensaje()}</p>
 									</div>
-
-									<div
-										class="hoverIcons d-flex justify-content-around bg-fondo p-2">
-										<form action="meGustaComentario">
-											<div>
-												<button class="btn btn-outline-naranja"
-													value="${comentario.getId()}" name="botonLike">
-													<i class="far fa-thumbs-up"></i>
-												</button>
-												<a class="verListadoLikes" data-toggle="modal"
-													href="#verListado" data-id="${comentario.getId()}">
-													${comentario.getCantidadLikes()}</a>
-											</div>
-										</form>
-										<div class="ml-3">
-											<button type="button"
-												class="btn btn-outline-naranja responderComentario"
-												data-toggle="modal" data-target="#responderComentario"
-												data-id="${comentario.getId()}">
-												<i class="far fa-comment-dots"></i>
-											</button>
-										</div>
-										<form action="borrarComentario">
-											<div>
+									<c:if test="${not empty usuarioRol}">
+										<div
+											class="hoverIcons d-flex justify-content-around bg-fondo p-2">
+											<form action="meGustaComentario">
+												<div>
+													<button class="btn btn-outline-naranja"
+														value="${comentario.getId()}" name="botonLike">
+														<i class="far fa-thumbs-up"></i>
+													</button>
+													<a class="verListadoLikes" data-toggle="modal"
+														href="#verListado" data-id="${comentario.getId()}">
+														${comentario.getCantidadLikes()}</a>
+												</div>
+											</form>
+											<div class="ml-3">
 												<button type="button"
-													class="btn btn-outline-naranja botonBorrar"
-													data-toggle="modal" data-target="#borrarComentario"
+													class="btn btn-outline-naranja responderComentario"
+													data-toggle="modal" data-target="#responderComentario"
 													data-id="${comentario.getId()}">
-													<i class="far fa-trash-alt"></i>
+													<i class="far fa-comment-dots"></i>
 												</button>
 											</div>
-										</form>
-										<form>
-											<div>
-												<button type="submit" class="btn btn-outline-naranja">
-													<i class="fas fa-share-alt"></i>
-												</button>
-											</div>
-										</form>
-									</div>
+											<c:set var="idUsuario" value="${comentario.getUsuario().getId()}"></c:set>
+											<c:set var="IdUsuarioComentario" value="${usuarioId}"></c:set>
+											<c:if test="${idUsuario == IdUsuarioComentario}">
+											<form action="borrarComentario">
+												<div>
+													<button type="button"
+														class="btn btn-outline-naranja botonBorrar"
+														data-toggle="modal" data-target="#borrarComentario"
+														data-id="${comentario.getId()}">
+														<i class="far fa-trash-alt"></i>
+													</button>
+												</div>
+											</form>
+											</c:if>
+											<form>
+												<div>
+													<button type="submit" class="btn btn-outline-naranja">
+														<i class="fas fa-share-alt"></i>
+													</button>
+												</div>
+											</form>
+										</div>
+									</c:if>
 								</c:if>
 							</div>
 						</div>
@@ -108,7 +114,7 @@
 							</div>
 							<div class="container col-md-10 col-lg-11 justify-content-center">
 
-								<h4 class="border-bottom">Nombre de usuario</h4>
+								<h4 class="border-bottom">${comentario.getUsuario().getNombreUsuario()}</h4>
 
 								<c:set var="estadoComentario" value="${comentario.getEstado()}"></c:set>
 								<c:if test="${estadoComentario=='INACTIVO'}">
@@ -147,6 +153,9 @@
 												<i class="far fa-comment-dots"></i>
 											</button>
 										</div>
+										<c:set var="idUsuario" value="${comentario.getUsuario().getId()}"></c:set>
+										<c:set var="IdUsuarioComentario" value="${usuarioId}"></c:set>
+										<c:if test="${idUsuario == IdUsuarioComentario}">
 										<form action="borrarComentario">
 											<div>
 												<button type="button"
@@ -157,6 +166,7 @@
 												</button>
 											</div>
 										</form>
+										</c:if>
 										<form>
 											<div>
 												<button type="submit" class="btn btn-outline-naranja">
@@ -197,7 +207,7 @@
 									<div
 										class="container col-md-10 col-lg-11 justify-content-center">
 
-										<h5 class="border-bottom">Nombre de usuario</h5>
+										<h5 class="border-bottom">${respuesta.getUsuario().getNombreUsuario()}</h5>
 
 										<c:set var="estadoRespuesta" value="${respuesta.getEstado()}"></c:set>
 										<c:if test="${estadoRespuesta=='INACTIVO'}">
@@ -236,7 +246,9 @@
 														<i class="far fa-comment-dots"></i>
 													</button>
 												</div>
-
+												<c:set var="idUsuario" value="${respuesta.getUsuario().getId()}"></c:set>
+												<c:set var="IdUsuarioRespuesta" value="${usuarioId}"></c:set>
+												<c:if test="${idUsuario == IdUsuarioRespuesta}">
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -247,6 +259,7 @@
 														</button>
 													</div>
 												</form>
+												</c:if>
 
 												<form>
 													<div>
@@ -287,7 +300,7 @@
 									<div
 										class="container col-md-10 col-lg-11 justify-content-center">
 
-										<h4 class="border-bottom">Nombre de usuario</h4>
+										<h4 class="border-bottom">${respuesta.getUsuario().getNombreUsuario()}</h4>
 
 
 										<c:set var="estadoRespuesta" value="${respuesta.getEstado()}"></c:set>
@@ -328,6 +341,9 @@
 													</button>
 												</div>
 
+												<c:set var="idUsuario" value="${respuesta.getUsuario().getId()}"></c:set>
+												<c:set var="IdUsuarioRespuesta" value="${usuarioId}"></c:set>
+												<c:if test="${idUsuario == IdUsuarioRespuesta}">
 												<form action="borrarComentario">
 													<div>
 														<button type="button"
@@ -338,6 +354,7 @@
 														</button>
 													</div>
 												</form>
+												</c:if>
 
 												<form>
 													<div>

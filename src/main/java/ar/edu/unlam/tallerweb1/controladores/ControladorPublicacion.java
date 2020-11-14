@@ -51,8 +51,13 @@ public class ControladorPublicacion {
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 
 				: "";
-		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
 
+				? (String) request.getSession().getAttribute("URLIMAGEN")
+
+				: "";
+		modelo.put("url_imagen", url_imagen);
+		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
