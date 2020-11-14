@@ -113,4 +113,22 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("redirect:/home");
 	}
+
+	public ServicioCategoria getServicioCategoria() {
+		return servicioCategoria;
+	}
+
+	public void setServicioCategoria(ServicioCategoria servicioCategoria) {
+		this.servicioCategoria = servicioCategoria;
+	}
+
+	public ServicioPublicacion getServicioPublicacion() {
+		return servicioPublicacion;
+	}
+
+	public void setServicioPublicacion(ServicioPublicacion servicioPublicacion) {
+		this.servicioPublicacion = servicioPublicacion;
+	}
+	
+	
 }
