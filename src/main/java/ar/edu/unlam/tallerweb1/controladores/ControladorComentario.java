@@ -35,14 +35,10 @@ public class ControladorComentario {
 				? (String) request.getSession().getAttribute("ROL")
 				: "";
 		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
 				: "";
 		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
 				? (String) request.getSession().getAttribute("URLIMAGEN")
-
 				: "";
 
 		if (request.getSession().getAttribute("ROL") != null) {
@@ -69,11 +65,8 @@ public class ControladorComentario {
 		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
 				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
 				: "";
-
 		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
 				? (String) request.getSession().getAttribute("URLIMAGEN")
-
 				: "";
 
 		Long usuarioId = request.getSession().getAttribute("ID") != null
@@ -105,9 +98,11 @@ public class ControladorComentario {
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
 			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
+		
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+				
 		java.util.Date fecha = new Date();
 		Comentario comentario = new Comentario();
 		comentario.setUsuario(usuario);
@@ -128,16 +123,28 @@ public class ControladorComentario {
 	/* ---------- Pagina para borrar comentarios ----------- */
 
 	@RequestMapping(path = "/borrarComentario")
-	public ModelAndView eliminarComentario(@RequestParam(value = "botonBorrar", required = true) Long idComentario) {
-
-		servicioComentario.borrarComentario(idComentario);
-		return new ModelAndView("redirect:/comentarioVisualizacion");
+	public ModelAndView eliminarComentario(@RequestParam(value = "botonBorrar", required = true) Long idComentario,
+										  HttpServletRequest request) {
+		
+		Usuario usuarioLogueado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
+		Comentario usuarioIngresado = servicioComentario.mostrarComentario(idComentario);
+		Boolean resultado =servicioComentario.veridifcarUsuario(usuarioLogueado,usuarioIngresado.getUsuario());
+		
+		if(resultado = true) {
+			servicioComentario.borrarComentario(idComentario);
+			return new ModelAndView("redirect:/comentarioVisualizacion");
+		} 
+			return new ModelAndView("redirect:/comentarioVisualizacion");
 	}
 
 	/* ---------- Pagina para borrar likear ----------- */
 	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.GET)
-	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike) {
-
+	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike,
+			 HttpServletRequest request) {
+		
 		servicioComentario.darLikeComentario(idLike);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
 	}

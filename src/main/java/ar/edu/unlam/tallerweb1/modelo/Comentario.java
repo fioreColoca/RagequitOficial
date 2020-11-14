@@ -9,9 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Comentario { 
@@ -26,15 +26,15 @@ public class Comentario {
 	@ManyToOne
 	private Comentario respuesta;
 	
-	@OneToOne
+	@ManyToOne
 	private Usuario usuario;	
 	
-	/*@Column(name = "NAME", nullable = false, length = 150)
 	@OneToMany
-	private  List<Usuario> litadoLikes;  */
+	private  List<Usuario> litadoLikes; 
 
 	private String mensaje;
 	
+	@Column(name="fecha")
 	private Date fechaHora;
 	
 	private Integer cantidadLikes;
@@ -118,13 +118,12 @@ public class Comentario {
 		this.usuario = usuario;
 	}
 
-	/*public List<Usuario> getLitadoLikes() {
+	public List<Usuario> getLitadoLikes() {
 		return litadoLikes;
 	}
 
 	public void setLitadoLikes(List<Usuario> litadoLikes) {
 		this.litadoLikes = litadoLikes;
 	}
-	*/
 
 }
