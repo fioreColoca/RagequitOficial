@@ -41,8 +41,7 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	}
 
 	@Override
-	public void editarCategoria(Long id) {
-		Categoria categoria = mostrarCategoriaPorId(id);
+	public void editarCategoria(Categoria categoria) {
 		sessionFactory.getCurrentSession().save(categoria);
 	}
 

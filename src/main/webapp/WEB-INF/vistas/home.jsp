@@ -1,7 +1,7 @@
 <%@ include file="header.jsp"%>
     <main>
-        <section>
-            <div class="container mt-5 md-5">
+        <section class= "bg-fondo p-3 justify-content-around">
+            <div class="container m-8">
                 <div class="owl-carousel owl-theme">
                     <c:if test="${not empty categorias}">
                         <c:forEach items="${categorias}" var="categoriaDelFor">
@@ -16,7 +16,7 @@
             </div>
         </section>
         <c:if test="${not empty usuarioRol}">
-            <section class="">
+            <section class="pt-3">
                 <div>
                     <h3 class="border-bottom text-center mb-4">Inicio</h3>
                 </div>
@@ -59,7 +59,7 @@
                         <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
                     </div>
                     <div class="text-right">
-                        <button class="btn btn-naranja botonBloque mt-3" type="submit">Publicar</button>
+                        <button class="btn btn-naranja botonBloque" type="submit">Publicar</button>
                     </div>
                 </form:form>
                 <c:if test="${errorCategoria != 'null'}">
@@ -118,11 +118,11 @@
                                             <button class="btn btn-naranja">SEGUIR</button>
                                         </div>
                                         <div class="col-4 text-center user-info">
-                                            <img class="rounded-circle" src="${publicacionDelFor.getUsuario().getUrl_imagen()}" width="100">
+                                            <img class="rounded-circle border-radius-50" src="${publicacionDelFor.getUsuario().getUrl_imagen()}" width="100">
                                         </div>
                                         <div class="col-4 text-right">
                                             <div class="d-flex justify-content-end">
-                                                <img alt="logo" class="categoria-icon" src="${publicacionDelFor.getCategoria().getUrlIcono()}">
+                                                <img alt="logo" class="pr-3 categoria-icon" src="${publicacionDelFor.getCategoria().getUrlIcono()}">
                                                 <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
                                             </div>
                                             <p class="text-white-50">

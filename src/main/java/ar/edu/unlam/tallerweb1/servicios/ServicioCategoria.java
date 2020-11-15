@@ -17,7 +17,7 @@ public interface ServicioCategoria {
 	
 	void borrarCategoria(Long id);
 	
-	void editarCategoria(Long id);
+	void editarCategoria(Categoria categoria);
 
 
 }

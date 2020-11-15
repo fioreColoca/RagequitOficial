@@ -8,26 +8,29 @@
                 </div>
                 <div class="text-center ">
                     <p class="pl-3 text-justify text-size-categoria">
-                        ¡Bienvenido! , dentro de esta sección podr&aacute;s crear categor&iacute;as para los distintos
+                        Dentro de esta sección podr&aacute;s crear categor&iacute;as para los distintos
                         tipos
-                        de Videojuegos, M&uacute;sica, Anime, entre muchas otras.
+                        de Videojuegos, M&uacute;sica, Anime, entre otras.
                     </p>
                 </div>
                 <div class="anchoCategoria pad-2">
                     <form action="agregarCategoria">
+                    
+                    
                         <div class="form-group">
-                            <label for="crearCategoria">*Elija el nombre de la categoria:</label>
+                            <label for="crearCategoria">Elija el nombre de la categoria:</label>
                             <input type="text" name="crearCategoria" id="crearCategoria" class="form-control"
                                 placeholder="Valorant, Anime, Musica ..." required>
                         </div>
                         <div>
-                            <label for="filtro">*Elegir el tipo de categoria</label>
+                            <label for="filtro">Elegir el tipo de categoria</label>
                             <select name="categoria" id="categoria" class="custom-select">
-                                <option disabled selected>Seleccione una opcion</option>
+                                <option disabled selected>Seleccione una opci&oacute;n</option>
                                 <option value="Juegos">Juegos</option>
                                 <option value="Varios">Varios</option>
                             </select>
                         </div>
+                        
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
                         </div>
@@ -41,7 +44,7 @@
 
 
                 <div class="text-right subirDiv">
-                    <a href="irACategorias" class="irACategorias volverACategoria">Ver categorias creadas</a>
+                    <a href="irACategorias" class="btn btn-outline-naranja irACategorias volverACategoria">Ver categorias creadas</a>
                 </div>
             </article>
         </section>
