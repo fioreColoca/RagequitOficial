@@ -3,20 +3,18 @@
     <section>
 
         <article class="">
-            <h3>¡Tu categoria se guard&oacute; con &eacute;xito!</h3>
+            <h3>Categorias</h3>
             <p> Estas categorias fueron creadas: </p>
-            <div class="text-right subirDiv">
-                <a href="categoria" class="volverACategoria ">Crear una nueva categoria</a>
-            </div>
+         
             <div class="row justify-content-center">
                 <c:if test="${not empty categorias}">
                     <c:forEach items="${categorias}" var="categoria">
 
                         <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
                             <div class="d-flex flex-wrap justify-content-around">
-
-                                <p>Tipo: ${categoria.getTipoCategoria()} Nombre: ${categoria.getNombre()}</p>
-
+								<img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
+                                <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
+							<div class="d-flex flex-wrap justify-content-end p-3">
                                 <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal"
                                     data-target="#editarCategoria" data-id="${categoria.getId()}">
                                     <i class="far fa-edit"></i>
@@ -28,21 +26,30 @@
                                 </button>
 
                             </div>
+                           </div>
                         </div>
 
                     </c:forEach>
                 </c:if>
             </div>
-
+            
             <div class="modal fade" id="editarCategoria" tabindex="-1" aria-hidden="true">
-                <div class="anchoCategoria bg-primary pad-2">
-                    <form action="editarCategoria">
-                        <div class="form-group">
+                <div class="modal-dialog">
+                    <div class="modal-content p-3 m-1">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark">Editar categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                       
+                       <form action="editarCategoria">
+                        <div class="text-dark form-group">
                             <label for="guardarCategoria">Nombre de la categoria:</label>
                             <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control"
                                 placeholder="Valorant, Anime, Musica ...">
                         </div>
-                        <div>
+                        <div class="text-dark">
                             <label for="filtro">Tipo de categoria</label>
                             <select name="categoria" id="categoria" class="custom-select">
                                 <option disabled selected>Seleccione una opción</option>
@@ -50,13 +57,19 @@
                                 <option value="Varios">Varios</option>
                             </select>
                         </div>
+                        
+                        <!--<label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
+                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">-->
+                        
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar"
                                 id="botonGuardar">GUARDAR</button>
                         </div>
                     </form>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <div class="modal fade" id="borrarCategoria" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -80,6 +93,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="text-right subirDiv">
+                <a href="categoria" class="btn btn-outline-naranja volverACategoria">Crear una nueva categoria</a>
             </div>
         </article>
 

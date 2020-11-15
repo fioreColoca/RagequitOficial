@@ -23,7 +23,8 @@ public interface ServicioComentar {
 	 
 	 List<Comentario> respuestaListado(Comentario comentario);
 	 
-
+	 Boolean veridifcarUsuario(Usuario usuarioLogueado, Usuario usuarioIngresado);
+	 
 	/* Integer devolverAnio(Comentario comentario); */
 	 	 
 }

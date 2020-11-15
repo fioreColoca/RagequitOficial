@@ -17,6 +17,6 @@ public interface RepositorioCategoria {
 	
 	void borrarCategoria (Long id);
 	
-	void editarCategoria(Long id);
+	void editarCategoria(Categoria categoria);
 
 }

@@ -80,7 +80,7 @@ public class ControladorCategoria {
 
 		modelo.put("categoriaCreada", categoria);
 		/* return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria); */
-		return new ModelAndView("redirect:/irACategorias", modelo);
+		return new ModelAndView("redirect:/biblioteca", modelo);
 	}
 
 	@RequestMapping("/irACategorias")
@@ -121,35 +121,26 @@ public class ControladorCategoria {
 	}
 
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
-	public ModelAndView editarCategoria(@RequestParam(value = "botonGuardar", required = false) Long id) {
-		servicioCategoria.editarCategoria(id);
+	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
+			@RequestParam(value = "editarCategoria", required = false) String nombreCategoria,
+			@RequestParam(value = "botonGuardar", required = false) Long id) 
+			{
+		
+		//ModelMap modelo = new ModelMap();
+		Categoria categoria = new Categoria();
+		
+		if (tipoCategoria.equals("Juegos")) {
+			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		} else {
+			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+		}
 
+		categoria.setNombre(nombreCategoria);
+		
+		servicioCategoria.editarCategoria(categoria);
+		
+		//modelo.put("categoriaEditada", categoria);
 		return new ModelAndView("redirect:/irACategorias");
 	}
-
-	/*
-	 * @RequestMapping("/confirmacionCategoria") public ModelAndView
-	 * categoriaExitosa(
-	 * 
-	 * @RequestParam(value = "categoria", required = false) String tipoCategoria,
-	 * 
-	 * @RequestParam(value = "crearCategoria", required = false) String
-	 * nombreCategoria) throws Exception { ModelMap modelo = new ModelMap();
-	 * Categoria categoria = new Categoria();
-	 * 
-	 * 
-	 * if(tipoCategoria.equals("Juegos")) {
-	 * categoria.setTipoCategoria(CategoriaTipo.JUEGOS); } else {
-	 * categoria.setTipoCategoria(CategoriaTipo.VARIOS); }
-	 * 
-	 * categoria.setNombre(nombreCategoria);
-	 * 
-	 * servicioCategoria.crearCategoria(categoria);
-	 * 
-	 * List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-	 * 
-	 * modelo.put("categoriaCreada", categoria); modelo.put("categorias",
-	 * categorias); return new ModelAndView("confirmacionCategoria",modelo); }
-	 */
 
 }
