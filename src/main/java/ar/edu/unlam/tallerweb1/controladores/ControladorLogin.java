@@ -77,6 +77,10 @@ public class ControladorLogin {
 			request.getSession().setAttribute("NOMBREUSUARIO", usuarioBuscado.getNombreUsuario());
 			request.getSession().setAttribute("USUARIO", usuarioBuscado);
 			request.getSession().setAttribute("URLIMAGEN", usuarioBuscado.getUrl_imagen());
+			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombre());
+			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
+			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
+
 
 			return new ModelAndView("redirect:/home");
 		} else {

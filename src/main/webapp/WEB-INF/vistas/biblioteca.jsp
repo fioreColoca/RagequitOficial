@@ -11,9 +11,10 @@
             <select class="custom-select" name="categoriaId" id="filtro">
                 <option value="-1" selected disabled>Elegir</option>
                 <c:if test="${not empty categorias}">
-                    <c:forEach items="${categorias}" var="categoriaDelFor">
-                        <option value="${categoriaDelFor.getId()}">${categoriaDelFor.getTipoCategoria()}</option>
-                    </c:forEach>
+                    
+                        <option value="1">JUEGOS</option>
+                        <option value="2">VARIOS</option>
+                   
                 </c:if>
             </select>
             <div class="text-right">

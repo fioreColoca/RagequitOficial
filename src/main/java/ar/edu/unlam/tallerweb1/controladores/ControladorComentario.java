@@ -17,7 +17,7 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
 public class ControladorComentario {
@@ -25,10 +25,8 @@ public class ControladorComentario {
 	@Inject
 	private ServicioComentar servicioComentario;
 
-	@Inject
-	private ServicioUsuario servicioUsuario;
-
 	/* ---------- Pagina para comentar ----------- */
+	
 	@RequestMapping(path = "/comentario")
 	public ModelAndView comentar(HttpServletRequest request) {
 		String rol = request.getSession().getAttribute("ROL") != null
@@ -40,8 +38,8 @@ public class ControladorComentario {
 		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
 				? (String) request.getSession().getAttribute("URLIMAGEN")
 				: "";
-
-		if (request.getSession().getAttribute("ROL") != null) {
+								
+	if (request.getSession().getAttribute("ROL") != null) {		
 			ModelMap modelo = new ModelMap();
 			modelo.put("title", "RageQuit | Comentarios");
 			modelo.put("usuarioRol", rol);
@@ -54,6 +52,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
+	
 	@RequestMapping(path = "/comentarioVisualizacion")
 	public ModelAndView verComentario(HttpServletRequest request,
 			@RequestParam(value = "nombreUsuario", required = false) String usuarioNombre
@@ -77,14 +76,13 @@ public class ControladorComentario {
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
-
 		modelo.put("url_imagen", url_imagen);
-
 		modelo.put("usuarioId", usuarioId);
 
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 		if (comentarios.isEmpty()) {
-			return new ModelAndView("redirect:/comentario", modelo);
+			String error = "Comentario vacio";
+			return new ModelAndView("redirect:/comentario?errorComentario=" + error);
 		}
 		modelo.put("comentarios", comentarios);
 		modelo.put("comentario", comentario);
@@ -94,6 +92,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para guardar comentarios ----------- */
+	
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.GET)
 	public ModelAndView enviarComentario(
 			@RequestParam(value = "comentarioMandar", required = true) String comentarioMensaje,
@@ -110,10 +109,11 @@ public class ControladorComentario {
 		comentario.setFechaHora(fecha);
 		comentario.setMensaje(comentarioMensaje);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
-		servicioComentario.tipoComentario(tipoBoton, comentario);
+		servicioComentario.tipoComentario(tipoBoton, comentario); 
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
-			return new ModelAndView("redirect:/comentario");
+			String error = "mensaje vacio"; 
+			return new ModelAndView("redirect:/comentario?errorComentario=" + error);
 		}
 		servicioComentario.enviarComentario(comentario);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
@@ -131,16 +131,17 @@ public class ControladorComentario {
 				: null;
 				
 		Comentario usuarioIngresado = servicioComentario.mostrarComentario(idComentario);
-		Boolean resultado =servicioComentario.veridifcarUsuario(usuarioLogueado,usuarioIngresado.getUsuario());
-		
+		Boolean resultado = servicioComentario.veridifcarUsuario(usuarioLogueado,usuarioIngresado.getUsuario());
 		if(resultado = true) {
 			servicioComentario.borrarComentario(idComentario);
 			return new ModelAndView("redirect:/comentarioVisualizacion");
 		} 
-			return new ModelAndView("redirect:/comentarioVisualizacion");
+			String error = "Error inesperado";
+			return new ModelAndView("redirect:/comentarioVisualizacion?errorComentario=" + error);
 	}
 
-	/* ---------- Pagina para borrar likear ----------- */
+	/* ---------- Pagina para  likear ----------- */
+	
 	@RequestMapping(path = "/meGustaComentario", method = RequestMethod.GET)
 	public ModelAndView darLikeComentario(@RequestParam(value = "botonLike", required = true) Long idLike,
 			 HttpServletRequest request) {
@@ -150,6 +151,7 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para responder comentarios ----------- */
+	
 	@RequestMapping(path = "/responderComentario", method = RequestMethod.GET)
 	public ModelAndView guardarRespuesta(
 			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
@@ -173,11 +175,24 @@ public class ControladorComentario {
 		respuesta.setRespuesta(comentario);
 
 		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
-			return new ModelAndView("redirect:/comentario");
+			String error = "mensaje vacío"; 
+			return new ModelAndView("redirect:/comentario?errorComentario=" + error);
 		}
 
 		servicioComentario.enviarComentario(respuesta);
 		return new ModelAndView("redirect:/comentarioVisualizacion");
+	}
+	
+	
+	/* GETTERS AND SETTERS */
+	
+	
+	public ServicioComentar getServicioComentario() {
+		return servicioComentario;
+	}
+
+	public void setServicioComentario(ServicioComentar servicioComentario) {
+		this.servicioComentario = servicioComentario;
 	}
 
 }
