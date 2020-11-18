@@ -179,7 +179,7 @@
                                 <c:if test="${not empty usuarioLogeado}">
                                     <div>
                                         <div class="container p-3 bg-fondo rounded">
-                                            <form:form action="guardarComentario" class="container"
+                                            <form:form action="guardarComentario" method="POST" class="container"
                                                 modelAttribute="comentario">
                                                 <div>
                                                 	<form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar"
@@ -494,29 +494,22 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-fondo p-3">
-                            <form action="responderComentario" class="container" method="GET">
-                                <p>Respondiendo a</p>
+                            <form:form  action="responderComentario" class="container" method="POST" modelAttribute="comentario">
                                 <div>
-                                    <textarea id="respuestaMandar" name="respuestaMandar" class="form-control" rows="3"
-                                        placeholder="Escribe tu respuesta" required></textarea>
+                                    <form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar"
+                                                        class="form-control" rows="3"/>
                                 </div>
 
                                 <br>
                                 <div class="row responderComent" id="">
                                     <!--<label class="sr-only" name="boton" value="comun">-->
                                     <div class="col-6 mt-6 mb-3">
-                                        <input type="hidden" name="idComentario" id="responderComentario" />
+                                        <form:input type="hidden" name="idComentario"  path="comentarioAResponderId" id="responderComentario" />
                                         <button type="submit" class="btn btn-naranja" name="boton"
-                                            value="comun">Responder</button>
-                                    </div>
-
-                                    <!--  <label class="sr-only" name="boton" value="comun">-->
-                                    <div class="col-6 text-right mt-6">
-                                        <button type="submit" class="btn btn-naranja" value="premium"
-                                            name="boton">Responder Premium</button>
+                                            >Responder</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>

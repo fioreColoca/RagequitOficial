@@ -46,40 +46,20 @@ public class ControladorPublicacion {
 			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 		}
 
-		/*String rol = request.getSession().getAttribute("ROL") != null
 
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-				
-		Long usuarioId = request.getSession().getAttribute("ID") != null
-						? (Long) request.getSession().getAttribute("ID")
-						: null;*/
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 								? (Usuario) request.getSession().getAttribute("USUARIO")
 								: null;
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
-		//modelo.put("url_imagen", url_imagen);
+
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
-		//modelo.put("usuarioRol", rol);
-		//modelo.put("nombreUsuario", nombreUsuario);
 		modelo.put("comentario", new Comentario());
 		modelo.put("comentarios", comentarios);
 		modelo.put("usuarioLogeado", usuarioLogeado);

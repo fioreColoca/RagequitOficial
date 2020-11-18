@@ -139,10 +139,10 @@ public class ControladorComentario {
 		Boolean resultado = servicioComentario.veridifcarUsuario(usuarioLogueado,usuarioIngresado.getUsuario());
 		if(resultado = true) {
 			servicioComentario.borrarComentario(idComentario);
-			return new ModelAndView("redirect:/comentarioVisualizacion");
+			return new ModelAndView("redirect:/home");
 		} 
 			String error = "Error inesperado";
-			return new ModelAndView("redirect:/comentarioVisualizacion?errorComentario=" + error);
+			return new ModelAndView("redirect:/home?errorComentario=" + error);
 	}
 
 	/* ---------- Pagina para  likear ----------- */
@@ -156,36 +156,32 @@ public class ControladorComentario {
 	}
 
 	/* ---------- Pagina para responder comentarios ----------- */
-	
-	@RequestMapping(path = "/responderComentario", method = RequestMethod.GET)
+
+	@RequestMapping(path = "/responderComentario", method = RequestMethod.POST)
 	public ModelAndView guardarRespuesta(
-			@RequestParam(value = "respuestaMandar", required = true) String respuestaMensaje,
-			@RequestParam(value = "idComentario", required = true) Long idComentario,
-			@RequestParam(value = "boton", required = true) String tipoBoton, HttpServletRequest request) {
+			@ModelAttribute("comentario") Comentario respuesta, HttpServletRequest request) {
 
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 
 		java.util.Date fecha = new Date();
-		Comentario respuesta = new Comentario();
 		respuesta.setCantidadLikes(0);
 		respuesta.setFechaHora(fecha);
-		respuesta.setMensaje(respuestaMensaje);
 		respuesta.setEstado(ComentarioEstado.ACTIVO);
 		respuesta.setUsuario(usuario);
-		servicioComentario.tipoComentario(tipoBoton, respuesta);
+		servicioComentario.tipoComentario("comun", respuesta);
 
-		Comentario comentario = servicioComentario.mostrarComentario(idComentario);
+		Comentario comentario = servicioComentario.mostrarComentario(respuesta.getComentarioAResponderId());
 		respuesta.setRespuesta(comentario);
 
 		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
 			String error = "mensaje vacío"; 
-			return new ModelAndView("redirect:/comentario?errorComentario=" + error);
+			return new ModelAndView("redirect:/home?errorComentario=" + error);
 		}
 
 		servicioComentario.enviarComentario(respuesta);
-		return new ModelAndView("redirect:/comentarioVisualizacion");
+		return new ModelAndView("redirect:/home");
 	}
 	
 	

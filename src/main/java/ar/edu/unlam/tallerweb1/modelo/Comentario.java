@@ -27,6 +27,8 @@ public class Comentario {
 	
 	@ManyToOne
 	private Comentario respuesta;
+	@Transient
+	private Long comentarioAResponderId;
 	
 	@ManyToOne
 	private Usuario usuario;	
@@ -135,7 +137,14 @@ public class Comentario {
 	public void setPublicacionId(Long publicacionId) {
 		this.publicacionId = publicacionId;
 	}
-	
-	
+
+	public Long getComentarioAResponderId() {
+		return comentarioAResponderId;
+	}
+
+	public void setComentarioAResponderId(Long comentarioAResponderId) {
+		this.comentarioAResponderId = comentarioAResponderId;
+	}
+
 
 }
