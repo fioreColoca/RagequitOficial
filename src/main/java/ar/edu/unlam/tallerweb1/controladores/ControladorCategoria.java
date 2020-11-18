@@ -134,7 +134,7 @@ public class ControladorCategoria {
 		
 		//ModelMap modelo = new ModelMap();
 		//Categoria categoria = new Categoria();
-//		
+		
 		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
 		if (tipoCategoria.equals("Juegos")) {
 			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
@@ -156,7 +156,7 @@ public class ControladorCategoria {
 //		
 //		servicioCategoria.editarCategoria(categoria);
 		
-		//modelo.put("categoriaEditada", categoria);
+//		modelo.put("categoriaEditada", categoria);
 		return new ModelAndView("redirect:/irACategorias");
 	}
 
