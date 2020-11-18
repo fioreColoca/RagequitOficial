@@ -18,27 +18,32 @@ $('.owl-carousel').owlCarousel({
 	dots:false,
 	loop:true,
 	lazyLoad:true,
-	margin: 5,
-	stagePadding:5,
-	autoHeight:true,
+	margin: 11,
+	stagePadding:70,
+	autoWidth: true,
+	responsiveClass:true,
 	responsive:{
 		0: {
+			nav:false,
 			items:1,
 			dots:false		
 		},
 		485:{
+			nav:false,
 			items:2,
 			dots:false
 		},
 		728:{
+			nav:false,
 			items:3,
 			dots:false
 		},
 		960:{
+			nav:false,
 			items:4,
-			dots:true
+			dots:false
 		},
-		1200:{
+		1200:{	
 			items:5,
 			dots:false
 		}

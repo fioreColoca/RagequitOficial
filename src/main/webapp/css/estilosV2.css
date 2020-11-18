@@ -269,11 +269,11 @@ main {
 }
 
 .owl-prev{
-	left:-30px;
+	left:-15px;
 }
 
 .owl-next{
-	right:-30px;
+	right: -15px;
 }
 
 .owl-prev, .owl-next{
