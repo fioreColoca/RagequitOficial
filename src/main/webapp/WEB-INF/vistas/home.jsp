@@ -179,32 +179,20 @@
                                 <c:if test="${not empty usuarioRol}">
                                     <div>
                                         <div class="container p-3 bg-fondo rounded">
-                                            <form action="guardarComentario" class="container"
+                                            <form:form action="guardarComentario" class="container"
                                                 modelAttribute="comentario">
-                                                <div class="aling-center">
-                                                    <label for="comentarioMandar">
-                                                        <p> Respondiendo a </p>
-                                                    </label>
-                                                </div>
                                                 <div>
-                                                    <textarea path="" id="comentarioMandar" name="comentarioMandar"
-                                                        class="form-control" rows="3"
-                                                        placeholder="Escribe tu respuesta"></textarea>
+                                                	<form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar"
+                                                        class="form-control" rows="3"/>
                                                 </div>
-
-                                                <br>
                                                 <div class="row">
+                                                	<form:input type="hidden" path="publicacionId" value="${publicacionDelFor.getId()}"/>
                                                     <div class="col-6 mt-2">
-                                                        <button type="submit" class="btn btn-naranja" value="comun"
+                                                        <button type="submit" class="btn btn-naranja"
                                                             name="boton">Responder</button>
                                                     </div>
-                                                    <div class="col-6 text-right mt-2">
-                                                        <button type="submit" class="btn btn-naranja" value="premium"
-                                                            name="boton">Responder
-                                                            Premium</button>
-                                                    </div>
                                                 </div>
-                                            </form>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </c:if>

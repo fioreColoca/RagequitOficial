@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
@@ -68,6 +69,7 @@ public class ControladorPublicacion {
 		modelo.put("errorCategoria", errorCategoria);
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("comentario", new Comentario());
 
 		return new ModelAndView("home", modelo);
 	}
@@ -142,6 +144,5 @@ public class ControladorPublicacion {
 	public void setServicioPublicacion(ServicioPublicacion servicioPublicacion) {
 		this.servicioPublicacion = servicioPublicacion;
 	}
-	
 	
 }
