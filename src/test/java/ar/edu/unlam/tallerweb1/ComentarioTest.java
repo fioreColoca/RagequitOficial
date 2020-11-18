@@ -36,7 +36,7 @@ public class ComentarioTest {
 	}
 
 	
-	@Test
+	/*@Test
 	public void testEnviarComentario() {
 		
 		when(comentario.getId()).thenReturn(1L);
@@ -58,7 +58,7 @@ public class ComentarioTest {
 		
 		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario.getMensaje(), tipoComentario, requestMock);	
 		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/comentario?errorComentario=mensaje vacio"); 
-	}
+	}*/
 	
 
 }
