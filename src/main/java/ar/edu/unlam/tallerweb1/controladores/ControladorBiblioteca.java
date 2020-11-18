@@ -33,6 +33,7 @@ public class ControladorBiblioteca {
 		ModelMap modelo = new ModelMap();
 
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
+		
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 

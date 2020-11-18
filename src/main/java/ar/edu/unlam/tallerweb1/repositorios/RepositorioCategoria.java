@@ -19,4 +19,6 @@ public interface RepositorioCategoria {
 	
 	void editarCategoria(Categoria categoria);
 
+
+
 }

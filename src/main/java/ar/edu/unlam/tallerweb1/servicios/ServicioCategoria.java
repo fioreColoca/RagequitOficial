@@ -20,4 +20,5 @@ public interface ServicioCategoria {
 	void editarCategoria(Categoria categoria);
 
 
+
 }
