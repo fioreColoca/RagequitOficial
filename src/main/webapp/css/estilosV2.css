@@ -47,6 +47,8 @@ main {
     box-shadow: 0 0 4px rgba(0, 0, 0, .1);
 }
 
+
+
 .navbar img {
     border-radius: 50%;
     width: 36px;
@@ -66,10 +68,6 @@ main {
     color: #fff;
 }
 
-.navbar .navbar-brand i {
-    font-size: 25px;
-    margin-right: 5px;
-}
 
 .search-box {
     position: relative;
@@ -205,10 +203,13 @@ main {
     background-color: #e9ecef !important;
 }
 
+
 .logo {
     width: 3.3em !important;
     height: auto !important;
 }
+
+
 
 .navbar-toggler {
     border-color: transparent !important;
@@ -252,6 +253,8 @@ main {
 }
 
 
+
+
 /**HOME**/
 
 #collapseExample {
@@ -263,27 +266,30 @@ main {
     color: #fdb714 !important;
 }
 
-.categoria-icon{
-	height: 32px;
-	width: auto;
+.categoria-icon {
+    height: 32px;
+    width: auto;
 }
 
-.owl-prev{
-	left:-30px;
+.owl-prev {
+    left: -30px;
 }
 
-.owl-next{
-	right:-30px;
+.owl-next {
+    right: -30px;
 }
 
-.owl-prev, .owl-next{
-	position:absolute;
-	top:30%;
+.owl-prev,
+.owl-next {
+    position: absolute;
+    top: 30%;
 }
 
-.owl-theme .owl-nav [class *= "owl-"]:hover{
-	color:  #f58220;
+.owl-theme .owl-nav [class *="owl-"]:hover {
+    color: #f58220;
 }
+
+
 /*********Login***********/
 
 #login .card-signin {
