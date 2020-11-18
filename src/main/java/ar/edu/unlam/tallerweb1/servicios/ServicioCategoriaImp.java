@@ -22,6 +22,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void guardarCategoria(Categoria categoria) {
 		repositorioCategoria.guardarCategoria(categoria);
 	}
+	
 	@Override
 	public Categoria mostrarCategoriaPorId(Long id) {
 		return repositorioCategoria.mostrarCategoriaPorId(id);
@@ -37,16 +38,23 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		repositorioCategoria.borrarCategoria(id);
 		
 	}
-	@Override
-
-	public void editarCategoria(Categoria categoria) {
-		repositorioCategoria.editarCategoria(categoria);
-	}
+//	@Override
+//
+//	public void editarCategoria(Categoria categoria) {
+//		repositorioCategoria.editarCategoria(categoria);
+//	}
 
 	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo) {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 
 	}
+
+	@Override
+	public void editarCategoria(Long id) {
+		repositorioCategoria.editarCategoria(id);
+		
+	}
+	
 	
 	
 }

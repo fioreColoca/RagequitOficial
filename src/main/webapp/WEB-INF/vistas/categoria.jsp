@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="crearCategoria">Elija el nombre de la categoria:</label>
                             <input type="text" name="crearCategoria" id="crearCategoria" class="form-control"
-                                placeholder="Valorant, Anime, Musica ..." required>
+                                placeholder="Valorant, Anime, Musica ...">
                         </div>
                         <div>
                             <label for="filtro">Elegir el tipo de categoria</label>
@@ -35,12 +35,16 @@
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
                         </div>
                     </form>
+                    <c:if test="${errorNombre != 'null'}">
+                    <h4 class="text-danger"><span>${errorNombre}</span></h4>
+                    <br>
+                </c:if>
+                
+                <c:if test="${errorTipo != 'null'}">
+                    <h4 class="text-danger"><span>${errorTipo}</span></h4>
+                    <br>
+                </c:if>
                 </div>
-
-                <!--<c:if test="${errorCategoria != 'null'}">-->
-                <h4 class="text-danger"><span>${errorCategoria}</span></h4>
-                <br>
-                <!--</c:if>-->
 
 
                 <div class="text-right subirDiv">

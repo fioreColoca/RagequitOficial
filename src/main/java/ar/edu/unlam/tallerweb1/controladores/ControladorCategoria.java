@@ -23,11 +23,9 @@ public class ControladorCategoria {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping("/categoria")
-	public ModelAndView irACategoria(HttpServletRequest request
-	/*
-	 * @RequestParam(value = "errorCategoria", required = false) String
-	 * errorCategoria
-	 */) {
+	public ModelAndView categoria(@RequestParam(value = "errorNombre", required = false) String errorNombre,
+			@RequestParam(value = "errorTipo", required = false) String errorTipo,
+			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		String rol = request.getSession().getAttribute("ROL") != null
@@ -45,12 +43,13 @@ public class ControladorCategoria {
 				? (String) request.getSession().getAttribute("URLIMAGEN")
 
 				: "";
+				
+		modelo.put("errorNombre", errorNombre);
+		modelo.put("errorTipo", errorTipo);
 		modelo.put("url_imagen", url_imagen);
 		modelo.put("title", "RageQuit | Categoria");
 		modelo.put("usuarioRol", rol);
 		modelo.put("nombreUsuario", nombreUsuario);
-
-		/* modelo.put("errorCategoria", errorCategoria); */
 
 		return new ModelAndView("categoria", modelo);
 	}
@@ -61,26 +60,33 @@ public class ControladorCategoria {
 
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
-
-		String errorCategoria = null;
-
-		if (tipoCategoria.equals("Juegos")) {
-			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		
+		String errorNombre = null;
+		String errorTipo = null;
+		
+		if (nombreCategoria.isEmpty()) {
+			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
-			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			categoria.setNombre(nombreCategoria);
 		}
 
-		/*
-		 * if (categoria.getNombre().equals(nombreCategoria)) { errorCategoria =
-		 * "La categoría ya fue creada"; }
-		 */
-		categoria.setNombre(nombreCategoria);
+		if (tipoCategoria == null) {
+			errorTipo = "Falta elegir categoria";
+		} else {
+			if (tipoCategoria.equals("Juegos")) {
+				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+			} else {
+				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			}
+		}
+		
+		if (errorNombre == null && errorTipo == null) {
+			servicioCategoria.guardarCategoria(categoria);
+			return new ModelAndView("redirect:/biblioteca");
+		}
 
-		servicioCategoria.guardarCategoria(categoria);
-
-		modelo.put("categoriaCreada", categoria);
-		/* return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria); */
-		return new ModelAndView("redirect:/biblioteca", modelo);
+		//modelo.put("categoriaCreada", categoria);
+		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
 	}
 
 	@RequestMapping("/irACategorias")
@@ -127,8 +133,9 @@ public class ControladorCategoria {
 			{
 		
 		//ModelMap modelo = new ModelMap();
-		Categoria categoria = new Categoria();
-		
+		//Categoria categoria = new Categoria();
+//		
+		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
 		if (tipoCategoria.equals("Juegos")) {
 			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
 		} else {
@@ -137,7 +144,17 @@ public class ControladorCategoria {
 
 		categoria.setNombre(nombreCategoria);
 		
-		servicioCategoria.editarCategoria(categoria);
+		servicioCategoria.editarCategoria(id);
+		
+//		if (tipoCategoria.equals("Juegos")) {
+//			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+//		} else {
+//			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+//		}
+//
+//		categoria.setNombre(nombreCategoria);
+//		
+//		servicioCategoria.editarCategoria(categoria);
 		
 		//modelo.put("categoriaEditada", categoria);
 		return new ModelAndView("redirect:/irACategorias");
