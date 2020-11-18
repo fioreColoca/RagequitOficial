@@ -11,6 +11,12 @@ $(document).ready(function(){
 	
 });
 
+$(document).ready(function(){
+	$('.botonGuardar').click(function () {
+    	var categoriaId= $(this).data('id');
+    	$(".modal-footer #botonGuardar").val( categoriaId);
+	});
+
 $('.owl-carousel').owlCarousel({
 	center: true,
 	items:5,

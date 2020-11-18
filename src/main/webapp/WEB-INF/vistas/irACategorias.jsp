@@ -3,7 +3,7 @@
     <section>
 
         <article class="">
-            <h3>Categorias</h3>
+            <h3 class="border-bottom text-center mb-4">Categorias</h3>
             <p> Estas categorias fueron creadas: </p>
          
             <div class="row justify-content-center">
