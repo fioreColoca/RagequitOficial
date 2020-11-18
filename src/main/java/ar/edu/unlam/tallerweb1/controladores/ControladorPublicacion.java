@@ -19,6 +19,7 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
@@ -28,6 +29,8 @@ public class ControladorPublicacion {
 	private ServicioPublicacion servicioPublicacion;
 	@Inject
 	private ServicioCategoria servicioCategoria;
+	@Inject
+	private ServicioComentar servicioComentario;
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -43,7 +46,7 @@ public class ControladorPublicacion {
 			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 		}
 
-		String rol = request.getSession().getAttribute("ROL") != null
+		/*String rol = request.getSession().getAttribute("ROL") != null
 
 				? (String) request.getSession().getAttribute("ROL")
 
@@ -58,18 +61,28 @@ public class ControladorPublicacion {
 				? (String) request.getSession().getAttribute("URLIMAGEN")
 
 				: "";
-		modelo.put("url_imagen", url_imagen);
+				
+		Long usuarioId = request.getSession().getAttribute("ID") != null
+						? (Long) request.getSession().getAttribute("ID")
+						: null;*/
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+								? (Usuario) request.getSession().getAttribute("USUARIO")
+								: null;
+		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
+		//modelo.put("url_imagen", url_imagen);
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
+		//modelo.put("usuarioRol", rol);
+		//modelo.put("nombreUsuario", nombreUsuario);
 		modelo.put("comentario", new Comentario());
+		modelo.put("comentarios", comentarios);
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("home", modelo);
 	}
