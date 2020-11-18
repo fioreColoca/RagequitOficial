@@ -20,8 +20,8 @@
 
 							<div
 								class="d-flex flex-row user-info mb-3 col-md-2 col-lg-1 justify-content-center">
-								<img class="rounded-circle border border-dark"
-									src="${comentario.getUsuario().getUrl_imagen()}" width="50" height="50">
+								<img class="rounded-circle border border-dark" src="${comentario.getUsuario().getUrl_imagen()}" width="50" height="50">
+
 							</div>
 							<div class="container col-md-10 col-lg-11 justify-content-center">
 
