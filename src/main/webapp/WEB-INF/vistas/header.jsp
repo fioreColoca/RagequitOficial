@@ -36,9 +36,6 @@
 
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img
-                                src="img/santiago.jpeg" class="avatar" alt="Avatar"> Santiago Fagliano <b
-                                class="caret"></b></a>
                         <div class="dropdown-menu">
                             <a href="" class="dropdown-item"><i class="fas fa-user-circle"></i> Perfil</a>
                             <a href="perfil" class="dropdown-item"><i class="fas fa-sliders-h"></i>Configuracion</a>
@@ -48,7 +45,7 @@
                     </div>
                     <c:if test="${not empty usuarioLogeado}">
                         <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
-                        <a class="m-auto"><span>Bienvenido ${usuarioLogeado.getNombre()}</span></a>
+                        <a class="m-auto" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><span>Bienvenido ${usuarioLogeado.getNombre()} <i class="fas fa-caret-down"></i></span></a>
                     </c:if>
                     <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
                     <c:if test="${usuarioLogeado.getRol() == 'admin'}">
