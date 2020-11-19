@@ -34,7 +34,7 @@ public class ControladorJuegosOVarios {
 				: null;
 				
 		modelo.put("juegosOVarios", juegosOVarios);
-
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("juegosOVarios", modelo);
 	}
