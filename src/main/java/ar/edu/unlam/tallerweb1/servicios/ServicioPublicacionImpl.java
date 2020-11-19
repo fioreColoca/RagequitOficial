@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
 @Service
@@ -45,14 +47,19 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		repositorioPublicacion.borrarPublicacion(id);
 		
 	}
-
-	/*@Override
-	public Integer devolverAnio(Publicacion publicacion) {
-		Integer anio =((Integer)publicacion.getFechaHora().getYear()) + 1900;
-		
-		return anio;
-	}*/
 	
+	public TreeSet<Publicacion> devolverPublicacionesOdenadasPorFechaRecienteAAntigua() { 
 
+		 List <Publicacion> publicaciones = this.buscarPublicaciones();
+
+		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha(); 
+
+		TreeSet<Publicacion> ordenadoPorFechaRecienteAAntigua = new TreeSet<Publicacion>(ordenFechaRecienteAAntigua); 
+
+		ordenadoPorFechaRecienteAAntigua.addAll(publicaciones); 
+
+		return ordenadoPorFechaRecienteAAntigua; 
+
+		} 
 
 }

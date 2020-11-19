@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
-public class Publicacion {
+public class Publicacion implements Comparable<Publicacion>{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,17 +32,6 @@ public class Publicacion {
 	
 	@OneToOne
 	private Usuario usuario;
-//	
-//	@OneToMany
-//	private List <Comentario> comentarios;
-	
-//	public String getCategoria() {
-//		return categoria;
-//	}
-//
-//	public void setCategoria(String categoria) {
-//		this.categoria = categoria;
-//	}
 
 	public PublicacionTipo getTipo() {
 		return tipo;
@@ -124,14 +113,10 @@ public class Publicacion {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 
-//	public List<Comentario> getComentarios() {
-//		return comentarios;
-//	}
-//
-//	public void setComentarios(List<Comentario> comentarios) {
-//		this.comentarios = comentarios;
-//	}
+	@Override
+	public int compareTo(Publicacion publicacion) {
+		return this.id.compareTo(publicacion.getId()); 
+	}
+	
 }

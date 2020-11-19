@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -39,11 +40,11 @@ public class ControladorPublicacion {
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
-		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		TreeSet<Publicacion> publicaciones = servicioPublicacion.devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
 
 		if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
-			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+			publicaciones = (TreeSet<Publicacion>)servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 		}
 
 
@@ -53,7 +54,9 @@ public class ControladorPublicacion {
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
-
+		
+		
+		
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
