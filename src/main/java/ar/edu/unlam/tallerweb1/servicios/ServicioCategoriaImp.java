@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 
 @Service
@@ -22,6 +23,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void guardarCategoria(Categoria categoria) {
 		repositorioCategoria.guardarCategoria(categoria);
 	}
+	
 	@Override
 	public Categoria mostrarCategoriaPorId(Long id) {
 		return repositorioCategoria.mostrarCategoriaPorId(id);
@@ -37,16 +39,41 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		repositorioCategoria.borrarCategoria(id);
 		
 	}
-	@Override
-
-	public void editarCategoria(Long id) {
-		repositorioCategoria.editarCategoria(id);
-	}
+//	@Override
+//
+//	public void editarCategoria(Categoria categoria) {
+//		repositorioCategoria.editarCategoria(categoria);
+//	}
 
 	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo) {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 
 	}
+
+//	@Override
+//	public void editarCategoria(Long id) {
+//		repositorioCategoria.editarCategoria(id);
+//		
+//	}
+
+	@Override
+	public void editarNombre(String nombre, Long id) {
+		Categoria categoria = repositorioCategoria.mostrarCategoriaPorId(id);
+		categoria.setNombre(nombre);
+		
+	}
+
+	@Override
+	public void editarTipo(Integer tipoCategoria, Long id) {
+		Categoria categoria = repositorioCategoria.mostrarCategoriaPorId(id);
+		if (tipoCategoria.equals(0)) {
+			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		} else {
+			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+		}
+		
+	}
+	
 	
 	
 }

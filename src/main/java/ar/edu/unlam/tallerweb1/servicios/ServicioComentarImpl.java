@@ -77,6 +77,14 @@ public class ServicioComentarImpl implements ServicioComentar{
 		return repositorioComentar.respuestaListado(comentario);
 	}
 
+	@Override
+	public Boolean veridifcarUsuario(Usuario usuarioLogueado, Usuario usuarioIngresado) {
+		if (usuarioLogueado == usuarioIngresado) {
+			return true;
+		}
+		return false;
+	}
+
 	/*
 	 * @Override public Integer devolverAnio(Comentario comentario) { Integer anio =
 	 * ((Integer) comentario.getFechaHora().getYear()) + 1900; return anio; }

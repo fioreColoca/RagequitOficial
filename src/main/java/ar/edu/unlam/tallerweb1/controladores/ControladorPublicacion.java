@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
@@ -26,6 +30,8 @@ public class ControladorPublicacion {
 	private ServicioPublicacion servicioPublicacion;
 	@Inject
 	private ServicioCategoria servicioCategoria;
+	@Inject
+	private ServicioComentar servicioComentario;
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -34,50 +40,50 @@ public class ControladorPublicacion {
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
-		List<Publicacion> publicaciones = servicioPublicacion.buscarPublicaciones();
+		TreeSet<Publicacion> publicaciones = servicioPublicacion.devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
 
 		if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
-			publicaciones = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+			
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
 		}
 
-		String rol = request.getSession().getAttribute("ROL") != null
 
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+								? (Usuario) request.getSession().getAttribute("USUARIO")
+								: null;
+		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
+		
+		
+		
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("comentario", new Comentario());
+		modelo.put("comentarios", comentarios);
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("home", modelo);
 	}
 
 	@RequestMapping(path = "/guardarPublicacion", method = RequestMethod.POST)
-	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion) {
+	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request) {
 		Date fecha = new Date();
-		ModelMap modelo = new ModelMap();
-
+		
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
+		publicacion.setUsuario(usuario);		
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
+	
 
 		String errorCategoria = null;
 		String errorMensaje = null;
@@ -92,6 +98,7 @@ public class ControladorPublicacion {
 		if (publicacion.getMensaje().isEmpty()) {
 			errorMensaje = "La publicacion no puede tener un mensaje vacio";
 		}
+
 
 		if (errorCategoria == null && errorMensaje == null) {
 			servicioPublicacion.guardarPublicacion(publicacion);
@@ -119,4 +126,21 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("redirect:/home");
 	}
+
+	public ServicioCategoria getServicioCategoria() {
+		return servicioCategoria;
+	}
+
+	public void setServicioCategoria(ServicioCategoria servicioCategoria) {
+		this.servicioCategoria = servicioCategoria;
+	}
+
+	public ServicioPublicacion getServicioPublicacion() {
+		return servicioPublicacion;
+	}
+
+	public void setServicioPublicacion(ServicioPublicacion servicioPublicacion) {
+		this.servicioPublicacion = servicioPublicacion;
+	}
+	
 }

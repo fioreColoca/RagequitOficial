@@ -9,9 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Comentario { 
@@ -22,19 +22,23 @@ public class Comentario {
 	
 	@ManyToOne
 	private Publicacion publicacion;
+	@Transient
+	private Long publicacionId;
 	
 	@ManyToOne
 	private Comentario respuesta;
+	@Transient
+	private Long comentarioAResponderId;
 	
-	@OneToOne
+	@ManyToOne
 	private Usuario usuario;	
 	
-	/*@Column(name = "NAME", nullable = false, length = 150)
-	@OneToMany
-	private  List<Usuario> litadoLikes;  */
+	@ManyToMany
+	private  List<Usuario> litadoLikes; 
 
 	private String mensaje;
 	
+	@Column(name="fecha")
 	private Date fechaHora;
 	
 	private Integer cantidadLikes;
@@ -118,13 +122,29 @@ public class Comentario {
 		this.usuario = usuario;
 	}
 
-	/*public List<Usuario> getLitadoLikes() {
+	public List<Usuario> getLitadoLikes() {
 		return litadoLikes;
 	}
 
 	public void setLitadoLikes(List<Usuario> litadoLikes) {
 		this.litadoLikes = litadoLikes;
 	}
-	*/
+
+	public Long getPublicacionId() {
+		return publicacionId;
+	}
+
+	public void setPublicacionId(Long publicacionId) {
+		this.publicacionId = publicacionId;
+	}
+
+	public Long getComentarioAResponderId() {
+		return comentarioAResponderId;
+	}
+
+	public void setComentarioAResponderId(Long comentarioAResponderId) {
+		this.comentarioAResponderId = comentarioAResponderId;
+	}
+
 
 }

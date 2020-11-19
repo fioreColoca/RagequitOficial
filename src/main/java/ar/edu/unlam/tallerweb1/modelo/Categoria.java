@@ -12,6 +12,8 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private String urlImagen;
+	private String urlIcono;
 	
 	private CategoriaTipo tipoCategoria;
 	
@@ -35,6 +37,17 @@ public class Categoria {
 	public void setTipoCategoria(CategoriaTipo tipo) {
 		this.tipoCategoria = tipo;
 	}
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+	public String getUrlIcono() {
+		return urlIcono;
+	}
+	public void setUrlIcono(String urlIcono) {
+		this.urlIcono = urlIcono;
+	}
 	
-
 }

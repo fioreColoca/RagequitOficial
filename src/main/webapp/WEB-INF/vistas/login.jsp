@@ -42,8 +42,9 @@
 <%@ include file="header.jsp"%>
 <main>
 	<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
-
-
+	<c:if test="${not empty error}">
+		<h5 class="text-center text-danger">${error}</h5>
+	</c:if>
 	<div class="container" id="login">
 		<div class="row">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -73,7 +74,9 @@
 								type="submit">Iniciar sesi&oacute;n con Facebook</button>
 						</form:form>
 					</div>
-					<p class="text-center text-white">¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a></p>
+					<p class="text-center text-white">
+						¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
+					</p>
 				</div>
 			</div>
 		</div>

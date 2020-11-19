@@ -27,25 +27,14 @@ public class ControladorAdministrarRol {
 		ModelMap modelo = new ModelMap();
 		List<Usuario> usuarios = servicioUsuario.listarUsuarios();
 
-		String rol = request.getSession().getAttribute("ROL") != null
 
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+						? (Usuario) request.getSession().getAttribute("USUARIO")
+						: null;
+						
+		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("listaUsuarios", usuarios);
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
+
 
 		return new ModelAndView("administrarRol", modelo);
 	}
@@ -63,4 +52,14 @@ public class ControladorAdministrarRol {
 
 		return new ModelAndView("redirect:/administrar");
 	}
+
+	public ServicioUsuario getServicioUsuario() {
+		return servicioUsuario;
+	}
+
+	public void setServicioUsuario(ServicioUsuario servicioUsuario) {
+		this.servicioUsuario = servicioUsuario;
+	}
+	
+	
 }

@@ -13,10 +13,10 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 @Service
 @Transactional
 public class ServicioUsuarioImpl implements ServicioUsuario {
-	
+
 	@Inject
 	private RepositorioUsuario repositorioUsuario;
-	
+
 	@Override
 	public List<Usuario> listarUsuarios() {
 		return repositorioUsuario.listarUsuarios();
@@ -25,8 +25,47 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public void cambiarRol(Long id, String rol) {
 		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
-		System.out.println("se cambio el rol del usuario " + usuario.getNombre() + " con rol " + usuario.getRol() + " al rol " + rol);
 		usuario.setRol(rol);
+	}
+
+	@Override
+	public RepositorioUsuario getRepositorioUsuario() {
+		return repositorioUsuario;
+	}
+
+	@Override
+	public void setRepositorioUsuario(RepositorioUsuario repositorioUsuario) {
+		this.repositorioUsuario = repositorioUsuario;
+	}
+
+	@Override
+	public void cambiarNombre(Long id, String nombre) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setNombre(nombre);
+	}
+
+	@Override
+	public void cambiarApellido(Long id, String apellido) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setApellido(apellido);
+	}
+
+	@Override
+	public void cambiarEmail(Long id, String email) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setEmail(email);
+	}
+
+	@Override
+	public void cambiarNombreUsuario(Long id, String nombreUsuario) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setNombreUsuario(nombreUsuario);
+	}
+
+	@Override
+	public void cambiarContrasenia(Long id, String contrasenia) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setPassword(contrasenia);
 	}
 
 }
