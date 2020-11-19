@@ -77,7 +77,8 @@ public class ControladorCategoria {
 	}
 
 	@RequestMapping("/irACategorias")
-	public ModelAndView irACategorias(HttpServletRequest request) {
+	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
+			@RequestParam(value = "errorTipo", required = false) String errorTipo,HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
@@ -85,7 +86,9 @@ public class ControladorCategoria {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-
+				
+		modelo.put("errorNombre", errorNombre);
+		modelo.put("errorTipo", errorTipo);
 		modelo.put("categorias", categorias);
 		modelo.put("title", "RageQuit | Categoria Creadas");
 		modelo.put("usuarioLogeado", usuarioLogeado);
@@ -106,32 +109,33 @@ public class ControladorCategoria {
 			@RequestParam(value = "botonGuardar", required = false) Long id) 
 			{
 		
-		//ModelMap modelo = new ModelMap();
-		//Categoria categoria = new Categoria();
-		
+		String errorNombre = null;
+		String errorTipo = null;
 		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
-		if (tipoCategoria.equals("Juegos")) {
-			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		
+		if (nombreCategoria.isEmpty()) {
+			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
-			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			categoria.setNombre(nombreCategoria);
 		}
 
-		categoria.setNombre(nombreCategoria);
+		if (tipoCategoria == null) {
+			errorTipo = "Falta elegir categoria";
+		} else {
+			if (tipoCategoria.equals("Juegos")) {
+				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+			} else {
+				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			}
+		}
 		
-		servicioCategoria.editarCategoria(id);
+		if (errorNombre == null && errorTipo == null) {
+			servicioCategoria.editarCategoria(id);
+			return new ModelAndView("redirect:/biblioteca");
+		}
+
+		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
 		
-//		if (tipoCategoria.equals("Juegos")) {
-//			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
-//		} else {
-//			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
-//		}
-//
-//		categoria.setNombre(nombreCategoria);
-//		
-//		servicioCategoria.editarCategoria(categoria);
-		
-//		modelo.put("categoriaEditada", categoria);
-		return new ModelAndView("redirect:/irACategorias");
 	}
 
 }
