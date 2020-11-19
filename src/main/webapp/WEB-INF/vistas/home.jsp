@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-4 text-right">
                                         <div class="d-flex justify-content-end">
-                                            <img alt="logo" class="categoria-icon"
+                                            <img alt="logo" class="categoria-icon pr-1"
                                                 src="${publicacionDelFor.getCategoria().getUrlIcono()}">
                                             <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
                                         </div>
@@ -183,7 +183,7 @@
                                                 modelAttribute="comentario">
                                                 <div>
                                                 	<form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar"
-                                                        class="form-control" rows="3"/>
+                                                        class="form-control" placeholder="Escriba un comentario aqui..." rows="3"/>
                                                 </div>
                                                 <div class="row">
                                                 	<form:input type="hidden" path="publicacionId" value="${publicacionDelFor.getId()}"/>
