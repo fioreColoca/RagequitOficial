@@ -31,6 +31,9 @@
                             </select>
                         </div>
                         
+                        <label class="pt-3" for="archivoImagenVideo">Subir imagen o video</label>
+                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
+                        
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
                         </div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 
 @Service
@@ -49,9 +50,27 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 
 	}
 
+//	@Override
+//	public void editarCategoria(Long id) {
+//		repositorioCategoria.editarCategoria(id);
+//		
+//	}
+
 	@Override
-	public void editarCategoria(Long id) {
-		repositorioCategoria.editarCategoria(id);
+	public void editarNombre(String nombre, Long id) {
+		Categoria categoria = repositorioCategoria.mostrarCategoriaPorId(id);
+		categoria.setNombre(nombre);
+		
+	}
+
+	@Override
+	public void editarTipo(Integer tipoCategoria, Long id) {
+		Categoria categoria = repositorioCategoria.mostrarCategoriaPorId(id);
+		if (tipoCategoria.equals(0)) {
+			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		} else {
+			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+		}
 		
 	}
 	

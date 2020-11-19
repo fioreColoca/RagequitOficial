@@ -19,7 +19,9 @@ public interface ServicioCategoria {
 	
 //	void editarCategoria(Categoria categoria);
 	
-	void editarCategoria(Long id);
+	void editarNombre(String nombre, Long id);
+	
+	void editarTipo(Integer tipoCategoria, Long id);
 
 
 
