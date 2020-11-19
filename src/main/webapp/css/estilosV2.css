@@ -3,6 +3,7 @@
 /***********GENERAL***********/
 body {
 	font-family: 'Varela Round', sans-serif;
+	
 }
 
 main {
@@ -441,6 +442,7 @@ main {
 
 footer {
 	border-top: 2px solid #f4a117;
+
 }
 
 .card {
