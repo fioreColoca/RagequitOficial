@@ -306,13 +306,8 @@
                                                         </div>
                                                     </div>
                                                 </c:if>
-                                            </c:if>
-                                            </c:if>
-                                            <!--  COMUN  -->
-
-                                            <div class="ml-5">
+                                                <div class="ml-5">
                                                 <c:forEach items="${comentarios}" var="respuesta">
-
                                                     <!--  RESPUESTA COMUN  -->
                                                     <c:set var="tipoRespuesta" value="${respuesta.getTipo()}"></c:set>
                                                     <c:if test="${tipoRespuesta=='COMUN'}">
@@ -320,7 +315,8 @@
                                                             value="${respuesta.getRespuesta().getId()}"></c:set>
                                                         <c:set var="comentarioId" value="${comentario.getId()}"></c:set>
                                                         <c:if test="${RespuestaDe==comentarioId}">
-                                                            <div class="container p-3 mb-2 bg-fondo text-white">
+                                                            <div class="container p-3 bg-fondo border border-top-0 
+                                                    	border-right-0 border-left-0 border-warning text-white">
                                                                 <div class="row mb-4">
 
                                                                     <div
@@ -358,10 +354,10 @@
                                                                             </p>
                                                                             <div
                                                                                 class="container colorComentario rounded">
-                                                                                <p class="text-dark !important p-3">
+                                                                                <p class="text-dark !important p-3 bg-light">
                                                                                     ${respuesta.getMensaje()}</p>
                                                                             </div>
-                                                                            <c:if test="${not empty usuarioRol}">
+                                                                            <c:if test="${not empty usuarioLogeado}">
                                                                                 <div
                                                                                     class="hoverIcons d-flex justify-content-around bg-fondo p-2">
                                                                                     <form action="meGustaComentario">
@@ -395,7 +391,7 @@
                                                                                         value="${respuesta.getUsuario().getId()}">
                                                                                     </c:set>
                                                                                     <c:set var="IdUsuarioRespuesta"
-                                                                                        value="${usuarioId}"></c:set>
+                                                                                        value="${usuarioLogeado.getId()}"></c:set>
                                                                                     <c:if
                                                                                         test="${idUsuario == IdUsuarioRespuesta}">
                                                                                         <form action="borrarComentario">
@@ -434,6 +430,9 @@
                                                     <!--  COMUN  -->
                                                 </c:forEach>
                                             </div>
+                                            </c:if>
+                                            </c:if>
+                                            <!--  COMUN  -->
                                         </c:forEach>
                                     </c:if>
 
