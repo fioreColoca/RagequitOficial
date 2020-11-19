@@ -19,7 +19,7 @@ public interface RepositorioCategoria {
 	
 //	void editarCategoria(Categoria categoria);
 
-	void editarCategoria(Long id);
+//	void editarNombre(Long id);
 
 
 

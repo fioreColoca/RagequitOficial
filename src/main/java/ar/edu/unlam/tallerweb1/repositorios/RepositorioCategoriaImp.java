@@ -45,11 +45,11 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 //		sessionFactory.getCurrentSession().save(categoria);
 //	}
 	
-	@Override
-	public void editarCategoria(Long id) {
-		Categoria categoria = mostrarCategoriaPorId(id);
-		sessionFactory.getCurrentSession().update(categoria);
-	}
+//	@Override
+//	public void editarNombre(Long id) {
+//		Categoria categoria = mostrarCategoriaPorId(id);
+//		sessionFactory.getCurrentSession().update(categoria);
+//	}
 
 	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
 		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).add(Restrictions.eq("tipoCategoria", tipoCategoria)).list();

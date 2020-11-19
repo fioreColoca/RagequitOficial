@@ -11,11 +11,12 @@ $(document).ready(function(){
 	
 });
 
-/*$(document).ready(function(){
-	$('.botonGuardar').click(function () {
+$(document).ready(function(){
+	$('.botonEditar').click(function () {
     	var categoriaId= $(this).data('id');
     	$(".modal-footer #botonGuardar").val( categoriaId);
-	});*/
+	});
+});
 
 var owl = $('.owl-carousel');
 
@@ -67,4 +68,3 @@ owl.on('mousewheel', '.owl-stage', function (e) {
     }
     e.preventDefault();
 });
-
