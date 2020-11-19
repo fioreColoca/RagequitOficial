@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.controladores.ControladorComentario;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 public class ComentarioTest {
 
@@ -23,6 +25,8 @@ public class ComentarioTest {
 	private HttpServletRequest requestMock;
 	private HttpSession sessionMock;
 	private String tipoComentario;
+	private Publicacion publicacion;
+	private ServicioPublicacion servicioPublicacion;
 	
 	
 	@Before
@@ -32,7 +36,8 @@ public class ComentarioTest {
 		requestMock = mock(HttpServletRequest.class);
 		sessionMock = mock(HttpSession.class);
 		when(requestMock.getSession()).thenReturn(sessionMock);
-		
+		publicacion = mock(Publicacion.class);
+		servicioPublicacion = mock(ServicioPublicacion.class);
 	}
 
 	
@@ -43,9 +48,10 @@ public class ComentarioTest {
 		when(comentario.getMensaje()).thenReturn("hola");
 		
 		comentarioControlador.setServicioComentario(servicioComentario);
+		comentarioControlador.setServicioPublicacion(servicioPublicacion);
 		
-		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario.getMensaje(), tipoComentario, requestMock);	
-		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/comentarioVisualizacion"); 
+		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario ,requestMock);	
+		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home"); 
 
 	}
 	
@@ -55,10 +61,10 @@ public class ComentarioTest {
 		when(comentario.getMensaje()).thenReturn(" ");
 		
 		comentarioControlador.setServicioComentario(servicioComentario);
+		comentarioControlador.setServicioPublicacion(servicioPublicacion);
 		
-		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario.getMensaje(), tipoComentario, requestMock);	
-		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/comentario?errorComentario=mensaje vacio"); 
+		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario, requestMock);	
+		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorComentario=mensaje vacio"); 
 	}
 	
-
 }

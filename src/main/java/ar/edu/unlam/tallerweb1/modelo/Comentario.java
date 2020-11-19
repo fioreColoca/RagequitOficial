@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Comentario { 
@@ -21,9 +22,13 @@ public class Comentario {
 	
 	@ManyToOne
 	private Publicacion publicacion;
+	@Transient
+	private Long publicacionId;
 	
 	@ManyToOne
 	private Comentario respuesta;
+	@Transient
+	private Long comentarioAResponderId;
 	
 	@ManyToOne
 	private Usuario usuario;	
@@ -124,5 +129,22 @@ public class Comentario {
 	public void setLitadoLikes(List<Usuario> litadoLikes) {
 		this.litadoLikes = litadoLikes;
 	}
+
+	public Long getPublicacionId() {
+		return publicacionId;
+	}
+
+	public void setPublicacionId(Long publicacionId) {
+		this.publicacionId = publicacionId;
+	}
+
+	public Long getComentarioAResponderId() {
+		return comentarioAResponderId;
+	}
+
+	public void setComentarioAResponderId(Long comentarioAResponderId) {
+		this.comentarioAResponderId = comentarioAResponderId;
+	}
+
 
 }

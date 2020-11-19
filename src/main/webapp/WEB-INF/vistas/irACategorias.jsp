@@ -3,7 +3,7 @@
     <section>
 
         <article class="">
-            <h3>Categorias</h3>
+            <h3 class="border-bottom text-center mb-4">Categorias</h3>
             <p> Estas categorias fueron creadas: </p>
          
             <div class="row justify-content-center">
@@ -45,27 +45,37 @@
                        
                        <form action="editarCategoria">
                         <div class="text-dark form-group">
-                            <label for="guardarCategoria">Nombre de la categoria:</label>
-                            <input type="text" name="guardarCategoria" id="guardarCategoria" class="form-control"
+                            <label for="nombre">Nombre de la categoria:</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control"
                                 placeholder="Valorant, Anime, Musica ...">
                         </div>
                         <div class="text-dark">
                             <label for="filtro">Tipo de categoria</label>
                             <select name="categoria" id="categoria" class="custom-select">
                                 <option disabled selected>Seleccione una opción</option>
-                                <option value="Juegos">Juegos</option>
-                                <option value="Varios">Varios</option>
+                                <option value="0">Juegos</option>
+                                <option value="1">Varios</option>
                             </select>
                         </div>
                         
-                        <!--<label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
-                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">-->
+                        <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
+                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
                         
-                        <div class="text-right">
+                        <div class="text-right modal-footer">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar"
                                 id="botonGuardar">GUARDAR</button>
                         </div>
                     </form>
+                    
+                    <c:if test="${errorNombre != 'null'}">
+                    <h4 class="text-danger"><span>${errorNombre}</span></h4>
+                    <br>
+                </c:if>
+                
+                <c:if test="${errorTipo != 'null'}">
+                    <h4 class="text-danger"><span>${errorTipo}</span></h4>
+                    <br>
+                </c:if>
 
                         </div>
                     </div>

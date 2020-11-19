@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
 @Controller
@@ -23,34 +24,19 @@ public class ControladorCategoria {
 	private ServicioCategoria servicioCategoria;
 
 	@RequestMapping("/categoria")
-	public ModelAndView irACategoria(HttpServletRequest request
-	/*
-	 * @RequestParam(value = "errorCategoria", required = false) String
-	 * errorCategoria
-	 */) {
+	public ModelAndView categoria(@RequestParam(value = "errorNombre", required = false) String errorNombre,
+			@RequestParam(value = "errorTipo", required = false) String errorTipo,
+			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-
-		String rol = request.getSession().getAttribute("ROL") != null
-
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
+				
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+					? (Usuario) request.getSession().getAttribute("USUARIO")
+					: null;
+				
+		modelo.put("errorNombre", errorNombre);
+		modelo.put("errorTipo", errorTipo);
 		modelo.put("title", "RageQuit | Categoria");
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
-
-		/* modelo.put("errorCategoria", errorCategoria); */
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("categoria", modelo);
 	}
@@ -61,54 +47,51 @@ public class ControladorCategoria {
 
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
-
-		String errorCategoria = null;
-
-		if (tipoCategoria.equals("Juegos")) {
-			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+		
+		String errorNombre = null;
+		String errorTipo = null;
+		
+		if (nombreCategoria.isEmpty()) {
+			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
-			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			categoria.setNombre(nombreCategoria);
 		}
 
-		/*
-		 * if (categoria.getNombre().equals(nombreCategoria)) { errorCategoria =
-		 * "La categoría ya fue creada"; }
-		 */
-		categoria.setNombre(nombreCategoria);
+		if (tipoCategoria == null) {
+			errorTipo = "Falta elegir categoria";
+		} else {
+			if (tipoCategoria.equals("Juegos")) {
+				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
+			} else {
+				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
+			}
+		}
+		
+		if (errorNombre == null && errorTipo == null) {
+			servicioCategoria.guardarCategoria(categoria);
+			return new ModelAndView("redirect:/biblioteca");
+		}
 
-		servicioCategoria.guardarCategoria(categoria);
-
-		modelo.put("categoriaCreada", categoria);
-		/* return new ModelAndView("redirect:/home?errorMensaje=" + errorCategoria); */
-		return new ModelAndView("redirect:/biblioteca", modelo);
+		//modelo.put("categoriaCreada", categoria);
+		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
 	}
 
 	@RequestMapping("/irACategorias")
-	public ModelAndView irACategorias(HttpServletRequest request) {
+	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
+			@RequestParam(value = "errorTipo", required = false) String errorTipo,HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
-		String rol = request.getSession().getAttribute("ROL") != null
-
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
+		modelo.put("errorNombre", errorNombre);
+		modelo.put("errorTipo", errorTipo);
 		modelo.put("categorias", categorias);
-		modelo.put("usuarioRol", rol);
 		modelo.put("title", "RageQuit | Categoria Creadas");
-		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("irACategorias", modelo);
 	}
@@ -121,26 +104,33 @@ public class ControladorCategoria {
 	}
 
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
-	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
-			@RequestParam(value = "editarCategoria", required = false) String nombreCategoria,
+	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) Integer tipoCategoria,
+			@RequestParam(value = "nombre", required = false) String nombreCategoria,
 			@RequestParam(value = "botonGuardar", required = false) Long id) 
 			{
 		
-		//ModelMap modelo = new ModelMap();
-		Categoria categoria = new Categoria();
+		/*String errorNombre = null;
+		String errorTipo = null;*/
+		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
 		
-		if (tipoCategoria.equals("Juegos")) {
-			categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
-		} else {
-			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
-		}
+		/*if (nombreCategoria.isEmpty()) {
+			errorNombre = "Falta elegir nombre a la categoria";
+		} else {*/
+			servicioCategoria.editarNombre(nombreCategoria, id);
+		/*}
 
-		categoria.setNombre(nombreCategoria);
+		if (tipoCategoria == null) {
+			errorTipo = "Falta elegir categoria";
+		} else {*/
+			servicioCategoria.editarTipo(tipoCategoria, id);
+		/*}
 		
-		servicioCategoria.editarCategoria(categoria);
+		if (errorNombre == null && errorTipo == null) {*/
+			return new ModelAndView("redirect:/biblioteca");
+		/*}
+
+		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);*/
 		
-		//modelo.put("categoriaEditada", categoria);
-		return new ModelAndView("redirect:/irACategorias");
 	}
 
 }

@@ -46,14 +46,12 @@
                             <a href="#" class="dropdown-item"><i class="fas fa-power-off"></i>Cerrar sesi&oacute;n</a>
                         </div>
                     </div>
-                    <c:if test="${not empty nombreUsuario}">
-                        <img alt="" src="${url_imagen }" class="m-auto">
-                        <a class="m-auto"><span>Bienvenido ${nombreUsuario}</span></a>
+                    <c:if test="${not empty usuarioLogeado}">
+                        <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
+                        <a class="m-auto"><span>Bienvenido ${usuarioLogeado.getNombre()}</span></a>
                     </c:if>
                     <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
-                    <a href="comentario" class="nav-item nav-link">
-                        <i class="fas fa-comments"></i><span>Comentarios</span></a>
-                    <c:if test="${usuarioRol == 'admin'}">
+                    <c:if test="${usuarioLogeado.getRol() == 'admin'}">
                         <a href="categoria" class="nav-item nav-link">
                             <i class="fas fa-gamepad"></i><span>Categoria</span>
                         </a>
@@ -61,17 +59,17 @@
                     <a href="biblioteca" class="nav-item nav-link">
                         <i class="fas fa-list-ul"></i><span>Biblioteca</span>
                     </a>
-                    <c:if test="${usuarioRol == 'admin'}">
+                    <c:if test="${usuarioLogeado.getRol() == 'admin'}">
                         <a href="administrar" class="nav-item nav-link">
                             <i class="fas fa-trophy"></i><span>Roles</span>
                         </a>
                     </c:if>
-                    <c:if test="${empty usuarioRol }">
+                    <c:if test="${empty usuarioLogeado}">
                         <a href="login" class="nav-item nav-link">
                             <i class="fas fa-sign-in-alt"></i><span>Login</span>
                         </a>
                     </c:if>
-                    <c:if test="${not empty usuarioRol}">
+                    <c:if test="${not empty usuarioLogeado}">
                         <a href="cerrarSesion" class="nav-item nav-link">
                             <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span>
                         </a>
