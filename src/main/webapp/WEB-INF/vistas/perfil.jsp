@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 <main>
-    <c:if test="${not empty usuarioRol}">
+    <c:if test="${not empty usuarioLogeado}">
 
         <section class="ancho p-3 row">
             <article class="col-12 col-md-3">
@@ -230,7 +230,7 @@
         </section>
     </c:if>
 
-    <c:if test="${ empty usuarioRol}">
+    <c:if test="${ empty usuarioLogeado}">
         <div id="notfound" style="margin: -1em">
             <div class="notfound">
                 <div class="notfound-404">
