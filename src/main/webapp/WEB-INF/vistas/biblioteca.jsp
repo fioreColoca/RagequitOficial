@@ -30,9 +30,9 @@
                 <div class="row text-center">
                 
                     <c:forEach items="${categorias}" var="categoriaDelFor">
-                        <div class="col-md-4" style="height: fit-content;">
+                        <a href="juegosOVarios?categoriaId=${categoriaDelFor.getId()}"><div class="col-md-4" style="height: fit-content;">
                             <div class="divImagenBiblioteca">
-                            <img class="imagenBiblioteca text-center borde-naranja" src="${categoriaDelFor.getUrlImagen()}">                                                            
+                            <img class="imagenBiblioteca text-center borde-naranja" src="${categoriaDelFor.getUrlImagen()}">
 
                             <div class="nombreYCategoria nombreYCategoriaDesenfoque">
 
@@ -41,6 +41,7 @@
                             
                             </div>
                             </div>
+                        </a>
                         </div>
                     </c:forEach>
                     
