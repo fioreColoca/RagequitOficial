@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 <main>
-    <c:if test="${usuarioRol == 'admin'}">
+    <c:if test="${usuarioLogeado.getRol() == 'admin'}">
         <section>
             <article>
                 <div>
@@ -53,7 +53,7 @@
             </article>
         </section>
     </c:if>
-    <c:if test="${usuarioRol != 'admin'}">
+    <c:if test="${usuarioLogeado.getRol() != 'admin'}">
         <div id="notfound" style="margin: -1em">
             <div class="notfound">
                 <div class="notfound-404">
