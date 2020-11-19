@@ -104,37 +104,32 @@ public class ControladorCategoria {
 	}
 
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
-	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
-			@RequestParam(value = "editarCategoria", required = false) String nombreCategoria,
+	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) Integer tipoCategoria,
+			@RequestParam(value = "nombre", required = false) String nombreCategoria,
 			@RequestParam(value = "botonGuardar", required = false) Long id) 
 			{
 		
-		String errorNombre = null;
-		String errorTipo = null;
+		/*String errorNombre = null;
+		String errorTipo = null;*/
 		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
 		
-		if (nombreCategoria.isEmpty()) {
+		/*if (nombreCategoria.isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
-		} else {
-			categoria.setNombre(nombreCategoria);
-		}
+		} else {*/
+			servicioCategoria.editarNombre(nombreCategoria, id);
+		/*}
 
 		if (tipoCategoria == null) {
 			errorTipo = "Falta elegir categoria";
-		} else {
-			if (tipoCategoria.equals("Juegos")) {
-				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
-			} else {
-				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
-			}
-		}
+		} else {*/
+			servicioCategoria.editarTipo(tipoCategoria, id);
+		/*}
 		
-		if (errorNombre == null && errorTipo == null) {
-			servicioCategoria.editarCategoria(id);
+		if (errorNombre == null && errorTipo == null) {*/
 			return new ModelAndView("redirect:/biblioteca");
-		}
+		/*}
 
-		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
+		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);*/
 		
 	}
 
