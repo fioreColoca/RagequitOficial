@@ -51,8 +51,6 @@
                         <a class="m-auto"><span>Bienvenido ${usuarioLogeado.getNombre()}</span></a>
                     </c:if>
                     <a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
-                    <a href="comentario" class="nav-item nav-link">
-                        <i class="fas fa-comments"></i><span>Comentarios</span></a>
                     <c:if test="${usuarioLogeado.getRol() == 'admin'}">
                         <a href="categoria" class="nav-item nav-link">
                             <i class="fas fa-gamepad"></i><span>Categoria</span>

@@ -58,14 +58,24 @@
                             </select>
                         </div>
                         
-                        <!--<label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
-                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">-->
+                        <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
+                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
                         
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar"
                                 id="botonGuardar">GUARDAR</button>
                         </div>
                     </form>
+                    
+                    <c:if test="${errorNombre != 'null'}">
+                    <h4 class="text-danger"><span>${errorNombre}</span></h4>
+                    <br>
+                </c:if>
+                
+                <c:if test="${errorTipo != 'null'}">
+                    <h4 class="text-danger"><span>${errorTipo}</span></h4>
+                    <br>
+                </c:if>
 
                         </div>
                     </div>

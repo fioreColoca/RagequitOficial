@@ -32,7 +32,7 @@ public class ControladorComentario {
 
 	/* ---------- Pagina para comentar ----------- */
 	
-	@RequestMapping(path = "/comentario")
+	/* @RequestMapping(path = "/comentario")
 	public ModelAndView comentar(HttpServletRequest request) {
 		String rol = request.getSession().getAttribute("ROL") != null
 				? (String) request.getSession().getAttribute("ROL")
@@ -54,11 +54,11 @@ public class ControladorComentario {
 			return new ModelAndView("comentarioEscribir", modelo);
 		}
 		return new ModelAndView("redirect:/login");
-	}
+	} */
 
 	/* ---------- Pagina para imprimir comentarios ----------- */
 	
-	@RequestMapping(path = "/comentarioVisualizacion")
+	/* @RequestMapping(path = "/comentarioVisualizacion")
 	public ModelAndView verComentario(HttpServletRequest request,
 			@RequestParam(value = "nombreUsuario", required = false) String usuarioNombre
 
@@ -94,7 +94,7 @@ public class ControladorComentario {
 		modelo.put("title", "RageQuit | Comentarios Hechos");
 
 		return new ModelAndView("comentarioVer", modelo);
-	}
+	} */
 
 	/* ---------- Pagina para guardar comentarios ----------- */
 	
@@ -152,7 +152,7 @@ public class ControladorComentario {
 			 HttpServletRequest request) {
 		
 		servicioComentario.darLikeComentario(idLike);
-		return new ModelAndView("redirect:/comentarioVisualizacion");
+		return new ModelAndView("redirect:/home");
 	}
 
 	/* ---------- Pagina para responder comentarios ----------- */
@@ -195,5 +195,14 @@ public class ControladorComentario {
 	public void setServicioComentario(ServicioComentar servicioComentario) {
 		this.servicioComentario = servicioComentario;
 	}
+	
+	public ServicioPublicacion getServicioPublicacion() {
+		return servicioPublicacion;
+	}
+
+	public void setServicioPublicacion(ServicioPublicacion servicioPublicacion) {
+		this.servicioPublicacion = servicioPublicacion;
+	}
+	
 
 }
