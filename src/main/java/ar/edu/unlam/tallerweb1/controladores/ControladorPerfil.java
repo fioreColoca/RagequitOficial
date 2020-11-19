@@ -23,41 +23,25 @@ public class ControladorPerfil {
 	public ModelAndView mostrarPerfil(@RequestParam(value = "resultado", required = false) String resultado,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-		String rol = request.getSession().getAttribute("ROL") != null
-
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 
-		String apellido = (String) usuario.getApellido() != null ? (String) usuario.getApellido() : null;
-		String nombre = (String) usuario.getNombre() != null ? (String) usuario.getNombre() : null;
-		String email = (String) usuario.getEmail() != null ? (String) usuario.getEmail() : null;
-		String nombreUsuarioo = (String) usuario.getNombreUsuario() != null ? (String) usuario.getNombreUsuario()
+		String apellido = (String) usuarioLogeado.getApellido() != null ? (String) usuarioLogeado.getApellido() : null;
+		String nombre = (String) usuarioLogeado.getNombre() != null ? (String) usuarioLogeado.getNombre() : null;
+		String email = (String) usuarioLogeado.getEmail() != null ? (String) usuarioLogeado.getEmail() : null;
+		String nombreUsuarioo = (String) usuarioLogeado.getNombreUsuario() != null
+				? (String) usuarioLogeado.getNombreUsuario()
 				: null;
-		String contrasenia = (String) usuario.getPassword() != null ? (String) usuario.getPassword() : null;
+		String contrasenia = (String) usuarioLogeado.getPassword() != null ? (String) usuarioLogeado.getPassword()
+				: null;
 
 		modelo.put("cambioExitoso", resultado);
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
-		modelo.put("url_imagen", url_imagen);
 		modelo.put("apellido", apellido);
 		modelo.put("email", email);
 		modelo.put("nombre", nombre);
 		modelo.put("nombreUsuarioo", nombreUsuarioo);
-
+		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("contrasenia", contrasenia);
 
 		modelo.put("title", "RageQuit | Perfil");
