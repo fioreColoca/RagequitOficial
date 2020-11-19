@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
 @Controller
@@ -27,29 +28,15 @@ public class ControladorCategoria {
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-
-		String rol = request.getSession().getAttribute("ROL") != null
-
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
+				
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+					? (Usuario) request.getSession().getAttribute("USUARIO")
+					: null;
 				
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
-		modelo.put("url_imagen", url_imagen);
 		modelo.put("title", "RageQuit | Categoria");
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("categoria", modelo);
 	}
@@ -95,26 +82,13 @@ public class ControladorCategoria {
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
-		String rol = request.getSession().getAttribute("ROL") != null
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
 
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
 		modelo.put("categorias", categorias);
-		modelo.put("usuarioRol", rol);
 		modelo.put("title", "RageQuit | Categoria Creadas");
-		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("irACategorias", modelo);
 	}
