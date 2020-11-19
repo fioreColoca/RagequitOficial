@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Biblioteca;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBiblioteca;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
@@ -42,28 +43,16 @@ public class ControladorBiblioteca {
 			categorias = servicioCategoria.mostrarCategoriaPorTipo(categoria.getTipoCategoria());
 		}
 
-		String rol = request.getSession().getAttribute("ROL") != null
-
-				? (String) request.getSession().getAttribute("ROL")
-
-				: "";
-		String nombreUsuario = request.getSession().getAttribute("NOMBREUSUARIO") != null
-
-				? (String) request.getSession().getAttribute("NOMBREUSUARIO")
-
-				: "";
-		String url_imagen = request.getSession().getAttribute("URLIMAGEN") != null
-
-				? (String) request.getSession().getAttribute("URLIMAGEN")
-
-				: "";
-		modelo.put("url_imagen", url_imagen);
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+				
 		modelo.put("categorias", categorias);
 		modelo.put("idBiblioteca", idbiblioteca);
 		modelo.put("biblioteca", biblioteca);
 		modelo.put("title", "RageQuit | Biblioteca");
-		modelo.put("usuarioRol", rol);
-		modelo.put("nombreUsuario", nombreUsuario);
+		modelo.put("usuarioLogeado", usuarioLogeado);
+
 
 		return new ModelAndView("biblioteca", modelo);
 	}
