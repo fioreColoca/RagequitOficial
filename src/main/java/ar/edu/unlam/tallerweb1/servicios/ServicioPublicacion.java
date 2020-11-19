@@ -13,6 +13,7 @@ public interface ServicioPublicacion {
 	List<Publicacion> buscarPublicacionesPorCategoria(Categoria categoria);
 	List<Publicacion> buscarPublicaciones();
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
+	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones);
 	Publicacion obtenerPublicacion(Long id);
 	void borrarPublicacion(Long id);
 }

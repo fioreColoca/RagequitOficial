@@ -61,5 +61,20 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return ordenadoPorFechaRecienteAAntigua; 
 
 		} 
+	
+	
+	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones) { 
+		
+		TreeSet publicacionesTreeSet = new TreeSet(listaPublicaciones);
+
+		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha(); 
+
+		TreeSet<Publicacion> ordenadoPorFechaRecienteAAntigua = new TreeSet<Publicacion>(ordenFechaRecienteAAntigua); 
+
+		ordenadoPorFechaRecienteAAntigua.addAll(publicacionesTreeSet); 
+
+		return ordenadoPorFechaRecienteAAntigua; 
+
+		}
 
 }

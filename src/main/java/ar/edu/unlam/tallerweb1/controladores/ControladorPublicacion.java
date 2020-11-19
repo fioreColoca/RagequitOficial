@@ -44,7 +44,9 @@ public class ControladorPublicacion {
 
 		if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
-			publicaciones = (TreeSet<Publicacion>)servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+			
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
 		}
 
 
