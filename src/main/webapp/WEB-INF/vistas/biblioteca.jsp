@@ -32,6 +32,7 @@
                     <c:forEach items="${categorias}" var="categoriaDelFor">
                         <div class="col-md-4">
                             <div class="card mb-4 borde-naranja">
+                            <img src="${categoriaDelFor.getUrlImagen()}">
                             	<h4 class="text-white">${categoriaDelFor.getNombre()}</h4>                              
                                 <p class="text-center text-naranjaClaro">${categoriaDelFor.getTipoCategoria()}</p>
                             </div>
