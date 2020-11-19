@@ -3,7 +3,7 @@
 <main>
 
     <section class="border-bottom mb-2">
-        <h3>�Bienvenido a la seccion Biblioteca!</h3>
+        <h3>Bienvenido a la seccion Biblioteca</h3>
     </section>
     <section class="anchoCategoria">
         <form action="bibliotecaFiltrada">
