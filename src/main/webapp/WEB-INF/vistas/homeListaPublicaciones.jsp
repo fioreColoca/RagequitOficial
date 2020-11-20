@@ -4,40 +4,49 @@
                     <c:if test="${not empty publicaciones}">
                         <c:forEach items="${publicaciones}" var="publicacionDelFor">
                             <div class="col-12 mt-5 mb-5 rounded-lg">
+                            	<c:if test="${publicacionDelFor.getEstado() == 'INACTIVO'}">
+                            		<div class="p-2 bg-fondo rounded-top border border-top-0 
+                                border-right-0 border-left-0 border-warning">
+                            			<h3 class="comment-text text-light p-2 bg-fondo rounded-top">Publicacion borrada</h3>
+                            		</div>
+                                	
+                                </c:if>
                                 <div class="d-flex justify-content-around p-2 bg-fondo rounded-top">
-                                    <div class="col-4 justify-content-start">
-                                        <h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
-                                        <c:if test="${not empty usuarioLogeado}">
-                                        <button class="btn btn-naranja">SEGUIR</button>
-                                        </c:if>
-                                    </div>
-                                    <div class="col-4 text-center user-info">
-                                        <img class="rounded-circle"
-                                            src="${publicacionDelFor.getUsuario().getUrl_imagen()}" width="100">
-                                    </div>
-                                    <div class="col-4 text-right">
-                                        <div class="d-flex justify-content-end">
-                                            <img alt="logo" class="categoria-icon pr-1"
-                                                src="${publicacionDelFor.getCategoria().getUrlIcono()}">
-                                            <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
-                                        </div>
-                                        <p class="text-white-50">
-                                            ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs
-                                            ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}
-                                        </p>
-                                        <c:if test="${publicacionDelFor.getUsuario().getId() == usuarioLogeado.getId()}">
-                                        	<button type="button" class="btn btn-outline-naranja botonBorrar"
-                                            	data-toggle="modal" data-target="#borrarPublicacion"
-                                            	data-id="${publicacionDelFor.getId()}">
-                                            	<i class="far fa-trash-alt"></i>
-                                        	</button>
-                                        </c:if>
-                                    </div>
+                                    <c:if test="${publicacionDelFor.getEstado() == 'ACTIVO'}">
+                                    	<div class="col-4 justify-content-start">
+                                        	<h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
+                                        	<c:if test="${not empty usuarioLogeado}">
+                                        		<button class="btn btn-naranja">SEGUIR</button>
+                                        	</c:if>
+                                    	</div>
+                                    	<div class="col-4 text-center user-info">
+                                        	<img class="rounded-circle"
+                                            	src="${publicacionDelFor.getUsuario().getUrl_imagen()}" width="100">
+                                    	</div>
+                                    	<div class="col-4 text-right">
+                                        	<div class="d-flex justify-content-end">
+                                            	<img alt="logo" class="categoria-icon pr-1"
+                                                	src="${publicacionDelFor.getCategoria().getUrlIcono()}">
+                                            	<h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                        	</div>
+                                        	<p class="text-white-50">
+                                            	${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs
+                                            	${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}
+                                        	</p>
+                                        	<c:if test="${publicacionDelFor.getUsuario().getId() == usuarioLogeado.getId()}">
+                                        		<button type="button" class="btn btn-outline-naranja botonBorrar"
+                                            			data-toggle="modal" data-target="#borrarPublicacion"
+                                            			data-id="${publicacionDelFor.getId()}">
+                                            		<i class="far fa-trash-alt"></i>
+                                        		</button>
+                                        	</c:if>
+                                    	</div>
                                 </div>
                                 <div class="text-left p-3 bg-light text-dark">
-                                    <p class="comment-text">${publicacionDelFor.getMensaje()}</p>
+                                	<h4 class="comment-text">${publicacionDelFor.getMensaje()}</h4>
                                 </div>
-                                <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom">
+                                <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
+                                border-right-0 border-left-0 border-warning">
                                     <form>
                                         <div>
                                             <button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
@@ -71,6 +80,7 @@
                                 <div>
                                 	<%@ include file="homeResponderPublicacion.jsp"%>
                                 </div>
+                       </c:if>
                                 <div>
                                     <%@ include file="homeListaComentarios.jsp"%>
                                 </div>

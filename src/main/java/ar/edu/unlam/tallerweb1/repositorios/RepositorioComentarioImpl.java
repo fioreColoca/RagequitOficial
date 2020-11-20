@@ -38,9 +38,9 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 
 
 	@Override
-	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
+	public List<Comentario> obtenerComentariosPorPublicacion(Publicacion publicacion) {
 		return sessionFactory.getCurrentSession().createCriteria(Comentario.class)
-				.add(Restrictions.eq("publicacion", idPublicacion)).list();
+				.add(Restrictions.eq("publicacion", publicacion)).list();
 	}
 
 	@Override

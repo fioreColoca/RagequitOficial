@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 
@@ -63,8 +64,8 @@ public class ServicioComentarImpl implements ServicioComentar{
 	}
 
 	@Override
-	public List<Comentario> mostrarComentarioPorPublicacion(Long idPublicacion) {
-		return repositorioComentar.mostrarComentarioPorPublicacion(idPublicacion);
+	public List<Comentario> mostrarComentarioPorPublicacion(Publicacion publicacion) {
+		return repositorioComentar.obtenerComentariosPorPublicacion(publicacion);
 	}
 
 	@Override

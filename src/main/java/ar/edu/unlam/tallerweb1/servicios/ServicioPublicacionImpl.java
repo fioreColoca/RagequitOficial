@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
 @Service
@@ -19,6 +22,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 	@Inject
 	private RepositorioPublicacion repositorioPublicacion;
+	@Inject
+	private RepositorioComentario repositorioComentario;
 
 	@Override
 	public Long guardarPublicacion(Publicacion publicacion){
@@ -44,7 +49,15 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 	@Override
 	public void borrarPublicacion(Long id) {
-		repositorioPublicacion.borrarPublicacion(id);
+		Publicacion publicacionABorrar = repositorioPublicacion.obtenerPublicacion(id);
+
+		List<Comentario> comentariosEnPublicacionABorrar = repositorioComentario.obtenerComentariosPorPublicacion(publicacionABorrar);
+		
+		if(comentariosEnPublicacionABorrar != null) {
+			publicacionABorrar.setEstado(PublicacionEstado.INACTIVO);
+		}else {
+			repositorioPublicacion.borrarPublicacion(id);
+		}
 		
 	}
 	

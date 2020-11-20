@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
@@ -83,9 +84,7 @@ public class ControladorPublicacion {
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 				
-		publicacion.setUsuario(usuario);		
-		publicacion.setFechaHora(fecha);
-		publicacion.setCantidadLikes(0);
+		
 	
 
 		String errorCategoria = null;
@@ -101,6 +100,11 @@ public class ControladorPublicacion {
 		if (publicacion.getMensaje().isEmpty()) {
 			errorMensaje = "La publicacion no puede tener un mensaje vacio";
 		}
+		
+		publicacion.setUsuario(usuario);		
+		publicacion.setFechaHora(fecha);
+		publicacion.setCantidadLikes(0);
+		publicacion.setEstado(PublicacionEstado.ACTIVO);
 
 
 		if (errorCategoria == null && errorMensaje == null) {

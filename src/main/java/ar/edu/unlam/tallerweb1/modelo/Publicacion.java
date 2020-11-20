@@ -24,6 +24,7 @@ public class Publicacion implements Comparable<Publicacion>{
 	private String urlImagen;
 	private String urlVideo;
 	private PublicacionTipo tipo;
+	private PublicacionEstado estado;
 	@Transient
 	private Long categoriaId;
 //	private String categoria;
@@ -112,6 +113,14 @@ public class Publicacion implements Comparable<Publicacion>{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public PublicacionEstado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(PublicacionEstado estado) {
+		this.estado = estado;
 	}
 
 	@Override
