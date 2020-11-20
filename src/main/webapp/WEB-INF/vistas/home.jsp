@@ -22,13 +22,13 @@
     </section>
     <section class="listaPublicaciones">
         <c:if test="${not empty errorComentarioVacio == 'true'}">
-        	<h5 class="text-danger">No puede enviar un comentario vacio.</h5>
+        	<h5 class="text-danger text-center">No puede enviar un comentario vacio.</h5>
         </c:if>
         <c:if test="${errorBorrarPublicacion == 'true'}">
-        	<h5 class="text-danger">Ocurrio un error al borrar la publicacion.</h5>
+        	<h5 class="text-danger text-center">Ocurrio un error al borrar la publicacion.</h5>
         </c:if>
         <c:if test="${errorBorrarPublicacion == 'false'}">
-        	<h5 class="text-success">Se borro la publicacion con exito.</h5>
+        	<h5 class="text-success text-center">Se borro la publicacion con exito.</h5>
         </c:if> 
         <%@ include file="homeListaPublicaciones.jsp"%>
     </section>
