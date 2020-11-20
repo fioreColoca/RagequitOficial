@@ -68,4 +68,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		usuario.setPassword(contrasenia);
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorId(Long id) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		return usuario;
+	}
+
 }

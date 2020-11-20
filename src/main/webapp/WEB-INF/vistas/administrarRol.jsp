@@ -6,6 +6,9 @@
 			<h3>Administracion de roles</h3>
 		</section>
 		<section>
+			<c:if test="${errorCambiarRol == 'true'}">
+				<h5 class="text-danger">Ocurrio un error al cambiar rol</h5>
+			</c:if>
 			<div class="row">
 				<c:forEach items="${listaUsuarios}" var="usuario">
 					<div class="col-12 col-md-6 col-lg-4 p-2">
@@ -29,7 +32,7 @@
 								${usuario.getRol()}
 							</p>
 
-							<form action="cambiarRol">
+							<form action="cambiarRol" method="post">
 								<div class="input-group mb-3">
 									<select class="custom-select" name="rolUsuario" id="rolUsuario">
 										<option selected disabled>Elija un rol...</option>
