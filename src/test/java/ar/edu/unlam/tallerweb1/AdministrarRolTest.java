@@ -19,6 +19,7 @@ public class AdministrarRolTest {
 		repositorioUsuarioMock = mock(RepositorioUsuario.class);
  	
 		servicioUsuario.setRepositorioUsuario(repositorioUsuarioMock);
+		//when(mockRepository.findById(1L)).thenReturn(Optional.of(book));
 	}
 	
 	@Test
