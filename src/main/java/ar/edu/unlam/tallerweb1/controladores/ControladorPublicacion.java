@@ -38,6 +38,7 @@ public class ControladorPublicacion {
 			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
 			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
 			@RequestParam(value = "errorComentarioVacio", required = false) String errorComentarioVacio,
+			@RequestParam(value = "errorBorrarPublicacion", required = false) String errorBorrarPublicacion,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
@@ -56,8 +57,7 @@ public class ControladorPublicacion {
 								: null;
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
-		
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();	
 		
 		
 		modelo.put("title", "RageQuit | Inicio");
@@ -70,7 +70,7 @@ public class ControladorPublicacion {
 		modelo.put("comentarios", comentarios);
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("errorComentarioVacio", errorComentarioVacio);
-		
+		modelo.put("errorBorrarPublicacion", errorBorrarPublicacion);
 
 		return new ModelAndView("home", modelo);
 	}
@@ -110,8 +110,19 @@ public class ControladorPublicacion {
 		return new ModelAndView("redirect:/home?errorMensaje=" + errorMensaje + "&errorCategoria=" + errorCategoria);
 	}
 
-	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.GET)
-	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id) {
+	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.POST)
+	public ModelAndView borrarPublicacion(
+			@RequestParam(value = "botonBorrar", required = false) Long id,
+			HttpServletRequest request
+			) {
+		Long idUsuarioQuePidioBorrarPublicacion = (Long)request.getSession().getAttribute("ID");
+		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacion(id);
+		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
+		
+		if(!idUsuarioQuePidioBorrarPublicacion.equals(idUsuarioQueCreoLaPublicacion)) {
+			return new ModelAndView("redirect:/home?errorBorrarPublicacion=true");
+		}
+		
 		servicioPublicacion.borrarPublicacion(id);
 
 		return new ModelAndView("redirect:/home");

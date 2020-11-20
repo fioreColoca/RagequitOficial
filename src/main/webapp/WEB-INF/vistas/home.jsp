@@ -110,6 +110,9 @@
         <c:if test="${not empty errorComentarioVacio == 'true'}">
         	<h5 class="text-danger">No puede enviar un comentario vacio.</h5>
         </c:if>
+        <c:if test="${not empty errorBorrarPublicacion == 'true'}">
+        	<h5 class="text-danger">Ocurrio un error al borrar la publicacion.</h5>
+        </c:if>
         <article>
             <div class="container mt-5 mb-5">
                 <div class="row">
@@ -456,7 +459,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <form action="borrarPublicacion">
+                            <form action="borrarPublicacion" method ="post">
                                 <button type="submit" class="btn btn-danger" name="botonBorrar"
                                     id="botonBorrar">BORRAR</button>
                             </form>
