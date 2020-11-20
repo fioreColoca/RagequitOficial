@@ -29,9 +29,11 @@
         </c:if>
         <c:if test="${errorBorrarPublicacion == 'false'}">
         	<h5 class="text-success">Se borro la publicacion con exito.</h5>
-        </c:if>
-        
+        </c:if> 
         <%@ include file="homeListaPublicaciones.jsp"%>
+    </section>
+    <section class="modals">
+    	<%@ include file="homeModals.jsp"%>
     </section>
 </main>
 <%@ include file="footer.jsp"%>

@@ -80,6 +80,6 @@
                 </div>
             </div>
             <div>
-            	<%@ include file="homePublicacionesComentariosModals.jsp"%>
+            	<%@ include file="homeComentariosModals.jsp"%>
             </div>
 </article>
