@@ -34,13 +34,13 @@
                     		</div>
                 		</form>
                 		<div class="navbar-nav ml-auto">
-                			<a href="biblioteca" class="nav-item nav-link">
+                			<a href="" class="nav-item nav-link">
                         		<i class="fas fa-user-friends"></i>
                     		</a>
-                    		<a href="biblioteca" class="nav-item nav-link" style="color:#f4a117">
+                    		<a href="home" class="nav-item nav-link" style="color:#f4a117">
                         		<i class="fas fa-house-user"></i>
                     		</a>
-                    		<a href="biblioteca" class="nav-item nav-link">
+                    		<a href="" class="nav-item nav-link">
                         		<i class="fas fa-fire-alt"></i>
                     		</a>
                 		</div>
