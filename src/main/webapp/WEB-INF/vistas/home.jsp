@@ -7,13 +7,12 @@
         <section class="crearPublicacion"> 
         	<%@ include file="homeCrearPublicacion.jsp"%>
             <c:if test="${errorCategoria != 'null'}">
-                <h4 class="text-danger"><span>${errorCategoria}</span></h4>
+                <h5 class="text-danger"><span>${errorCategoria}</span></h5>
                 <br>
             </c:if>
             <c:if test="${errorMensaje != 'null'}">
-                <h4 class="text-danger"><span>${errorMensaje}</span></h4>
+                <h5 class="text-danger"><span>${errorMensaje}</span></h5>
                 <br>
-                
             </c:if>
         </section>
     </c:if>
@@ -31,8 +30,8 @@
         <c:if test="${errorBorrarPublicacion == 'false'}">
         	<h5 class="text-success">Se borro la publicacion con exito.</h5>
         </c:if>
+        
         <%@ include file="homeListaPublicaciones.jsp"%>
     </section>
 </main>
-
 <%@ include file="footer.jsp"%>
