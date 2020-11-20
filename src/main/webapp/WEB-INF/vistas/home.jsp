@@ -7,7 +7,9 @@
                     <c:forEach items="${categorias}" var="categoriaDelFor">
                         <c:if test="${categoriaDelFor.getTipoCategoria() == 'JUEGOS'}">
                             <div class="item">
-                                <img class="owl-lazy" data-src="${categoriaDelFor.getUrlImagen()}">
+                            	<a href="juegosOVarios?categoriaId=${categoriaDelFor.getId()}">
+                                	<img class="owl-lazy" data-src="${categoriaDelFor.getUrlImagen()}">
+                                </a>
                             </div>
                         </c:if>
                     </c:forEach>
@@ -110,8 +112,11 @@
         <c:if test="${not empty errorComentarioVacio == 'true'}">
         	<h5 class="text-danger">No puede enviar un comentario vacio.</h5>
         </c:if>
-        <c:if test="${not empty errorBorrarPublicacion == 'true'}">
+        <c:if test="${errorBorrarPublicacion == 'true'}">
         	<h5 class="text-danger">Ocurrio un error al borrar la publicacion.</h5>
+        </c:if>
+        <c:if test="${errorBorrarPublicacion == 'false'}">
+        	<h5 class="text-success">Se borro la publicacion con exito.</h5>
         </c:if>
         <article>
             <div class="container mt-5 mb-5">
@@ -138,11 +143,13 @@
                                             ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs
                                             ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}
                                         </p>
-                                        <button type="button" class="btn btn-outline-naranja botonBorrar"
-                                            data-toggle="modal" data-target="#borrarPublicacion"
-                                            data-id="${publicacionDelFor.getId()}">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
+                                        <c:if test="${publicacionDelFor.getUsuario().getId() == usuarioLogeado.getId()}">
+                                        	<button type="button" class="btn btn-outline-naranja botonBorrar"
+                                            	data-toggle="modal" data-target="#borrarPublicacion"
+                                            	data-id="${publicacionDelFor.getId()}">
+                                            	<i class="far fa-trash-alt"></i>
+                                        	</button>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <div class="text-left p-3 bg-light text-dark">

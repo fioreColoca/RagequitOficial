@@ -125,7 +125,7 @@ public class ControladorPublicacion {
 		
 		servicioPublicacion.borrarPublicacion(id);
 
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/home?errorBorrarPublicacion=false");
 	}
 
 	@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
