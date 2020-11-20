@@ -66,5 +66,21 @@ public class ControladorBiblioteca {
 
 		return new ModelAndView("redirect:/biblioteca");
 	}
+	
+	public ServicioBiblioteca getServicioBiblioteca() {
+		return servicioBiblioteca;
+	}
+	
+	public void setServicioBiblioteca(ServicioBiblioteca servicioBiblioteca) {
+		this.servicioBiblioteca = servicioBiblioteca;
+	}	
+	
+	public ServicioCategoria getServicioCategoria() {
+		return servicioCategoria;
+	}
+
+	public void setServicioCategoria(ServicioCategoria servicioCategoria) {
+		this.servicioCategoria = servicioCategoria;
+	}
 
 }

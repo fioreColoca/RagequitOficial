@@ -23,7 +23,7 @@ public class ControladorJuegosOVarios {
 	private ServicioCategoria servicioCategoria;
 	
 	@RequestMapping(path = "/juegosOVarios")
-	public ModelAndView biblioteca(@RequestParam(value = "categoriaId", required = false) Long categoriaId,
+	public ModelAndView juegosOvarios(@RequestParam(value = "categoriaId", required = false) Long categoriaId,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
@@ -37,6 +37,14 @@ public class ControladorJuegosOVarios {
 		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("juegosOVarios", modelo);
+	}
+	
+	public ServicioCategoria getServicioCategoria() {
+		return servicioCategoria;
+	}
+
+	public void setServicioCategoria(ServicioCategoria servicioCategoria) {
+		this.servicioCategoria = servicioCategoria;
 	}
 
 }
