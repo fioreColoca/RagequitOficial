@@ -37,6 +37,7 @@ public class ControladorPublicacion {
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
 			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
 			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
+			@RequestParam(value = "errorComentarioVacio", required = false) String errorComentarioVacio,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
@@ -68,6 +69,8 @@ public class ControladorPublicacion {
 		modelo.put("comentario", new Comentario());
 		modelo.put("comentarios", comentarios);
 		modelo.put("usuarioLogeado", usuarioLogeado);
+		modelo.put("errorComentarioVacio", errorComentarioVacio);
+		
 
 		return new ModelAndView("home", modelo);
 	}

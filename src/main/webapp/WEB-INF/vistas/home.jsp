@@ -17,9 +17,6 @@
     </section>
     <c:if test="${not empty usuarioLogeado}">
         <section class="">
-            <div>
-                <h3 class="border-bottom text-center mb-4">Inicio</h3>
-            </div>
             <form:form action="guardarPublicacion" method="POST" modelAttribute="publicacion">
                 <div class="form-inline justify-content-sm-end">
                     <label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
@@ -110,6 +107,9 @@
                 </div>
             </form>
         </article>
+        <c:if test="${not empty errorComentarioVacio == 'true'}">
+        	<h5 class="text-danger">No puede enviar un comentario vacio.</h5>
+        </c:if>
         <article>
             <div class="container mt-5 mb-5">
                 <div class="row">

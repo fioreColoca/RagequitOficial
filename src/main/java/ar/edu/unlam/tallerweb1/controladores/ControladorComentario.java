@@ -116,9 +116,8 @@ public class ControladorComentario {
 		
 		comentario.setPublicacion(publicacion);
 
-		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
-			String error = "mensaje vacio"; 
-			return new ModelAndView("redirect:/home?errorComentario=" + error);
+		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) { 
+			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
 		}
 		servicioComentario.enviarComentario(comentario);
 		return new ModelAndView("redirect:/home");
@@ -176,8 +175,7 @@ public class ControladorComentario {
 		respuesta.setRespuesta(comentario);
 
 		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
-			String error = "mensaje vacío"; 
-			return new ModelAndView("redirect:/home?errorComentario=" + error);
+			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
 		}
 
 		servicioComentario.enviarComentario(respuesta);
