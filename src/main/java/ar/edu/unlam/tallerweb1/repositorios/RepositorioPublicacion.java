@@ -13,7 +13,7 @@ public interface RepositorioPublicacion {
 
 	List<Publicacion> buscarPublicaciones();
 	
-	Publicacion obtenerPublicacion(Long id);
+	Publicacion obtenerPublicacionPorId(Long id);
 
 	void borrarPublicacion(Long id);
 

@@ -83,9 +83,6 @@ public class ControladorPublicacion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
-		
-	
 
 		String errorCategoria = null;
 		String errorMensaje = null;
@@ -104,6 +101,7 @@ public class ControladorPublicacion {
 		publicacion.setUsuario(usuario);		
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
+		publicacion.setCantidadComentarios(0);
 		publicacion.setEstado(PublicacionEstado.ACTIVO);
 
 

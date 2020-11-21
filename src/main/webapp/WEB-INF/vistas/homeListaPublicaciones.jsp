@@ -48,18 +48,20 @@
                                 <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
                                     <form>
-                                        <div>
+                                        <div class="d-flex justify-content-center">
                                             <button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
                                                 name="idPublicacionADarLike">
                                                 <i class="far fa-thumbs-up"></i>
                                             </button>
+                                            <p>${publicacionDelFor.getCantidadLikes()}</p>
                                         </div>
                                     </form>
                                     <form>
-                                        <div>
+                                        <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-outline-naranja">
                                                 <i class="far fa-comment-dots"></i>
                                             </button>
+                                            <p>${publicacionDelFor.getCantidadComentarios()}</p>
                                         </div>
                                     </form>
                                     <form>
