@@ -16,7 +16,9 @@
                                     	<div class="col-4 justify-content-start">
                                         	<h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
                                         	<c:if test="${not empty usuarioLogeado}">
-                                        		<button class="btn btn-naranja">SEGUIR</button>
+                                        		<c:if test="${usuarioLogeado.getId() != publicacionDelFor.getUsuario().getId()}">
+                                        			<button class="btn btn-naranja">SEGUIR</button>
+                                        		</c:if>
                                         	</c:if>
                                     	</div>
                                     	<div class="col-4 text-center user-info">
