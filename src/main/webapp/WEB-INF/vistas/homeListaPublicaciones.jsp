@@ -16,7 +16,9 @@
                                     	<div class="col-4 justify-content-start">
                                         	<h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
                                         	<c:if test="${not empty usuarioLogeado}">
-                                        		<button class="btn btn-naranja">SEGUIR</button>
+                                        		<c:if test="${usuarioLogeado.getId() != publicacionDelFor.getUsuario().getId()}">
+                                        			<button class="btn btn-naranja">SEGUIR</button>
+                                        		</c:if>
                                         	</c:if>
                                     	</div>
                                     	<div class="col-4 text-center user-info">
@@ -48,18 +50,20 @@
                                 <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
                                     <form>
-                                        <div>
+                                        <div class="d-flex justify-content-center">
                                             <button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
                                                 name="idPublicacionADarLike">
                                                 <i class="far fa-thumbs-up"></i>
                                             </button>
+                                            <p>${publicacionDelFor.getCantidadLikes()}</p>
                                         </div>
                                     </form>
                                     <form>
-                                        <div>
+                                        <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-outline-naranja">
                                                 <i class="far fa-comment-dots"></i>
                                             </button>
+                                            <p>${publicacionDelFor.getCantidadComentarios()}</p>
                                         </div>
                                     </form>
                                     <form>

@@ -20,10 +20,17 @@ public class ServicioComentarImpl implements ServicioComentar{
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
+	@Inject ServicioPublicacion servicioPublicacion;
 
 	@Override
 	public Long enviarComentario(Comentario comentario) {
+		if(comentario.getRespuesta() == null) {
+			servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getPublicacion());
+			return repositorioComentar.enviarComentario(comentario);
+		}
+		servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getRespuesta().getPublicacion());
 		return repositorioComentar.enviarComentario(comentario);
+		
 	}
 
 	@Override

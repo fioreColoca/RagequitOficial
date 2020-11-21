@@ -40,14 +40,14 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 	}
 	
 	@Override
-	public Publicacion obtenerPublicacion(Long id) {
+	public Publicacion obtenerPublicacionPorId(Long id) {
 		
 		return sessionFactory.getCurrentSession().get(Publicacion.class, id);
 	}
 
 	@Override
 	public void borrarPublicacion(Long id) {
-		Publicacion publicacion = obtenerPublicacion(id);
+		Publicacion publicacion = obtenerPublicacionPorId(id);
 		sessionFactory.getCurrentSession().delete(publicacion);
 		
 	}

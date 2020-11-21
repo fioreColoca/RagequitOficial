@@ -31,10 +31,10 @@ value(1, "Sanchez", "matias@email.com", "Matias", "Pewmafe", "123", "admin", "im
 
 
 
-insert into publicacion(id, mensaje, fechaHora,categoria_id, usuario_id)
-value(1, "Aguante LoL ", 20200512,3, 4),
-(2, "UwU de los UwUs", 20200516,2, 3),
-(3, "sale maincra?", 20200517,14, 1),
-(4, "Soy el mejor Zeus", 20200614,6, 2),
-(5, "Estoy chikita", 20200801,4, 5);
+insert into publicacion(id, cantidadComentarios, cantidadLikes, estado, fechaHora, mensaje, categoria_id, usuario_id)
+value(1, 0, 0, 0, 20200512,"Aguante LoL ", 3, 4),
+(2, 0, 0, 0, 20200516,"UwU de los UwUs", 2, 3),
+(3, 0, 0, 0, 20200517,"sale maincra?", 14, 1),
+(4, 0, 0, 0, 20200614,"Soy el mejor Zeus", 6, 2),
+(5, 0, 0, 0, 20200801,"Estoy chikita", 4, 5);
 

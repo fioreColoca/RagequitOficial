@@ -16,4 +16,5 @@ public interface ServicioPublicacion {
 	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones);
 	Publicacion obtenerPublicacion(Long id);
 	void borrarPublicacion(Long id);
+	void aumentarCantidadComentariosDePublicacion(Publicacion publicacion);
 }

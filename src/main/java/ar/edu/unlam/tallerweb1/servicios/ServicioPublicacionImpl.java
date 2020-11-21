@@ -44,12 +44,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	@Override
 	public Publicacion obtenerPublicacion(Long id) {
 		
-		return repositorioPublicacion.obtenerPublicacion(id);
+		return repositorioPublicacion.obtenerPublicacionPorId(id);
 	}
 
 	@Override
 	public void borrarPublicacion(Long id) {
-		Publicacion publicacionABorrar = repositorioPublicacion.obtenerPublicacion(id);
+		Publicacion publicacionABorrar = repositorioPublicacion.obtenerPublicacionPorId(id);
 
 		List<Comentario> comentariosEnPublicacionABorrar = repositorioComentario.obtenerComentariosPorPublicacion(publicacionABorrar);
 		
@@ -89,5 +89,14 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return ordenadoPorFechaRecienteAAntigua; 
 
 		}
+
+	@Override
+	public void aumentarCantidadComentariosDePublicacion(Publicacion publicacion) {
+		Publicacion publicacionAAumentarComentarios = repositorioPublicacion.obtenerPublicacionPorId(publicacion.getId());
+		Integer cantidadComentarios = publicacionAAumentarComentarios.getCantidadComentarios() + 1;
+		
+		publicacionAAumentarComentarios.setCantidadComentarios(cantidadComentarios);
+		
+	}
 
 }
