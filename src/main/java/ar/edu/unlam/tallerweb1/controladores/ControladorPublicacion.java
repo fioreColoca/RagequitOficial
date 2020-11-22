@@ -22,6 +22,7 @@ import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLike;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
@@ -33,6 +34,8 @@ public class ControladorPublicacion {
 	private ServicioCategoria servicioCategoria;
 	@Inject
 	private ServicioComentar servicioComentario;
+	@Inject
+	private ServicioLike servicioLike;
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -142,6 +145,22 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("redirect:/home");
 	}
+	
+	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)
+	public ModelAndView darLikePublicacion(
+			@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
+			HttpServletRequest request
+			) {
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(id);
+		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+		servicioLike.darLikeAPublicacion(publicacion, usuario);
+
+		return new ModelAndView("redirect:/home");
+	}
+	
+	
 
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;

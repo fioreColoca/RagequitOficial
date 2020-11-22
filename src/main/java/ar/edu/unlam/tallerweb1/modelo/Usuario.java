@@ -37,8 +37,7 @@ public class Usuario {
 	private Integer contadorSuscriptores;
 	private Integer contadorSeguidores;
 	private String url_imagen;
-	@ManyToOne
-	private PublicacionLikeada publicacionLikeada;
+
 	// Array de seguidores
 	// @ManyToMany
 	// private List<Usuario> arraySeguidores = new LinkedList<Usuario>();

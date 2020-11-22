@@ -17,4 +17,6 @@ public interface ServicioPublicacion {
 	Publicacion obtenerPublicacion(Long id);
 	void borrarPublicacion(Long id);
 	void aumentarCantidadComentariosDePublicacion(Publicacion publicacion);
+	void aumentarCantidadLikesDePublicacion(Publicacion publicacion);
+	void disminuirCantidadLikesDePublicacion(Publicacion publicacion);
 }

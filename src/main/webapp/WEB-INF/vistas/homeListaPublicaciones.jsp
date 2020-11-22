@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
-                                    <form>
+                                    <form action="darLikePublicacion" method="post">
                                         <div class="d-flex justify-content-center">
                                             <button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
                                                 name="idPublicacionADarLike">

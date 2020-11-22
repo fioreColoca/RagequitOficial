@@ -99,4 +99,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 	}
 
+	@Override
+	public void aumentarCantidadLikesDePublicacion(Publicacion publicacion) {
+		Publicacion publicacionAAumentarLikes = repositorioPublicacion.obtenerPublicacionPorId(publicacion.getId());
+		Integer cantidadLikes = publicacionAAumentarLikes.getCantidadLikes() + 1;
+		
+		publicacionAAumentarLikes.setCantidadLikes(cantidadLikes);
+	}
+
+	@Override
+	public void disminuirCantidadLikesDePublicacion(Publicacion publicacion) {
+		Publicacion publicacionADisminuirLikes = repositorioPublicacion.obtenerPublicacionPorId(publicacion.getId());
+		Integer cantidadLikes = publicacionADisminuirLikes.getCantidadLikes() - 1;
+		
+		publicacionADisminuirLikes.setCantidadLikes(cantidadLikes);
+		
+	}
+
 }
