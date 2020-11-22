@@ -19,4 +19,5 @@ public interface ServicioPublicacion {
 	void aumentarCantidadComentariosDePublicacion(Publicacion publicacion);
 	void aumentarCantidadLikesDePublicacion(Publicacion publicacion);
 	void disminuirCantidadLikesDePublicacion(Publicacion publicacion);
+	void disminuirCantidadComentariosDePublicacion(Publicacion publicacion);
 }

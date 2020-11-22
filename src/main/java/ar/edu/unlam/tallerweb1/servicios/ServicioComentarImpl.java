@@ -43,6 +43,14 @@ public class ServicioComentarImpl implements ServicioComentar{
 			Comentario comentario = mostrarComentario(id);
 			List <Comentario> resultado = respuestaListado(comentario);
 			
+			if(comentario.getRespuesta() == null) {
+				Publicacion publicacion = comentario.getPublicacion();
+				servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
+			}else {
+				Publicacion publicacion = comentario.getRespuesta().getPublicacion();
+				servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
+			}
+			
 			if (resultado == null || resultado.size() == 0) {
 				repositorioComentar.borrarComentario(id);
 			} else {

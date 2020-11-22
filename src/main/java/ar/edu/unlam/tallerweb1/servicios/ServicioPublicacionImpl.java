@@ -116,4 +116,13 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 	}
 
+	@Override
+	public void disminuirCantidadComentariosDePublicacion(Publicacion publicacion) {
+		Publicacion publicacionADisminuirComentarios = repositorioPublicacion.obtenerPublicacionPorId(publicacion.getId());
+		Integer cantidadComentarios = publicacionADisminuirComentarios.getCantidadComentarios() - 1;
+		
+		publicacionADisminuirComentarios.setCantidadComentarios(cantidadComentarios);
+		
+	}
+
 }
