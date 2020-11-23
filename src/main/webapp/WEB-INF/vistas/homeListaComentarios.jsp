@@ -1,6 +1,6 @@
 <c:if test="${not empty comentarios}">
+<div class="collapse" id="collapseComentario${publicacionDelFor.getId()}">
 	<c:forEach items="${comentarios}" var="comentario">
-		<!--  COMUN  -->
 		<c:if test="${comentario.getPublicacion().getId() == publicacionDelFor.getId()}">
 			<c:set var="tipoComentario" value="${comentario.getTipo()}"></c:set>
 			<c:if test="${tipoComentario=='COMUN'}">
@@ -222,6 +222,7 @@
                                             </div>
                                             </c:if>
                                             </c:if>
-                                            <!--  COMUN  -->
+                                           <!--  COMUN  -->
 	</c:forEach>
+	</div> 
 </c:if>

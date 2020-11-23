@@ -60,9 +60,12 @@
                                     </form>
                                     <form>
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-outline-naranja">
+                                        	<a type="button" class="btn btn-outline-naranja botonCollapseComentarios" 
+                                        	data-id="${publicacionDelFor.getId()}" data-toggle="collapse" 
+                                        	href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
+                                            <!--  <button type="submit" class="btn btn-outline-naranja">
                                                 <i class="far fa-comment-dots"></i>
-                                            </button>
+                                            </button>-->
                                             <p>${publicacionDelFor.getCantidadComentarios()}</p>
                                         </div>
                                     </form>

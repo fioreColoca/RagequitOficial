@@ -12,6 +12,16 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+	$('.botonCollapseComentarios').click(function () {
+    	var categoriaId= $(this).data('id');
+    	var comentariosACollapse = "#collapseComentario";
+    	
+    	var comentariosAMostrar = comentariosACollapse.concat(categoriaId);
+    	$(comentariosAMostrar).collapse('toggle');
+	});
+});
+
+$(document).ready(function(){
 	$('.botonEditar').click(function () {
     	var categoriaId= $(this).data('id');
     	$(".modal-footer #botonGuardar").val( categoriaId);
