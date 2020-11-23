@@ -5,14 +5,21 @@
                         <c:forEach items="${publicaciones}" var="publicacionDelFor">
                             <div class="col-12 mt-5 mb-5 rounded-lg">
                             	<c:if test="${publicacionDelFor.getEstado() == 'INACTIVO'}">
-                            		<div class="p-2 bg-fondo rounded-top border border-top-0 
-                                border-right-0 border-left-0 border-warning">
+                            		<div class="p-2 bg-fondo rounded-top ">
                             			<h3 class="comment-text text-light p-2 bg-fondo rounded-top">Publicacion borrada</h3>
                             		</div>
-                                	
+                                	<div class="hoverIcons bg-fondo p-2 rounded-bottom border border-top-0 
+                                border-right-0 border-left-0 border-warning">
+                                    	<div class="d-flex justify-content-center">
+                                    		<a type="button" class="btn btn-outline-naranja botonCollapseComentarios" 
+                                        		data-id="${publicacionDelFor.getId()}" data-toggle="collapse" 
+                                        		href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
+                                    		<p>${publicacionDelFor.getCantidadComentarios()}</p>
+                                    	</div>
+                                    </div>
                                 </c:if>
-                                <div class="d-flex justify-content-around p-2 bg-fondo rounded-top">
-                                    <c:if test="${publicacionDelFor.getEstado() == 'ACTIVO'}">
+                                <c:if test="${publicacionDelFor.getEstado() == 'ACTIVO'}">
+                                	<div class="d-flex justify-content-around p-2 bg-fondo rounded-top">
                                     	<div class="col-4 justify-content-start">
                                         	<h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
                                         	<c:if test="${not empty usuarioLogeado}">
@@ -58,31 +65,22 @@
                                             <p>${publicacionDelFor.getCantidadLikes()}</p>
                                         </div>
                                     </form>
-                                    <form>
-                                        <div class="d-flex justify-content-center">
-                                        	<a type="button" class="btn btn-outline-naranja botonCollapseComentarios" 
+                                    <div class="d-flex justify-content-center">
+                                    	<a type="button" class="btn btn-outline-naranja botonCollapseComentarios" 
                                         	data-id="${publicacionDelFor.getId()}" data-toggle="collapse" 
                                         	href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
-                                            <!--  <button type="submit" class="btn btn-outline-naranja">
-                                                <i class="far fa-comment-dots"></i>
-                                            </button>-->
-                                            <p>${publicacionDelFor.getCantidadComentarios()}</p>
-                                        </div>
-                                    </form>
-                                    <form>
-                                        <div>
-                                            <button type="submit" class="btn btn-outline-naranja">
-                                                <i class="fab fa-gg"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <form>
-                                        <div>
-                                            <button type="submit" class="btn btn-outline-naranja">
-                                                <i class="fas fa-share-alt"></i>
-                                            </button>
-                                        </div>
-                                    </form>
+                                    	<p>${publicacionDelFor.getCantidadComentarios()}</p>
+                                    </div>
+                                    <div>
+                                    	<button type="submit" class="btn btn-outline-naranja">
+                                        	<i class="fab fa-gg"></i>
+                                    	</button>
+                                    </div>
+                                    <div>
+                                    	<button type="submit" class="btn btn-outline-naranja">
+                                        	<i class="fas fa-share-alt"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                 	<%@ include file="homeResponderPublicacion.jsp"%>
