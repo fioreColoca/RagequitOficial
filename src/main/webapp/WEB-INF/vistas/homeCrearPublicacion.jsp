@@ -1,3 +1,8 @@
+<div class="text-right mb-2 mt-4">
+	<a type="button" class="btn btn-outline-naranja"  data-toggle="collapse" 
+    href="#collapseCrearPublicacion"><i class="fas fa-chevron-down"></i></a>
+</div>
+<div class="collapse" id="collapseCrearPublicacion">
 <form:form action="guardarPublicacion" method="POST" modelAttribute="publicacion">
 	<div class="form-inline justify-content-sm-end">
 		<label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
@@ -43,3 +48,4 @@
     	<button class="btn btn-naranja botonBloque mt-3" type="submit">Publicar</button>
 	</div>
 </form:form>
+</div>

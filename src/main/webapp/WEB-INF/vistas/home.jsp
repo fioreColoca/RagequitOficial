@@ -4,7 +4,7 @@
         <%@ include file="homeCarousel.jsp"%>
     </section>
     <c:if test="${not empty usuarioLogeado}">
-        <section class="crearPublicacion"> 
+        <section class="crearPublicacion">
         	<%@ include file="homeCrearPublicacion.jsp"%>
             <c:if test="${errorCategoria != 'null'}">
                 <h5 class="text-danger"><span>${errorCategoria}</span></h5>
