@@ -116,6 +116,10 @@ main {
 		border: 0 !important;
 	}
 }
+.logo {
+	width: 3.3em !important;
+	height: auto !important;
+}
 
 /**HOME**/
 #collapseExample {
