@@ -20,68 +20,66 @@
 
             <body>
                 <header>
-                    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-            			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                			<img src="img/logo.png" alt="Perfil">
-            			</button>
-            			<a href="home"><img src="https://i.ibb.co/mvKDgT3/Logo-Rage-Quit-PNG.png" alt="Logo" class="logo"></a>
-            			<!-- Collection of nav links, forms, and other content for toggling -->
-            			<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-                		<form class="navbar-form form-inline">
-                    		<div class="input-group search-box">
-                        		<input type="text" id="search" class="form-control" placeholder="Buscar"> <span
-                            		class="input-group-addon"><i class="fas fa-search"></i></span>
-                    		</div>
-                		</form>
-                		<div class="navbar-nav ml-auto">
-                			<a href="" class="nav-item nav-link">
-                        		<i class="fas fa-user-friends"></i>
-                    		</a>
-                    		<a href="home" class="nav-item nav-link" style="color:#f4a117">
-                        		<i class="fas fa-house-user"></i>
-                    		</a>
-                    		<a href="" class="nav-item nav-link">
-                        		<i class="fas fa-fire-alt"></i>
-                    		</a>
-                		</div>
-                		<div class="navbar-nav ml-auto">
-                    		<div class="nav-item dropdown">
-                        		<div class="dropdown-menu">
-                            		<a href="" class="dropdown-item"><i class="fas fa-user-circle"></i> Perfil</a>
-                            		<a href="perfil" class="dropdown-item"><i class="fas fa-sliders-h"></i>Configuracion</a>
-                            		<div class="divider dropdown-divider"></div>
-                            			<a href="#" class="dropdown-item"><i class="fas fa-power-off"></i>Cerrar sesi&oacute;n</a>
-                        			</div>
-                    			</div>
-                    			<c:if test="${not empty usuarioLogeado}">
-                        			<img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
-                        			<a class="m-auto" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><span>Bienvenido ${usuarioLogeado.getNombre()} <i class="fas fa-caret-down"></i></span></a>
-                    			</c:if>
-                    			<a href="home" class="nav-item nav-link"><i class="fa fa-home"></i><span>Inicio</span></a>
-                    			<c:if test="${usuarioLogeado.getRol() == 'admin'}">
-                        			<a href="categoria" class="nav-item nav-link">
-                            			<i class="fas fa-gamepad"></i><span>Categoria</span>
-                        			</a>
-                    			</c:if>
-                    			<a href="biblioteca" class="nav-item nav-link">
-                        			<i class="fas fa-list-ul"></i><span>Biblioteca</span>
-                    			</a>
-                    			<c:if test="${usuarioLogeado.getRol() == 'admin'}">
-                        			<a href="administrar" class="nav-item nav-link">
-                            			<i class="fas fa-trophy"></i><span>Roles</span>
-                       				</a>
-                    			</c:if>
-                    			<c:if test="${empty usuarioLogeado}">
-                        			<a href="login" class="nav-item nav-link">
-                            			<i class="fas fa-sign-in-alt"></i><span>Login</span>
-                        			</a>
-                    			</c:if>
-                    			<c:if test="${not empty usuarioLogeado}">
-                        			<a href="cerrarSesion" class="nav-item nav-link">
-                            			<i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span>
-                        			</a>
-                    			</c:if>
-                		</div>
-            		</div>
-        		</nav>
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand logo" href="#"><img src="img/logo.png" alt="LogoRagequit" srcset="" class="img-fluid"></a>
+
+            <form class="form-inline my-2 my-lg-0 buscador">
+                <div class="search-box">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <span class="input-group-addon"><i class="fas fa-search"></i></span>
+                </div>
+                <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+            </form>
+            <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="img/Logo-RageQuitPNG.png" alt="LogoRagequit" srcset="" class="img-fluid">
+            </a>
+            <div class="d-flex flex-wrap m-auto">
+                <a href="#" class="p-2">
+                    <i class="fas fa-user-friends"></i>
+                </a>
+                <a href="home" class="p-2" style="color:#f4a117">
+                    <i class="fas fa-house-user"></i>
+                </a>
+                <a href="#" class="p-2">
+                    <i class="fas fa-fire-alt"></i>
+                </a>
+                <a href="biblioteca" class="p-2">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+            </div>
+            <c:if test="${empty usuarioLogeado}">
+                <div class="menu justify-content-end">
+                    <ul class="navbar-nav justify-content-end sub-menu">
+                        <li class="nav-item ">
+                            <a class="nav-link text-center p-2" href="login">
+                                <i class="fas fa-sign-in-alt"></i><span>Login</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </c:if>
+            <c:if test="${not empty usuarioLogeado}">
+                <div class="dropdown d-flex flex-wrap">
+                    <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
+                    <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white "><span>
+                            ${usuarioLogeado.getNombreUsuario()}
+                        </span></a>
+                    <div class="dropdown-menu dropdown-menu-right ">
+                        <a href="" class="dropdown-item text-secondary"><i class="fas fa-user-circle"></i> Perfil</a>
+                        <a href="perfil" class="dropdown-item text-secondary"><i class="fas fa-sliders-h"></i>
+                            Configuracion</a>
+                        <c:if test="${usuarioLogeado.getRol() == 'admin'}">
+                            <a href="administrar" class="dropdown-item text-secondary"><i class="fas fa-trophy"></i>
+                                Roles</a>
+                        </c:if>
+                        <a href="categoria" class="dropdown-item text-secondary"><i class="fas fa-gamepad"></i>
+                            Categoria</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a href="cerrarSesion" class="dropdown-item text-secondary"><i class="fas fa-power-off"></i>
+                            Cerrar
+                            sesi&oacute;n</a>
+                    </div>
+            </c:if>
+            </div>
+        </nav>
           	</header>
