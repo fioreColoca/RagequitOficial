@@ -20,4 +20,7 @@ public interface ServicioPublicacion {
 	void aumentarCantidadLikesDePublicacion(Publicacion publicacion);
 	void disminuirCantidadLikesDePublicacion(Publicacion publicacion);
 	void disminuirCantidadComentariosDePublicacion(Publicacion publicacion);
+	TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones);
+	public TreeSet<Publicacion> devolverPublicacionesOdenadasPorLikesYComentarios();
+	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(String ordenPublicaciones, List publicacionesList);
 }

@@ -44,7 +44,7 @@
                 <a href="home" class="p-2" style="color:#f4a117">
                     <i class="fas fa-house-user"></i>
                 </a>
-                <a href="#" class="p-2">
+                <a href="home?ordenPublicaciones=popular" class="p-2">
                     <i class="fas fa-fire-alt"></i>
                 </a>
                 <a href="biblioteca" class="p-2">
