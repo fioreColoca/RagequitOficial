@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
@@ -27,6 +28,10 @@ public interface ServicioComentar {
 	 void aumentarCantidadLikes(Comentario comentario);
 	 
 	 void disminuirCantidadLikes(Comentario comentario);
+	 	 
+	 TreeSet<Comentario> ordenarComentarioPorMasLikes(List <Comentario> comentario);
+
+	 TreeSet<Comentario> devolverListaComentarioPorMasLikes();
 
 	
 	 

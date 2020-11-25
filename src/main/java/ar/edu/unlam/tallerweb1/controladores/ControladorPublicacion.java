@@ -63,7 +63,7 @@ public class ControladorPublicacion {
 								: null;
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();	
+		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();	
 
 		
 		

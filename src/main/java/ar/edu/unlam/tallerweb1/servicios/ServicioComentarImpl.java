@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
+import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 
@@ -108,6 +111,24 @@ public class ServicioComentarImpl implements ServicioComentar{
 		Comentario like = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadLikes = like.getCantidadLikes() - 1;
 		like.setCantidadLikes(cantidadLikes);		
+	}
+
+	@Override
+	public TreeSet<Comentario> ordenarComentarioPorMasLikes(List<Comentario> comentario) {
+		TreeSet comentarioTreeSet = new TreeSet(comentario);
+		ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes(); 
+		TreeSet<Comentario> ordenarPorMasLikes = new TreeSet<Comentario>(orden); 
+		ordenarPorMasLikes.addAll(comentarioTreeSet); 
+		return ordenarPorMasLikes; 
+	}
+
+	@Override
+	public TreeSet<Comentario> devolverListaComentarioPorMasLikes() {
+		 List <Comentario> comentarios = this.mostrarTodosLosComentarios();
+		 ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes(); 
+		 TreeSet<Comentario> comentarioOrdenadoPorLikes = new TreeSet<Comentario>(orden); 
+		 comentarioOrdenadoPorLikes.addAll(comentarios); 
+		 return comentarioOrdenadoPorLikes; 
 	}
 
 	/*
