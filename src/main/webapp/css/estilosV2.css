@@ -548,3 +548,16 @@ hr {
 		margin: 0;
 	}
 }
+
+
+/****PERFIl****/
+
+.perfil .img-perfil {
+    width: 250px;
+    height: auto;
+}
+
+.perfil .row {
+    margin-right: 0!important;
+    margin-left: 0!important;
+}
