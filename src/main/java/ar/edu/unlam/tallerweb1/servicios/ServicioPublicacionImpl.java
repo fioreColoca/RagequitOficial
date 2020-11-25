@@ -62,6 +62,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		
 	}
 	
+	@Override
 	public TreeSet<Publicacion> devolverPublicacionesOdenadasPorFechaRecienteAAntigua() { 
 
 		List <Publicacion> publicaciones = this.buscarPublicaciones();
@@ -76,6 +77,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 		} 
 	
+	@Override
 	public TreeSet<Publicacion> devolverPublicacionesOdenadasPorLikesYComentarios() { 
 
 		List <Publicacion> publicaciones = this.buscarPublicaciones();
@@ -90,7 +92,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 		} 
 	
-	
+	@Override
 	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones) { 
 		
 		TreeSet publicacionesTreeSet = new TreeSet(listaPublicaciones);
@@ -105,7 +107,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 		}
 	
-public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones) { 
+	@Override
+	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones) { 
 		
 		TreeSet publicacionesTreeSet = new TreeSet(listaPublicaciones);
 
@@ -182,6 +185,12 @@ public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaP
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
 		}
 		return listaPublicacionesOrdenadas;
+	}
+
+	@Override
+	public TreeSet<Publicacion> devolverPublicacionesPorUsuariosSeguidos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

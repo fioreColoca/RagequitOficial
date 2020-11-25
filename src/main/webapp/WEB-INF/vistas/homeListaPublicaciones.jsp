@@ -61,15 +61,25 @@
                             </div>
                             <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
-                                <form action="darLikePublicacion" method="post">
-                                    <div class="d-flex justify-content-center">
-                                        <button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
-                                            name="idPublicacionADarLike">
-                                            <i class="far fa-thumbs-up"></i>
-                                        </button>
-                                        <p>${publicacionDelFor.getCantidadLikes()}</p>
-                                    </div>
-                                </form>
+                                <c:if test="${not empty usuarioLogeado}">
+                                	<form action="darLikePublicacion" method="post">
+                                    	<div class="d-flex justify-content-center">
+                                        	<button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
+                                            	name="idPublicacionADarLike">
+                                            	<i class="far fa-thumbs-up"></i>
+                                        	</button>
+                                        	<p>${publicacionDelFor.getCantidadLikes()}</p>
+                                    	</div>
+                                	</form>
+                                </c:if>
+                                <c:if test="${empty usuarioLogeado}">
+                                	<div class="d-flex justify-content-center">
+                                    	<a href="login?errorLike=true" class="btn btn-outline-naranja">
+                                    		<i class="far fa-thumbs-up"></i>
+                                    	</a>
+                                    	<p>${publicacionDelFor.getCantidadLikes()}</p>
+                                	</div>
+								</c:if>
                                 <div class="d-flex justify-content-center">
                                     <a type="button" class="btn btn-outline-naranja botonCollapseComentarios"
                                         data-id="${publicacionDelFor.getId()}" data-toggle="collapse"
