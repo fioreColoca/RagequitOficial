@@ -14,6 +14,7 @@ public class Categoria {
 	private String nombre;
 	private String urlImagen;
 	private String urlIcono;
+	private String descripcion;
 	
 	private CategoriaTipo tipoCategoria;
 	
@@ -48,6 +49,12 @@ public class Categoria {
 	}
 	public void setUrlIcono(String urlIcono) {
 		this.urlIcono = urlIcono;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 }
