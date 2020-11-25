@@ -76,7 +76,7 @@ public class ControladorPerfil {
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
-
+		System.out.println("estoy apunto de hacer el metodo dejar de seguir usuario *************************************************************");
 		servicioSeguir.dejarDeSeguirUsuario(usuarioLogeado, usuarioSeguido1);
 
 		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());

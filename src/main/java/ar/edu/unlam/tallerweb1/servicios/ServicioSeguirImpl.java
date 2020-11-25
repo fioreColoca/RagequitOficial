@@ -17,15 +17,29 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 	private RepositorioSeguir repositorioSeguir;
 	@Inject
 	private RepositorioUsuario repositorioUsuario;
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	@Override
 	public void seguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
 		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
+			servicioUsuario.aumentarSeguidores(seguido);
 			repositorioSeguir.seguirUsuario(seguidor, seguido);
 		}
 
+	}
+
+	@Override
+	public void dejarDeSeguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
+		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
+		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
+		System.out.println("verifique los seguidores*********************************");
+		if (seguidor != null && seguido != null) {
+			System.out.println("Verifique los seguidores*******************");
+			repositorioSeguir.dejarDeSeguirUsuario(seguidor, seguido);
+		}
 	}
 
 	@Override
@@ -36,15 +50,6 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 			return (Seguir) repositorioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(seguidor, seguido);
 		}
 		return null;
-	}
-
-	@Override
-	public void dejarDeSeguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
-		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
-		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
-		if (seguidor != null && seguido != null) {
-			repositorioSeguir.dejarDeSeguirUsuario(seguidor, seguido);
-		}
 	}
 
 }

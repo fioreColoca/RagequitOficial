@@ -79,4 +79,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return repositorioUsuario.obtenerUsuarioPorNombreUsuario(nombreUsuario);
 	}
 
+	@Override
+	public void aumentarSeguidores(Usuario seguidoAumentarSeguidores) {
+		Usuario seguido1 = repositorioUsuario.obtenerUsuarioPorId(seguidoAumentarSeguidores.getId());
+		Integer seguidores = seguido1.getContadorSeguidores() + 1;
+		seguido1.setContadorSeguidores(seguidores);
+	}
+
 }

@@ -81,7 +81,6 @@ public class ControladorLogin {
 			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
 			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
 
-
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -123,7 +122,8 @@ public class ControladorLogin {
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
-
+		usuario1.setContadorSeguidores(0);
+		usuario1.setContadorSeguidos(0);
 		usuario1.setRol("usuario");
 
 		servicioLogin.registrarUsuario(usuario1);

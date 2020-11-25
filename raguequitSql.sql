@@ -22,12 +22,12 @@ value(1, "Paladins", 0, "img/categoriaIcon/paladinsIcon.png", "https://static-cd
 (14, "Sonic",0, "img/categoriaIcon/sonicIcon.png", "https://static-cdn.jtvnw.net/ttv-boxart/Sonic%20the%20Hedgehog-144x192.jpg");
 
 
-insert into usuario(id, apellido, email, nombre, nombreUsuario, password, rol, url_imagen)
-value(1, "Sanchez", "matias@email.com", "Matias", "Pewmafe", "123", "admin", "img/imgUsuario/matias.jpeg"),
-(2, "Fagliano", "santi@email.com", "Santiago", "ElSanti", "123", "admin", "img/imgUsuario/santiago.jpeg"),
-(3, "Fiora", "fiore@email.com", "Fiore", "LadyFio", "123", "usuario", "img/imgUsuario/fio.jpeg"),
-(4, "ElRey", "franco@email.com", "Franco", "Furanko", "123", "usuario", "img/imgUsuario/franco.jpeg"),
-(5, "Abi", "abril@email.com", "Abril", "Abi", "123", "admin", "img/imgUsuario/abril.jpeg");
+insert into usuario(id, apellido, email, nombre, nombreUsuario, password, rol, url_imagen,contadorSeguidores,contadorSeguidos)
+value(1, "Sanchez", "matias@email.com", "Matias", "Pewmafe", "123", "admin", "img/imgUsuario/matias.jpeg",0,0),
+(2, "Fagliano", "santi@email.com", "Santiago", "ElSanti", "123", "admin", "img/imgUsuario/santiago.jpeg",0,0),
+(3, "Fiora", "fiore@email.com", "Fiore", "LadyFio", "123", "usuario", "img/imgUsuario/fio.jpeg",0,0),
+(4, "ElRey", "franco@email.com", "Franco", "Furanko", "123", "usuario", "img/imgUsuario/franco.jpeg",0,0),
+(5, "Abi", "abril@email.com", "Abril", "Abi", "123", "admin", "img/imgUsuario/abril.jpeg",0,0);
 
 
 

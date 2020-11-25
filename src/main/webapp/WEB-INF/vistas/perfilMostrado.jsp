@@ -15,10 +15,10 @@
 			</form>
 		</c:if>
 		<c:if test="${not empty verificacionSeguir}">
-			<form actionn="dejarSeguir" method="post">
+			<form action="dejarSeguir" method="post">
 				<button name="usuarioSeguido"
 					value="${usuarioPerfil.getNombreUsuario()}"
-					class="btn btn-outline-danger">Dejar de Seguir</button>
+					class="btn btn-outline-secondary">Siguiendo</button>
 			</form>
 		</c:if>
 
