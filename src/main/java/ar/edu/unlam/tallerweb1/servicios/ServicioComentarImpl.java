@@ -12,10 +12,12 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikeComentario;
 
 @Service
 @Transactional
@@ -23,7 +25,10 @@ public class ServicioComentarImpl implements ServicioComentar{
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
-	@Inject ServicioPublicacion servicioPublicacion;
+	@Inject
+	ServicioPublicacion servicioPublicacion;
+	@Inject
+	private RepositorioLikeComentario repositorioLikeComentario;
 
 	@Override
 	public Long enviarComentario(Comentario comentario) {
@@ -44,7 +49,8 @@ public class ServicioComentarImpl implements ServicioComentar{
 	@Override
 	public void borrarComentario(Long id) {
 			Comentario comentario = mostrarComentario(id);
-			List <Comentario> resultado = respuestaListado(comentario);
+			List <Comentario> respuesta = respuestaListado(comentario);
+					
 			
 			if(comentario.getRespuesta() == null) {
 				Publicacion publicacion = comentario.getPublicacion();
@@ -54,7 +60,7 @@ public class ServicioComentarImpl implements ServicioComentar{
 				servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
 			}
 			
-			if (resultado == null || resultado.size() == 0) {
+			if ((respuesta == null || respuesta.size() == 0) && comentario.getCantidadLikes() == 0) {
 				repositorioComentar.borrarComentario(id);
 			} else {
 				comentario.setEstado(ComentarioEstado.INACTIVO);
