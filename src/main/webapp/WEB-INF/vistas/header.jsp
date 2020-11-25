@@ -38,9 +38,16 @@
                 <img src="img/logo.png" alt="LogoRagequit" srcset="" class="img-fluid">
             </a>
             <div class="d-flex flex-wrap m-auto">
-                <a href="#" class="p-2">
-                    <i class="fas fa-user-friends"></i>
-                </a>
+            	<c:if test="${not empty usuarioLogeado}">
+                	<a href="home?ordenPublicaciones=seguidos" class="p-2">
+                    	<i class="fas fa-user-friends"></i>
+                	</a>
+                </c:if>
+                <c:if test="${empty usuarioLogeado}">
+                	<a href="login" class="p-2">
+                    	<i class="fas fa-user-friends"></i>
+                	</a>
+                </c:if>
                 <a href="home" class="p-2" style="color:#f4a117">
                     <i class="fas fa-house-user"></i>
                 </a>
