@@ -74,4 +74,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return usuario;
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorNombreUsuario(String nombreUsuario) {
+		return repositorioUsuario.obtenerUsuarioPorNombreUsuario(nombreUsuario);
+	}
+
 }

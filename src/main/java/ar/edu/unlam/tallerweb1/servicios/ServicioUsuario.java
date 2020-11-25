@@ -22,8 +22,10 @@ public interface ServicioUsuario {
 	void cambiarContrasenia(Long id, String contrasenia);
 
 	void setRepositorioUsuario(RepositorioUsuario repositorioUsuario);
-	
+
 	Usuario obtenerUsuarioPorId(Long id);
+
+	Usuario obtenerUsuarioPorNombreUsuario(String nombreUsuario);
 
 	RepositorioUsuario getRepositorioUsuario();
 }
