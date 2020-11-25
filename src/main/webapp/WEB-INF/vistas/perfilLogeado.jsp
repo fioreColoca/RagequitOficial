@@ -1,6 +1,23 @@
-<div class="perfil text-center bg-dark p-4">
-    <img src="${usuarioPerfil.getUrl_imagen() }" alt="" class="rounded-circle border border-warning img-perfil">
-</div>
+<section class="perfil row bg-dark p-4">
+	<div class="col-12 col-md-4">
+		<img src="${usuarioPerfil.getUrl_imagen() }" alt=""
+			class="rounded-circle border border-warning img-perfil">
+	</div>
+	<div class="col-6 col-md-4 d-flex flex-column">
+		<h4 class="text-secondary ">Seguidores</h4>
+		<a class="link-seguidos" data-toggle="modal" data-target="#staticBackdrop">
+		<h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidores()}</h5>
+		</a>
+				        <%@ include file="perfilMostrarSeguidos.jsp"%>
+		
+	</div>
+	<div class="col-6 col-md-4 d-flex flex-column">
+		<h4 class="text-secondary ">Seguidos</h4>
+		<a class="link-seguidos" data-toggle="modal" data-target="#staticBackdrop"><h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidos() }</h5></a>
+		        <%@ include file="perfilMostrarSeguidos.jsp"%>
+		
+	</div>
+</section>
 <section class="row mt-3">
     <article class="col-12 col-md-4">
         <h3>${usuarioPerfil.getNombreUsuario()}</h3>

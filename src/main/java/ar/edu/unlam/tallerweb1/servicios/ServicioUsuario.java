@@ -27,7 +27,13 @@ public interface ServicioUsuario {
 
 	Usuario obtenerUsuarioPorNombreUsuario(String nombreUsuario);
 
-	void aumentarSeguidores(Usuario seguido);
+	void aumentarSeguidores(Usuario seguidoAumentarSeguidores);
+
+	void aumentarSeguidos(Usuario seguidorAumentarSeguidos);
+
+	void disminuirSeguidores(Usuario seguidoDisminuirSeguidores);
+
+	void disminuirSeguidos(Usuario seguidorDisminuirSeguidos);
 
 	RepositorioUsuario getRepositorioUsuario();
 }

@@ -26,6 +26,7 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
 			servicioUsuario.aumentarSeguidores(seguido);
+			servicioUsuario.aumentarSeguidos(seguidor);
 			repositorioSeguir.seguirUsuario(seguidor, seguido);
 		}
 
@@ -35,9 +36,9 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 	public void dejarDeSeguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
 		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
-		System.out.println("verifique los seguidores*********************************");
 		if (seguidor != null && seguido != null) {
-			System.out.println("Verifique los seguidores*******************");
+			servicioUsuario.disminuirSeguidores(seguido);
+			servicioUsuario.disminuirSeguidos(seguidor);
 			repositorioSeguir.dejarDeSeguirUsuario(seguidor, seguido);
 		}
 	}
