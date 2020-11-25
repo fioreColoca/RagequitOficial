@@ -57,4 +57,10 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		return sessionFactory.getCurrentSession().get(Usuario.class, id);
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorNombreUsuario(String nombreUsuario) {
+		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombreUsuario", nombreUsuario)).uniqueResult();
+	}
+
 }

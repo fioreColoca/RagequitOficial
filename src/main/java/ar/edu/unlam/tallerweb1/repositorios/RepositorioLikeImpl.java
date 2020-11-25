@@ -47,7 +47,7 @@ public class RepositorioLikeImpl implements RepositorioLike {
 				.createCriteria(Likee.class)
 				.add(Restrictions.and(
 						Restrictions.eq("publicacion",publicacion),
-						Restrictions.in("usuario", usuario))
+						Restrictions.eq("usuario", usuario))
 						).uniqueResult();
 				
 	}

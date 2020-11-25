@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,119 +12,75 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
+import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorPerfil {
 
 	@Inject
+	private ServicioCategoria servicioCategoria;
+
+	@Inject
 	private ServicioUsuario servicioUsuario;
 
-	@RequestMapping(path = "/perfil", method = RequestMethod.GET)
-	public ModelAndView mostrarPerfil(@RequestParam(value = "resultado", required = false) String resultado,
-			HttpServletRequest request) {
+	@Inject
+	private ServicioSeguir servicioSeguir;
+
+	@RequestMapping("/perfil")
+	public ModelAndView verPerfil(HttpServletRequest request,
+			@RequestParam(value = "usuarioNombre", required = false) String nombreUsuarioPerfil) {
 		ModelMap modelo = new ModelMap();
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 
-		String apellido = (String) usuarioLogeado.getApellido() != null ? (String) usuarioLogeado.getApellido() : null;
-		String nombre = (String) usuarioLogeado.getNombre() != null ? (String) usuarioLogeado.getNombre() : null;
-		String email = (String) usuarioLogeado.getEmail() != null ? (String) usuarioLogeado.getEmail() : null;
-		String nombreUsuarioo = (String) usuarioLogeado.getNombreUsuario() != null
-				? (String) usuarioLogeado.getNombreUsuario()
-				: null;
-		String contrasenia = (String) usuarioLogeado.getPassword() != null ? (String) usuarioLogeado.getPassword()
-				: null;
+		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		Usuario usuarioPerfil = servicioUsuario.obtenerUsuarioPorNombreUsuario(nombreUsuarioPerfil);
+		Seguir verificarSeguimiento = servicioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(usuarioLogeado,
+				usuarioPerfil);
 
-		modelo.put("cambioExitoso", resultado);
-		modelo.put("apellido", apellido);
-		modelo.put("email", email);
-		modelo.put("nombre", nombre);
-		modelo.put("nombreUsuarioo", nombreUsuarioo);
+		modelo.put("verificacionSeguir", verificarSeguimiento);
+		modelo.put("usuarioPerfil", usuarioPerfil);
+		modelo.put("categorias", categorias);
 		modelo.put("usuarioLogeado", usuarioLogeado);
-		modelo.put("contrasenia", contrasenia);
-
 		modelo.put("title", "RageQuit | Perfil");
 		return new ModelAndView("perfil", modelo);
 	}
 
-	@RequestMapping("editarNombre")
-	public ModelAndView modificarNombre(@RequestParam(value = "nombre") String nombre, HttpServletRequest request) {
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+	@RequestMapping(path = "/seguir", method = RequestMethod.POST)
+	public ModelAndView seguirUsuario(HttpServletRequest request,
+			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido) {
+
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 
-		servicioUsuario.cambiarNombre(usuario.getId(), nombre);
+		servicioSeguir.seguirUsuario(usuarioLogeado, usuarioSeguido1);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setNombre(nombre);
-		}
+		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
 	}
 
-	@RequestMapping("editarApellido")
-	public ModelAndView modificarApellido(@RequestParam(value = "apellido") String apellido,
-			HttpServletRequest request) {
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
+	@RequestMapping(path = "/dejarSeguir", method = RequestMethod.POST)
+	public ModelAndView dejarDeSeguirUsuario(HttpServletRequest request,
+			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido) {
+
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 
-		servicioUsuario.cambiarApellido(usuario.getId(), apellido);
+		servicioSeguir.dejarDeSeguirUsuario(usuarioLogeado, usuarioSeguido1);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setApellido(apellido);
-		}
+		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
 	}
 
-	@RequestMapping("editarEmail")
-	public ModelAndView modificarEmail(@RequestParam(value = "email") String email, HttpServletRequest request) {
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
-				? (Usuario) request.getSession().getAttribute("USUARIO")
-				: null;
-
-		servicioUsuario.cambiarEmail(usuario.getId(), email);
-
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setEmail(email);
-		}
-
-		return new ModelAndView("redirect:/perfil?resultado=1");
-	}
-
-	@RequestMapping("editarNombreUsuario")
-	public ModelAndView modificarNombreUsuario(@RequestParam(value = "nombreUsuario") String nombreUsuario,
-			HttpServletRequest request) {
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
-				? (Usuario) request.getSession().getAttribute("USUARIO")
-				: null;
-
-		servicioUsuario.cambiarNombreUsuario(usuario.getId(), nombreUsuario);
-
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setNombreUsuario(nombreUsuario);
-		}
-
-		return new ModelAndView("redirect:/perfil?resultado=1");
-	}
-
-	@RequestMapping("editarContrasenia")
-	public ModelAndView modificarContrasenia(@RequestParam(value = "contrasenia") String contrasenia,
-			HttpServletRequest request) {
-		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
-				? (Usuario) request.getSession().getAttribute("USUARIO")
-				: null;
-
-		servicioUsuario.cambiarContrasenia(usuario.getId(), contrasenia);
-
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setPassword(contrasenia);
-		}
-
-		return new ModelAndView("redirect:/perfil?resultado=1");
-	}
 }
