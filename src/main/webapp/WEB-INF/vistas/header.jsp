@@ -35,7 +35,7 @@
             </form>
             <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="img/Logo-RageQuitPNG.png" alt="LogoRagequit" srcset="" class="img-fluid">
+                <img src="img/logo.png" alt="LogoRagequit" srcset="" class="img-fluid">
             </a>
             <div class="d-flex flex-wrap m-auto">
                 <a href="#" class="p-2">
