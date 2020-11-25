@@ -1,5 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -51,6 +57,28 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 			return (Seguir) repositorioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(seguidor, seguido);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Usuario> devolverListaDeSeguidores(Usuario seguido) {
+		List<Seguir> seguidoresListaSeguir = repositorioSeguir.devolverListaDeSeguidores(seguido);
+		List<Usuario> seguidores = new ArrayList<Usuario>();
+		for (Seguir seguidor : seguidoresListaSeguir) {
+			seguidores.add(seguidor.getUsuarioSeguidor());
+		}
+
+		return seguidores;
+	}
+
+	@Override
+	public List<Usuario> devolverListaDeSeguidos(Usuario seguidor) {
+		List<Seguir> seguidosListaSeguir = repositorioSeguir.devolverListaDeSeguidos(seguidor);
+		List<Usuario> seguidores = new ArrayList<Usuario>();
+		for (Seguir seguidos : seguidosListaSeguir) {
+			seguidores.add(seguidos.getUsuarioSeguido());
+		}
+
+		return seguidores;
 	}
 
 }

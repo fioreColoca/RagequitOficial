@@ -5,15 +5,16 @@
 	</div>
 	<div class="col-6 col-md-4 d-flex flex-column">
 		<h4 class="text-secondary ">Seguidores</h4>
-		<a class="link-seguidos" data-toggle="modal" data-target="#staticBackdrop">
-		<h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidores()}</h5>
+		<a class="link-seguidos" data-toggle="modal" data-target="#seguidores">
+			<h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidores()}</h5>
 		</a>
-				        <%@ include file="perfilMostrarSeguidos.jsp"%>
+		<%@ include file="perfilMostrarSeguidores.jsp"%>
 	</div>
 	<div class="col-6 col-md-4 d-flex flex-column">
 		<h4 class="text-secondary ">Seguidos</h4>
-		<a class="link-seguidos" data-toggle="modal" data-target="#staticBackdrop"><h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidos() }</h5></a>
-		        <%@ include file="perfilMostrarSeguidos.jsp"%>
+		<a class="link-seguidos" data-toggle="modal"
+			data-target="#staticBackdrop"><h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidos() }</h5></a>
+		<%@ include file="perfilMostrarSeguidos.jsp"%>
 
 	</div>
 </section>
@@ -22,19 +23,24 @@
 		<h3>${usuarioPerfil.getNombreUsuario()}</h3>
 	</article>
 	<article class="col-12 col-md-4">
-		<c:if test="${empty verificacionSeguir}">
-			<form action="seguir" method="post">
-				<button name="usuarioSeguido"
-					value="${usuarioPerfil.getNombreUsuario()}"
-					class="btn btn-outline-success">Seguir</button>
-			</form>
+		<c:if test="${not empty usuarioLogeado }">
+			<c:if test="${empty verificacionSeguir}">
+				<form action="seguir" method="post">
+					<button name="usuarioSeguido"
+						value="${usuarioPerfil.getNombreUsuario()}"
+						class="btn btn-outline-success">Seguir</button>
+				</form>
+			</c:if>
+			<c:if test="${not empty verificacionSeguir}">
+				<form action="dejarSeguir" method="post">
+					<button name="usuarioSeguido"
+						value="${usuarioPerfil.getNombreUsuario()}"
+						class="btn btn-outline-secondary">Siguiendo</button>
+				</form>
+			</c:if>
 		</c:if>
-		<c:if test="${not empty verificacionSeguir}">
-			<form action="dejarSeguir" method="post">
-				<button name="usuarioSeguido"
-					value="${usuarioPerfil.getNombreUsuario()}"
-					class="btn btn-outline-secondary">Siguiendo</button>
-			</form>
+		<c:if test="${empty usuarioLogeado}">
+			<a href="login?errorSeguir=true" class="btn btn-outline-success">Seguir</a>
 		</c:if>
 
 	</article>

@@ -45,6 +45,9 @@
     <c:if test="${not empty error}">
         <h5 class="text-center text-danger">${error}</h5>
     </c:if>
+    <c:if test="${not empty errorAlSeguir}">
+        <h5 class="text-center text-danger">Primero debes iniciar sesion para seguir a un usuario</h5>
+    </c:if>
     <div class="container" id="login">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

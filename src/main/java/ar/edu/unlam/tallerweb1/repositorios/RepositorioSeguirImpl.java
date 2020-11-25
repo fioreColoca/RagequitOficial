@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
@@ -8,12 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Repository
 public class RepositorioSeguirImpl implements RepositorioSeguir {
 
 	@Inject
 	private SessionFactory sessionFactory;
+
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	@Override
 	public void seguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
@@ -36,6 +42,22 @@ public class RepositorioSeguirImpl implements RepositorioSeguir {
 	public void dejarDeSeguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
 		Seguir borrarSeguir = buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(usuarioSeguidor, usuarioSeguido);
 		sessionFactory.getCurrentSession().delete(borrarSeguir);
+	}
+
+	@Override
+	public List<Seguir> devolverListaDeSeguidores(Usuario usuarioSeguido) {
+		Usuario seguido = servicioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
+		return sessionFactory.getCurrentSession().createCriteria(Seguir.class)
+				.add(Restrictions.eq("usuarioSeguido", seguido)).list();
+
+	}
+
+	@Override
+	public List<Seguir> devolverListaDeSeguidos(Usuario usuarioSeguidor) {
+		Usuario seguidor = servicioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
+		System.out.println("********************aca devuelve la lista de seguidos***********");
+		return sessionFactory.getCurrentSession().createCriteria(Seguir.class)
+				.add(Restrictions.eq("usuarioSeguidor", seguidor)).list();
 	}
 
 }
