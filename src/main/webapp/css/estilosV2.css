@@ -570,3 +570,8 @@ hr {
 	color: #fff;
 	text-decoration: underline;
 }
+
+.img-seg {
+	width: 50px;
+	height: auto;
+}

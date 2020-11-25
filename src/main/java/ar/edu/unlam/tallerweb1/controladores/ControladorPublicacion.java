@@ -43,18 +43,22 @@ public class ControladorPublicacion {
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
 			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
 			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
+			@RequestParam(value = "ordenPublicaciones", required = false) String ordenPublicaciones,
 			@RequestParam(value = "errorComentarioVacio", required = false) String errorComentarioVacio,
 			@RequestParam(value = "errorBorrarPublicacion", required = false) String errorBorrarPublicacion,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
-		TreeSet<Publicacion> publicaciones = servicioPublicacion.devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
-
-		if (!(categoriaAMostrar == null)) {
+		TreeSet<Publicacion> publicaciones = new TreeSet<>();
+		ordenPublicaciones= ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
+		
+		if(categoriaAMostrar == null) {
+			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones);
+		}else if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
 			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 			
-			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList);
 		}
 
 
@@ -71,6 +75,7 @@ public class ControladorPublicacion {
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
+		modelo.put("ordenPublicaciones", ordenPublicaciones);
 		modelo.put("errorMensaje", errorMensaje);
 		modelo.put("errorCategoria", errorCategoria);
 		modelo.put("comentario", new Comentario());
@@ -138,15 +143,16 @@ public class ControladorPublicacion {
 
 	@RequestMapping(path = "/filtrarCategoria", method = RequestMethod.GET)
 	public ModelAndView filtrarPublicacion(
+			@RequestParam(value = "ordenPublicaciones", required = false) String ordenPublicaciones,
 			@RequestParam(value = "filtarPublicacionCategoria", required = false) Long idCategoria) {
 
 		if (!(idCategoria == -1)) {
 			Long categoriaAMostrar = null;
 			categoriaAMostrar = idCategoria;
-			return new ModelAndView("redirect:/home?categoriaAMostrar=" + categoriaAMostrar);
+			return new ModelAndView("redirect:/home?categoriaAMostrar=" + categoriaAMostrar + "&ordenPublicaciones=" + ordenPublicaciones);
 		}
 
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/home?ordenPublicaciones=" + ordenPublicaciones);
 	}
 	
 	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)

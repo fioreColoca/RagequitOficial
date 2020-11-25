@@ -41,14 +41,23 @@ public class ControladorPerfil {
 				: null;
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		Usuario usuarioPerfil = servicioUsuario.obtenerUsuarioPorNombreUsuario(nombreUsuarioPerfil);
-		Seguir verificarSeguimiento = servicioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(usuarioLogeado,
-				usuarioPerfil);
+		Usuario usuarioPerfil = nombreUsuarioPerfil != null
+				? servicioUsuario.obtenerUsuarioPorNombreUsuario(nombreUsuarioPerfil)
+				: null;
+		Seguir verificarSeguimiento = null;
+		if (usuarioLogeado != null && usuarioPerfil != null) {
+			verificarSeguimiento = servicioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(usuarioLogeado,
+					usuarioPerfil);
+		}
 
+		List<Usuario> listaSeguidores = servicioSeguir.devolverListaDeSeguidores(usuarioPerfil);
+		List<Usuario> listaSeguidos = servicioSeguir.devolverListaDeSeguidos(usuarioPerfil);
 		modelo.put("verificacionSeguir", verificarSeguimiento);
 		modelo.put("usuarioPerfil", usuarioPerfil);
 		modelo.put("categorias", categorias);
 		modelo.put("usuarioLogeado", usuarioLogeado);
+		modelo.put("listaSeguidores", listaSeguidores);
+		modelo.put("listaSeguidos", listaSeguidos);
 		modelo.put("title", "RageQuit | Perfil");
 		return new ModelAndView("perfil", modelo);
 	}
