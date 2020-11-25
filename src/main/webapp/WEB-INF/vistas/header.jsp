@@ -69,7 +69,8 @@
                             ${usuarioLogeado.getNombreUsuario()}
                         </span></a>
                     <div class="dropdown-menu dropdown-menu-right ">
-                        <a href="perfil?usuarioNombre=${usuarioLogeado.getNombreUsuario() }" class="dropdown-item text-secondary"><i class="fas fa-user-circle"></i> Perfil</a>
+                        <a href="perfil?usuarioNombre=${usuarioLogeado.getNombreUsuario() }"
+                            class="dropdown-item text-secondary"><i class="fas fa-user-circle"></i> Perfil</a>
                         <a href="configuracion" class="dropdown-item text-secondary"><i class="fas fa-sliders-h"></i>
                             Configuracion</a>
                         <c:if test="${usuarioLogeado.getRol() == 'admin'}">

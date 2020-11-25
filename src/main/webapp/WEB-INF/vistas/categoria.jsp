@@ -15,8 +15,8 @@
                 </div>
                 <div class="anchoCategoria pad-2">
                     <form action="agregarCategoria">
-                    
-                    
+
+
                         <div class="form-group">
                             <label for="crearCategoria">Elija el nombre de la categoria:</label>
                             <input type="text" name="crearCategoria" id="crearCategoria" class="form-control"
@@ -30,28 +30,30 @@
                                 <option value="Varios">Varios</option>
                             </select>
                         </div>
-                        
+
                         <label class="pt-3" for="archivoImagenVideo">Subir imagen o video</label>
-                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
-                        
+                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo"
+                            id="archivoImagenVideo">
+
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
                         </div>
                     </form>
                     <c:if test="${errorNombre != 'null'}">
-                    <h4 class="text-danger"><span>${errorNombre}</span></h4>
-                    <br>
-                </c:if>
-                
-                <c:if test="${errorTipo != 'null'}">
-                    <h4 class="text-danger"><span>${errorTipo}</span></h4>
-                    <br>
-                </c:if>
+                        <h4 class="text-danger"><span>${errorNombre}</span></h4>
+                        <br>
+                    </c:if>
+
+                    <c:if test="${errorTipo != 'null'}">
+                        <h4 class="text-danger"><span>${errorTipo}</span></h4>
+                        <br>
+                    </c:if>
                 </div>
 
 
                 <div class="text-right subirDiv">
-                    <a href="irACategorias" class="btn btn-outline-naranja irACategorias volverACategoria">Ver categorias creadas</a>
+                    <a href="irACategorias" class="btn btn-outline-naranja irACategorias volverACategoria">Ver
+                        categorias creadas</a>
                 </div>
             </article>
         </section>

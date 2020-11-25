@@ -1,7 +1,5 @@
 <%@ include file="header.jsp"%>
-
 <main>
-
     <div>
         <h3 class="border-bottom text-center mb-4">Comentarios</h3>
     </div>
@@ -29,7 +27,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </section>
 </main>
