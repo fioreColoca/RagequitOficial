@@ -116,6 +116,7 @@ main {
 		border: 0 !important;
 	}
 }
+
 .logo {
 	width: 3.3em !important;
 	height: auto !important;
@@ -549,15 +550,28 @@ hr {
 	}
 }
 
-
 /****PERFIl****/
-
 .perfil .img-perfil {
-    width: 250px;
-    height: auto;
+	width: 250px;
+	height: auto;
 }
 
 .perfil .row {
-    margin-right: 0!important;
-    margin-left: 0!important;
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+}
+
+.link-seguidos {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.link-seguidos:hover h5 {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.img-seg {
+	width: 50px;
+	height: auto;
 }

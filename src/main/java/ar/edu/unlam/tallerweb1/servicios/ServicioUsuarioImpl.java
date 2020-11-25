@@ -86,4 +86,25 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		seguido1.setContadorSeguidores(seguidores);
 	}
 
+	@Override
+	public void aumentarSeguidos(Usuario seguidorAumentarSeguidos) {
+		Usuario seguidor1 = repositorioUsuario.obtenerUsuarioPorId(seguidorAumentarSeguidos.getId());
+		Integer seguidos = seguidor1.getContadorSeguidos() + 1;
+		seguidor1.setContadorSeguidos(seguidos);
+	}
+
+	@Override
+	public void disminuirSeguidores(Usuario seguidoDisminuirSeguidores) {
+		Usuario seguido1 = repositorioUsuario.obtenerUsuarioPorId(seguidoDisminuirSeguidores.getId());
+		Integer seguidores = seguido1.getContadorSeguidores() - 1;
+		seguido1.setContadorSeguidores(seguidores);
+	}
+
+	@Override
+	public void disminuirSeguidos(Usuario seguidorDisminuirSeguidos) {
+		Usuario seguidor1 = repositorioUsuario.obtenerUsuarioPorId(seguidorDisminuirSeguidos.getId());
+		Integer seguidos = seguidor1.getContadorSeguidos() - 1;
+		seguidor1.setContadorSeguidos(seguidos);
+	}
+
 }

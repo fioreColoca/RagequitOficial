@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,14 +44,16 @@ public class ControladorLogin {
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
 	// invocada por metodo http GET
 	@RequestMapping("/login")
-	public ModelAndView irALogin() {
+	public ModelAndView irALogin(@RequestParam(value = "errorSeguir", required = false) String errorSeguir) {
 
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el
 		// mismo sea asociado
 		// al model attribute del form que esta definido en la vista 'login'
 		Usuario usuario = new Usuario();
+		String errorAlSeguir = errorSeguir != null ? errorSeguir : null;
 		modelo.put("usuario", usuario);
+		modelo.put("errorAlSeguir", errorAlSeguir);
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando
 		// el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma dentro del modelo
