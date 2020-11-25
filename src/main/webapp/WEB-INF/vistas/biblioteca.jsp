@@ -18,7 +18,6 @@
             </div>
         </form>
         <br>
-
         <c:if test="${not empty categorias}">
             <div class="album py-5 contenedorAlbum">
                 <div class="container">
@@ -26,27 +25,24 @@
                     <div class="row text-center">
 
                         <c:forEach items="${categorias}" var="categoriaDelFor">
-                            <a href="juegosOVarios?categoriaId=${categoriaDelFor.getId()}">
-                                <div class="col-md-4" style="height: fit-content;">
+                            <div class="col-12 col-md-4">
+                                <div style="height: fit-content;">
                                     <div class="divImagenBiblioteca">
-                                        <img class="imagenBiblioteca text-center borde-naranja"
-                                            src="${categoriaDelFor.getUrlImagen()}">
-
-                                        <div class="nombreYCategoria nombreYCategoriaDesenfoque">
-
-                                            <h2 class="nombreDeCategoria">${categoriaDelFor.getNombre()}</h2>
-                                            <p class="tipoCategoria">${categoriaDelFor.getTipoCategoria()}</p>
-
-                                        </div>
+                                        <a href="juegosOVarios?categoriaId=${categoriaDelFor.getId()}">
+                                            <img class="imagenBiblioteca text-center borde-naranja"
+                                                src="${categoriaDelFor.getUrlImagen()}">
+                                            <div class="nombreYCategoria nombreYCategoriaDesenfoque">
+                                                <h2 class="nombreDeCategoria">${categoriaDelFor.getNombre()}</h2>
+                                                <p class="tipoCategoria">${categoriaDelFor.getTipoCategoria()}</p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
-
+                            </div>
                         </c:forEach>
                     </div>
                 </div>
             </div>
-
         </c:if>
     </section>
 </main>
