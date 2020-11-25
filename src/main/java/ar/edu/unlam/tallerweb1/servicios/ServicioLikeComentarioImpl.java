@@ -50,7 +50,7 @@ public class ServicioLikeComentarioImpl implements ServicioLikeComentario {
 
 	@Override
 	public void borrarLike(LikeComentario like) {
-		 repositorioLikeComentario.guardar(like);
+		 repositorioLikeComentario.borrar(like);
 	}
 
 	@Override
