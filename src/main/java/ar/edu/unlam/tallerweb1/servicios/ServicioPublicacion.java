@@ -4,8 +4,11 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioPublicacion {
 
@@ -21,11 +24,12 @@ public interface ServicioPublicacion {
 	
 	List<Publicacion> buscarPublicacionesPorCategoria(Categoria categoria);
 	List<Publicacion> buscarPublicaciones();
+	List<Publicacion> devolverPublicacionesPorUsuariosSeguidos(Usuario usuario);
+	List<Publicacion> devolverUnaListaDePublicacionesPorUsuariosSeguidos(List publicaciones,Usuario usuario);
 	
-	TreeSet<Publicacion> devolverPublicacionesPorUsuariosSeguidos();
-	TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones);
+	TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones, Usuario usuario);
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorLikesYComentarios();
-	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(String ordenPublicaciones, List publicacionesList);
+	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(String ordenPublicaciones, List publicacionesList, Usuario usuario);
 	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones);
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
 	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones);

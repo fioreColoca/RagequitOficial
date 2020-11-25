@@ -53,21 +53,23 @@ public class ControladorPublicacion {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		TreeSet<Publicacion> publicaciones = new TreeSet<>();
+
 		ordenPublicaciones = ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
-
-		if (categoriaAMostrar == null) {
-			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones);
-		} else if (!(categoriaAMostrar == null)) {
-			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
-			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
-
-			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones,
-					publicacionesList);
-		}
 
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+
+		if (categoriaAMostrar == null) {
+			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones, usuarioLogeado);
+		} else if (!(categoriaAMostrar == null)) {
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
+			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
+
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList,
+					usuarioLogeado);
+		}
+
 		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
