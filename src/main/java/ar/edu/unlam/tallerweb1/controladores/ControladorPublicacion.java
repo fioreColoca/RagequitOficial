@@ -37,8 +37,7 @@ public class ControladorPublicacion {
 	private ServicioComentar servicioComentario;
 	@Inject
 	private ServicioLike servicioLike;
-	@Inject
-	private ServicioLikeComentario servicioLikeComentario;
+	
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -65,7 +64,6 @@ public class ControladorPublicacion {
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();	
-		List<Usuario> likeComentarios = servicioLikeComentario.obtenerListaUsuariosLikeComentario();	
 
 		
 		
@@ -80,7 +78,6 @@ public class ControladorPublicacion {
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("errorComentarioVacio", errorComentarioVacio);
 		modelo.put("errorBorrarPublicacion", errorBorrarPublicacion);
-		modelo.put("usuariosLikeComentario",likeComentarios);
 
 		return new ModelAndView("home", modelo);
 	}
