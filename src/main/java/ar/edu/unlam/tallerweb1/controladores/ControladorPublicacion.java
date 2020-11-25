@@ -19,12 +19,14 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
+import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLike;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
 
 @Controller
 public class ControladorPublicacion {
@@ -37,7 +39,8 @@ public class ControladorPublicacion {
 	private ServicioComentar servicioComentario;
 	@Inject
 	private ServicioLike servicioLike;
-	
+	@Inject
+	private ServicioSeguir servicioSeguir;
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -50,27 +53,25 @@ public class ControladorPublicacion {
 		ModelMap modelo = new ModelMap();
 		Publicacion publicacion = new Publicacion();
 		TreeSet<Publicacion> publicaciones = new TreeSet<>();
-		ordenPublicaciones= ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
-		
-		if(categoriaAMostrar == null) {
+		ordenPublicaciones = ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
+
+		if (categoriaAMostrar == null) {
 			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones);
-		}else if (!(categoriaAMostrar == null)) {
+		} else if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
 			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
-			
-			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList);
+
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones,
+					publicacionesList);
 		}
 
-
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
-								? (Usuario) request.getSession().getAttribute("USUARIO")
-								: null;
-		
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();	
+		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
 
-		
-		
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("publicacion", publicacion);
@@ -83,14 +84,16 @@ public class ControladorPublicacion {
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("errorComentarioVacio", errorComentarioVacio);
 		modelo.put("errorBorrarPublicacion", errorBorrarPublicacion);
+		modelo.put("seguimientos", seguimientos);
 
 		return new ModelAndView("home", modelo);
 	}
 
 	@RequestMapping(path = "/guardarPublicacion", method = RequestMethod.POST)
-	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion, HttpServletRequest request) {
+	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion,
+			HttpServletRequest request) {
 		Date fecha = new Date();
-		
+
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
@@ -108,13 +111,12 @@ public class ControladorPublicacion {
 		if (publicacion.getMensaje().isEmpty()) {
 			errorMensaje = "La publicacion no puede tener un mensaje vacio";
 		}
-		
-		publicacion.setUsuario(usuario);		
+
+		publicacion.setUsuario(usuario);
 		publicacion.setFechaHora(fecha);
 		publicacion.setCantidadLikes(0);
 		publicacion.setCantidadComentarios(0);
 		publicacion.setEstado(PublicacionEstado.ACTIVO);
-
 
 		if (errorCategoria == null && errorMensaje == null) {
 			servicioPublicacion.guardarPublicacion(publicacion);
@@ -124,18 +126,16 @@ public class ControladorPublicacion {
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.POST)
-	public ModelAndView borrarPublicacion(
-			@RequestParam(value = "botonBorrar", required = false) Long id,
-			HttpServletRequest request
-			) {
-		Long idUsuarioQuePidioBorrarPublicacion = (Long)request.getSession().getAttribute("ID");
+	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id,
+			HttpServletRequest request) {
+		Long idUsuarioQuePidioBorrarPublicacion = (Long) request.getSession().getAttribute("ID");
 		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacion(id);
 		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
-		
-		if(!idUsuarioQuePidioBorrarPublicacion.equals(idUsuarioQueCreoLaPublicacion)) {
+
+		if (!idUsuarioQuePidioBorrarPublicacion.equals(idUsuarioQueCreoLaPublicacion)) {
 			return new ModelAndView("redirect:/home?errorBorrarPublicacion=true");
 		}
-		
+
 		servicioPublicacion.borrarPublicacion(id);
 
 		return new ModelAndView("redirect:/home?errorBorrarPublicacion=false");
@@ -149,17 +149,16 @@ public class ControladorPublicacion {
 		if (!(idCategoria == -1)) {
 			Long categoriaAMostrar = null;
 			categoriaAMostrar = idCategoria;
-			return new ModelAndView("redirect:/home?categoriaAMostrar=" + categoriaAMostrar + "&ordenPublicaciones=" + ordenPublicaciones);
+			return new ModelAndView("redirect:/home?categoriaAMostrar=" + categoriaAMostrar + "&ordenPublicaciones="
+					+ ordenPublicaciones);
 		}
 
 		return new ModelAndView("redirect:/home?ordenPublicaciones=" + ordenPublicaciones);
 	}
-	
+
 	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)
-	public ModelAndView darLikePublicacion(
-			@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
-			HttpServletRequest request
-			) {
+	public ModelAndView darLikePublicacion(@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
+			HttpServletRequest request) {
 		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(id);
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
@@ -168,7 +167,6 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("redirect:/home");
 	}
-	
 
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;
@@ -185,5 +183,5 @@ public class ControladorPublicacion {
 	public void setServicioPublicacion(ServicioPublicacion servicioPublicacion) {
 		this.servicioPublicacion = servicioPublicacion;
 	}
-	
+
 }

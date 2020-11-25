@@ -16,4 +16,6 @@ public interface ServicioSeguir {
 
 	List<Usuario> devolverListaDeSeguidos(Usuario seguidor);
 
+	List<Seguir> devolverListaDeSeguimientos();
+
 }

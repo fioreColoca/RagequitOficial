@@ -15,4 +15,6 @@ public interface RepositorioSeguir {
 	List<Seguir> devolverListaDeSeguidores(Usuario seguido);
 
 	List<Seguir> devolverListaDeSeguidos(Usuario seguido);
+
+	List<Seguir> devolverListaDeSeguimientos();
 }

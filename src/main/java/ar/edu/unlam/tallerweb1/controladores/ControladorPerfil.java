@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.jvnet.staxex.util.XMLStreamReaderToXMLStreamWriter.Breakpoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,7 +65,8 @@ public class ControladorPerfil {
 
 	@RequestMapping(path = "/seguir", method = RequestMethod.POST)
 	public ModelAndView seguirUsuario(HttpServletRequest request,
-			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido) {
+			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido,
+			@RequestParam(value = "usuarioSeguidoHome", required = false) String usuarioSeguidoHome) {
 
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
@@ -72,21 +74,30 @@ public class ControladorPerfil {
 		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 
 		servicioSeguir.seguirUsuario(usuarioLogeado, usuarioSeguido1);
-
+		System.out.println("*************************************" + usuarioSeguidoHome);
+		String variableHome = "home";
+		if (usuarioSeguidoHome == variableHome) {
+			System.out.println("******************************anashe");
+			return new ModelAndView("redirect:/home");
+		}
 		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());
 
 	}
 
 	@RequestMapping(path = "/dejarSeguir", method = RequestMethod.POST)
 	public ModelAndView dejarDeSeguirUsuario(HttpServletRequest request,
-			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido) {
+			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido,
+			@RequestParam(value = "usuarioSeguidoHome", required = false) String usuarioSeguidoHome) {
 
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 		servicioSeguir.dejarDeSeguirUsuario(usuarioLogeado, usuarioSeguido1);
+		if (usuarioSeguidoHome == "home") {
+			return new ModelAndView("redirect:/home");
 
+		}
 		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());
 
 	}

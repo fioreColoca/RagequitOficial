@@ -81,4 +81,9 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		return seguidores;
 	}
 
+	@Override
+	public List<Seguir> devolverListaDeSeguimientos() {
+		return repositorioSeguir.devolverListaDeSeguimientos();
+	}
+
 }
