@@ -22,8 +22,15 @@
 
 <div class="modal fade" id="responderComentario" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog">
-    	<div class="modal-content">
-        	<div class="modal-header bg-fondo p-3">
+    	<div class="modal-content bg-fondo ">
+    		<div class="modal-header">
+            	<h5 class="modal-title text-white">Responder comentario</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+        	<div class="modal-headerp-3 pt-3">
             	<form:form  action="responderComentario" class="container" method="POST" modelAttribute="comentario">
                 	<div>
                     	<form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar"
@@ -47,9 +54,15 @@
 <div class="modal fade" id="verListado" role="dialog">
 	<div class="modal-dialog">
     	<!-- Modal content-->
-       	<div class="modal-content">
+       	<div class="modal-content bg-fondo">
+       	<div class="modal-header">
+            	<h5 class="modal-title text-white">Marcado como Me gusta por:</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         	<div class="modal-header bg-fondo p-3 container">
-            	<h4>Marcado como Me gusta por</h4>
+        		
             </div>
        </div>
 	</div>

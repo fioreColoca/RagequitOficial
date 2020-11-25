@@ -58,11 +58,6 @@ public class ServicioComentarImpl implements ServicioComentar{
 			}
 	}
 
-	@Override
-	public void darLikeComentario(Long id) {
-		Comentario comentario = mostrarComentario(id);
-		comentario.setCantidadLikes(comentario.getCantidadLikes() + 1);
-	}
 
 	@Override
 	public void tipoComentario(String boton, Comentario comentario) {
@@ -94,11 +89,25 @@ public class ServicioComentarImpl implements ServicioComentar{
 	}
 
 	@Override
-	public Boolean veridifcarUsuario(Usuario usuarioLogueado, Usuario usuarioIngresado) {
+	public Boolean verificarUsuario(Usuario usuarioLogueado, Usuario usuarioIngresado) {
 		if (usuarioLogueado == usuarioIngresado) {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void aumentarCantidadLikes(Comentario comentario) {
+		Comentario like = repositorioComentar.mostrarComentario(comentario.getId());
+		Integer cantidadLikes = like.getCantidadLikes() + 1;
+		like.setCantidadLikes(cantidadLikes);		
+	}
+
+	@Override
+	public void disminuirCantidadLikes(Comentario comentario) {
+		Comentario like = repositorioComentar.mostrarComentario(comentario.getId());
+		Integer cantidadLikes = like.getCantidadLikes() - 1;
+		like.setCantidadLikes(cantidadLikes);		
 	}
 
 	/*
