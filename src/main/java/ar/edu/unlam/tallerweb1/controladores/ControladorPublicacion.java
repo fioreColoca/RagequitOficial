@@ -23,6 +23,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLike;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 @Controller
@@ -36,6 +37,8 @@ public class ControladorPublicacion {
 	private ServicioComentar servicioComentario;
 	@Inject
 	private ServicioLike servicioLike;
+	@Inject
+	private ServicioLikeComentario servicioLikeComentario;
 
 	@RequestMapping(path = "home")
 	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
@@ -62,6 +65,8 @@ public class ControladorPublicacion {
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();	
+		List<Usuario> likeComentarios = servicioLikeComentario.obtenerListaUsuariosLikeComentario();	
+
 		
 		
 		modelo.put("title", "RageQuit | Inicio");
@@ -75,6 +80,7 @@ public class ControladorPublicacion {
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("errorComentarioVacio", errorComentarioVacio);
 		modelo.put("errorBorrarPublicacion", errorBorrarPublicacion);
+		modelo.put("usuariosLikeComentario",likeComentarios);
 
 		return new ModelAndView("home", modelo);
 	}
@@ -159,7 +165,6 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("redirect:/home");
 	}
-	
 	
 
 	public ServicioCategoria getServicioCategoria() {

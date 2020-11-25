@@ -243,14 +243,7 @@
 														</div>
 													</form>
 
-													<div class="ml-3">
-														<button type="button"
-															class="btn btn-outline-naranja responderComentario"
-															data-toggle="modal" data-target="#responderComentario"
-															data-id="${respuesta.getId()}">
-															<i class="far fa-comment-dots"></i>
-														</button>
-													</div>
+												
 													<c:set var="idUsuario"
 														value="${respuesta.getUsuario().getId()}"></c:set>
 													<c:set var="IdUsuarioRespuesta" value="${usuarioId}"></c:set>
@@ -340,14 +333,7 @@
 														</div>
 													</form>
 
-													<div class="ml-3">
-														<button type="button"
-															class="btn btn-outline-naranja responderComentario"
-															data-toggle="modal" data-target="#responderComentario"
-															data-id="${respuesta.getId()}">
-															<i class="far fa-comment-dots"></i>
-														</button>
-													</div>
+												
 
 													<c:set var="idUsuario"
 														value="${respuesta.getUsuario().getId()}"></c:set>

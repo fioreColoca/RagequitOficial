@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -54,6 +56,11 @@ public class ServicioLikeComentarioImpl implements ServicioLikeComentario {
 	@Override
 	public LikeComentario obtenerLikePorId(Long id) {
 		return repositorioLikeComentario.obtenerLikePorId(id);
+	}
+
+	@Override
+	public List<Usuario> obtenerListaUsuariosLikeComentario() {
+		return repositorioLikeComentario.obtenerListaLikes();
 	}
 
 	

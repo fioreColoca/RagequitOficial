@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -43,6 +45,12 @@ public class RepositorioLikeComentarioImpl implements RepositorioLikeComentario 
 						Restrictions.eq("comentario",comentario),
 						Restrictions.in("usuario", usuario))
 						).uniqueResult();
+	}
+
+	@Override
+	public List<Usuario> obtenerListaLikes() {
+		return sessionFactory.getCurrentSession().createCriteria(LikeComentario.class).list();
+
 	}
 
 }
