@@ -52,19 +52,21 @@ public class ControladorPublicacion {
 		TreeSet<Publicacion> publicaciones = new TreeSet<>();
 		ordenPublicaciones= ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
 		
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+		
 		if(categoriaAMostrar == null) {
-			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones);
+			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones, usuarioLogeado);
 		}else if (!(categoriaAMostrar == null)) {
 			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaAMostrar);
 			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 			
-			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList);
+			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList, usuarioLogeado);
 		}
 
 
-		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
-								? (Usuario) request.getSession().getAttribute("USUARIO")
-								: null;
+		
 		
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();	

@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorLikeYComentario;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
@@ -25,6 +28,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	private RepositorioPublicacion repositorioPublicacion;
 	@Inject
 	private RepositorioComentario repositorioComentario;
+	@Inject
+	private ServicioSeguir servicioSeguir;
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	@Override
 	public Long guardarPublicacion(Publicacion publicacion){
@@ -94,14 +101,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	
 	@Override
 	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones) { 
-		
-		TreeSet publicacionesTreeSet = new TreeSet(listaPublicaciones);
 
 		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha(); 
 
 		TreeSet<Publicacion> ordenadoPorFechaRecienteAAntigua = new TreeSet<Publicacion>(ordenFechaRecienteAAntigua); 
 
-		ordenadoPorFechaRecienteAAntigua.addAll(publicacionesTreeSet); 
+		ordenadoPorFechaRecienteAAntigua.addAll(listaPublicaciones); 
 
 		return ordenadoPorFechaRecienteAAntigua; 
 
@@ -109,14 +114,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	
 	@Override
 	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones) { 
-		
-		TreeSet publicacionesTreeSet = new TreeSet(listaPublicaciones);
 
 		PublicacionOrdenPorLikeYComentario ordenPorLikesYComentarios = new PublicacionOrdenPorLikeYComentario(); 
 
 		TreeSet<Publicacion> ordenadoPorLikesYComentarios = new TreeSet<Publicacion>(ordenPorLikesYComentarios);
 
-		ordenadoPorLikesYComentarios.addAll(publicacionesTreeSet); 
+		ordenadoPorLikesYComentarios.addAll(listaPublicaciones); 
 
 		return ordenadoPorLikesYComentarios; 
 
@@ -158,13 +161,17 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 
 	@Override
-	public TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones) {
+	public TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(
+			String ordenPublicaciones,
+			Usuario usuario) {
 		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
 		switch(ordenPublicaciones) {
 		case "popular":
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorLikesYComentarios();
 			break;
 		case "seguidos":
+			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverPublicacionesPorUsuariosSeguidos(usuario);
+			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
 			break;
 		default:
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
@@ -173,13 +180,18 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 
 	@Override
-	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(String ordenPublicaciones, List publicacionesList) {
+	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(
+			String ordenPublicaciones, List publicacionesList,
+			Usuario usuario
+			) {
 		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
 		switch(ordenPublicaciones) {
 		case "popular":
 			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorPopular(publicacionesList);
 			break;
 		case "seguidos":
+			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverUnaListaDePublicacionesPorUsuariosSeguidos(publicacionesList,usuario);
+			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
 			break;
 		default:
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
@@ -188,9 +200,32 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 
 	@Override
-	public TreeSet<Publicacion> devolverPublicacionesPorUsuariosSeguidos() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Publicacion> devolverPublicacionesPorUsuariosSeguidos(Usuario usuario) {
+		List<Publicacion> publicaciones =buscarPublicaciones();
+		List <Usuario> usuariosSeguidos = servicioSeguir.devolverListaDeSeguidos(usuario);
+		List<Publicacion> publicacionesUsuariosSeguidos= new ArrayList<>();
+		for (Publicacion publicacion : publicaciones) {
+			Usuario usuarioDeLaPublicacion = publicacion.getUsuario();
+			if(usuariosSeguidos.contains(usuarioDeLaPublicacion)) {
+				publicacionesUsuariosSeguidos.add(publicacion);
+			}
+		}
+		return publicacionesUsuariosSeguidos;
+	}
+	
+	@Override
+	public List<Publicacion> devolverUnaListaDePublicacionesPorUsuariosSeguidos(List publicaciones,Usuario usuario) {
+		List <Publicacion> publicacionesLista = publicaciones;
+		List <Usuario> usuariosSeguidos = servicioSeguir.devolverListaDeSeguidos(usuario);
+		List<Publicacion> publicacionesUsuariosSeguidos= new ArrayList<>();
+		for (Publicacion publicacion : publicacionesLista) {
+			Long usuarioId = publicacion.getUsuario().getId();
+			Usuario usuarioDeLaPublicacion = servicioUsuario.obtenerUsuarioPorId(usuarioId);
+			if(usuariosSeguidos.contains(usuarioDeLaPublicacion)) {
+				publicacionesUsuariosSeguidos.add(publicacion);
+			}
+		}
+		return publicacionesUsuariosSeguidos;
 	}
 
 }
