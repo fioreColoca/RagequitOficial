@@ -14,12 +14,12 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
-public class ControladorPerfil {
+public class ControladorConfiguracion {
 
 	@Inject
 	private ServicioUsuario servicioUsuario;
 
-	@RequestMapping(path = "/perfil", method = RequestMethod.GET)
+	@RequestMapping(path = "/configuracion", method = RequestMethod.GET)
 	public ModelAndView mostrarPerfil(@RequestParam(value = "resultado", required = false) String resultado,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
@@ -44,8 +44,8 @@ public class ControladorPerfil {
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("contrasenia", contrasenia);
 
-		modelo.put("title", "RageQuit | Perfil");
-		return new ModelAndView("perfil", modelo);
+		modelo.put("title", "RageQuit | Configuracion");
+		return new ModelAndView("configuracion", modelo);
 	}
 
 	@RequestMapping("editarNombre")
@@ -60,7 +60,7 @@ public class ControladorPerfil {
 			usuario.setNombre(nombre);
 		}
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
+		return new ModelAndView("redirect:/configuracion?resultado=1");
 	}
 
 	@RequestMapping("editarApellido")
@@ -76,7 +76,7 @@ public class ControladorPerfil {
 			usuario.setApellido(apellido);
 		}
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
+		return new ModelAndView("redirect:/configuracion?resultado=1");
 	}
 
 	@RequestMapping("editarEmail")
@@ -91,7 +91,7 @@ public class ControladorPerfil {
 			usuario.setEmail(email);
 		}
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
+		return new ModelAndView("redirect:/configuracion?resultado=1");
 	}
 
 	@RequestMapping("editarNombreUsuario")
@@ -107,7 +107,7 @@ public class ControladorPerfil {
 			usuario.setNombreUsuario(nombreUsuario);
 		}
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
+		return new ModelAndView("redirect:/configuracion?resultado=1");
 	}
 
 	@RequestMapping("editarContrasenia")
@@ -123,6 +123,6 @@ public class ControladorPerfil {
 			usuario.setPassword(contrasenia);
 		}
 
-		return new ModelAndView("redirect:/perfil?resultado=1");
+		return new ModelAndView("redirect:/configuracion?resultado=1");
 	}
 }
