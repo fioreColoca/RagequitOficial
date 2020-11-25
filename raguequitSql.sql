@@ -2,6 +2,7 @@ select * from usuario;
 select * from categoria;
 select * from publicacion;
 select * from comentario;
+select * from seguir;
 
 use ragequit;
 
