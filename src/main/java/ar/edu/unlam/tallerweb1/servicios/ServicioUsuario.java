@@ -36,4 +36,7 @@ public interface ServicioUsuario {
 	void disminuirSeguidos(Usuario seguidorDisminuirSeguidos);
 
 	RepositorioUsuario getRepositorioUsuario();
+
+	String encriptarPassword(String password);
+
 }

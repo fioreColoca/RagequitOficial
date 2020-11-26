@@ -107,4 +107,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		seguidor1.setContadorSeguidos(seguidos);
 	}
 
+	@Override
+	public String encriptarPassword(String password) {
+		return org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+	}
+
 }
