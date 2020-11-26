@@ -38,6 +38,8 @@ public interface ServicioUsuario {
 
 	RepositorioUsuario getRepositorioUsuario();
 
+	String encriptarPassword(String password);
+
 	void aumentarCategoriasSeguidas(Usuario seguidor);
 
 	void disminuirCategoriasSeguidas(Usuario seguidor);
