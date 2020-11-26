@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 
 @Service
@@ -72,6 +73,21 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 		}
 		
+	}
+
+	@Override
+	public void aumentarSeguidores(Categoria categoria) {
+		Categoria categoriaAumentar = repositorioCategoria.mostrarCategoriaPorId(categoria.getId());
+		Integer seguidores = categoriaAumentar.getContadorSeguidores() + 1;
+		categoriaAumentar.setContadorSeguidores(seguidores);
+		
+	}
+
+	@Override
+	public void disminuirSeguidores(Categoria categoriaSeguida) {
+		Categoria categoriaDisminuir = repositorioCategoria.mostrarCategoriaPorId(categoriaSeguida.getId());
+		Integer seguidores = categoriaDisminuir.getContadorSeguidores() - 1;
+		categoriaDisminuir.setContadorSeguidores(seguidores);		
 	}
 	
 	

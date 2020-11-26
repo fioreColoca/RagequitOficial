@@ -129,6 +129,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		usuario1.setContadorSeguidores(0);
 		usuario1.setContadorSeguidos(0);
+		usuario1.setContadorCategoriasSeguidas(0);
 		usuario1.setRol("usuario");
 
 		servicioLogin.registrarUsuario(usuario1);

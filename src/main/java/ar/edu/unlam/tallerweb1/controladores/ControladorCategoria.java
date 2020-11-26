@@ -73,6 +73,8 @@ public class ControladorCategoria {
 			}
 		}
 		
+		categoria.setContadorSeguidores(0);
+		
 		if (errorNombre == null && errorTipo == null) {
 			servicioCategoria.guardarCategoria(categoria);
 			return new ModelAndView("redirect:/biblioteca");
