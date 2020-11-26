@@ -128,8 +128,12 @@ main {
 	background-color: #0000;
 }
 
-.hoverIcons .btn:hover {
+.hoverIcons .btn:hover i {
 	color: #fdb714 !important;
+}
+
+.hoverIconsBotonIcono {
+	border-color: transparent !important;
 }
 
 .categoria-icon {
@@ -137,6 +141,14 @@ main {
 	width: auto;
 }
 
+.nombreUsuarioPublicacion {
+	text-decoration: none;
+	color: #f4a117;
+}
+.nombreUsuarioPublicacion:hover {
+	text-decoration: underline;
+    color: #f49f17b7;
+}
 .owl-prev {
 	left: -15px;
 }
@@ -154,6 +166,9 @@ main {
 	color: #f58220;
 }
 
+.ayudaComentario {
+	height: calc(1.5em + .75rem + 2px) !important;
+}
 /*********Login***********/
 #login .card-signin {
 	border: 0;

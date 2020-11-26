@@ -3,13 +3,13 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-dark">
                 <h5 class="modal-title text-secondary" id="staticBackdropLabel">Seguidos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
                 <c:if test="${not empty listaSeguidos }">
                     <c:forEach items="${listaSeguidos}" var="seguidos">
                        <div class="d-flex flex-start p-1">

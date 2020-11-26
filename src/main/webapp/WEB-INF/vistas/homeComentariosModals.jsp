@@ -33,7 +33,7 @@
             <div class="modal-headerp-3 pt-3">
                 <form:form action="responderComentario" class="container" method="POST" modelAttribute="comentario">
                     <div>
-                        <form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar" class="form-control"
+                        <form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar" class="form-control "
                             rows="3" />
                     </div>
                     <br>
