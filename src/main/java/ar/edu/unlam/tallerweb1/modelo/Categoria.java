@@ -16,6 +16,7 @@ public class Categoria {
 	private String urlImagen;
 	private String urlIcono;
 	private String descripcion;
+	private Integer contadorSeguidores;
 	
 	private CategoriaTipo tipoCategoria;
 	@Transient
@@ -66,6 +67,12 @@ public class Categoria {
 	}
 	public void setTipoCategoriaNum(Integer tipoCategoriaNum) {
 		this.tipoCategoriaNum = tipoCategoriaNum;
+	}
+	public Integer getContadorSeguidores() {
+		return contadorSeguidores;
+	}
+	public void setContadorSeguidores(Integer contadorSeguidores) {
+		this.contadorSeguidores = contadorSeguidores;
 	}
 	
 	

@@ -36,6 +36,7 @@ public class Usuario {
 	private Integer contadorSeguidos;
 	private Integer contadorSuscriptores;
 	private Integer contadorSeguidores;
+	private Integer contadorCategoriasSeguidas;
 	private String url_imagen;
 
 	// Array de seguidores
@@ -157,4 +158,16 @@ public class Usuario {
 	public void setUrl_imagen(String url_imagen) {
 		this.url_imagen = url_imagen;
 	}
+
+	public Integer getContadorCategoriasSeguidas() {
+		return contadorCategoriasSeguidas;
+	}
+
+	public void setContadorCategoriasSeguidas(Integer contadorCategoriasSeguidas) {
+		this.contadorCategoriasSeguidas = contadorCategoriasSeguidas;
+	}
+	
+	
+
+	
 }
