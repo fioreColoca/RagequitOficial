@@ -14,7 +14,7 @@ public interface ServicioPublicacion {
 
 	Long guardarPublicacion(Publicacion publicacion);
 	
-	Publicacion obtenerPublicacion(Long id);
+	Publicacion obtenerPublicacionPorId(Long id);
 	
 	void borrarPublicacion(Long id);
 	void aumentarCantidadComentariosDePublicacion(Publicacion publicacion);

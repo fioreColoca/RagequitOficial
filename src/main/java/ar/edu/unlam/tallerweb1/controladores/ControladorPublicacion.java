@@ -23,7 +23,7 @@ import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
-import ar.edu.unlam.tallerweb1.servicios.ServicioLike;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLikePublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
@@ -38,7 +38,7 @@ public class ControladorPublicacion {
 	@Inject
 	private ServicioComentar servicioComentario;
 	@Inject
-	private ServicioLike servicioLike;
+	private ServicioLikePublicacion servicioLike;
 	@Inject
 	private ServicioSeguir servicioSeguir;
 
@@ -131,7 +131,7 @@ public class ControladorPublicacion {
 	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id,
 			HttpServletRequest request) {
 		Long idUsuarioQuePidioBorrarPublicacion = (Long) request.getSession().getAttribute("ID");
-		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacion(id);
+		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacionPorId(id);
 		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
 
 		if (!idUsuarioQuePidioBorrarPublicacion.equals(idUsuarioQueCreoLaPublicacion)) {
@@ -161,7 +161,7 @@ public class ControladorPublicacion {
 	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)
 	public ModelAndView darLikePublicacion(@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
 			HttpServletRequest request) {
-		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(id);
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(id);
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;

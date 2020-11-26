@@ -50,7 +50,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 	
 	@Override
-	public Publicacion obtenerPublicacion(Long id) {
+	public Publicacion obtenerPublicacionPorId(Long id) {
 		
 		return repositorioPublicacion.obtenerPublicacionPorId(id);
 	}
@@ -194,7 +194,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
 			break;
 		default:
-			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
+			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
 		}
 		return listaPublicacionesOrdenadas;
 	}
