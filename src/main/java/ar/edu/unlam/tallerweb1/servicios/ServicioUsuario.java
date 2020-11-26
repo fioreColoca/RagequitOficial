@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -36,4 +37,10 @@ public interface ServicioUsuario {
 	void disminuirSeguidos(Usuario seguidorDisminuirSeguidos);
 
 	RepositorioUsuario getRepositorioUsuario();
+
+	String encriptarPassword(String password);
+
+	void aumentarCategoriasSeguidas(Usuario seguidor);
+
+	void disminuirCategoriasSeguidas(Usuario seguidor);
 }

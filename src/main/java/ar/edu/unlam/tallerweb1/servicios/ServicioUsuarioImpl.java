@@ -107,4 +107,24 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		seguidor1.setContadorSeguidos(seguidos);
 	}
 
+	@Override
+	public String encriptarPassword(String password) {
+		return org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+	}
+
+	@Override
+	public void aumentarCategoriasSeguidas(Usuario seguidor) {
+		Usuario seguidorDeCategoria = repositorioUsuario.obtenerUsuarioPorId(seguidor.getId());
+		Integer categoriasSeguidas = seguidorDeCategoria.getContadorCategoriasSeguidas() + 1;
+		seguidorDeCategoria.setContadorCategoriasSeguidas(categoriasSeguidas);
+
+	}
+
+	@Override
+	public void disminuirCategoriasSeguidas(Usuario seguidor) {
+		Usuario seguidorDeCategoria = repositorioUsuario.obtenerUsuarioPorId(seguidor.getId());
+		Integer categoriasSeguidas = seguidorDeCategoria.getContadorCategoriasSeguidas() - 1;
+		seguidorDeCategoria.setContadorCategoriasSeguidas(categoriasSeguidas);
+	}
+
 }

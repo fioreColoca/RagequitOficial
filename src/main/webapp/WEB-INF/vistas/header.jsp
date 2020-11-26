@@ -23,7 +23,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand logo" href="#"><img src="img/logo.png" alt="LogoRagequit" srcset=""
+            <a class="navbar-brand logo" href="home"><img src="img/logo.png" alt="LogoRagequit" srcset=""
                     class="img-fluid"></a>
 
             <form class="form-inline my-2 my-lg-0 buscador">
@@ -38,15 +38,15 @@
                 <img src="img/logo.png" alt="LogoRagequit" srcset="" class="img-fluid">
             </a>
             <div class="d-flex flex-wrap m-auto">
-            	<c:if test="${not empty usuarioLogeado}">
-                	<a href="home?ordenPublicaciones=seguidos" class="p-2">
-                    	<i class="fas fa-user-friends"></i>
-                	</a>
+                <c:if test="${not empty usuarioLogeado}">
+                    <a href="home?ordenPublicaciones=seguidos" class="p-2">
+                        <i class="fas fa-user-friends"></i>
+                    </a>
                 </c:if>
                 <c:if test="${empty usuarioLogeado}">
-                	<a href="login" class="p-2">
-                    	<i class="fas fa-user-friends"></i>
-                	</a>
+                    <a href="login" class="p-2">
+                        <i class="fas fa-user-friends"></i>
+                    </a>
                 </c:if>
                 <a href="home" class="p-2" style="color:#f4a117">
                     <i class="fas fa-house-user"></i>

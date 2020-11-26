@@ -6,8 +6,8 @@
                     <div class="col-12 mt-5 mb-5 rounded-lg">
                         <c:if test="${publicacionDelFor.getEstado() == 'INACTIVO'}">
                             <div class="p-2 bg-fondo rounded-top ">
-                                <h3 class="comment-text text-light p-2 bg-fondo rounded-top">Publicacion borrada
-                                </h3>
+                                <h3 class="comment-text text-light p-2 bg-fondo rounded-top">Publicacion
+                                    borrada</h3>
                             </div>
                             <div class="hoverIcons bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
@@ -22,15 +22,57 @@
                         <c:if test="${publicacionDelFor.getEstado() == 'ACTIVO'}">
                             <div class="d-flex justify-content-around p-2 bg-fondo rounded-top">
                                 <div class="col-4 justify-content-start">
-                                    <a
-                                        href="perfil?usuarioNombre=${publicacionDelFor.getUsuario().getNombreUsuario() }">
-                                        <h3>${publicacionDelFor.getUsuario().getNombreUsuario()}</h3>
-                                    </a>
+                                    <h3><a href="perfil?usuarioNombre=${publicacionDelFor.getUsuario().getNombreUsuario() }"
+                                            class="nombreUsuarioPublicacion">
+                                            ${publicacionDelFor.getUsuario().getNombreUsuario()}
+                                        </a></h3>
                                     <c:if test="${not empty usuarioLogeado}">
+
                                         <c:if
                                             test="${usuarioLogeado.getId() != publicacionDelFor.getUsuario().getId()}">
-                                            <button class="btn btn-naranja">SEGUIR</button>
+
+                                            <c:forEach items="${seguimientos}" var="seguidos">
+                                                <c:if
+                                                    test="${seguidos.getUsuarioSeguido().getId() == publicacionDelFor.getUsuario().getId()}">
+
+                                                    <c:if
+                                                        test="${seguidos.getUsuarioSeguidor().getId() == usuarioLogeado.getId()}">
+                                                        <form action="dejarSeguir" method="post">
+                                                            <input type="hidden" name="usuarioSeguidoHome" value="home">
+                                                            <button name="usuarioSeguido"
+                                                                value="${publicacionDelFor.getUsuario().getNombreUsuario()}"
+                                                                class="btn btn-outline-secondary">Siguiendo</button>
+                                                        </form>
+                                                    </c:if>
+                                                </c:if>
+                                            </c:forEach>
+                                            <!--<c:forEach items="${seguimientos }" var="seguidos">
+
+												  <p>${ usuarioLogeado.getId()} ----- ${ seguidos.getUsuarioSeguidor().getId() }</p>
+
+												<c:if
+													test="${seguidos.getUsuarioSeguido().getId() != publicacionDelFor.getUsuario().getId()}">
+
+													<c:if
+														test="${seguidos.getUsuarioSeguidor().getId() == usuarioLogeado.getId()}">
+														<c:set var="noSeguimiento" value="true"></c:set>
+
+													</c:if>
+												</c:if>
+											</c:forEach>
+											<c:if test="${noSeguimiento}"> 
+                                            	<form action="seguir" method="post" id="h">
+                                                            <input type="hidden" name="usuarioSeguidoHome" value="home">
+                                                            <button name="usuarioSeguido"
+                                                                value="${publicacionDelFor.getUsuario().getNombreUsuario()}"
+                                                                class="btn btn btn-naranja">Seguir</button>
+                                                        </form>
+                                            </c:if>-->
                                         </c:if>
+
+                                    </c:if>
+                                    <c:if test="${empty usuarioLogeado}">
+                                        <a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
                                     </c:if>
                                 </div>
                                 <div class="col-4 text-center user-info">
@@ -62,37 +104,39 @@
                             <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
                                 <c:if test="${not empty usuarioLogeado}">
-                                	<form action="darLikePublicacion" method="post">
-                                    	<div class="d-flex justify-content-center">
-                                        	<button class="btn btn-outline-naranja" value="${publicacionDelFor.getId()}"
-                                            	name="idPublicacionADarLike">
-                                            	<i class="far fa-thumbs-up"></i>
-                                        	</button>
-                                        	<p>${publicacionDelFor.getCantidadLikes()}</p>
-                                    	</div>
-                                	</form>
+                                    <form action="darLikePublicacion" method="post">
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-outline-naranja hoverIconsBotonIcono"
+                                                value="${publicacionDelFor.getId()}" name="idPublicacionADarLike">
+                                                <i class="far fa-thumbs-up"></i>
+                                            </button>
+                                            <p class="text-secondary">${publicacionDelFor.getCantidadLikes()}</p>
+                                        </div>
+                                    </form>
                                 </c:if>
                                 <c:if test="${empty usuarioLogeado}">
-                                	<div class="d-flex justify-content-center">
-                                    	<a href="login?errorLike=true" class="btn btn-outline-naranja">
-                                    		<i class="far fa-thumbs-up"></i>
-                                    	</a>
-                                    	<p>${publicacionDelFor.getCantidadLikes()}</p>
-                                	</div>
-								</c:if>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="login?errorLike=true"
+                                            class="btn btn-outline-naranja hoverIconsBotonIcono">
+                                            <i class="far fa-thumbs-up"></i>
+                                        </a>
+                                        <p class="text-secondary">${publicacionDelFor.getCantidadLikes()}</p>
+                                    </div>
+                                </c:if>
                                 <div class="d-flex justify-content-center">
-                                    <a type="button" class="btn btn-outline-naranja botonCollapseComentarios"
+                                    <a type="button"
+                                        class="btn btn-outline-naranja botonCollapseComentarios hoverIconsBotonIcono"
                                         data-id="${publicacionDelFor.getId()}" data-toggle="collapse"
                                         href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
-                                    <p>${publicacionDelFor.getCantidadComentarios()}</p>
+                                    <p class="text-secondary">${publicacionDelFor.getCantidadComentarios()}</p>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-outline-naranja">
+                                    <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono">
                                         <i class="fab fa-gg"></i>
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-outline-naranja">
+                                    <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono">
                                         <i class="fas fa-share-alt"></i>
                                     </button>
                                 </div>

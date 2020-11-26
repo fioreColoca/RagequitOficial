@@ -4,16 +4,20 @@
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
         <h4 class="text-secondary ">Seguidores</h4>
-        <a class="link-seguidos" data-toggle="modal" data-target="#seguidores">
-            <h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidores()}</h5>
-        </a>
+        <h5 class="text-secondary ">
+            <a class="link-seguidos" data-toggle="modal" data-target="#seguidores">
+                ${usuarioPerfil.getContadorSeguidores()}
+            </a>
+        </h5>
         <%@ include file="perfilMostrarSeguidores.jsp"%>
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
         <h4 class="text-secondary ">Seguidos</h4>
-        <a class="link-seguidos" data-toggle="modal" data-target="#seguidoss">
-            <h5 class="text-secondary ">${usuarioPerfil.getContadorSeguidos() }</h5>
-        </a>
+        <h5 class="text-secondary ">
+            <a class="link-seguidos" data-toggle="modal" data-target="#seguidoss">
+                ${usuarioPerfil.getContadorSeguidos() }
+            </a>
+        </h5>
         <%@ include file="perfilMostrarSeguidos.jsp"%>
 
     </div>
@@ -27,7 +31,7 @@
             <c:if test="${empty verificacionSeguir}">
                 <form action="seguir" method="post">
                     <button name="usuarioSeguido" value="${usuarioPerfil.getNombreUsuario()}"
-                        class="btn btn-outline-success">Seguir</button>
+                        class="btn btn-naranja">Seguir</button>
                 </form>
             </c:if>
             <c:if test="${not empty verificacionSeguir}">

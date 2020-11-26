@@ -55,9 +55,13 @@ public class RepositorioSeguirImpl implements RepositorioSeguir {
 	@Override
 	public List<Seguir> devolverListaDeSeguidos(Usuario usuarioSeguidor) {
 		Usuario seguidor = servicioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
-		System.out.println("********************aca devuelve la lista de seguidos***********");
 		return sessionFactory.getCurrentSession().createCriteria(Seguir.class)
 				.add(Restrictions.eq("usuarioSeguidor", seguidor)).list();
+	}
+
+	@Override
+	public List<Seguir> devolverListaDeSeguimientos() {
+		return sessionFactory.getCurrentSession().createCriteria(Seguir.class).list();
 	}
 
 }
