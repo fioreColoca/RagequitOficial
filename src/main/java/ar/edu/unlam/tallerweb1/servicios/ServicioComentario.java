@@ -7,9 +7,9 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
-public interface ServicioComentar {
+public interface ServicioComentario {
 	
-	 Long enviarComentario(Comentario comentario);
+	 Long guardarComentario(Comentario comentario);
 
 	 Comentario mostrarComentario(Long id);
 	 	
@@ -17,9 +17,9 @@ public interface ServicioComentar {
 	 	 	 
 	 void tipoComentario(String boton,Comentario comentario);
 	
-	 List<Comentario> mostrarComentarioPorPublicacion(Publicacion publicacion);
+	 List<Comentario> devolverComentarioPorPublicacion(Publicacion publicacion);
 	 
-	 List<Comentario> mostrarTodosLosComentarios();
+	 List<Comentario> devolverTodosLosComentariosyRespuestas();
 	 
 	 List<Comentario> respuestaListado(Comentario comentario);
 	 
@@ -32,6 +32,10 @@ public interface ServicioComentar {
 	 TreeSet<Comentario> ordenarComentarioPorMasLikes(List <Comentario> comentario);
 
 	 TreeSet<Comentario> devolverListaComentarioPorMasLikes();
+	 
+	 List<Comentario> devolverSoloComentario();
+	 
+	 
 
 	
 	 

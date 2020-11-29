@@ -21,7 +21,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikeComentario;
 
 @Service
 @Transactional
-public class ServicioComentarImpl implements ServicioComentar{
+public class ServicioComentarioImpl implements ServicioComentario{
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
@@ -31,7 +31,7 @@ public class ServicioComentarImpl implements ServicioComentar{
 	private RepositorioLikeComentario repositorioLikeComentario;
 
 	@Override
-	public Long enviarComentario(Comentario comentario) {
+	public Long guardarComentario(Comentario comentario) {
 		if(comentario.getRespuesta() == null) {
 			servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getPublicacion());
 			return repositorioComentar.enviarComentario(comentario);
@@ -83,12 +83,12 @@ public class ServicioComentarImpl implements ServicioComentar{
 	}
 
 	@Override
-	public List<Comentario> mostrarComentarioPorPublicacion(Publicacion publicacion) {
+	public List<Comentario> devolverComentarioPorPublicacion(Publicacion publicacion) {
 		return repositorioComentar.obtenerComentariosPorPublicacion(publicacion);
 	}
 
 	@Override
-	public List<Comentario> mostrarTodosLosComentarios() {
+	public List<Comentario> devolverTodosLosComentariosyRespuestas() {
 		return repositorioComentar.mostrarTodosLosComentarios();
 	}
 
@@ -130,11 +130,26 @@ public class ServicioComentarImpl implements ServicioComentar{
 
 	@Override
 	public TreeSet<Comentario> devolverListaComentarioPorMasLikes() {
-		 List <Comentario> comentarios = this.mostrarTodosLosComentarios();
+		 List <Comentario> comentarios = this.devolverTodosLosComentariosyRespuestas();
 		 ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes(); 
 		 TreeSet<Comentario> comentarioOrdenadoPorLikes = new TreeSet<Comentario>(orden); 
 		 comentarioOrdenadoPorLikes.addAll(comentarios); 
 		 return comentarioOrdenadoPorLikes; 
+	}
+
+	@Override
+	public List<Comentario> devolverSoloComentario() {
+		List <Comentario> comentarioYrespuesta = devolverTodosLosComentariosyRespuestas();
+		List <Comentario> soloComentario = null ;
+		
+		for (Comentario comentario : comentarioYrespuesta ) {
+			if(comentario.getRespuesta() == null) {
+				soloComentario.add(comentario);
+			}
+		}
+		
+		return soloComentario;
+		
 	}
 
 	/*
