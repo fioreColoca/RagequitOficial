@@ -82,17 +82,12 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL
 		// /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a través de la URL correspondiente a ésta
+		String contrasenia = usuario.getPassword();
 		usuario.setPassword(servicioUsuario.encriptarPassword(usuario.getPassword()));
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			request.getSession().setAttribute("ID", usuarioBuscado.getId());
-			request.getSession().setAttribute("NOMBREUSUARIO", usuarioBuscado.getNombreUsuario());
 			request.getSession().setAttribute("USUARIO", usuarioBuscado);
-			request.getSession().setAttribute("URLIMAGEN", usuarioBuscado.getUrl_imagen());
-			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombre());
-			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
-			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
+			request.getSession().setAttribute("CONTRASENIA", contrasenia);
 
 			return new ModelAndView("redirect:/home");
 		} else {

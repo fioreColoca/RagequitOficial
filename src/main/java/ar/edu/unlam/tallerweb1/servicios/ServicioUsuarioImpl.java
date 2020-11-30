@@ -65,7 +65,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public void cambiarContrasenia(Long id, String contrasenia) {
 		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
-		usuario.setPassword(contrasenia);
+		String contrasenia2 = encriptarPassword(contrasenia);
+		usuario.setPassword(contrasenia2);
 	}
 
 	@Override
