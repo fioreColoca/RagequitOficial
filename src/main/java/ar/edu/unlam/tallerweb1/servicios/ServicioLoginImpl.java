@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -19,8 +18,11 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 @Service("servicioLogin")
 @Transactional
 public class ServicioLoginImpl implements ServicioLogin {
-
+	@Inject
 	private RepositorioUsuario servicioLoginDao;
+
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	@Autowired
 	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao) {
@@ -34,8 +36,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
-		
-		
+		usuario.setPassword(servicioUsuario.encriptarPassword(usuario.getPassword()));
 		servicioLoginDao.registrarUsuario(usuario);
 	}
 
