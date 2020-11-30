@@ -38,6 +38,7 @@ public class Usuario {
 	private Integer contadorSeguidores;
 	private Integer contadorCategoriasSeguidas;
 	private String url_imagen;
+	private Integer telefono;
 
 	// Array de seguidores
 	// @ManyToMany
@@ -166,8 +167,13 @@ public class Usuario {
 	public void setContadorCategoriasSeguidas(Integer contadorCategoriasSeguidas) {
 		this.contadorCategoriasSeguidas = contadorCategoriasSeguidas;
 	}
-	
-	
 
-	
+	public Integer getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
 }
