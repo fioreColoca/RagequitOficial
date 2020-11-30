@@ -48,7 +48,7 @@
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </c:if>
-                <a href="home" class="p-2" style="color:#f4a117">
+                <a href="home" class="p-2">
                     <i class="fas fa-house-user"></i>
                 </a>
                 <a href="home?ordenPublicaciones=popular" class="p-2">

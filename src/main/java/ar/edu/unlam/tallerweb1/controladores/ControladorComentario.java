@@ -49,7 +49,7 @@ public class ControladorComentario {
 		comentario.setFechaHora(fecha);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario("comun", comentario);
-		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(comentario.getPublicacionId());
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(comentario.getPublicacionId());
 		
 		comentario.setPublicacion(publicacion);
 

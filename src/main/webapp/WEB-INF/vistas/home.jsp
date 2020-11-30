@@ -1,19 +1,14 @@
 <%@ include file="header.jsp"%>
 <main>
+	<button type="button" class="btn btn-secondary ajaxPruebaBoton">Probar</button>
+	<p class="text-success ajaxUsuario"></p>
+	<p class="text-success ajaxMensaje"></p>
     <section class="carousel">
         <%@ include file="homeCarousel.jsp"%>
     </section>
     <c:if test="${not empty usuarioLogeado}">
         <section class="crearPublicacion">
             <%@ include file="homeCrearPublicacion.jsp"%>
-            <c:if test="${errorCategoria != 'null'}">
-                <h5 class="text-danger"><span>${errorCategoria}</span></h5>
-                <br>
-            </c:if>
-            <c:if test="${errorMensaje != 'null'}">
-                <h5 class="text-danger"><span>${errorMensaje}</span></h5>
-                <br>
-            </c:if>
         </section>
     </c:if>
     <hr>

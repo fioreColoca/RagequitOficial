@@ -5,24 +5,24 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unlam.tallerweb1.modelo.Likee;
+import ar.edu.unlam.tallerweb1.modelo.LikePublicacion;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioLike;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikePublicacion;
 
 @Service
 @Transactional
-public class ServicioLikeImpl implements ServicioLike{
+public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 	
 	@Inject
-	private RepositorioLike repositorioLike;
+	private RepositorioLikePublicacion repositorioLike;
 	@Inject
 	private ServicioUsuario servicioUsuario;
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
 	
 	@Override
-	public Long guardarLike(Likee like) {
+	public Long guardarLike(LikePublicacion like) {
 		
 		return repositorioLike.guardarLike(like);
 	}
@@ -31,9 +31,9 @@ public class ServicioLikeImpl implements ServicioLike{
 	public void darLikeAPublicacion(Publicacion publicacion, Usuario usuario) {
 		
 		Usuario usuarioQueLikeo = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
-		Likee like = repositorioLike.obtenerLikePorPublicacionYUsuario(publicacion, usuarioQueLikeo);
+		LikePublicacion like = repositorioLike.obtenerLikePorPublicacionYUsuario(publicacion, usuarioQueLikeo);
 		if( like == null) {
-			Likee nuevoLike = new Likee();
+			LikePublicacion nuevoLike = new LikePublicacion();
 			nuevoLike.setPublicacion(publicacion);
 			nuevoLike.setUsuario(usuarioQueLikeo);
 			this.guardarLike(nuevoLike);
@@ -53,13 +53,13 @@ public class ServicioLikeImpl implements ServicioLike{
 	}
 
 	@Override
-	public void borrarLike(Likee like) {
+	public void borrarLike(LikePublicacion like) {
 		repositorioLike.borrarLike(like);
 		
 	}
 
 	@Override
-	public Likee obtenerLikePorId(Long id) {
+	public LikePublicacion obtenerLikePorId(Long id) {
 		return repositorioLike.obtenerLikePorId(id);
 	}
 	

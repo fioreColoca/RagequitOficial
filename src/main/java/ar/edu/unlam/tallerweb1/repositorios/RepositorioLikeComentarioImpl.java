@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
-import ar.edu.unlam.tallerweb1.modelo.Likee;
+import ar.edu.unlam.tallerweb1.modelo.LikePublicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository

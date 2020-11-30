@@ -50,7 +50,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 	
 	@Override
-	public Publicacion obtenerPublicacion(Long id) {
+	public Publicacion obtenerPublicacionPorId(Long id) {
 		
 		return repositorioPublicacion.obtenerPublicacionPorId(id);
 	}
@@ -100,7 +100,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		} 
 	
 	@Override
-	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones) { 
+	public TreeSet<Publicacion> devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones) { 
 
 		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha(); 
 
@@ -113,7 +113,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		}
 	
 	@Override
-	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones) { 
+	public TreeSet<Publicacion> devolverYOrdenarUnaListaDePublicacionesPorPopular(List listaPublicaciones) { 
 
 		PublicacionOrdenPorLikeYComentario ordenPorLikesYComentarios = new PublicacionOrdenPorLikeYComentario(); 
 
@@ -161,45 +161,6 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 
 	@Override
-	public TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(
-			String ordenPublicaciones,
-			Usuario usuario) {
-		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
-		switch(ordenPublicaciones) {
-		case "popular":
-			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorLikesYComentarios();
-			break;
-		case "seguidos":
-			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverPublicacionesPorUsuariosSeguidos(usuario);
-			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
-			break;
-		default:
-			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
-		}
-		return listaPublicacionesOrdenadas;
-	}
-
-	@Override
-	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(
-			String ordenPublicaciones, List publicacionesList,
-			Usuario usuario
-			) {
-		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
-		switch(ordenPublicaciones) {
-		case "popular":
-			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorPopular(publicacionesList);
-			break;
-		case "seguidos":
-			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverUnaListaDePublicacionesPorUsuariosSeguidos(publicacionesList,usuario);
-			listaPublicacionesOrdenadas = ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
-			break;
-		default:
-			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
-		}
-		return listaPublicacionesOrdenadas;
-	}
-
-	@Override
 	public List<Publicacion> devolverPublicacionesPorUsuariosSeguidos(Usuario usuario) {
 		List<Publicacion> publicaciones =buscarPublicaciones();
 		List <Usuario> usuariosSeguidos = servicioSeguir.devolverListaDeSeguidos(usuario);
@@ -226,6 +187,45 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 			}
 		}
 		return publicacionesUsuariosSeguidos;
+	}
+	
+	@Override
+	public TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(
+			String ordenPublicaciones,
+			Usuario usuario) {
+		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
+		switch(ordenPublicaciones) {
+		case "popular":
+			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorLikesYComentarios();
+			break;
+		case "seguidos":
+			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverPublicacionesPorUsuariosSeguidos(usuario);
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
+			break;
+		default:
+			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
+		}
+		return listaPublicacionesOrdenadas;
+	}
+
+	@Override
+	public TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(
+			String ordenPublicaciones, List publicacionesList,
+			Usuario usuario
+			) {
+		TreeSet<Publicacion> listaPublicacionesOrdenadas = null;
+		switch(ordenPublicaciones) {
+		case "popular":
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorPopular(publicacionesList);
+			break;
+		case "seguidos":
+			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverUnaListaDePublicacionesPorUsuariosSeguidos(publicacionesList,usuario);
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
+			break;
+		default:
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
+		}
+		return listaPublicacionesOrdenadas;
 	}
 
 }

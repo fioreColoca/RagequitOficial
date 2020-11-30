@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
@@ -22,8 +26,8 @@ import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLikePublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
-import ar.edu.unlam.tallerweb1.servicios.ServicioLike;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
@@ -38,7 +42,7 @@ public class ControladorPublicacion {
 	@Inject
 	private ServicioComentario servicioComentario;
 	@Inject
-	private ServicioLike servicioLike;
+	private ServicioLikePublicacion servicioLike;
 	@Inject
 	private ServicioSeguir servicioSeguir;
 
@@ -91,48 +95,56 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("home", modelo);
 	}
-
-	@RequestMapping(path = "/guardarPublicacion", method = RequestMethod.POST)
-	public ModelAndView guardarPublicacion(@ModelAttribute("publicacion") Publicacion publicacion,
+	
+	@RequestMapping(path = "/guardarPublicacion", produces = "application/json", method = RequestMethod.POST)
+	@ResponseBody
+	public String guardarPublicacion(
+			@RequestParam(value = "categoriaId", required = false) Long categoriaId,
+			@RequestParam(value = "mensaje", required = false) String mensaje,
 			HttpServletRequest request) {
 		Date fecha = new Date();
-
+		Gson gson = new Gson();
+		JsonObject json = new JsonObject();
+		
+		Publicacion publicacion = new Publicacion();
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 
-		String errorCategoria = null;
-		String errorMensaje = null;
-		if (publicacion.getCategoriaId() == -1) {
-			errorCategoria = "Falta elegir categoria";
+		Boolean errorCategoria = false;
+		Boolean errorMensaje = false;
+		if (categoriaId == -1) {
+			errorCategoria = true;
 		} else {
-			Long idCategoria = publicacion.getCategoriaId();
-			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(idCategoria);
+			Categoria categoria = servicioCategoria.mostrarCategoriaPorId(categoriaId);
 			publicacion.setCategoria(categoria);
 		}
 
-		if (publicacion.getMensaje().isEmpty()) {
-			errorMensaje = "La publicacion no puede tener un mensaje vacio";
+		if (mensaje.isEmpty()) {
+			errorMensaje = true;
 		}
-
-		publicacion.setUsuario(usuario);
-		publicacion.setFechaHora(fecha);
-		publicacion.setCantidadLikes(0);
-		publicacion.setCantidadComentarios(0);
-		publicacion.setEstado(PublicacionEstado.ACTIVO);
-
-		if (errorCategoria == null && errorMensaje == null) {
+		json.addProperty("mensajeVacio", errorMensaje);
+		json.addProperty("categoriaVacia", errorCategoria);
+		if (errorCategoria == false && errorMensaje == false) {
+			publicacion.setUsuario(usuario);
+			publicacion.setFechaHora(fecha);
+			publicacion.setCantidadLikes(0);
+			publicacion.setCantidadComentarios(0);
+			publicacion.setEstado(PublicacionEstado.ACTIVO);
+			publicacion.setMensaje(mensaje);
 			servicioPublicacion.guardarPublicacion(publicacion);
+			json.addProperty("publicacion", gson.toJson(publicacion));
+			return gson.toJson(json);
 		}
-
-		return new ModelAndView("redirect:/home?errorMensaje=" + errorMensaje + "&errorCategoria=" + errorCategoria);
+		
+		return gson.toJson(json);
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.POST)
 	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id,
 			HttpServletRequest request) {
 		Long idUsuarioQuePidioBorrarPublicacion = (Long) request.getSession().getAttribute("ID");
-		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacion(id);
+		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacionPorId(id);
 		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
 
 		if (!idUsuarioQuePidioBorrarPublicacion.equals(idUsuarioQueCreoLaPublicacion)) {
@@ -162,13 +174,23 @@ public class ControladorPublicacion {
 	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)
 	public ModelAndView darLikePublicacion(@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
 			HttpServletRequest request) {
-		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(id);
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(id);
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		servicioLike.darLikeAPublicacion(publicacion, usuario);
 
 		return new ModelAndView("redirect:/home");
+	}
+	
+	@RequestMapping(path = "/ajaxPrueba", produces = "application/json")
+	@ResponseBody
+	public String ajaxPrueba() {
+		Gson gson = new Gson();
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(3L);
+		
+		
+		return gson.toJson(publicacion);
 	}
 
 	public ServicioCategoria getServicioCategoria() {
