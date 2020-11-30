@@ -36,6 +36,50 @@ $(document).ready(function(){
         $(".modal-footer #botonGuardar").val( categoriaId);
 	});
 	
+	/************************AJAX DE CREAR PUBLICACION**********************************/
+	$("#crearPublicacionFormulario").submit(function(event){
+        event.preventDefault();
+        var post_url = $(this).attr("action");
+        var categoriaId = $("#categoriaPublicacion").val();
+        var mensaje = $("#mensajePublicacion").val();
+        $.ajax({
+            type:'POST',
+            url: post_url,
+            data:{
+            		categoriaId: categoriaId,
+            		mensaje:mensaje
+                }
+        }).done(function (datosPublicacion){
+            $("#mensajeVacio").html("");
+            $("#categoriaVacia").html("");
+            $("#creacionPublicacionExitosa").html("");
+            if(datosPublicacion.mensajeVacio == true){
+                $("#mensajeVacio").html("<span>Debe escribir un mensaje</span>");
+            }
+            if(datosPublicacion.categoriaVacia == true){
+                $("#categoriaVacia").html("<span>Debe elegir una categoria</span>");
+            }
+            if(datosPublicacion.mensajeVacio == false && datosPublicacion.categoriaVacia == false){
+                $("#creacionPublicacionExitosa").html("<span>Se creo la publicacion con exito!</span>");
+            }
+        }).fail(function (){
+            console.log("error al cargar AJAX publicacion");
+        });
+    });
+	
+	/************************AJAX DE PRUEBA**********************************/
+	$(".ajaxPruebaBoton").click(function(){
+        $.ajax({
+            type:'POST',
+            url: 'ajaxPrueba'
+        }).done(function (publicacion){
+            console.log(publicacion);
+            $(".ajaxUsuario").html(publicacion.usuario.nombreUsuario);
+             $(".ajaxMensaje").html(publicacion.mensaje);
+        }).fail(function (){
+            alert("error al cargar Ajax prueba");
+        });
+	});
 });
 
 
@@ -44,7 +88,7 @@ var owl = $('.owl-carousel');
 
 owl.owlCarousel({
 	center: true,
-	items:5,
+	items:11,
 	nav:true,
 	dots:false,
 	loop:true,
