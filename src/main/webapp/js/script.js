@@ -9,24 +9,33 @@ $(document).ready(function(){
     	$(".responderComent #responderComentario").val( miComentarioId );
 	});
 	
-});
-
-$(document).ready(function(){
-	$('.botonCollapseComentarios').click(function () {
+    $('.botonCollapseComentarios').click(function () {
     	var categoriaId= $(this).data('id');
     	var comentariosACollapse = "#collapseComentario";
     	
     	var comentariosAMostrar = comentariosACollapse.concat(categoriaId);
     	$(comentariosAMostrar).collapse('toggle');
 	});
-});
+	
+	$('.botonCollapseRespuesta').click(function () {
+    	var comentarioId= $(this).data('id');
+    	var respuestaACollapse = "#collapseRespuesta";
+    	
+    	var respuestaAMostrar = respuestaACollapse.concat(comentarioId);
+    	$(respuestaAMostrar).collapse('toggle');
+	});
+	
 
-$(document).ready(function(){
-	$('.botonEditar').click(function () {
+	
+		$('.botonEditar').click(function () {
     	var categoriaId= $(this).data('id');
     	$(".modal-footer #botonGuardar").val( categoriaId);
 	});
+	
 });
+
+
+
 
 var owl = $('.owl-carousel');
 

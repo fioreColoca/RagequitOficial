@@ -22,8 +22,8 @@ import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
-import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikePublicacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
@@ -36,7 +36,7 @@ public class ControladorPublicacion {
 	@Inject
 	private ServicioCategoria servicioCategoria;
 	@Inject
-	private ServicioComentar servicioComentario;
+	private ServicioComentario servicioComentario;
 	@Inject
 	private ServicioLikePublicacion servicioLike;
 	@Inject
@@ -72,7 +72,8 @@ public class ControladorPublicacion {
 
 		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
-		List<Comentario> comentarios = servicioComentario.mostrarTodosLosComentarios();
+		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
+
 
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);

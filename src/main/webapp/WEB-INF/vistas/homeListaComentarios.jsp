@@ -34,21 +34,21 @@
                                                 ${comentario.getMensaje()}</p>
                                         </div>
                                         <c:if test="${not empty usuarioLogeado}">
-                                            <div class="hoverIcons d-flex justify-content-around bg-fondo p-2">
+                                            <div class="hoverIcons d-flex justify-content-around bg-fondo">
                                                 <form action="meGustaComentario">
                                                     <div>
-                                                        <button class="btn btn-outline-naranja"
+                                                        <button class="btn btn-outline-naranja hoverIconsBotonIcono"
                                                             value="${comentario.getId()}" name="botonLike">
                                                             <i class="far fa-thumbs-up"></i>
                                                         </button>
-                                                        <a class="verListadoLikes" data-toggle="modal"
+                                                        <a class="verListadoLikes hoverIconsBotonIcono" data-toggle="modal"
                                                             href="#verListado" data-id="${comentario.getId()}">
                                                             ${comentario.getCantidadLikes()}</a>
                                                     </div>
                                                 </form>
                                                 <div class="ml-3">
                                                     <button type="button"
-                                                        class="btn btn-outline-naranja responderComentario"
+                                                        class="btn btn-outline-naranja responderComentario hoverIconsBotonIcono"
                                                         data-toggle="modal" data-target="#responderComentario"
                                                         data-id="${comentario.getId()}">
                                                         <i class="far fa-comment-dots"></i>
@@ -62,7 +62,7 @@
                                                     <form action="borrarComentario">
                                                         <div>
                                                             <button type="button"
-                                                                class="btn btn-outline-naranja botonBorrar"
+                                                                class="btn btn-outline-naranja botonBorrar hoverIconsBotonIcono"
                                                                 data-toggle="modal" data-target="#borrarComentario"
                                                                 data-id="${comentario.getId()}">
                                                                 <i class="far fa-trash-alt"></i>
@@ -70,21 +70,18 @@
                                                         </div>
                                                     </form>
                                                 </c:if>
-                                                <form>
-                                                    <div>
-                                                        <button type="submit" class="btn btn-outline-naranja">
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
                                             </div>
+                                            <button type="button" value="mostrar"
+                                                        class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
+                                                        data-id="${comentario.getId()}" data-toggle="collapse" onclick="cambiarNombreBotonRespuesta()"
+                                        				data-target="#collapseComentarios">Ver respuestas</button>
                                         </c:if>
                                     </c:if>
                                 </div>
                             </div>
                         </div>
                     </c:if>
-                    <div class="ml-5">
+                    <div class="ml-5 collapse" id="collapseRespuesta${comentario.getId()}">
                         <c:forEach items="${comentarios}" var="respuesta">
                             <!--  RESPUESTA COMUN  -->
                             <c:set var="tipoRespuesta" value="${respuesta.getTipo()}"></c:set>
@@ -135,7 +132,7 @@
                                                             class="hoverIcons d-flex justify-content-around bg-fondo p-2">
                                                             <form action="meGustaComentario">
                                                                 <div>
-                                                                    <button class="btn btn-outline-naranja"
+                                                                    <button class="btn btn-outline-naranja hoverIconsBotonIcono"
                                                                         value="${respuesta.getId()}" name="botonLike">
                                                                         <i class="far fa-thumbs-up"></i>
                                                                     </button>
@@ -146,15 +143,7 @@
                                                                 </div>
                                                             </form>
 
-                                                            <div class="ml-3">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-naranja responderComentario"
-                                                                    data-toggle="modal"
-                                                                    data-target="#responderComentario"
-                                                                    data-id="${respuesta.getId()}">
-                                                                    <i class="far fa-comment-dots"></i>
-                                                                </button>
-                                                            </div>
+
                                                             <c:set var="idUsuario"
                                                                 value="${respuesta.getUsuario().getId()}">
                                                             </c:set>
@@ -164,7 +153,7 @@
                                                                 <form action="borrarComentario">
                                                                     <div>
                                                                         <button type="button"
-                                                                            class="btn btn-outline-naranja botonBorrar"
+                                                                            class="btn btn-outline-naranja hoverIconsBotonIcono botonBorrar"
                                                                             data-toggle="modal"
                                                                             data-target="#borrarComentario"
                                                                             data-id="${respuesta.getId()}">
@@ -173,16 +162,6 @@
                                                                     </div>
                                                                 </form>
                                                             </c:if>
-
-                                                            <form>
-                                                                <div>
-                                                                    <button type="submit"
-                                                                        class="btn btn-outline-naranja">
-                                                                        <i class="fas fa-share-alt"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-
                                                         </div>
                                                     </c:if>
 
