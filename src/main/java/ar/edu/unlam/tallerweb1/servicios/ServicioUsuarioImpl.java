@@ -65,7 +65,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public void cambiarContrasenia(Long id, String contrasenia) {
 		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
-		usuario.setPassword(contrasenia);
+		String contrasenia2 = encriptarPassword(contrasenia);
+		usuario.setPassword(contrasenia2);
 	}
 
 	@Override
@@ -108,11 +109,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public String encriptarPassword(String password) {
-		return org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
-	}
-
-	@Override
 	public void aumentarCategoriasSeguidas(Usuario seguidor) {
 		Usuario seguidorDeCategoria = repositorioUsuario.obtenerUsuarioPorId(seguidor.getId());
 		Integer categoriasSeguidas = seguidorDeCategoria.getContadorCategoriasSeguidas() + 1;
@@ -125,6 +121,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		Usuario seguidorDeCategoria = repositorioUsuario.obtenerUsuarioPorId(seguidor.getId());
 		Integer categoriasSeguidas = seguidorDeCategoria.getContadorCategoriasSeguidas() - 1;
 		seguidorDeCategoria.setContadorCategoriasSeguidas(categoriasSeguidas);
+	}
+
+	@Override
+	public String encriptarPassword(String password) {
+		return org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 	}
 
 }

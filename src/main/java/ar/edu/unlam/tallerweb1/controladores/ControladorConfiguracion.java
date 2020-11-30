@@ -33,7 +33,8 @@ public class ControladorConfiguracion {
 		String nombreUsuarioo = (String) usuarioLogeado.getNombreUsuario() != null
 				? (String) usuarioLogeado.getNombreUsuario()
 				: null;
-		String contrasenia = (String) usuarioLogeado.getPassword() != null ? (String) usuarioLogeado.getPassword()
+		String contrasenia = request.getSession().getAttribute("CONTRASENIA") != null
+				? (String) request.getSession().getAttribute("CONTRASENIA")
 				: null;
 
 		modelo.put("cambioExitoso", resultado);
@@ -53,10 +54,11 @@ public class ControladorConfiguracion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioVerificar = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 
 		servicioUsuario.cambiarNombre(usuario.getId(), nombre);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
+		if (usuario.getId().equals(usuarioVerificar.getId())) {
 			usuario.setNombre(nombre);
 		}
 
@@ -69,10 +71,11 @@ public class ControladorConfiguracion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioVerificar = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 
 		servicioUsuario.cambiarApellido(usuario.getId(), apellido);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
+		if (usuario.getId().equals(usuarioVerificar.getId())) {
 			usuario.setApellido(apellido);
 		}
 
@@ -84,10 +87,11 @@ public class ControladorConfiguracion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioVerificar = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 
 		servicioUsuario.cambiarEmail(usuario.getId(), email);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
+		if (usuario.getId().equals(usuarioVerificar.getId())) {
 			usuario.setEmail(email);
 		}
 
@@ -100,10 +104,10 @@ public class ControladorConfiguracion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-
+		Usuario usuarioVerificar = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 		servicioUsuario.cambiarNombreUsuario(usuario.getId(), nombreUsuario);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
+		if (usuario.getId().equals(usuarioVerificar.getId())) {
 			usuario.setNombreUsuario(nombreUsuario);
 		}
 
@@ -116,11 +120,13 @@ public class ControladorConfiguracion {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuarioVerificar = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 
 		servicioUsuario.cambiarContrasenia(usuario.getId(), contrasenia);
 
-		if (usuario.getId().equals(request.getSession().getAttribute("ID"))) {
-			usuario.setPassword(contrasenia);
+		if (usuario.getId().equals(usuarioVerificar.getId())) {
+			System.out.println("*************************cambia la contrasenia de la session");
+			request.getSession().setAttribute("CONTRASENIA", contrasenia);
 		}
 
 		return new ModelAndView("redirect:/configuracion?resultado=1");
