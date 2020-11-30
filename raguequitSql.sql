@@ -25,12 +25,12 @@ value(1, 0, "Paladins es una curiosa mezcla de acción en primera persona de car
 ;
 
 
-insert into usuario(id, apellido, contadorCategoriasSeguidas, email, nombre, nombreUsuario, password, rol, url_imagen,contadorSeguidores,contadorSeguidos)
-value(1, "Sanchez", 0, "matias@email.com", "Matias", "Pewmafe", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/matias.jpeg",0,0),
-(2, "Fagliano", 0, "santi@email.com", "Santiago", "ElSanti", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/santiago.jpeg",0,0),
-(3, "Fiora", 0, "fiore@email.com", "Fiore", "LadyFio", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "usuario", "img/imgUsuario/fio.jpeg",0,0),
-(4, "ElRey", 0, "franco@email.com", "Franco", "Furanko", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "usuario", "img/imgUsuario/franco.jpeg",0,0),
-(5, "Abi", 0, "abril@email.com", "Abril", "Abi", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/abril.jpeg",0,0);
+insert into usuario(id, apellido, contadorCategoriasSeguidas, email, nombre, nombreUsuario, password, rol, url_imagen,contadorSeguidores,contadorSeguidos,fechaCreacion)
+value(1, "Sanchez", 0, "matias@email.com", "Matias", "Pewmafe", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/matias.jpeg",0,0,20200512),
+(2, "Fagliano", 0, "santi@email.com", "Santiago", "ElSanti", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/santiago.jpeg",0,0,20200512),
+(3, "Fiora", 0, "fiore@email.com", "Fiore", "LadyFio", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "usuario", "img/imgUsuario/fio.jpeg",0,0,20200512),
+(4, "ElRey", 0, "franco@email.com", "Franco", "Furanko", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "usuario", "img/imgUsuario/franco.jpeg",0,0,20200512),
+(5, "Abi", 0, "abril@email.com", "Abril", "Abi", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", "admin", "img/imgUsuario/abril.jpeg",0,0,20200512);
 
 
 
