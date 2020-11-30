@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -130,9 +132,12 @@ public class ControladorLogin {
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
 		ModelMap modelo = new ModelMap();
+		Date fecha = new Date();
+
 		usuario1.setContadorSeguidores(0);
 		usuario1.setContadorSeguidos(0);
 		usuario1.setContadorCategoriasSeguidas(0);
+		usuario1.setFechaCreacion(fecha);
 		usuario1.setRol("usuario");
 
 		servicioLogin.registrarUsuario(usuario1);
