@@ -1,14 +1,17 @@
 $(document).ready(function(){
+    /************************BAJA PUBLICACION COMENTARIOS**********************************/
 	$('.botonBorrar').click(function () {
     	var miElementoId = $(this).data('id');
     	$(".modal-footer #botonBorrar").val( miElementoId );
-	});
-
+    });
+    
+    /************************MODAL RESPONDER COMENTARIO**********************************/
 	$('.responderComentario').click(function () {
     	var miComentarioId = $(this).data('id');
     	$(".responderComent #responderComentario").val( miComentarioId );
 	});
-	
+    
+    /************************COLLAPSE COMENTARIOS**********************************/
     $('.botonCollapseComentarios').click(function () {
     	var categoriaId= $(this).data('id');
     	var comentariosACollapse = "#collapseComentario";
@@ -16,7 +19,8 @@ $(document).ready(function(){
     	var comentariosAMostrar = comentariosACollapse.concat(categoriaId);
     	$(comentariosAMostrar).collapse('toggle');
 	});
-	
+    
+    /************************COLLAPSE RESPUESTAS**********************************/
 	$('.botonCollapseRespuesta').click(function () {
     	var comentarioId= $(this).data('id');
     	var respuestaACollapse = "#collapseRespuesta";
@@ -26,17 +30,16 @@ $(document).ready(function(){
 	});
 	
 
-	
-		$('.botonEditar').click(function () {
-    	var categoriaId= $(this).data('id');
-    	$(".modal-footer #botonGuardar").val( categoriaId);
+	/************************EDITAR CATEGORIA**********************************/
+	$('.botonEditar').click(function () {
+        var categoriaId= $(this).data('id');
+        $(".modal-footer #botonGuardar").val( categoriaId);
 	});
 	
 });
 
 
-
-
+/************************CAROUSEL INICIO**********************************/
 var owl = $('.owl-carousel');
 
 owl.owlCarousel({
