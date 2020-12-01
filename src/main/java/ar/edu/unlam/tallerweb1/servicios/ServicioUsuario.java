@@ -22,6 +22,8 @@ public interface ServicioUsuario {
 
 	void cambiarContrasenia(Long id, String contrasenia);
 
+	void cambiarTelefono(Long id, Integer numero);
+
 	void setRepositorioUsuario(RepositorioUsuario repositorioUsuario);
 
 	Usuario obtenerUsuarioPorId(Long id);

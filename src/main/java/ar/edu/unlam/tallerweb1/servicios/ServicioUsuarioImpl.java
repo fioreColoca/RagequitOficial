@@ -76,6 +76,12 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
+	public void cambiarTelefono(Long id, Integer numero) {
+		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
+		usuario.setTelefono(numero);
+	}
+
+	@Override
 	public Usuario obtenerUsuarioPorId(Long id) {
 		Usuario usuario = repositorioUsuario.obtenerUsuarioPorId(id);
 		return usuario;

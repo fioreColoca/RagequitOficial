@@ -130,16 +130,18 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
-	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1,
+			@RequestParam(value = "fechaNacimiento",required = false) String date) {
 		ModelMap modelo = new ModelMap();
 		Date fecha = new Date();
-
+		usuario1.setContadorSuscriptores(0);
 		usuario1.setContadorSeguidores(0);
 		usuario1.setContadorSeguidos(0);
 		usuario1.setContadorCategoriasSeguidas(0);
 		usuario1.setFechaCreacion(fecha);
+		usuario1.setNivel(1);
 		usuario1.setRol("usuario");
-
+		System.out.println("***************************" + date + "*************");
 		servicioLogin.registrarUsuario(usuario1);
 		return new ModelAndView("redirect:/login", modelo);
 	}

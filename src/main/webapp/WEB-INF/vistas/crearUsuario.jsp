@@ -45,8 +45,8 @@
 						<span class="input-group-text"> <i class="fa fa-phone"></i>
 						</span>
 					</div>
-					<input path="telefono" id="telefono" class="form-control"
-						placeholder="Tel&eacute;fono M&oacute;vil" type="text">
+					<form:input path="telefono" id="telefono" class="form-control"
+						placeholder="Teléfono Móvil" type="text"/>
 				</div>
 
 				<!-- form-group// -->
@@ -56,7 +56,7 @@
 						</span>
 					</div>
 					<input path="fechaNacimiento" id="fechaNacimiento"
-						class="form-control" placeholder="Fecha de nacimiento" type="date" >
+						class="form-control" placeholder="Fecha de nacimiento" type="date">
 				</div>
 
 				<!-- form-group end.// -->
