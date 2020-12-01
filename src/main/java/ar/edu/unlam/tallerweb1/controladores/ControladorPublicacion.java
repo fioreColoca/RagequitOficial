@@ -47,15 +47,13 @@ public class ControladorPublicacion {
 	private ServicioSeguir servicioSeguir;
 
 	@RequestMapping(path = "home")
-	public ModelAndView irAlHome(@RequestParam(value = "errorMensaje", required = false) String errorMensaje,
-			@RequestParam(value = "errorCategoria", required = false) String errorCategoria,
+	public ModelAndView irAlHome(
 			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
 			@RequestParam(value = "ordenPublicaciones", required = false) String ordenPublicaciones,
 			@RequestParam(value = "errorComentarioVacio", required = false) String errorComentarioVacio,
 			@RequestParam(value = "errorBorrarPublicacion", required = false) String errorBorrarPublicacion,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-		Publicacion publicacion = new Publicacion();
 		TreeSet<Publicacion> publicaciones = new TreeSet<>();
 
 		ordenPublicaciones = ordenPublicaciones == null ? "ordenFechaRecienteAAntigua" : ordenPublicaciones;
@@ -81,11 +79,8 @@ public class ControladorPublicacion {
 
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
-		modelo.put("publicacion", publicacion);
 		modelo.put("categorias", categorias);
 		modelo.put("ordenPublicaciones", ordenPublicaciones);
-		modelo.put("errorMensaje", errorMensaje);
-		modelo.put("errorCategoria", errorCategoria);
 		modelo.put("comentario", new Comentario());
 		modelo.put("comentarios", comentarios);
 		modelo.put("usuarioLogeado", usuarioLogeado);
@@ -171,16 +166,24 @@ public class ControladorPublicacion {
 		return new ModelAndView("redirect:/home?ordenPublicaciones=" + ordenPublicaciones);
 	}
 
-	@RequestMapping(path = "/darLikePublicacion", method = RequestMethod.POST)
-	public ModelAndView darLikePublicacion(@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
+	@RequestMapping(path = "/darLikePublicacion", produces = "application/json", method = RequestMethod.POST)
+	@ResponseBody
+	public String darLikePublicacion(
+			@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
 			HttpServletRequest request) {
+		Gson gson= new Gson();
+		JsonObject json = new JsonObject();
 		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(id);
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		servicioLike.darLikeAPublicacion(publicacion, usuario);
-
-		return new ModelAndView("redirect:/home");
+		
+		Publicacion publicacionQueCambioLosLikes = servicioPublicacion.obtenerPublicacionPorId(id);
+		Integer cantidadLikes = publicacionQueCambioLosLikes.getCantidadLikes();
+		json.addProperty("cantidadLikesPublicacion", cantidadLikes);
+		json.addProperty("idPublicacion", id);
+		return gson.toJson(json);
 	}
 	
 	@RequestMapping(path = "/ajaxPrueba", produces = "application/json")

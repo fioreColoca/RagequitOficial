@@ -66,6 +66,26 @@ $(document).ready(function(){
             console.log("error al cargar AJAX publicacion");
         });
     });
+    
+    /************************AJAX DE LIKEAR PUBLICACION**********************************/
+	$("button[id^='idPublicacionADarLike']").click(function(){
+		var post_url = "darLikePublicacion";
+		var idPublicacion = $(this).val();
+        $.ajax({
+            type:'POST',
+			url: post_url,
+			data: {
+				idPublicacionADarLike:idPublicacion
+			}
+			
+        }).done(function (datosLikePublicacion){
+			$("#cantidadLikesPublicacion"+datosLikePublicacion.idPublicacion).html("");
+            $("#cantidadLikesPublicacion"+datosLikePublicacion.idPublicacion).html(datosLikePublicacion.cantidadLikesPublicacion);
+        }).fail(function (data){
+        	console.log(data);
+			console.log("error al cargar Ajax dar like publicacion");
+        });
+	});
 	
 	/************************AJAX DE PRUEBA**********************************/
 	$(".ajaxPruebaBoton").click(function(){
