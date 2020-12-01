@@ -205,6 +205,23 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 	
 	@Override
+	public List<Publicacion> devolverUnaListaDePublicacionesPorCategoriasSegidas(List publicaciones,Usuario usuario) {
+		List <Publicacion> publicacionesLista = publicaciones;
+		List <Categoria> categoriasSeguidas = servicioUsuario.devolverListaDeCategoriasSeguidasPorUsuario(usuario);
+		List<Publicacion> publicacionesCategoriasSeguidas= new ArrayList<>();
+		for (Publicacion publicacion : publicacionesLista) {
+			Categoria categoriaDeLaPublicacion = publicacion.getCategoria();
+			for(Categoria categoria: categoriasSeguidas) {
+				if(categoria.getId().equals(categoriaDeLaPublicacion.getId())) {
+					publicacionesCategoriasSeguidas.add(publicacion);
+				}
+			}
+		}
+		return publicacionesCategoriasSeguidas;
+	}
+	
+	
+	@Override
 	public TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(
 			String ordenPublicaciones,
 			Usuario usuario) {
@@ -242,7 +259,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
 			break;
 		case "categoriasSeguidas":
-			
+			List<Publicacion> listaPublicacionesPorCategoriasSeguidas = devolverUnaListaDePublicacionesPorCategoriasSegidas(publicacionesList,usuario);
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorCategoriasSeguidas);
 			break;	
 		default:
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);

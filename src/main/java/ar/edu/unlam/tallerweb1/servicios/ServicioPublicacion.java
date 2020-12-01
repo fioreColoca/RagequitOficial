@@ -25,6 +25,7 @@ public interface ServicioPublicacion {
 	List<Publicacion> devolverPublicacionesPorUsuariosSeguidos(Usuario usuario);
 	List<Publicacion> devolverUnaListaDePublicacionesPorUsuariosSeguidos(List publicaciones,Usuario usuario);
 	List<Publicacion> devolverPublicacionesPorCategoriasSeguidas(Usuario usuario);
+	List<Publicacion> devolverUnaListaDePublicacionesPorCategoriasSegidas(List publicacionesList,Usuario usuario);
 	
 	TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones, Usuario usuario);
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorLikesYComentarios();
