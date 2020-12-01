@@ -86,20 +86,6 @@ $(document).ready(function(){
 			console.log("error al cargar Ajax dar like publicacion");
         });
 	});
-	
-	/************************AJAX DE PRUEBA**********************************/
-	$(".ajaxPruebaBoton").click(function(){
-        $.ajax({
-            type:'POST',
-            url: 'ajaxPrueba'
-        }).done(function (publicacion){
-            console.log(publicacion);
-            $(".ajaxUsuario").html(publicacion.usuario.nombreUsuario);
-             $(".ajaxMensaje").html(publicacion.mensaje);
-        }).fail(function (){
-            alert("error al cargar Ajax prueba");
-        });
-	});
 });
 
 

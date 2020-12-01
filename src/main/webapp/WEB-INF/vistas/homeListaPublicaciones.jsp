@@ -106,7 +106,7 @@
                                 <c:if test="${not empty usuarioLogeado}">
                                    <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono"
-                                            value="${publicacionDelFor.getId()}" name="idPublicacionADarLike"  id="idPublicacionADarLike${publicacionDelFor.getId()}">
+                                            value="${publicacionDelFor.getId()}" name="idPublicacionADarLike${publicacionDelFor.getId()}"  id="idPublicacionADarLike${publicacionDelFor.getId()}">
                                          	<i class="far fa-thumbs-up"></i>
                                          </button>
                                          <p class="text-secondary" id="cantidadLikesPublicacion${publicacionDelFor.getId()}">${publicacionDelFor.getCantidadLikes()}</p>

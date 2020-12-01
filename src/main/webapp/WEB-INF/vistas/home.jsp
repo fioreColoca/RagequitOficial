@@ -1,8 +1,5 @@
 <%@ include file="header.jsp"%>
 <main>
-	<button type="button" class="btn btn-secondary ajaxPruebaBoton">Probar</button>
-	<p class="text-success ajaxUsuario"></p>
-	<p class="text-success ajaxMensaje"></p>
     <section class="carousel">
         <%@ include file="homeCarousel.jsp"%>
     </section>
