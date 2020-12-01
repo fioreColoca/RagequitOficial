@@ -175,6 +175,21 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	}
 	
 	@Override
+	public List<Publicacion> devolverPublicacionesPorCategoriasSeguidas(Usuario usuario) {
+		List<Publicacion> publicaciones =buscarPublicaciones();
+		List <Categoria> categoriasSeguidas = servicioUsuario.devolverListaDeCategoriasSeguidasPorUsuario(usuario);
+		List<Publicacion> publicacionesCategoriasSeguidas= new ArrayList<>();
+		for (Publicacion publicacion : publicaciones) {
+			Categoria categoriaDeLaPublicacion = publicacion.getCategoria();
+			if(categoriasSeguidas.contains(categoriaDeLaPublicacion)) {
+				publicacionesCategoriasSeguidas.add(publicacion);
+			}
+		}
+		return publicacionesCategoriasSeguidas;
+	}
+	
+	
+	@Override
 	public List<Publicacion> devolverUnaListaDePublicacionesPorUsuariosSeguidos(List publicaciones,Usuario usuario) {
 		List <Publicacion> publicacionesLista = publicaciones;
 		List <Usuario> usuariosSeguidos = servicioSeguir.devolverListaDeSeguidos(usuario);
@@ -198,9 +213,13 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		case "popular":
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorLikesYComentarios();
 			break;
-		case "seguidos":
+		case "usuariosSeguidos":
 			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverPublicacionesPorUsuariosSeguidos(usuario);
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
+			break;
+		case "categoriasSeguidas":
+			List<Publicacion> listaPublicacionesPorCategoriasSeguidas = devolverPublicacionesPorCategoriasSeguidas(usuario);
+			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorCategoriasSeguidas);
 			break;
 		default:
 			listaPublicacionesOrdenadas = devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
@@ -218,10 +237,13 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		case "popular":
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorPopular(publicacionesList);
 			break;
-		case "seguidos":
+		case "usuariosSeguidos":
 			List<Publicacion> listaPublicacionesPorUsuariosSeguidos = devolverUnaListaDePublicacionesPorUsuariosSeguidos(publicacionesList,usuario);
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(listaPublicacionesPorUsuariosSeguidos);
 			break;
+		case "categoriasSeguidas":
+			
+			break;	
 		default:
 			listaPublicacionesOrdenadas = devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(publicacionesList);
 		}

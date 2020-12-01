@@ -39,13 +39,23 @@
             </a>
             <div class="d-flex flex-wrap m-auto">
                 <c:if test="${not empty usuarioLogeado}">
-                    <a href="home?ordenPublicaciones=seguidos" class="p-2">
+                    <a href="home?ordenPublicaciones=usuariosSeguidos" class="p-2">
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </c:if>
                 <c:if test="${empty usuarioLogeado}">
                     <a href="login" class="p-2">
                         <i class="fas fa-user-friends"></i>
+                    </a>
+                </c:if>
+                <c:if test="${not empty usuarioLogeado}">
+                    <a href="home?ordenPublicaciones=categoriasSeguidas" class="p-2">
+                        <i class="fas fa-scroll"></i>
+                    </a>
+                </c:if>
+                <c:if test="${empty usuarioLogeado}">
+                    <a href="login" class="p-2">
+                        <i class="fas fa-scroll"></i>
                     </a>
                 </c:if>
                 <a href="home" class="p-2">
