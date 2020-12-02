@@ -40,7 +40,7 @@
             </c:if>
         </c:if>
         <c:if test="${empty usuarioLogeado}">
-            <a href="login?errorSeguir=true" class="btn btn-outline-success">Seguir</a>
+            <a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
         </c:if>
 
     </article>
