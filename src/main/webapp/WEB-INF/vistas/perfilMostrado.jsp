@@ -51,20 +51,34 @@
         <h4 class="text-center text-secondary">Categorias seguidas por ${usuarioPerfil.getNombreUsuario()}</h4>
         <div class="">
             <c:if test="${empty categorias}">
-                <p class="h4 text-danger text-center bg-dark p-2">Este usuario no sigue a ninguna Categoria!</p>
+                <p class="text-danger text-center bg-dark p-2">Este usuario no sigue a ninguna Categoria!</p>
             </c:if>
 
             <c:if test="${not empty categorias}">
-                <div class="owl-carousel owl-theme">
-                    <c:forEach items="${categorias}" var="categoria">
-                        <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
-                            <div class="item">
-                                <a href="juegosOVarios?categoriaId=${categoria.getId()}"> <img class="owl-lazy" data-src="${categoria.getUrlImagen()}">
+                <c:if test="${categorias.size() > 3}">
+                    <div class="owl-carousel owl-theme">
+                        <c:forEach items="${categorias}" var="categoria">
+                            <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
+                                <div class="item">
+                                    <a href="juegosOVarios?categoriaId=${categoria.getId()}"> <img class="owl-lazy" data-src="${categoria.getUrlImagen()}">
+                                    </a>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </c:if>
+                <c:if test="${categorias.size() <= 3}">
+                    <div class="d-flex justify-content-center">
+                        <c:forEach items="${categorias}" var="categoria">
+                            <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
+
+                                <a href="juegosOVarios?categoriaId=${categoria.getId()}" class="m-3"> <img class="img-fluid" src="${categoria.getUrlImagen()}">
                                 </a>
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                </div>
+
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </c:if>
             </c:if>
 
         </div>

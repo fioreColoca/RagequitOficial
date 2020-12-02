@@ -34,11 +34,11 @@
 <section class="row">
     <article class="col-12 col-md-4">
         <h4 class="text-center">Categorias seguidas por ${usuarioPerfil.getNombreUsuario()}</h4>
-        <div class="">
+        <div class="carrusel">
             <c:if test="${empty categorias}">
-                <p class="h4 text-danger text-center bg-dark p-2">No sigues a ninguna Categoria!</p>
+                <p class="text-danger text-center bg-dark p-2">No sigues a ninguna Categoria!</p>
                 <a href="biblioteca" class="link_perfil">
-                    <p class="h4 text-danger text-center bg-dark p-2 mt-0">Visita aqui nuestra Biblioteca de Categorias
+                    <p class="text-danger text-center bg-dark p-2 mt-0">Visita aqui nuestra Biblioteca de Categorias
                     </p>
                 </a>
             </c:if>
@@ -46,24 +46,18 @@
                 <c:if test="${categorias.size() > 3}">
                     <div class="owl-carousel owl-theme">
                         <c:forEach items="${categorias}" var="categoria">
-                            <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
-                                <div class="item">
-                                    <a href="juegosOVarios?categoriaId=${categoria.getId()}"> <img class="owl-lazy" data-src="${categoria.getUrlImagen()}">
-                                    </a>
-                                </div>
-                            </c:if>
+                            <div class="item">
+                                <a href="juegosOVarios?categoriaId=${categoria.getId()}"> <img class="owl-lazy" data-src="${categoria.getUrlImagen()}" style="max-width: 100%">
+                                </a>
+                            </div>
                         </c:forEach>
                     </div>
                 </c:if>
                 <c:if test="${categorias.size() <= 3}">
                     <div class="d-flex justify-content-center">
                         <c:forEach items="${categorias}" var="categoria">
-                            <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
-
-                                <a href="juegosOVarios?categoriaId=${categoria.getId()}" class="m-3"> <img class="img-fluid" src="${categoria.getUrlImagen()}">
-                                </a>
-
-                            </c:if>
+                            <a href="juegosOVarios?categoriaId=${categoria.getId()}" class="m-3"> <img class="img-fluid" src="${categoria.getUrlImagen()}">
+                            </a>
                         </c:forEach>
                     </div>
                 </c:if>
