@@ -609,6 +609,6 @@ hr {
 }
 
 .carrusel img {
-    width: 144px;
-    height: 192px;
+    width: 144px!important;
+    height: 192px!important;
 }
