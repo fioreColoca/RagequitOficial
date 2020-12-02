@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.LikePublicacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionLikePublicacion;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikePublicacion;
@@ -20,6 +21,8 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 	private ServicioUsuario servicioUsuario;
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
+	@Inject
+	private ServicioNotificacionLikePublicacion servicioNotificacionLikePublicacion;
 	
 	@Override
 	public Long guardarLikePublicacion(LikePublicacion like) {
@@ -32,15 +35,26 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 		
 		Usuario usuarioQueLikeo = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
 		LikePublicacion like = repositorioLike.obtenerLikePublicacionPorPublicacionYUsuario(publicacion, usuarioQueLikeo);
+		Usuario usuarioDeLaPublicacion = publicacion.getUsuario();
 		if( like == null) {
 			LikePublicacion nuevoLike = new LikePublicacion();
 			nuevoLike.setPublicacion(publicacion);
 			nuevoLike.setUsuario(usuarioQueLikeo);
 			this.guardarLikePublicacion(nuevoLike);
+			NotificacionLikePublicacion notificacion = new NotificacionLikePublicacion();
 			
+			
+			notificacion.setUsuarioOtorgadorNotifi(usuarioQueLikeo);
+			notificacion.setUsuarioRecibidorNotifi(usuarioDeLaPublicacion);
+			
+			servicioNotificacionLikePublicacion.guardarNotificacionLikePublicacion(notificacion);
 			servicioPublicacion.aumentarCantidadLikesDePublicacion(publicacion);
 		}else {
 			borrarLikePublicacion(like);
+			
+			NotificacionLikePublicacion notificacion = servicioNotificacionLikePublicacion.obtenerNotificacionLikePublicacionPorUsuario1YUsuario2(usuarioQueLikeo, usuarioDeLaPublicacion);
+			Long notificacionId= notificacion.getId();
+			servicioNotificacionLikePublicacion.borrarNotificacionLikePublicacionPorId(notificacionId);
 			servicioPublicacion.disminuirCantidadLikesDePublicacion(publicacion);
 		}
 		
