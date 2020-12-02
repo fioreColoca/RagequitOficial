@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class SeguirCategoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -43,5 +43,4 @@ public class SeguirCategoria {
 		this.categoriaSeguida = categoriaSeguida;
 	}
 
-	
 }

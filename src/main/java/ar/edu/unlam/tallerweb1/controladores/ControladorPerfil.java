@@ -57,7 +57,7 @@ public class ControladorPerfil {
 
 		TreeSet<Publicacion> publicacioneHechasPorUnUsuario = servicioPublicacion
 				.devolverPublicacionesOrdenadasPor("hechasPorUsuario", usuarioPerfil);
-		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
+		List<Categoria> categorias = servicioUsuario.devolverListaDeCategoriasSeguidasPorUsuario(usuarioPerfil);
 		List<Usuario> listaSeguidores = servicioSeguir.devolverListaDeSeguidores(usuarioPerfil);
 		List<Usuario> listaSeguidos = servicioSeguir.devolverListaDeSeguidos(usuarioPerfil);
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();

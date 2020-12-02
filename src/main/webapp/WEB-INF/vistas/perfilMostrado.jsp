@@ -48,10 +48,14 @@
 <hr>
 <section class="row">
     <article class="col-12 col-md-4">
-        <h4 class="text-center">Categorias seguidas por ${usuarioPerfil.getNombreUsuario()}</h4>
+        <h4 class="text-center text-secondary">Categorias seguidas por ${usuarioPerfil.getNombreUsuario()}</h4>
         <div class="">
-            <div class="owl-carousel owl-theme">
-                <c:if test="${not empty categorias}">
+            <c:if test="${empty categorias}">
+                <p class="h4 text-danger text-center bg-dark p-2">Este usuario no sigue a ninguna Categoria!</p>
+            </c:if>
+
+            <c:if test="${not empty categorias}">
+                <div class="owl-carousel owl-theme">
                     <c:forEach items="${categorias}" var="categoria">
                         <c:if test="${categoria.getTipoCategoria() == 'JUEGOS'}">
                             <div class="item">
@@ -60,8 +64,9 @@
                             </div>
                         </c:if>
                     </c:forEach>
-                </c:if>
-            </div>
+                </div>
+            </c:if>
+
         </div>
     </article>
     <article class="col-12 col-md-8">
@@ -142,7 +147,8 @@
                                         <div class="d-flex justify-content-end">
                                             <img alt="logo" class="categoria-icon pr-1" src="${publicacionDelFor.getCategoria().getUrlIcono()}">
                                             <a href="juegosOVarios?categoriaId=${publicacionDelFor.getCategoria().getId()}">
-                                                <h4 class="nombreUsuarioPublicacion">${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                                <h4 class="nombreUsuarioPublicacion">
+                                                    ${publicacionDelFor.getCategoria().getNombre()}</h4>
                                             </a>
                                         </div>
                                         <p class="text-white-50">
