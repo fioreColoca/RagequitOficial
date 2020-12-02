@@ -24,14 +24,14 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 	@Override
 	public Long guardarLikePublicacion(LikePublicacion like) {
 		
-		return repositorioLike.guardarLike(like);
+		return repositorioLike.guardarLikePublicacion(like);
 	}
 
 	@Override
 	public void darLikeAPublicacion(Publicacion publicacion, Usuario usuario) {
 		
 		Usuario usuarioQueLikeo = servicioUsuario.obtenerUsuarioPorId(usuario.getId());
-		LikePublicacion like = repositorioLike.obtenerLikePorPublicacionYUsuario(publicacion, usuarioQueLikeo);
+		LikePublicacion like = repositorioLike.obtenerLikePublicacionPorPublicacionYUsuario(publicacion, usuarioQueLikeo);
 		if( like == null) {
 			LikePublicacion nuevoLike = new LikePublicacion();
 			nuevoLike.setPublicacion(publicacion);
@@ -48,19 +48,19 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 
 	@Override
 	public void borrarLikePublicacionPorId(Long id) {
-		repositorioLike.borrarLikePorId(id);
+		repositorioLike.borrarLikePublicacionPorId(id);
 		
 	}
 
 	@Override
 	public void borrarLikePublicacion(LikePublicacion like) {
-		repositorioLike.borrarLike(like);
+		repositorioLike.borrarLikePublicacion(like);
 		
 	}
 
 	@Override
 	public LikePublicacion obtenerLikePublicacionPorId(Long id) {
-		return repositorioLike.obtenerLikePorId(id);
+		return repositorioLike.obtenerLikePublicacionPorId(id);
 	}
 	
 }

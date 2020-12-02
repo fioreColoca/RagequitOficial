@@ -19,30 +19,30 @@ public class RepositorioLikePublicacionImpl implements RepositorioLikePublicacio
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Long guardarLike(LikePublicacion like) {
+	public Long guardarLikePublicacion(LikePublicacion like) {
 		Session session = sessionFactory.getCurrentSession();
 		return (Long)session.save(like);
 	}
 
 	@Override
-	public void borrarLike(LikePublicacion like) {
+	public void borrarLikePublicacion(LikePublicacion like) {
 		sessionFactory.getCurrentSession().delete(like);
 		
 	}
 
 	@Override
-	public void borrarLikePorId(Long id) {
-		LikePublicacion like = obtenerLikePorId(id);
+	public void borrarLikePublicacionPorId(Long id) {
+		LikePublicacion like = obtenerLikePublicacionPorId(id);
 		sessionFactory.getCurrentSession().delete(like);
 	}
 
 	@Override
-	public LikePublicacion obtenerLikePorId(Long id) {
+	public LikePublicacion obtenerLikePublicacionPorId(Long id) {
 		return sessionFactory.getCurrentSession().get(LikePublicacion.class, id);
 	}
 
 	@Override
-	public LikePublicacion obtenerLikePorPublicacionYUsuario(Publicacion publicacion, Usuario usuario) {
+	public LikePublicacion obtenerLikePublicacionPorPublicacionYUsuario(Publicacion publicacion, Usuario usuario) {
 		return (LikePublicacion) sessionFactory.getCurrentSession()
 				.createCriteria(LikePublicacion.class)
 				.add(Restrictions.and(
