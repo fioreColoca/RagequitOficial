@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class NotificacionLikePublicacion {
+public class Notificacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -17,6 +17,21 @@ public class NotificacionLikePublicacion {
 	
 	@ManyToOne
 	private Usuario usuarioRecibidorNotifi;
+	
+	@ManyToOne
+	private Publicacion publicacion;
+	
+	private NotificacionTipo tipo;
+	
+	private Boolean visto;
+
+	public Boolean getVisto() {
+		return visto;
+	}
+
+	public void setVisto(Boolean visto) {
+		this.visto = visto;
+	}
 
 	public Long getId() {
 		return id;
@@ -41,5 +56,20 @@ public class NotificacionLikePublicacion {
 	public void setUsuarioRecibidorNotifi(Usuario usuarioRecibidorNotifi) {
 		this.usuarioRecibidorNotifi = usuarioRecibidorNotifi;
 	}
-	
+
+	public Publicacion getPublicacion() {
+		return publicacion;
+	}
+
+	public void setPublicacion(Publicacion publicacion) {
+		this.publicacion = publicacion;
+	}
+
+	public NotificacionTipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(NotificacionTipo tipo) {
+		this.tipo = tipo;
+	}
 }
