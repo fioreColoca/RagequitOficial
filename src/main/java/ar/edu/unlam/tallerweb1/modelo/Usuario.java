@@ -39,7 +39,7 @@ public class Usuario {
 	private Integer contadorCategoriasSeguidas;
 	private String url_imagen;
 	private Integer telefono;
-
+	private Integer contadorNotificaciones;
 	// Array de seguidores
 	// @ManyToMany
 	// private List<Usuario> arraySeguidores = new LinkedList<Usuario>();
@@ -176,4 +176,12 @@ public class Usuario {
 		this.telefono = telefono;
 	}
 
+	public Integer getContadorNotificaciones() {
+		return contadorNotificaciones;
+	}
+
+	public void setContadorNotificaciones(Integer contadorNotificaciones) {
+		this.contadorNotificaciones = contadorNotificaciones;
+	}
+	
 }

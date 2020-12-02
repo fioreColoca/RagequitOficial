@@ -136,6 +136,7 @@ public class ControladorLogin {
 		Date fecha = new Date();
 		usuario1.setContadorSuscriptores(0);
 		usuario1.setContadorSeguidores(0);
+		usuario1.setContadorNotificaciones(0);
 		usuario1.setContadorSeguidos(0);
 		usuario1.setContadorCategoriasSeguidas(0);
 		usuario1.setFechaCreacion(fecha);

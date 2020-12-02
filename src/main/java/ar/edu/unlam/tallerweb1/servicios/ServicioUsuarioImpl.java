@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.SeguirCategoria;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -149,6 +150,22 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			categoriasSeguidas.add(seguirCategoria.getCategoriaSeguida());
 		}
 		return categoriasSeguidas;
+	}
+
+	@Override
+	public void aumentarCantidadNotificacionesDeUsuario(Usuario usuario) {
+		Usuario usuarioAAumentarNotificaciones = repositorioUsuario.consultarUsuario(usuario);
+		Integer cantidadNotificaciones = usuarioAAumentarNotificaciones.getContadorNotificaciones() + 1;
+		
+		usuarioAAumentarNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
+	}
+
+	@Override
+	public void disminuirCantidadNotificacionesDeUsuario(Usuario usuario) {
+		Usuario usuarioADisminuirNotificaciones = repositorioUsuario.consultarUsuario(usuario);
+		Integer cantidadNotificaciones = usuarioADisminuirNotificaciones.getContadorNotificaciones() - 1;
+		
+		usuarioADisminuirNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
 	}
 
 }

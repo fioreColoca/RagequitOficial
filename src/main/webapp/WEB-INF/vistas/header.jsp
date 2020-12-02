@@ -80,6 +80,7 @@
                 </div>
             </c:if>
             <c:if test="${not empty usuarioLogeado}">
+            	<p>${usuarioLogeado.getContadorNotificaciones()}</p>
                 <div class="dropdown d-flex flex-wrap">
                     <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
                     <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white "><span>

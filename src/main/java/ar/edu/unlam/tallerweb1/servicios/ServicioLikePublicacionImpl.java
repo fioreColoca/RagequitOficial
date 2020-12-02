@@ -48,6 +48,7 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 			notificacion.setUsuarioRecibidorNotifi(usuarioDeLaPublicacion);
 			
 			servicioNotificacionLikePublicacion.guardarNotificacionLikePublicacion(notificacion);
+			servicioUsuario.aumentarCantidadNotificacionesDeUsuario(usuarioDeLaPublicacion);
 			servicioPublicacion.aumentarCantidadLikesDePublicacion(publicacion);
 		}else {
 			borrarLikePublicacion(like);
@@ -55,6 +56,7 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 			NotificacionLikePublicacion notificacion = servicioNotificacionLikePublicacion.obtenerNotificacionLikePublicacionPorUsuario1YUsuario2(usuarioQueLikeo, usuarioDeLaPublicacion);
 			Long notificacionId= notificacion.getId();
 			servicioNotificacionLikePublicacion.borrarNotificacionLikePublicacionPorId(notificacionId);
+			servicioUsuario.disminuirCantidadNotificacionesDeUsuario(usuarioDeLaPublicacion);
 			servicioPublicacion.disminuirCantidadLikesDePublicacion(publicacion);
 		}
 		

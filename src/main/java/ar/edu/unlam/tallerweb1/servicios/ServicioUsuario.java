@@ -47,4 +47,8 @@ public interface ServicioUsuario {
 	void disminuirCategoriasSeguidas(Usuario seguidor);
 
 	List<Categoria> devolverListaDeCategoriasSeguidasPorUsuario(Usuario usuario);
+
+	void aumentarCantidadNotificacionesDeUsuario(Usuario usuario);
+
+	void disminuirCantidadNotificacionesDeUsuario(Usuario usuario);
 }

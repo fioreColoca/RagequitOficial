@@ -23,12 +23,12 @@ value(1, 0, "Paladins es una curiosa mezcla de acción en primera persona de car
 (14, 0, "Sonic the Hedgehog debe salvar a los inocentes animales que están siendo secuestrados por el Dr. Robotnik con la finalidad de usarlos para hacer funcionar sus robots. Sonic debe recolectar las 6 Esmeraldas del Caos.", "Sonic",0, "img/categoriaIcon/sonicIcon.png", "https://static-cdn.jtvnw.net/ttv-boxart/Sonic%20the%20Hedgehog-144x192.jpg");
 
 
-insert into usuario(id, apellido, contadorCategoriasSeguidas, email, nombre, nombreUsuario, password ,nivel, rol, url_imagen,contadorSuscriptores,contadorSeguidores,contadorSeguidos,fechaCreacion,telefono)
-value(1, "Sanchez", 0, "matias@email.com", "Matias", "Pewmafe", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/matias.jpeg",0,0,0,20200512,1112345678),
-(2, "Fagliano", 0, "santi@email.com", "Santiago", "ElSanti", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/santiago.jpeg",0,0,0,20200512,1112345678),
-(3, "Fiora", 0, "fiore@email.com", "Fiore", "LadyFio", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "usuario", "img/imgUsuario/fio.jpeg",0,0,0,20200512,1112345678),
-(4, "ElRey", 0, "franco@email.com", "Franco", "Furanko", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "usuario", "img/imgUsuario/franco.jpeg",0,0,0,20200512,1112345678),
-(5, "Abi", 0, "abril@email.com", "Abril", "Abi", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/abril.jpeg",0,0,0,20200512,1112345678);
+insert into usuario(id, apellido, contadorCategoriasSeguidas,contadorNotificaciones , email, nombre, nombreUsuario, password ,nivel, rol, url_imagen,contadorSuscriptores,contadorSeguidores,contadorSeguidos,fechaCreacion,telefono)
+value(1, "Sanchez", 0, 0, "matias@email.com", "Matias", "Pewmafe", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/matias.jpeg",0,0,0,20200512,1112345678),
+(2, "Fagliano", 0, 0, "santi@email.com", "Santiago", "ElSanti", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/santiago.jpeg",0,0,0,20200512,1112345678),
+(3, "Fiora", 0, 0, "fiore@email.com", "Fiore", "LadyFio", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "usuario", "img/imgUsuario/fio.jpeg",0,0,0,20200512,1112345678),
+(4, "ElRey", 0, 0, "franco@email.com", "Franco", "Furanko", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "usuario", "img/imgUsuario/franco.jpeg",0,0,0,20200512,1112345678),
+(5, "Abi", 0, 0, "abril@email.com", "Abril", "Abi", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",1, "admin", "img/imgUsuario/abril.jpeg",0,0,0,20200512,1112345678);
 
 
 
