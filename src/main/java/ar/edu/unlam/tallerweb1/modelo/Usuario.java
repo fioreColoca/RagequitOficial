@@ -40,13 +40,7 @@ public class Usuario {
 	private String url_imagen;
 	private Integer telefono;
 	private Integer contadorNotificaciones;
-	// Array de seguidores
-	// @ManyToMany
-	// private List<Usuario> arraySeguidores = new LinkedList<Usuario>();
-
-	// Array de Suscriptores
-	// @ManyToMany
-	// private List<Usuario> arraySuscriptores = new LinkedList<Usuario>();
+	
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
