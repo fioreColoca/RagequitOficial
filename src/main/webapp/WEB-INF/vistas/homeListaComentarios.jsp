@@ -71,10 +71,16 @@
                                                     </form>
                                                 </c:if>
                                             </div>
+                                            <c:forEach items="${comentarios}" var="respuesta">
+                                             <c:set var="RespuestaDe" value="${respuesta.getRespuesta().getId()}"></c:set>
+                                            <c:set var="comentarioId" value="${comentario.getId()}"></c:set>
+                                            <c:if test="${RespuestaDe==comentarioId}">
                                             <button type="button" value="mostrar"
                                                         class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
                                                         data-id="${comentario.getId()}" data-toggle="collapse" onclick="cambiarNombreBotonRespuesta()"
                                         				data-target="#collapseComentarios">Ver respuestas</button>
+                                        	</c:if>
+                                        	</c:forEach>			
                                         </c:if>
                                     </c:if>
                                 </div>
@@ -84,8 +90,6 @@
                     <div class="ml-5 collapse" id="collapseRespuesta${comentario.getId()}">
                         <c:forEach items="${comentarios}" var="respuesta">
                             <!--  RESPUESTA COMUN  -->
-                            <c:set var="tipoRespuesta" value="${respuesta.getTipo()}"></c:set>
-                            <c:if test="${tipoRespuesta=='COMUN'}">
                                 <c:set var="RespuestaDe" value="${respuesta.getRespuesta().getId()}"></c:set>
                                 <c:set var="comentarioId" value="${comentario.getId()}"></c:set>
                                 <c:if test="${RespuestaDe==comentarioId}">
@@ -170,7 +174,6 @@
                                         </div>
                                     </div>
                                 </c:if>
-                            </c:if>
                             <!--  COMUN  -->
                         </c:forEach>
                     </div>
