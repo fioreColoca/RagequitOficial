@@ -22,7 +22,7 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 	private ServicioPublicacion servicioPublicacion;
 	
 	@Override
-	public Long guardarLike(LikePublicacion like) {
+	public Long guardarLikePublicacion(LikePublicacion like) {
 		
 		return repositorioLike.guardarLike(like);
 	}
@@ -36,30 +36,30 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion{
 			LikePublicacion nuevoLike = new LikePublicacion();
 			nuevoLike.setPublicacion(publicacion);
 			nuevoLike.setUsuario(usuarioQueLikeo);
-			this.guardarLike(nuevoLike);
+			this.guardarLikePublicacion(nuevoLike);
 			
 			servicioPublicacion.aumentarCantidadLikesDePublicacion(publicacion);
 		}else {
-			borrarLike(like);
+			borrarLikePublicacion(like);
 			servicioPublicacion.disminuirCantidadLikesDePublicacion(publicacion);
 		}
 		
 	}
 
 	@Override
-	public void borrarLikePorId(Long id) {
+	public void borrarLikePublicacionPorId(Long id) {
 		repositorioLike.borrarLikePorId(id);
 		
 	}
 
 	@Override
-	public void borrarLike(LikePublicacion like) {
+	public void borrarLikePublicacion(LikePublicacion like) {
 		repositorioLike.borrarLike(like);
 		
 	}
 
 	@Override
-	public LikePublicacion obtenerLikePorId(Long id) {
+	public LikePublicacion obtenerLikePublicacionPorId(Long id) {
 		return repositorioLike.obtenerLikePorId(id);
 	}
 	
