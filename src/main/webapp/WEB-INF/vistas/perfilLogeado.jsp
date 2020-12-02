@@ -126,7 +126,9 @@
                                     <div class="col-4 text-right ">
                                         <div class="d-flex justify-content-end">
                                             <img alt="logo" class="categoria-icon pr-1" src="${publicacionDelFor.getCategoria().getUrlIcono()}">
-                                            <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                            <a href="juegosOVarios?categoriaId=${publicacionDelFor.getCategoria().getId()}">
+                                                <h4 class="nombreUsuarioPublicacion">${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                            </a>
                                         </div>
                                         <p class="text-white-50">
                                             ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs ${publicacionDelFor.getFechaHora().getDate()}/${publicacionDelFor.getFechaHora().getMonth()}
