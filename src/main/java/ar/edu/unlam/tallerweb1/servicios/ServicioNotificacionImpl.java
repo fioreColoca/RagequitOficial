@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -15,30 +17,36 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioNotificacion;
 public class ServicioNotificacionImpl implements ServicioNotificacion {
 	
 	@Inject
-	private RepositorioNotificacion repositorioNotificacionLikePublicacion;
+	private RepositorioNotificacion repositorioNotificacion;
 	
 	@Override
 	public Long guardarNotificacionLikePublicacion(Notificacion notificacion) {
-		return repositorioNotificacionLikePublicacion.guardarNotificacionLikePublicacion(notificacion);
+		return repositorioNotificacion.guardarNotificacionLikePublicacion(notificacion);
 	}
 
 	@Override
 	public Notificacion obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion
 	(Usuario usuario1,Usuario usuario2,Publicacion publicacion) {
-		Notificacion notificacion = repositorioNotificacionLikePublicacion
+		Notificacion notificacion = repositorioNotificacion
 		.obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion(usuario1,usuario2,publicacion);
 		return notificacion;
 	}
 
 	@Override
 	public void borrarNotificacionLikePublicacionPorId(Long notificacionId) {
-		repositorioNotificacionLikePublicacion.borrarNotificacionLikePublicacionPorId(notificacionId);
+		repositorioNotificacion.borrarNotificacionLikePublicacionPorId(notificacionId);
 	}
 
 	@Override
 	public Notificacion obtenerNotificacionLikePublicacionPorId(Long id) {
 		
-		return repositorioNotificacionLikePublicacion.obtenerNotificacionLikePublicacionPorId(id);
+		return repositorioNotificacion.obtenerNotificacionLikePublicacionPorId(id);
+	}
+
+	@Override
+	public List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario) {
+		
+		return repositorioNotificacion.obtenerListaDeNotificacionesDelUsuario(usuario);
 	}
 
 }
