@@ -20,33 +20,39 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 	private RepositorioNotificacion repositorioNotificacion;
 	
 	@Override
-	public Long guardarNotificacionLikePublicacion(Notificacion notificacion) {
-		return repositorioNotificacion.guardarNotificacionLikePublicacion(notificacion);
+	public Long guardarNotificacion(Notificacion notificacion) {
+		return repositorioNotificacion.guardarNotificacion(notificacion);
 	}
 
 	@Override
-	public Notificacion obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion
+	public Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion
 	(Usuario usuario1,Usuario usuario2,Publicacion publicacion) {
 		Notificacion notificacion = repositorioNotificacion
-		.obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion(usuario1,usuario2,publicacion);
+		.obtenerNotificacionPorUsuario1Usuario2YPublicacion(usuario1,usuario2,publicacion);
 		return notificacion;
 	}
 
 	@Override
-	public void borrarNotificacionLikePublicacionPorId(Long notificacionId) {
-		repositorioNotificacion.borrarNotificacionLikePublicacionPorId(notificacionId);
+	public void borrarNotificacionPorId(Long notificacionId) {
+		repositorioNotificacion.borrarNotificacionPorId(notificacionId);
 	}
 
 	@Override
-	public Notificacion obtenerNotificacionLikePublicacionPorId(Long id) {
+	public Notificacion obtenerNotificacionPorId(Long id) {
 		
-		return repositorioNotificacion.obtenerNotificacionLikePublicacionPorId(id);
+		return repositorioNotificacion.obtenerNotificacionPorId(id);
 	}
 
 	@Override
 	public List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario) {
 		
 		return repositorioNotificacion.obtenerListaDeNotificacionesDelUsuario(usuario);
+	}
+
+	@Override
+	public void setearNotificacionVisto(Long notificacionId) {
+		Notificacion notificacion = repositorioNotificacion.obtenerNotificacionPorId(notificacionId);
+		notificacion.setVisto(true);
 	}
 
 }

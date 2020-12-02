@@ -7,13 +7,15 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioNotificacion {
-	Long guardarNotificacionLikePublicacion(Notificacion notificacion);
+	Long guardarNotificacion(Notificacion notificacion);
 
-	Notificacion obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion(Usuario usuario1,Usuario usuario2,Publicacion publicacion);
+	Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1,Usuario usuario2,Publicacion publicacion);
 
-	void borrarNotificacionLikePublicacionPorId(Long notificacionId);
+	void borrarNotificacionPorId(Long notificacionId);
 	
-	Notificacion obtenerNotificacionLikePublicacionPorId(Long id);
+	Notificacion obtenerNotificacionPorId(Long id);
 
 	List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario);
+
+	void setearNotificacionVisto(Long notificacionId);
 }

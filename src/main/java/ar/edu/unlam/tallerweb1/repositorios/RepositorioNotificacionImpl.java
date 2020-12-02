@@ -21,13 +21,13 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Long guardarNotificacionLikePublicacion(Notificacion notificacion) {
+	public Long guardarNotificacion(Notificacion notificacion) {
 		Session session = sessionFactory.getCurrentSession();
 		return (Long)session.save(notificacion);
 	}
 
 	@Override
-	public Notificacion obtenerNotificacionLikePublicacionPorUsuario1Usuario2YPublicacion(Usuario usuario1,
+	public Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1,
 			Usuario usuario2, Publicacion publicacion) {
 		return (Notificacion) sessionFactory.getCurrentSession()
 				.createCriteria(Notificacion.class)
@@ -39,14 +39,14 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 	}
 
 	@Override
-	public void borrarNotificacionLikePublicacionPorId(Long notificacionId) {
-		Notificacion notificacion = obtenerNotificacionLikePublicacionPorId(notificacionId);
+	public void borrarNotificacionPorId(Long notificacionId) {
+		Notificacion notificacion = obtenerNotificacionPorId(notificacionId);
 		sessionFactory.getCurrentSession().delete(notificacion);
 		
 	}
 	
 	@Override
-	public Notificacion obtenerNotificacionLikePublicacionPorId(Long id) {
+	public Notificacion obtenerNotificacionPorId(Long id) {
 		return sessionFactory.getCurrentSession().get(Notificacion.class, id);
 	}
 

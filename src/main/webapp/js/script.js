@@ -86,6 +86,24 @@ $(document).ready(function() {
             console.log("error al cargar Ajax dar like publicacion");
         });
     });
+    
+    /************************AJAX DE VER NOTIFICACION**********************************/
+    $("button[id^='notificacionNoVista']").click(function() {
+        var post_url = "notificacionVer";
+		var notificacionId = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                notificacionId: notificacionId
+            }
+        }).done(function(id) {
+        	alert("#notificacionNoVista"+id);
+            $("#notificacionNoVista"+id).remove();
+        }).fail(function() {
+            console.log("error al cargar AJAX ver notificacion");
+        });
+    });
 });
 
 
