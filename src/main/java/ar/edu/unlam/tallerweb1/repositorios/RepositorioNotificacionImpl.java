@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -46,5 +48,13 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 	@Override
 	public Notificacion obtenerNotificacionLikePublicacionPorId(Long id) {
 		return sessionFactory.getCurrentSession().get(Notificacion.class, id);
+	}
+
+	@Override
+	public List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Notificacion.class)
+				.add(Restrictions.eq("usuarioRecibidorNotifi", usuario))
+				.list();
 	}
 }
