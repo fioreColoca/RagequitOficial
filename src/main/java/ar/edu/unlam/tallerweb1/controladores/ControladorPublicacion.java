@@ -75,14 +75,16 @@ public class ControladorPublicacion {
 		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
+		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
 
-
+		
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("categorias", categorias);
 		modelo.put("ordenPublicaciones", ordenPublicaciones);
 		modelo.put("comentario", new Comentario());
 		modelo.put("comentarios", comentarios);
+		modelo.put("respuestas", respuestas);
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("errorComentarioVacio", errorComentarioVacio);
 		modelo.put("errorBorrarPublicacion", errorBorrarPublicacion);

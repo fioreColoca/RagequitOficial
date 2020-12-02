@@ -29,16 +29,12 @@ public interface ServicioComentario {
 	 
 	 void disminuirCantidadLikes(Comentario comentario);
 	 	 
-	 TreeSet<Comentario> ordenarComentarioPorMasLikes(List <Comentario> comentario);
-
 	 TreeSet<Comentario> devolverListaComentarioPorMasLikes();
 	 
 	 List<Comentario> devolverSoloComentario();
 	 
+	 List<Comentario> devolverSoloRespuesta();
 	 
-
-	
-	 
-	/* Integer devolverAnio(Comentario comentario); */
-	 	 
+	 TreeSet<Comentario> devolverListaRespuestaPorMasLikes();
+	 	 	 
 }

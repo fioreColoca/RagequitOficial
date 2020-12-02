@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -21,7 +22,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikeComentario;
 
 @Service
 @Transactional
-public class ServicioComentarioImpl implements ServicioComentario{
+public class ServicioComentarioImpl implements ServicioComentario {
 
 	@Inject
 	private RepositorioComentario repositorioComentar;
@@ -32,13 +33,13 @@ public class ServicioComentarioImpl implements ServicioComentario{
 
 	@Override
 	public Long guardarComentario(Comentario comentario) {
-		if(comentario.getRespuesta() == null) {
+		if (comentario.getRespuesta() == null) {
 			servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getPublicacion());
 			return repositorioComentar.enviarComentario(comentario);
 		}
 		servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getRespuesta().getPublicacion());
 		return repositorioComentar.enviarComentario(comentario);
-		
+
 	}
 
 	@Override
@@ -48,25 +49,23 @@ public class ServicioComentarioImpl implements ServicioComentario{
 
 	@Override
 	public void borrarComentario(Long id) {
-			Comentario comentario = mostrarComentario(id);
-			List <Comentario> respuesta = respuestaListado(comentario);
-					
-			
-			if(comentario.getRespuesta() == null) {
-				Publicacion publicacion = comentario.getPublicacion();
-				servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
-			}else {
-				Publicacion publicacion = comentario.getRespuesta().getPublicacion();
-				servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
-			}
-			
-			if ((respuesta == null || respuesta.size() == 0) && comentario.getCantidadLikes() == 0) {
-				repositorioComentar.borrarComentario(id);
-			} else {
-				comentario.setEstado(ComentarioEstado.INACTIVO);
-			}
-	}
+		Comentario comentario = mostrarComentario(id);
+		List<Comentario> respuesta = respuestaListado(comentario);
 
+		if (comentario.getRespuesta() == null) {
+			Publicacion publicacion = comentario.getPublicacion();
+			servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
+		} else {
+			Publicacion publicacion = comentario.getRespuesta().getPublicacion();
+			servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
+		}
+
+		if ((respuesta == null || respuesta.size() == 0) && comentario.getCantidadLikes() == 0) {
+			repositorioComentar.borrarComentario(id);
+		} else {
+			comentario.setEstado(ComentarioEstado.INACTIVO);
+		}
+	}
 
 	@Override
 	public void tipoComentario(String boton, Comentario comentario) {
@@ -109,54 +108,58 @@ public class ServicioComentarioImpl implements ServicioComentario{
 	public void aumentarCantidadLikes(Comentario comentario) {
 		Comentario like = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadLikes = like.getCantidadLikes() + 1;
-		like.setCantidadLikes(cantidadLikes);		
+		like.setCantidadLikes(cantidadLikes);
 	}
 
 	@Override
 	public void disminuirCantidadLikes(Comentario comentario) {
 		Comentario like = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadLikes = like.getCantidadLikes() - 1;
-		like.setCantidadLikes(cantidadLikes);		
+		like.setCantidadLikes(cantidadLikes);
 	}
 
-	@Override
-	public TreeSet<Comentario> ordenarComentarioPorMasLikes(List<Comentario> comentario) {
-		TreeSet comentarioTreeSet = new TreeSet(comentario);
-		ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes(); 
-		TreeSet<Comentario> ordenarPorMasLikes = new TreeSet<Comentario>(orden); 
-		ordenarPorMasLikes.addAll(comentarioTreeSet); 
-		return ordenarPorMasLikes; 
-	}
 
 	@Override
 	public TreeSet<Comentario> devolverListaComentarioPorMasLikes() {
-		 List <Comentario> comentarios = this.devolverTodosLosComentariosyRespuestas();
-		 ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes(); 
-		 TreeSet<Comentario> comentarioOrdenadoPorLikes = new TreeSet<Comentario>(orden); 
-		 comentarioOrdenadoPorLikes.addAll(comentarios); 
-		 return comentarioOrdenadoPorLikes; 
+		List<Comentario> comentarios = this.devolverSoloComentario();
+		ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes();
+		TreeSet<Comentario> comentarioOrdenadoPorLikes = new TreeSet<Comentario>(orden);
+		comentarioOrdenadoPorLikes.addAll(comentarios);
+		return comentarioOrdenadoPorLikes;
 	}
 
 	@Override
 	public List<Comentario> devolverSoloComentario() {
-		List <Comentario> comentarioYrespuesta = devolverTodosLosComentariosyRespuestas();
-		List <Comentario> soloComentario = null ;
-		
-		for (Comentario comentario : comentarioYrespuesta ) {
-			if(comentario.getRespuesta() == null) {
-				soloComentario.add(comentario);
+		List<Comentario> comentarioYrespuesta = devolverTodosLosComentariosyRespuestas();
+		List<Comentario> nuevaLista = new ArrayList();
+		for (Comentario comentario : comentarioYrespuesta) {
+			if (comentario.getRespuesta() == null) {
+				nuevaLista.add(comentario);
 			}
 		}
-		
-		return soloComentario;
-		
+		return nuevaLista;
 	}
 
-	/*
-	 * @Override public Integer devolverAnio(Comentario comentario) { Integer anio =
-	 * ((Integer) comentario.getFechaHora().getYear()) + 1900; return anio; }
-	 */
-	
-	
+	@Override
+	public List<Comentario> devolverSoloRespuesta() {
+		List<Comentario> comentarioYrespuesta = devolverTodosLosComentariosyRespuestas();
+		List<Comentario> nuevaLista = new ArrayList();
+		for (Comentario comentario : comentarioYrespuesta) {
+			if (comentario.getRespuesta() != null) {
+				nuevaLista.add(comentario);
+			}
+		}
+		return nuevaLista;
+	}
+
+
+	@Override
+	public TreeSet<Comentario> devolverListaRespuestaPorMasLikes() {
+		List<Comentario> comentarios = this.devolverSoloRespuesta();
+		ComentarioOrdenadoPorLikes orden = new ComentarioOrdenadoPorLikes();
+		TreeSet<Comentario> comentarioOrdenadoPorLikes = new TreeSet<Comentario>(orden);
+		comentarioOrdenadoPorLikes.addAll(comentarios);
+		return comentarioOrdenadoPorLikes;
+	}
 
 }
