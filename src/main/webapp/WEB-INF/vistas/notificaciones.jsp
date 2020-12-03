@@ -1,18 +1,34 @@
 <%@ include file="header.jsp"%>
 <main>
-    <h1 class="text-center">Notificaciones</h1>
+	<c:if test="${usuarioLogeado.getRol() != null}">
+		<h1 class="text-center">Notificaciones</h1>
     <section>
     	<c:if test="${not empty notificaciones}">
     		<c:forEach items="${notificaciones}" var="notificacion">
-    			<p class="text-center">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
+    			<div class="col-12 col-md-8 p-3 m-1 bg-fondo rounded-pill">
+                	<div class="d-flex flex-wrap justify-content-around">
+                		<c:if test="${notificacion.getVisto() == false}">
+                			<p class="text-center">A ${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
+    						<button type="button" class="btn btn-outline-naranja botonEditar"
+                                value="${notificacion.getId()}" id="notificacionNoVista${notificacion.getId()}">
+                                <i class="fas fa-eye"></i>
+                        	</button>
+                		</c:if>
+                		<c:if test="${notificacion.getVisto() == true}">
+                			<p class="text-center">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
+                		</c:if>
+    				</div>
+    			</div>	
     		</c:forEach>
     	</c:if>
     	<c:if test="${empty notificaciones}">
     		<h3 class="text-secondary text-center">No tiene notificaciones.</h3>
     	</c:if>
     </section>
-    <section>
-    	<c:if test="${usuarioLogeado.getRol() != 'admin'}">
+	</c:if>
+    
+    <c:if test="${usuarioLogeado.getRol() != 'admin'}">
+    	<section>
         	<div id="notfound" style="margin: -1em">
             	<div class="notfound">
                 	<div class="notfound-404">
@@ -25,7 +41,8 @@
                 	<a href=" home" class="btn btn-outline-naranja">Ir al inicio</a>
             	</div>
         	</div>
-    	</c:if>
-    </section>
+        </section>
+    </c:if>
+    
 </main>
 <%@ include file="footer.jsp"%>

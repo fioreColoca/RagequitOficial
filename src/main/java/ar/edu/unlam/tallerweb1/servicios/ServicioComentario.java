@@ -36,5 +36,9 @@ public interface ServicioComentario {
 	 List<Comentario> devolverSoloRespuesta();
 	 
 	 TreeSet<Comentario> devolverListaRespuestaPorMasLikes();
+	 
+	 void disminuirCantidadRespuestas(Comentario comentario);
+	 
+	 void aumentarCantidadRespuestas(Comentario comentario);
 	 	 	 
 }

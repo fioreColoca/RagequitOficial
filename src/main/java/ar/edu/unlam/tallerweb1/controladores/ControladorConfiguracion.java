@@ -26,33 +26,35 @@ public class ControladorConfiguracion {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		if (usuarioLogeado != null) {
+			String apellido = (String) usuarioLogeado.getApellido() != null ? (String) usuarioLogeado.getApellido()
+					: null;
+			String nombre = (String) usuarioLogeado.getNombre() != null ? (String) usuarioLogeado.getNombre() : null;
+			String email = (String) usuarioLogeado.getEmail() != null ? (String) usuarioLogeado.getEmail() : null;
+			String nombreUsuarioo = (String) usuarioLogeado.getNombreUsuario() != null
+					? (String) usuarioLogeado.getNombreUsuario()
+					: null;
+			String contrasenia = request.getSession().getAttribute("CONTRASENIA") != null
+					? (String) request.getSession().getAttribute("CONTRASENIA")
+					: null;
+			Integer telefono = usuarioLogeado.getTelefono() != null ? (Integer) usuarioLogeado.getTelefono() : null;
 
-		String apellido = (String) usuarioLogeado.getApellido() != null ? (String) usuarioLogeado.getApellido() : null;
-		String nombre = (String) usuarioLogeado.getNombre() != null ? (String) usuarioLogeado.getNombre() : null;
-		String email = (String) usuarioLogeado.getEmail() != null ? (String) usuarioLogeado.getEmail() : null;
-		String nombreUsuarioo = (String) usuarioLogeado.getNombreUsuario() != null
-				? (String) usuarioLogeado.getNombreUsuario()
-				: null;
-		String contrasenia = request.getSession().getAttribute("CONTRASENIA") != null
-				? (String) request.getSession().getAttribute("CONTRASENIA")
-				: null;
-		Integer telefono = usuarioLogeado.getTelefono() != null ? (Integer) usuarioLogeado.getTelefono() : null;
-
-		modelo.put("cambioExitoso", resultado);
-		modelo.put("apellido", apellido);
-		modelo.put("email", email);
-		modelo.put("nombre", nombre);
-		modelo.put("nombreUsuarioo", nombreUsuarioo);
-		modelo.put("usuarioLogeado", usuarioLogeado);
-		modelo.put("contrasenia", contrasenia);
-		modelo.put("telefono", telefono);
-
+			modelo.put("cambioExitoso", resultado);
+			modelo.put("apellido", apellido);
+			modelo.put("email", email);
+			modelo.put("nombre", nombre);
+			modelo.put("nombreUsuarioo", nombreUsuarioo);
+			modelo.put("usuarioLogeado", usuarioLogeado);
+			modelo.put("contrasenia", contrasenia);
+			modelo.put("telefono", telefono);
+		}
 		modelo.put("title", "RageQuit | Configuracion");
 		return new ModelAndView("configuracion", modelo);
 	}
 
 	@RequestMapping("editarNombre")
-	public ModelAndView modificarNombre(@RequestParam(value = "nombre", required = false) String nombre, HttpServletRequest request) {
+	public ModelAndView modificarNombre(@RequestParam(value = "nombre", required = false) String nombre,
+			HttpServletRequest request) {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
@@ -85,7 +87,8 @@ public class ControladorConfiguracion {
 	}
 
 	@RequestMapping("editarEmail")
-	public ModelAndView modificarEmail(@RequestParam(value = "email", required = false) String email, HttpServletRequest request) {
+	public ModelAndView modificarEmail(@RequestParam(value = "email", required = false) String email,
+			HttpServletRequest request) {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
@@ -101,8 +104,8 @@ public class ControladorConfiguracion {
 	}
 
 	@RequestMapping("editarNombreUsuario")
-	public ModelAndView modificarNombreUsuario(@RequestParam(value = "nombreUsuario", required = false) String nombreUsuario,
-			HttpServletRequest request) {
+	public ModelAndView modificarNombreUsuario(
+			@RequestParam(value = "nombreUsuario", required = false) String nombreUsuario, HttpServletRequest request) {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
@@ -134,7 +137,8 @@ public class ControladorConfiguracion {
 	}
 
 	@RequestMapping("editarTelefono")
-	public ModelAndView modificarTelefono(@RequestParam(value = "tel", required = false) Integer telefono, HttpServletRequest request) {
+	public ModelAndView modificarTelefono(@RequestParam(value = "tel", required = false) Integer telefono,
+			HttpServletRequest request) {
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;

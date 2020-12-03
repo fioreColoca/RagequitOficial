@@ -244,7 +244,7 @@
                 </article>
             </section>
         </c:if>
-        <c:if test="${ empty usuarioLogeado}">
+        <c:if test="${empty usuarioLogeado}">
             <div id="notfound" style="margin: -1em">
                 <div class="notfound">
                     <div class="notfound-404">

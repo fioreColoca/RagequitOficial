@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
     /************************BAJA PUBLICACION COMENTARIOS**********************************/
     $('.botonBorrar').click(function() {
         var miElementoId = $(this).data('id');
@@ -21,12 +23,22 @@ $(document).ready(function() {
     });
 
     /************************COLLAPSE RESPUESTAS**********************************/
+
     $('.botonCollapseRespuesta').click(function() {
         var comentarioId = $(this).data('id');
         var respuestaACollapse = "#collapseRespuesta";
-
+        var nombre = "#botonResponder"
+        var final = nombre.concat(comentarioId);
         var respuestaAMostrar = respuestaACollapse.concat(comentarioId);
+
+        if ($(final).text() === "Ver respuestas") {
+            text = "Ocultar";
+        } else {
+            text = "Ver respuestas";
+        }
+
         $(respuestaAMostrar).collapse('toggle');
+        $(final).html(text);
     });
 
 
@@ -86,11 +98,30 @@ $(document).ready(function() {
             console.log("error al cargar Ajax dar like publicacion");
         });
     });
+    /************************AJAX DE VER NOTIFICACION**********************************/
+    $("button[id^='notificacionNoVista']").click(function() {
+        var post_url = "notificacionVer";
+        var notificacionId = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                notificacionId: notificacionId
+            }
+        }).done(function(datos) {
+            $("#headerCantidadNotificaciones").html(datos.cantidadNotificaciones);
+            $("#notificacionNoVista" + datos.notificacionId).remove();
+
+        }).fail(function() {
+            console.log("error al cargar AJAX ver notificacion");
+        });
+    });
     /************************AJAX DE SEGUIR UN USUARIO**********************************/
     $("form[id^='formSeguirUsuario']").submit(function(event) {
         event.preventDefault();
         var post_url = "seguir";
         var datos = $("button[id^='seguirUsuarioPerfil']").val();
+
         $.ajax({
             type: 'POST',
             url: post_url,
@@ -100,7 +131,7 @@ $(document).ready(function() {
         }).done(function(datos) {
             console.log(datos);
             if (datos.result == true) {
-				$("#contadorSeguidores").html(datos.seguidores);
+                $("#contadorSeguidores").html(datos.seguidores);
                 $("form[id^='formSeguirUsuario']").removeClass("formSiguiendo");
                 $("form[id^='formDejarDeSeguirUsuario']").removeClass("formSeguir");
                 $("form[id^='formSeguirUsuario']").addClass("formSeguir");
@@ -111,6 +142,7 @@ $(document).ready(function() {
             console.log(datos);
         });
     });
+
 
 });
 

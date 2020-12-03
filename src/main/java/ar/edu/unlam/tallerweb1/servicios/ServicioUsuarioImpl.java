@@ -157,6 +157,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		Usuario usuarioAAumentarNotificaciones = repositorioUsuario.consultarUsuario(usuario);
 		Integer cantidadNotificaciones = usuarioAAumentarNotificaciones.getContadorNotificaciones() + 1;
 		
+		
 		usuarioAAumentarNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
 	}
 
@@ -164,6 +165,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public void disminuirCantidadNotificacionesDeUsuario(Usuario usuario) {
 		Usuario usuarioADisminuirNotificaciones = repositorioUsuario.consultarUsuario(usuario);
 		Integer cantidadNotificaciones = usuarioADisminuirNotificaciones.getContadorNotificaciones() - 1;
+		
 		
 		usuarioADisminuirNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
 	}
