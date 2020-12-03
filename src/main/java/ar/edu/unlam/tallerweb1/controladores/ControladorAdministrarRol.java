@@ -47,13 +47,14 @@ public class ControladorAdministrarRol {
 			@RequestParam(value = "botonCambiarRol", required = false) Long id, HttpServletRequest request) {
 		Usuario usuarioQuePidioCambiarUnRol = (Usuario) request.getSession().getAttribute("USUARIO") ;
 		String rolDelUsuarioQuePidioCambiarUnRol = usuarioQuePidioCambiarUnRol.getRol();
+		Long idDelUsuarioQuePidioCambiarUnRol = usuarioQuePidioCambiarUnRol.getId();
 		if(!rolDelUsuarioQuePidioCambiarUnRol.equals("admin")) {
 			return new ModelAndView("redirect:/administrar?errorCambiarRol=true");
 		}
 		
 		servicioUsuario.cambiarRol(id, rol);
 		
-		if (id.equals(request.getSession().getAttribute("ID"))) {
+		if (id.equals(idDelUsuarioQuePidioCambiarUnRol)) {
 			
 			Usuario usuario = servicioUsuario.obtenerUsuarioPorId(id);
 			request.getSession().setAttribute("USUARIO", usuario);
