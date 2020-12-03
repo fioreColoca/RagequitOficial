@@ -47,6 +47,8 @@ public class Comentario implements Comparable<Comentario> {
 
 	private ComentarioTipo tipo;
 	
+	private Integer cantidadRespuesta;
+	
 	/* ---------- GETERS AND SETERS ---------- */
 	
 	public Comentario getRespuesta() {
@@ -151,5 +153,12 @@ public class Comentario implements Comparable<Comentario> {
 		return this.id.compareTo(comentario.getId());
 	}
 
+	public Integer getCantidadRespuesta() {
+		return cantidadRespuesta;
+	}
+
+	public void setCantidadRespuesta(Integer cantidadRespuesta) {
+		this.cantidadRespuesta = cantidadRespuesta;
+	}
 
 }
