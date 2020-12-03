@@ -15,5 +15,7 @@ public interface RepositorioSeguirCategoria {
 	public void dejarSeguirCategoria(Usuario seguidor, Categoria categoriaSeguida);
 
 	public List<SeguirCategoria> devolverListaDeSeguidores(Categoria juegosOVarios);
+	
+	List<SeguirCategoria> devolverListaDeSeguirCategoriasPorUsuario(Usuario usuario);
 
 }

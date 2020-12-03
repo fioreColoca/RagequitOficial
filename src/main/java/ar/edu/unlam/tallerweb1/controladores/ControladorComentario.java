@@ -18,7 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario; 
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
@@ -26,7 +26,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 public class ControladorComentario {
 
 	@Inject
-	private ServicioComentar servicioComentario;
+	private ServicioComentario servicioComentario;
 	
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
@@ -46,17 +46,18 @@ public class ControladorComentario {
 		java.util.Date fecha = new Date();
 		comentario.setUsuario(usuario);
 		comentario.setCantidadLikes(0);
+		comentario.setCantidadRespuesta(0);
 		comentario.setFechaHora(fecha);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario("comun", comentario);
-		Publicacion publicacion = servicioPublicacion.obtenerPublicacion(comentario.getPublicacionId());
+		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(comentario.getPublicacionId());
 		
 		comentario.setPublicacion(publicacion);
 
 		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) { 
 			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
 		}
-		servicioComentario.enviarComentario(comentario);
+		servicioComentario.guardarComentario(comentario);
 		return new ModelAndView("redirect:/home");
 
 	}
@@ -120,7 +121,7 @@ public class ControladorComentario {
 			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
 		}
 
-		servicioComentario.enviarComentario(respuesta);
+		servicioComentario.guardarComentario(respuesta);
 		return new ModelAndView("redirect:/home");
 	}
 	
@@ -128,11 +129,11 @@ public class ControladorComentario {
 	/* GETTERS AND SETTERS */
 	
 	
-	public ServicioComentar getServicioComentario() {
+	public ServicioComentario getServicioComentario() {
 		return servicioComentario;
 	}
 
-	public void setServicioComentario(ServicioComentar servicioComentario) {
+	public void setServicioComentario(ServicioComentario servicioComentario) {
 		this.servicioComentario = servicioComentario;
 	}
 	

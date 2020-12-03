@@ -1,0 +1,5 @@
+package ar.edu.unlam.tallerweb1.modelo;
+
+public enum NotificacionTipo {
+	LIKEPUBLICACION, LIKECOMENTARIO, COMENTARIOPUBLICACION, COMENTARIOCOMENTARIO, SEGUIRUSUARIO
+}

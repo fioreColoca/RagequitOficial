@@ -22,6 +22,8 @@ public interface ServicioUsuario {
 
 	void cambiarContrasenia(Long id, String contrasenia);
 
+	void cambiarTelefono(Long id, Integer numero);
+
 	void setRepositorioUsuario(RepositorioUsuario repositorioUsuario);
 
 	Usuario obtenerUsuarioPorId(Long id);
@@ -43,4 +45,10 @@ public interface ServicioUsuario {
 	void aumentarCategoriasSeguidas(Usuario seguidor);
 
 	void disminuirCategoriasSeguidas(Usuario seguidor);
+
+	List<Categoria> devolverListaDeCategoriasSeguidasPorUsuario(Usuario usuario);
+
+	void aumentarCantidadNotificacionesDeUsuario(Usuario usuario);
+
+	void disminuirCantidadNotificacionesDeUsuario(Usuario usuario);
 }

@@ -31,9 +31,11 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
-			servicioUsuario.aumentarSeguidores(seguido);
-			servicioUsuario.aumentarSeguidos(seguidor);
-			repositorioSeguir.seguirUsuario(seguidor, seguido);
+			if (buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(seguidor, seguido) == null) {
+				servicioUsuario.aumentarSeguidores(seguido);
+				servicioUsuario.aumentarSeguidos(seguidor);
+				repositorioSeguir.seguirUsuario(seguidor, seguido);
+			}
 		}
 
 	}

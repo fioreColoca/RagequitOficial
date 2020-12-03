@@ -39,7 +39,7 @@
             </a>
             <div class="d-flex flex-wrap m-auto">
                 <c:if test="${not empty usuarioLogeado}">
-                    <a href="home?ordenPublicaciones=seguidos" class="p-2">
+                    <a href="home?ordenPublicaciones=usuariosSeguidos" class="p-2">
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </c:if>
@@ -48,7 +48,17 @@
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </c:if>
-                <a href="home" class="p-2" style="color:#f4a117">
+                <c:if test="${not empty usuarioLogeado}">
+                    <a href="home?ordenPublicaciones=categoriasSeguidas" class="p-2">
+                        <i class="fas fa-scroll"></i>
+                    </a>
+                </c:if>
+                <c:if test="${empty usuarioLogeado}">
+                    <a href="login" class="p-2">
+                        <i class="fas fa-scroll"></i>
+                    </a>
+                </c:if>
+                <a href="home" class="p-2">
                     <i class="fas fa-house-user"></i>
                 </a>
                 <a href="home?ordenPublicaciones=popular" class="p-2">
@@ -70,6 +80,15 @@
                 </div>
             </c:if>
             <c:if test="${not empty usuarioLogeado}">
+            	<div class="menu justify-content-end">
+                    <ul class="navbar-nav justify-content-end sub-menu">
+                        <li class="nav-item ">
+                            <a class="nav-link text-center p-2" href="notificaciones">
+                                <i class="fas fa-bell"></i><span class="text-warning" id="headerCantidadNotificaciones">${usuarioLogeado.getContadorNotificaciones()}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="dropdown d-flex flex-wrap">
                     <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
                     <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white "><span>

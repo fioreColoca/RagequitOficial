@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -34,7 +39,11 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un
 	// paquete de los indicados en
 	// applicationContext.xml
+	@Inject
 	private ServicioLogin servicioLogin;
+
+	@Inject
+	private ServicioUsuario servicioUsuario;
 
 	@Autowired
 	public ControladorLogin(ServicioLogin servicioLogin) {
@@ -45,6 +54,7 @@ public class ControladorLogin {
 	// invocada por metodo http GET
 	@RequestMapping("/login")
 	public ModelAndView irALogin(@RequestParam(value = "errorSeguir", required = false) String errorSeguir,
+			@RequestParam(value = "errorLogin", required = false) String errorLogin,
 			@RequestParam(value = "errorLike", required = false) String errorLike) {
 
 		ModelMap modelo = new ModelMap();
@@ -55,6 +65,7 @@ public class ControladorLogin {
 		String errorAlSeguir = errorSeguir != null ? errorSeguir : null;
 		modelo.put("usuario", usuario);
 		modelo.put("errorAlSeguir", errorAlSeguir);
+		modelo.put("errorLogin", errorLogin);
 		modelo.put("errorLike", errorLike);
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando
 		// el view resolver definido en el archivo spring-servlet.xml)
@@ -75,23 +86,20 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL
 		// /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a través de la URL correspondiente a ésta
+		String contrasenia = usuario.getPassword();
+		usuario.setPassword(servicioUsuario.encriptarPassword(usuario.getPassword()));
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			request.getSession().setAttribute("ID", usuarioBuscado.getId());
-			request.getSession().setAttribute("NOMBREUSUARIO", usuarioBuscado.getNombreUsuario());
 			request.getSession().setAttribute("USUARIO", usuarioBuscado);
-			request.getSession().setAttribute("URLIMAGEN", usuarioBuscado.getUrl_imagen());
-			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombre());
-			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
-			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
-
+			request.getSession().setAttribute("CONTRASENIA", contrasenia);
+			
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
-			model.put("error", "Usuario o clave incorrecta");
+			
+			return new ModelAndView("redirect:/login?errorLogin=true",model);
 		}
-		return new ModelAndView("login", model);
+		
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.
@@ -125,13 +133,18 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
-	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1) {
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1,
+			@RequestParam(value = "fechaNacimiento",required = false) String date) {
 		ModelMap modelo = new ModelMap();
+		Date fecha = new Date();
+		usuario1.setContadorSuscriptores(0);
 		usuario1.setContadorSeguidores(0);
+		usuario1.setContadorNotificaciones(0);
 		usuario1.setContadorSeguidos(0);
 		usuario1.setContadorCategoriasSeguidas(0);
+		usuario1.setFechaCreacion(fecha);
+		usuario1.setNivel(1);
 		usuario1.setRol("usuario");
-
 		servicioLogin.registrarUsuario(usuario1);
 		return new ModelAndView("redirect:/login", modelo);
 	}

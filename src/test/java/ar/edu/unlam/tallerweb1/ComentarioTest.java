@@ -14,14 +14,14 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorComentario;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.servicios.ServicioComentar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 
 public class ComentarioTest {
 
 	private ControladorComentario comentarioControlador = new ControladorComentario();
 	private Comentario comentario;
-	private ServicioComentar servicioComentario;
+	private ServicioComentario servicioComentario;
 	private HttpServletRequest requestMock;
 	private HttpSession sessionMock;
 	private String tipoComentario;
@@ -32,7 +32,7 @@ public class ComentarioTest {
 	@Before
 	public void init() {
 		comentario = mock(Comentario.class);
-		servicioComentario = mock(ServicioComentar.class);
+		servicioComentario = mock(ServicioComentario.class);
 		requestMock = mock(HttpServletRequest.class);
 		sessionMock = mock(HttpSession.class);
 		when(requestMock.getSession()).thenReturn(sessionMock);
@@ -64,7 +64,7 @@ public class ComentarioTest {
 		comentarioControlador.setServicioPublicacion(servicioPublicacion);
 		
 		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario, requestMock);	
-		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorComentario=mensaje vacio"); 
+		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorComentarioVacio=true"); 
 	}
 	
 }

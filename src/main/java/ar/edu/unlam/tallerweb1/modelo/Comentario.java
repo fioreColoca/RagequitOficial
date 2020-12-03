@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
-public class Comentario { 
+public class Comentario implements Comparable<Comentario> { 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +46,8 @@ public class Comentario {
 	private ComentarioEstado estado;
 
 	private ComentarioTipo tipo;
+	
+	private Integer cantidadRespuesta;
 	
 	/* ---------- GETERS AND SETERS ---------- */
 	
@@ -146,5 +148,17 @@ public class Comentario {
 		this.comentarioAResponderId = comentarioAResponderId;
 	}
 
+	@Override
+	public int compareTo(Comentario comentario) {
+		return this.id.compareTo(comentario.getId());
+	}
+
+	public Integer getCantidadRespuesta() {
+		return cantidadRespuesta;
+	}
+
+	public void setCantidadRespuesta(Integer cantidadRespuesta) {
+		this.cantidadRespuesta = cantidadRespuesta;
+	}
 
 }

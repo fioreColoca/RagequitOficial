@@ -38,14 +38,9 @@ public class Usuario {
 	private Integer contadorSeguidores;
 	private Integer contadorCategoriasSeguidas;
 	private String url_imagen;
-
-	// Array de seguidores
-	// @ManyToMany
-	// private List<Usuario> arraySeguidores = new LinkedList<Usuario>();
-
-	// Array de Suscriptores
-	// @ManyToMany
-	// private List<Usuario> arraySuscriptores = new LinkedList<Usuario>();
+	private Integer telefono;
+	private Integer contadorNotificaciones;
+	
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -166,8 +161,21 @@ public class Usuario {
 	public void setContadorCategoriasSeguidas(Integer contadorCategoriasSeguidas) {
 		this.contadorCategoriasSeguidas = contadorCategoriasSeguidas;
 	}
-	
-	
 
+	public Integer getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
+	public Integer getContadorNotificaciones() {
+		return contadorNotificaciones;
+	}
+
+	public void setContadorNotificaciones(Integer contadorNotificaciones) {
+		this.contadorNotificaciones = contadorNotificaciones;
+	}
 	
 }

@@ -3,10 +3,10 @@
             class="fas fa-chevron-down"></i></a>
 </div>
 <div class="collapse" id="collapseCrearPublicacion">
-    <form:form action="guardarPublicacion" method="POST" modelAttribute="publicacion">
+    <form action="guardarPublicacion" method="POST" id="crearPublicacionFormulario">
         <div class="form-inline justify-content-sm-end">
             <label class="my-1 mr-2" for="categoriaPublicacion"><b>Categoria</b></label>
-            <form:select path="categoriaId" class="custom-select my-1 mr-sm-2" id="categoriaPublicacion">
+            <select class="custom-select my-1 mr-sm-2" name="categoriaPublicacion" id="categoriaPublicacion">
                 <option value="-1" selected>Elegir</option>
                 <c:if test="${not empty categorias}">
                     <optgroup label="Juegos">
@@ -26,12 +26,12 @@
                         </c:forEach>
                     </optgroup>
                 </c:if>
-            </form:select>
+            </select>
         </div>
         <div class="form-group">
             <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
-            <form:textarea path="mensaje" id="mensajePublicacion" name="mensajePublicacion" class="form-control"
-                rows="3" />
+            <textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control"
+                rows="3"></textarea>
         </div>
         <div class="form-row">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-image col-auto" fill="currentColor"
@@ -46,5 +46,8 @@
         <div class="text-right">
             <button class="btn btn-naranja botonBloque mt-3" type="submit">Publicar</button>
         </div>
-    </form:form>
+        <h5 class="text-danger" id="mensajeVacio"></h5>
+        <h5 class="text-danger" id="categoriaVacia"></h5>
+        <h5 class="text-success" id="creacionPublicacionExitosa"></h5>
+    </form>
 </div>

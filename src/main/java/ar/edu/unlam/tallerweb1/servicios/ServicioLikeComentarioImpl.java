@@ -21,7 +21,7 @@ public class ServicioLikeComentarioImpl implements ServicioLikeComentario {
 	@Inject
 	private ServicioUsuario servicioUsuario;
 	@Inject
-	private ServicioComentar servicioComentario;
+	private ServicioComentario servicioComentario;
 	
 
 	@Override

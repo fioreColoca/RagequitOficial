@@ -62,5 +62,10 @@ public class RepositorioSeguirCategoriaImpl implements RepositorioSeguirCategori
 		return sessionFactory.getCurrentSession().createCriteria(SeguirCategoria.class)
 				.add(Restrictions.eq("categoriaSeguida", categoriaSeguida)).list();
 	}
-
+	
+	@Override
+	public List<SeguirCategoria> devolverListaDeSeguirCategoriasPorUsuario(Usuario usuario) {
+		return sessionFactory.getCurrentSession().createCriteria(SeguirCategoria.class)
+				.add(Restrictions.eq("usuarioSeguidor", usuario)).list();
+	}
 }

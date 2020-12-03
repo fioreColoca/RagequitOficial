@@ -6,14 +6,6 @@
     <c:if test="${not empty usuarioLogeado}">
         <section class="crearPublicacion">
             <%@ include file="homeCrearPublicacion.jsp"%>
-            <c:if test="${errorCategoria != 'null'}">
-                <h5 class="text-danger"><span>${errorCategoria}</span></h5>
-                <br>
-            </c:if>
-            <c:if test="${errorMensaje != 'null'}">
-                <h5 class="text-danger"><span>${errorMensaje}</span></h5>
-                <br>
-            </c:if>
         </section>
     </c:if>
     <hr>

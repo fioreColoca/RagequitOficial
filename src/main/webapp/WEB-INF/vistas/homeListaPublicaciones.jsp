@@ -81,9 +81,11 @@
                                 </div>
                                 <div class="col-4 text-right">
                                     <div class="d-flex justify-content-end">
-                                        <img alt="logo" class="categoria-icon pr-1"
+                                        	<img alt="logo" class="categoria-icon pr-1"
                                             src="${publicacionDelFor.getCategoria().getUrlIcono()}">
-                                        <h4>${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                        <a href="juegosOVarios?categoriaId=${publicacionDelFor.getCategoria().getId()}">    
+                                        	<h4 class="nombreUsuarioPublicacion">${publicacionDelFor.getCategoria().getNombre()}</h4>
+                                        </a>
                                     </div>
                                     <p class="text-white-50">
                                         ${publicacionDelFor.getFechaHora().getHours()}:${publicacionDelFor.getFechaHora().getMinutes()}hs
@@ -104,15 +106,13 @@
                             <div class="hoverIcons d-flex justify-content-around bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
                                 <c:if test="${not empty usuarioLogeado}">
-                                    <form action="darLikePublicacion" method="post">
-                                        <div class="d-flex justify-content-center">
-                                            <button class="btn btn-outline-naranja hoverIconsBotonIcono"
-                                                value="${publicacionDelFor.getId()}" name="idPublicacionADarLike">
-                                                <i class="far fa-thumbs-up"></i>
-                                            </button>
-                                            <p class="text-secondary">${publicacionDelFor.getCantidadLikes()}</p>
-                                        </div>
-                                    </form>
+                                   <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono"
+                                            value="${publicacionDelFor.getId()}" name="idPublicacionADarLike${publicacionDelFor.getId()}"  id="idPublicacionADarLike${publicacionDelFor.getId()}">
+                                         	<i class="far fa-thumbs-up"></i>
+                                         </button>
+                                         <p class="text-secondary" id="cantidadLikesPublicacion${publicacionDelFor.getId()}">${publicacionDelFor.getCantidadLikes()}</p>
+                                    </div>
                                 </c:if>
                                 <c:if test="${empty usuarioLogeado}">
                                     <div class="d-flex justify-content-center">

@@ -4,8 +4,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 import java.util.TreeSet;
 
-import javax.servlet.http.HttpServletRequest;
-
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -14,7 +12,7 @@ public interface ServicioPublicacion {
 
 	Long guardarPublicacion(Publicacion publicacion);
 	
-	Publicacion obtenerPublicacion(Long id);
+	Publicacion obtenerPublicacionPorId(Long id);
 	
 	void borrarPublicacion(Long id);
 	void aumentarCantidadComentariosDePublicacion(Publicacion publicacion);
@@ -26,11 +24,14 @@ public interface ServicioPublicacion {
 	List<Publicacion> buscarPublicaciones();
 	List<Publicacion> devolverPublicacionesPorUsuariosSeguidos(Usuario usuario);
 	List<Publicacion> devolverUnaListaDePublicacionesPorUsuariosSeguidos(List publicaciones,Usuario usuario);
+	List<Publicacion> devolverPublicacionesPorCategoriasSeguidas(Usuario usuario);
+	List<Publicacion> devolverUnaListaDePublicacionesPorCategoriasSegidas(List publicacionesList,Usuario usuario);
+	List<Publicacion> devolverUnaListaDePublicacionesHechasPorUnUsuario(Usuario usuario);
 	
 	TreeSet<Publicacion> devolverPublicacionesOrdenadasPor(String ordenPublicaciones, Usuario usuario);
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorLikesYComentarios();
 	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPor(String ordenPublicaciones, List publicacionesList, Usuario usuario);
-	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorPopular(List listaPublicaciones);
+	TreeSet<Publicacion> devolverYOrdenarUnaListaDePublicacionesPorPopular(List listaPublicaciones);
 	TreeSet<Publicacion> devolverPublicacionesOdenadasPorFechaRecienteAAntigua();
-	TreeSet<Publicacion> ordenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones);
+	TreeSet<Publicacion> devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(List listaPublicaciones);
 }
