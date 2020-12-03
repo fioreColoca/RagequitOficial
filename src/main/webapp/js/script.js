@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	
+
     /************************BAJA PUBLICACION COMENTARIOS**********************************/
     $('.botonBorrar').click(function() {
         var miElementoId = $(this).data('id');
@@ -21,12 +23,22 @@ $(document).ready(function() {
     });
 
     /************************COLLAPSE RESPUESTAS**********************************/
+   
     $('.botonCollapseRespuesta').click(function() {
         var comentarioId = $(this).data('id');
         var respuestaACollapse = "#collapseRespuesta";
-
-        var respuestaAMostrar = respuestaACollapse.concat(comentarioId);
+		var nombre = "#botonResponder"
+		var final = nombre.concat(comentarioId);
+		var respuestaAMostrar = respuestaACollapse.concat(comentarioId);
+		
+		if($(final).text() === "Ver respuestas"){
+				text = "Ocultar";
+			}else{
+				text="Ver respuestas";
+			}
+			
         $(respuestaAMostrar).collapse('toggle');
+		$(final).html(text);
     });
 
 
