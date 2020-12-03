@@ -86,6 +86,32 @@ $(document).ready(function() {
             console.log("error al cargar Ajax dar like publicacion");
         });
     });
+    /************************AJAX DE SEGUIR UN USUARIO**********************************/
+    $("form[id^='formSeguirUsuario']").submit(function(event) {
+        event.preventDefault();
+        var post_url = "seguir";
+        var datos = $("button[id^='seguirUsuarioPerfil']").val();
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                usuarioSeguido: datos
+            }
+        }).done(function(datos) {
+            console.log(datos);
+            if (datos.result == true) {
+				$("#contadorSeguidores").html(datos.seguidores);
+                $("form[id^='formSeguirUsuario']").removeClass("formSiguiendo");
+                $("form[id^='formDejarDeSeguirUsuario']").removeClass("formSeguir");
+                $("form[id^='formSeguirUsuario']").addClass("formSeguir");
+                $("form[id^='formDejarDeSeguirUsuario']").addClass("formSiguiendo");
+
+            }
+        }).fail(function(datos) {
+            console.log(datos);
+        });
+    });
+
 });
 
 

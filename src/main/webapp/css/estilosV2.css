@@ -612,3 +612,11 @@ hr {
     width: 144px!important;
     height: 192px!important;
 }
+
+.formSeguir {
+    display: none;
+}
+
+.formSiguiendo {
+    display: block;
+}
