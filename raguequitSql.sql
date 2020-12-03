@@ -21,6 +21,7 @@ value(1, 0, "Paladins es una curiosa mezcla de acción en primera persona de car
 (12, 0, "Super Mario Bros es un videojuego de plataformas, diseñado por Shigeru Miyamoto, lanzado el 13 de septiembre de 1985 y producido por la compañía Nintendo, para la consola Nintendo Entertainment System (NES).", "Mario Bros",0, "img/categoriaIcon/marioBrosIcon.png", "https://static-cdn.jtvnw.net/ttv-boxart/Super%20Mario%20Bros.-144x192.jpg"),
 (13, 0, "The Legend of Zelda es una serie de videojuegos de acción-aventura creada por los diseñadores japoneses Shigeru Miyamoto y Takashi Tezuka, y desarrollada por Nintendo, empresa que también se encarga de su distribución internacional.", "Zelda",0, "img/categoriaIcon/zeldaIcon.png", "https://static-cdn.jtvnw.net/ttv-boxart/./The%20Legend%20of%20Zelda:%20Breath%20of%20the%20Wild-144x192.jpg"),
 (14, 0, "Sonic the Hedgehog debe salvar a los inocentes animales que están siendo secuestrados por el Dr. Robotnik con la finalidad de usarlos para hacer funcionar sus robots. Sonic debe recolectar las 6 Esmeraldas del Caos.", "Sonic",0, "img/categoriaIcon/sonicIcon.png", "https://static-cdn.jtvnw.net/ttv-boxart/Sonic%20the%20Hedgehog-144x192.jpg");
+;
 
 
 insert into usuario(id, apellido, contadorCategoriasSeguidas,contadorNotificaciones , email, nombre, nombreUsuario, password ,nivel, rol, url_imagen,contadorSuscriptores,contadorSeguidores,contadorSeguidos,fechaCreacion,telefono)
@@ -41,4 +42,4 @@ value(1, 0, 0, 0, 20200512,"Aguante LoL ", 3, 4),
 
 
 
-
+select * from seguircategoria;
