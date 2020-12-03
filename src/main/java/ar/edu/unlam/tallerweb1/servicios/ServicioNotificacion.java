@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -18,4 +20,6 @@ public interface ServicioNotificacion {
 	List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario);
 
 	void setearNotificacionVisto(Long notificacionId);
+
+	void setearCantidadNotificacionesEnLaSessionDeUnUsuario(Usuario usuario, HttpServletRequest request);
 }

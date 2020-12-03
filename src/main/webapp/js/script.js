@@ -97,9 +97,10 @@ $(document).ready(function() {
             data: {
                 notificacionId: notificacionId
             }
-        }).done(function(id) {
-        	alert("#notificacionNoVista"+id);
-            $("#notificacionNoVista"+id).remove();
+        }).done(function(datos) {
+        	$("#headerCantidadNotificaciones").html(datos.cantidadNotificaciones);
+            $("#notificacionNoVista"+datos.notificacionId).remove();
+            
         }).fail(function() {
             console.log("error al cargar AJAX ver notificacion");
         });

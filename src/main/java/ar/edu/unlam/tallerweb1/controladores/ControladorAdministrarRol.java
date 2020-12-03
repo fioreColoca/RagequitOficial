@@ -45,8 +45,8 @@ public class ControladorAdministrarRol {
 	@RequestMapping(path = "/cambiarRol", method = RequestMethod.POST)
 	public ModelAndView cambiarRolUsuario(@RequestParam(value = "rolUsuario", required = false) String rol,
 			@RequestParam(value = "botonCambiarRol", required = false) Long id, HttpServletRequest request) {
-		String rolDelUsuarioQuePidioCambiarUnRol = (String) request.getSession().getAttribute("ROL");
-		
+		Usuario usuarioQuePidioCambiarUnRol = (Usuario) request.getSession().getAttribute("USUARIO") ;
+		String rolDelUsuarioQuePidioCambiarUnRol = usuarioQuePidioCambiarUnRol.getRol();
 		if(!rolDelUsuarioQuePidioCambiarUnRol.equals("admin")) {
 			return new ModelAndView("redirect:/administrar?errorCambiarRol=true");
 		}
@@ -57,7 +57,6 @@ public class ControladorAdministrarRol {
 			
 			Usuario usuario = servicioUsuario.obtenerUsuarioPorId(id);
 			request.getSession().setAttribute("USUARIO", usuario);
-			request.getSession().setAttribute("ROL", rol);
 		}
 
 		return new ModelAndView("redirect:/administrar");

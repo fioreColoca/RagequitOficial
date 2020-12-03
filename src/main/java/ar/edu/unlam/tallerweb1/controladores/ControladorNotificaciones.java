@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -33,6 +34,7 @@ public class ControladorNotificaciones {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		Usuario usuario = servicioUsuario.obtenerUsuarioPorId(usuarioLogeado.getId());
 		List<Notificacion> notificacionesUsuario= servicioNotificacion.obtenerListaDeNotificacionesDelUsuario(usuarioLogeado);
 		
 		modelo.put("title", "RageQuit | Notificaciones");
@@ -48,14 +50,22 @@ public class ControladorNotificaciones {
 			@RequestParam(value = "notificacionId", required = false) Long notificacionId,
 			HttpServletRequest request) {
 		Gson gson = new Gson();
+		JsonObject json = new JsonObject();
 		servicioNotificacion.setearNotificacionVisto(notificacionId);
 		
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
+		
+		servicioUsuario.disminuirCantidadNotificacionesDeUsuario(usuarioLogeado);
+		servicioNotificacion.setearCantidadNotificacionesEnLaSessionDeUnUsuario(usuarioLogeado, request);
+		
 		Usuario usuario = servicioUsuario.obtenerUsuarioPorId(usuarioLogeado.getId());
-		servicioUsuario.disminuirCantidadNotificacionesDeUsuario(usuario);
-		return gson.toJson(notificacionId);
+		Integer cantidadNotificaciones = usuario.getContadorNotificaciones();
+		
+		json.addProperty("notificacionId", notificacionId);
+		json.addProperty("cantidadNotificaciones", cantidadNotificaciones);
+		return gson.toJson(json);
 	}
 	
 }

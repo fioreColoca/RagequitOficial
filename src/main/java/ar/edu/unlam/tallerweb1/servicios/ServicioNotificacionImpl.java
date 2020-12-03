@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import ar.edu.unlam.tallerweb1.modelo.Notificacion;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioNotificacion;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 @Service
 @Transactional
@@ -18,6 +20,8 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 	
 	@Inject
 	private RepositorioNotificacion repositorioNotificacion;
+	@Inject
+	private RepositorioUsuario repositorioUsuario;
 	
 	@Override
 	public Long guardarNotificacion(Notificacion notificacion) {
@@ -53,6 +57,12 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 	public void setearNotificacionVisto(Long notificacionId) {
 		Notificacion notificacion = repositorioNotificacion.obtenerNotificacionPorId(notificacionId);
 		notificacion.setVisto(true);
+	}
+
+	@Override
+	public void setearCantidadNotificacionesEnLaSessionDeUnUsuario(Usuario usuario, HttpServletRequest request) {
+		Usuario usuarioConNotificacionesActualizadas = repositorioUsuario.obtenerUsuarioPorId(usuario.getId());
+		request.getSession().setAttribute("USUARIO", usuarioConNotificacionesActualizadas);
 	}
 
 }

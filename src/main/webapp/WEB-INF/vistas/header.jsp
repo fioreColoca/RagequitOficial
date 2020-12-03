@@ -84,7 +84,7 @@
                     <ul class="navbar-nav justify-content-end sub-menu">
                         <li class="nav-item ">
                             <a class="nav-link text-center p-2" href="notificaciones">
-                                <i class="fas fa-bell"></i><span class="text-warning">${usuarioLogeado.getContadorNotificaciones()}</span>
+                                <i class="fas fa-bell"></i><span class="text-warning" id="headerCantidadNotificaciones">${usuarioLogeado.getContadorNotificaciones()}</span>
                             </a>
                         </li>
                     </ul>
