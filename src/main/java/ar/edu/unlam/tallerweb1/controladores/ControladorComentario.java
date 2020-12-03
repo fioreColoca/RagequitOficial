@@ -46,6 +46,7 @@ public class ControladorComentario {
 		java.util.Date fecha = new Date();
 		comentario.setUsuario(usuario);
 		comentario.setCantidadLikes(0);
+		comentario.setCantidadRespuesta(0);
 		comentario.setFechaHora(fecha);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
 		servicioComentario.tipoComentario("comun", comentario);

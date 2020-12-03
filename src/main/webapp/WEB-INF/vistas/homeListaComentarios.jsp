@@ -74,12 +74,13 @@
 											</form>
 										</c:if>
 									</div>
-
+									<c:if test="${comentario.getCantidadRespuesta() != 0}">
 									<button type="button" value="mostrar"
 										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
 										data-id="${comentario.getId()}" data-toggle="collapse"
 										onclick="cambiarNombreBotonRespuesta()"
-										data-target="#collapseComentarios">Ver respuestas</button>
+										data-target="#collapseComentarios">Ver respuestas (${comentario.getCantidadRespuesta()})</button>
+									</c:if>	
 								</c:if>
 							</c:if>
 						</div>

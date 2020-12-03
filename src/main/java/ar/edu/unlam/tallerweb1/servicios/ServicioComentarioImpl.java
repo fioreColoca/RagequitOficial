@@ -18,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentarioImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioLikeComentario;
 
 @Service
@@ -38,6 +39,7 @@ public class ServicioComentarioImpl implements ServicioComentario {
 			return repositorioComentar.enviarComentario(comentario);
 		}
 		servicioPublicacion.aumentarCantidadComentariosDePublicacion(comentario.getRespuesta().getPublicacion());
+		aumentarCantidadRespuestas(comentario.getRespuesta());
 		return repositorioComentar.enviarComentario(comentario);
 
 	}
@@ -57,6 +59,7 @@ public class ServicioComentarioImpl implements ServicioComentario {
 			servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
 		} else {
 			Publicacion publicacion = comentario.getRespuesta().getPublicacion();
+			disminuirCantidadRespuestas(comentario.getRespuesta());
 			servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
 		}
 
@@ -118,7 +121,6 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		like.setCantidadLikes(cantidadLikes);
 	}
 
-
 	@Override
 	public TreeSet<Comentario> devolverListaComentarioPorMasLikes() {
 		List<Comentario> comentarios = this.devolverSoloComentario();
@@ -152,7 +154,6 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		return nuevaLista;
 	}
 
-
 	@Override
 	public TreeSet<Comentario> devolverListaRespuestaPorMasLikes() {
 		List<Comentario> comentarios = this.devolverSoloRespuesta();
@@ -161,5 +162,20 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		comentarioOrdenadoPorLikes.addAll(comentarios);
 		return comentarioOrdenadoPorLikes;
 	}
+
+	@Override
+	public void disminuirCantidadRespuestas(Comentario comentario) {
+		Comentario comentarioDisminuirRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
+		Integer cantidadRespuesta = comentarioDisminuirRespuesta.getCantidadRespuesta() - 1;
+		comentarioDisminuirRespuesta.setCantidadRespuesta(cantidadRespuesta);		
+	}
+
+	@Override
+	public void aumentarCantidadRespuestas(Comentario comentario) {
+		Comentario comentarioAumentarRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
+		Integer cantidadRespuesta = comentarioAumentarRespuesta.getCantidadRespuesta() + 1;
+		comentarioAumentarRespuesta.setCantidadRespuesta(cantidadRespuesta);			
+	}
+
 
 }
