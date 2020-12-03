@@ -78,8 +78,9 @@
 									<button type="button" value="mostrar"
 										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
 										data-id="${comentario.getId()}" data-toggle="collapse"
-										onclick="cambiarNombreBotonRespuesta()"
-										data-target="#collapseComentarios">Ver respuestas (${comentario.getCantidadRespuesta()})</button>
+										onclick="cambiarNombreBotonRespuesta()" id="botonResponder${comentario.getId()}"
+										data-target="#collapseComentarios">Ver respuestas</button>
+										<span class="text-warning">(${comentario.getCantidadRespuesta()})</span>
 									</c:if>	
 								</c:if>
 							</c:if>
