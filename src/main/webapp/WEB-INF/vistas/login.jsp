@@ -1,8 +1,8 @@
 <%@ include file="header.jsp"%>
 <main>
     <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
-    <c:if test="${not empty error}">
-        <h5 class="text-center text-danger">${error}</h5>
+    <c:if test="${not empty errorLogin}">
+        <h5 class="text-center text-danger">Usuario o clave incorrecta</h5>
     </c:if>
     <c:if test="${not empty errorAlSeguir}">
         <h5 class="text-center text-danger">Primero debes iniciar sesion para seguir a un usuario</h5>
