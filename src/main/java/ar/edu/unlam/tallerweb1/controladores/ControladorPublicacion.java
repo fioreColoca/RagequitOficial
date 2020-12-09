@@ -187,16 +187,6 @@ public class ControladorPublicacion {
 		json.addProperty("idPublicacion", id);
 		return gson.toJson(json);
 	}
-	
-	@RequestMapping(path = "/ajaxPrueba", produces = "application/json")
-	@ResponseBody
-	public String ajaxPrueba() {
-		Gson gson = new Gson();
-		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(3L);
-		
-		
-		return gson.toJson(publicacion);
-	}
 
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;
