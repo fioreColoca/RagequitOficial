@@ -78,9 +78,8 @@
 									<button type="button" value="mostrar"
 										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
 										data-id="${comentario.getId()}" data-toggle="collapse"
-										onclick="cambiarNombreBotonRespuesta()" id="botonResponder${comentario.getId()}"
-										data-target="#collapseComentarios">Ver respuestas</button>
-										<span class="text-warning">(${comentario.getCantidadRespuesta()})</span>
+										onclick="cambiarNombreBotonRespuesta()"
+										data-target="#collapseComentarios"><p id="botonResponder${comentario.getId()}" style="float: left">Ver respuestas</p><p style="float:right" class="ml-2"> (${comentario.getCantidadRespuesta()})</p></button>
 									</c:if>	
 								</c:if>
 							</c:if>

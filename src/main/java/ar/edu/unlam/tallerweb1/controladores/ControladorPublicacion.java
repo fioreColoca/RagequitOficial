@@ -76,7 +76,6 @@ public class ControladorPublicacion {
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
 		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
-
 		
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
