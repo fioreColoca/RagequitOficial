@@ -27,7 +27,7 @@
     </section>
 	</c:if>
     
-    <c:if test="${usuarioLogeado.getRol() != 'admin'}">
+    <c:if test="${usuarioLogeado.getRol() == 'null'}">
     	<section>
         	<div id="notfound" style="margin: -1em">
             	<div class="notfound">
