@@ -140,7 +140,8 @@ public class ControladorPublicacion {
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.POST)
 	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id,
 			HttpServletRequest request) {
-		Long idUsuarioQuePidioBorrarPublicacion = (Long) request.getSession().getAttribute("ID");
+		Usuario UsuarioQuePidioBorrarPublicacion =(Usuario) request.getSession().getAttribute("USUARIO");
+		Long idUsuarioQuePidioBorrarPublicacion = UsuarioQuePidioBorrarPublicacion.getId();
 		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacionPorId(id);
 		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
 
