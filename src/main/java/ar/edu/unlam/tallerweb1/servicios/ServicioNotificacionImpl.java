@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionOrdenPorIDDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioNotificacion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -63,6 +66,18 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 	public void setearCantidadNotificacionesEnLaSessionDeUnUsuario(Usuario usuario, HttpServletRequest request) {
 		Usuario usuarioConNotificacionesActualizadas = repositorioUsuario.obtenerUsuarioPorId(usuario.getId());
 		request.getSession().setAttribute("USUARIO", usuarioConNotificacionesActualizadas);
+	}
+
+	@Override
+	public TreeSet<Notificacion> ordenarUnaListaDeNotificacionesPorFechaDesendencete(
+			List<Notificacion> notificaciones) {
+		NotificacionOrdenPorIDDescendente ordenPorIdDescendente = new NotificacionOrdenPorIDDescendente();
+
+		TreeSet<Notificacion> ordenadoPorIDDescendente = new TreeSet<Notificacion>(ordenPorIdDescendente);
+
+		ordenadoPorIDDescendente.addAll(notificaciones);
+
+		return ordenadoPorIDDescendente;
 	}
 
 }

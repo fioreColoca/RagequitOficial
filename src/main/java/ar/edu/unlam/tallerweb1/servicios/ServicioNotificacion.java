@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,4 +23,6 @@ public interface ServicioNotificacion {
 	void setearNotificacionVisto(Long notificacionId);
 
 	void setearCantidadNotificacionesEnLaSessionDeUnUsuario(Usuario usuario, HttpServletRequest request);
+
+	TreeSet<Notificacion> ordenarUnaListaDeNotificacionesPorFechaDesendencete(List<Notificacion> notificaciones);
 }

@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Comparator;
 
-public class PublicacionOrdenPorFecha implements Comparator<Publicacion>{
+public class PublicacionOrdenPorFechaDescendente implements Comparator<Publicacion>{
 
 	@Override 
 	public int compare(Publicacion publicacion1, Publicacion publicacion2) { 

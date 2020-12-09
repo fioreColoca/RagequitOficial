@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Notificacion {
+public class Notificacion implements Comparable<Notificacion>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -71,5 +71,10 @@ public class Notificacion {
 
 	public void setTipo(NotificacionTipo tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public int compareTo(Notificacion notificacion) {
+		return this.id.compareTo(notificacion.getId());
 	}
 }

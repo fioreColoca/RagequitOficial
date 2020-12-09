@@ -15,7 +15,7 @@ import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentarioImpl;
