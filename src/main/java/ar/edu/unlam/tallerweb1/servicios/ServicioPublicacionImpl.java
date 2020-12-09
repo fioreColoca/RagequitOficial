@@ -58,15 +58,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	@Override
 	public void borrarPublicacion(Long id) {
 		Publicacion publicacionABorrar = repositorioPublicacion.obtenerPublicacionPorId(id);
-
-		List<Comentario> comentariosEnPublicacionABorrar = repositorioComentario
-				.obtenerComentariosPorPublicacion(publicacionABorrar);
-
-		if (comentariosEnPublicacionABorrar != null) {
-			publicacionABorrar.setEstado(PublicacionEstado.INACTIVO);
-		} else {
-			repositorioPublicacion.borrarPublicacion(id);
-		}
+		publicacionABorrar.setEstado(PublicacionEstado.INACTIVO);
 
 	}
 
