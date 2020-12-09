@@ -8,11 +8,25 @@
     			<div class="col-12 col-md-8 p-3 m-1 bg-fondo rounded-pill">
                 	<div class="d-flex flex-wrap justify-content-around">
                 		<c:if test="${notificacion.getVisto() == false}">
-                			<p class="text-center">A ${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
-    						<button type="button" class="btn btn-outline-naranja botonEditar"
-                                value="${notificacion.getId()}" id="notificacionNoVista${notificacion.getId()}">
-                                <i class="fas fa-eye"></i>
-                        	</button>
+                			<c:if test="${notificacion.getTipo() == 'LIKEPUBLICACION'}">
+                				<p class="text-center">A ${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
+    							<button type="button" class="btn btn-outline-naranja botonEditar"
+                                	value="${notificacion.getId()}" id="notificacionNoVista${notificacion.getId()}">
+                                	<i class="fas fa-eye"></i>
+                        		</button>
+                			</c:if>
+                			<c:if test="${notificacion.getTipo() == 'LIKECOMENTARIO'}">
+                				
+                			</c:if>
+                			<c:if test="${notificacion.getTipo() == 'COMENTARIOPUBLICACION'}">
+                				
+                			</c:if>
+                			<c:if test="${notificacion.getTipo() == 'COMENTARIOCOMENTARIO'}">
+                				
+                			</c:if>
+                			<c:if test="${notificacion.getTipo() == 'SEGUIRUSUARIO'}">
+                				
+                			</c:if>
                 		</c:if>
                 		<c:if test="${notificacion.getVisto() == true}">
                 			<p class="text-center">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()} le ha gustado tu publicacion.</p>
