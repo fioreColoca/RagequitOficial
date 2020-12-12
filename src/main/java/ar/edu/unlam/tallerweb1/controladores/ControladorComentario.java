@@ -49,7 +49,6 @@ public class ControladorComentario {
 		comentario.setCantidadRespuesta(0);
 		comentario.setFechaHora(fecha);
 		comentario.setEstado(ComentarioEstado.ACTIVO);
-		servicioComentario.tipoComentario("comun", comentario);
 		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(comentario.getPublicacionId());
 		
 		comentario.setPublicacion(publicacion);
@@ -112,7 +111,6 @@ public class ControladorComentario {
 		respuesta.setFechaHora(fecha);
 		respuesta.setEstado(ComentarioEstado.ACTIVO);
 		respuesta.setUsuario(usuario);
-		servicioComentario.tipoComentario("comun", respuesta);
 
 		Comentario comentario = servicioComentario.mostrarComentario(respuesta.getComentarioAResponderId());
 		respuesta.setRespuesta(comentario);

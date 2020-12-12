@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorComentario;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
-import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;

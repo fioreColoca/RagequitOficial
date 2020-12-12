@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
-import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 

@@ -14,9 +14,7 @@ public interface ServicioComentario {
 	 Comentario mostrarComentario(Long id);
 	 	
 	 void borrarComentario(Long id);
-	 	 	 
-	 void tipoComentario(String boton,Comentario comentario);
-	
+	 	 	 	
 	 List<Comentario> devolverComentarioPorPublicacion(Publicacion publicacion);
 	 
 	 List<Comentario> devolverTodosLosComentariosyRespuestas();
