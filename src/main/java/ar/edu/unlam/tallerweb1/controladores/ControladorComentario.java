@@ -24,6 +24,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLikeComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorComentario {
@@ -39,6 +40,9 @@ public class ControladorComentario {
 
 	@Inject
 	private ServicioNotificacion servicioNotificacion;
+	
+	@Inject
+	private ServicioUsuario servicioUsuario;
 	/* ---------- Pagina para guardar comentarios ----------- */
 
 	@RequestMapping(path = "/guardarComentario", method = RequestMethod.POST)
@@ -70,6 +74,7 @@ public class ControladorComentario {
 		}
 
 		servicioNotificacion.guardarNotificacion(notificacion);
+		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(publicacion.getUsuario());
 		servicioComentario.guardarComentario(comentario);
 		return new ModelAndView("redirect:/home");
 
@@ -113,8 +118,9 @@ public class ControladorComentario {
 		notificacion.setTipo(NotificacionTipo.LIKECOMENTARIO);
 		notificacion.setVisto(false);
 		servicioNotificacion.guardarNotificacion(notificacion);
-
 		servicioLikesComentario.darLikeAComentario(comentario, usuario);
+		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
+		
 		return new ModelAndView("redirect:/home");
 	}
 
@@ -149,6 +155,8 @@ public class ControladorComentario {
 		}
 		servicioNotificacion.guardarNotificacion(notificacion);
 		servicioComentario.guardarComentario(respuesta);
+		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
+
 		return new ModelAndView("redirect:/home");
 	}
 
