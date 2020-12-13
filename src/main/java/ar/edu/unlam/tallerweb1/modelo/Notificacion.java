@@ -21,6 +21,15 @@ public class Notificacion implements Comparable<Notificacion>{
 	@ManyToOne
 	private Publicacion publicacion;
 	
+	@ManyToOne
+	private Publicacion comentarioDePublicacion;
+	
+	@ManyToOne
+	private Comentario comentarioLike;
+	
+	@ManyToOne
+	private Comentario respuestaDeComentario;
+	
 	private NotificacionTipo tipo;
 	
 	private Boolean visto;
@@ -77,4 +86,31 @@ public class Notificacion implements Comparable<Notificacion>{
 	public int compareTo(Notificacion notificacion) {
 		return this.id.compareTo(notificacion.getId());
 	}
+
+	public Comentario getComentarioLike() {
+		return comentarioLike;
+	}
+
+	public void setComentarioLike(Comentario comentarioLike) {
+		this.comentarioLike = comentarioLike;
+	}
+
+	public Publicacion getComentarioDePublicacion() {
+		return comentarioDePublicacion;
+	}
+
+	public void setComentarioDePublicacion(Publicacion comentarioDePublicacion) {
+		this.comentarioDePublicacion = comentarioDePublicacion;
+	}
+
+	public Comentario getRespuestaDeComentario() {
+		return respuestaDeComentario;
+	}
+
+	public void setRespuestaDeComentario(Comentario respuestaDeComentario) {
+		this.respuestaDeComentario = respuestaDeComentario;
+	}
+
+	
+	
 }
