@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
-import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
@@ -70,19 +69,6 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		}
 	}
 
-	@Override
-	public void tipoComentario(String boton, Comentario comentario) {
-		switch (boton) {
-		case "comun":
-			comentario.setTipo(ComentarioTipo.COMUN);
-			break;
-		case "premium":
-			comentario.setTipo(ComentarioTipo.SUSCRIPTOR);
-			break;
-		default:
-			break;
-		}
-	}
 
 	@Override
 	public List<Comentario> devolverComentarioPorPublicacion(Publicacion publicacion) {

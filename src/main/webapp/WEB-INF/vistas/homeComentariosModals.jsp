@@ -51,20 +51,3 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="verListado" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content bg-fondo">
-            <div class="modal-header">
-                <h5 class="modal-title text-white">Marcado como Me gusta por:</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-header bg-fondo p-3 container">
-
-            </div>
-        </div>
-    </div>
-</div>

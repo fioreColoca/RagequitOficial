@@ -41,10 +41,7 @@
 													value="${comentario.getId()}" name="botonLike">
 													<i class="far fa-thumbs-up"></i>
 												</button>
-												<a class="verListadoLikes hoverIconsBotonIcono"
-													data-toggle="modal" href="#verListado"
-													data-id="${comentario.getId()}">
-													${comentario.getCantidadLikes()}</a>
+												<span>${comentario.getCantidadLikes()}</span>
 											</div>
 										</form>
 										<div class="ml-3">
@@ -74,6 +71,7 @@
 											</form>
 										</c:if>
 									</div>
+									</c:if>
 									<c:if test="${comentario.getCantidadRespuesta() != 0}">
 									<button type="button" value="mostrar"
 										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
@@ -81,7 +79,7 @@
 										onclick="cambiarNombreBotonRespuesta()"
 										data-target="#collapseComentarios"><p id="botonResponder${comentario.getId()}" style="float: left">Ver respuestas</p><p style="float:right" class="ml-2"> (${comentario.getCantidadRespuesta()})</p></button>
 									</c:if>	
-								</c:if>
+								
 							</c:if>
 						</div>
 					</div>
@@ -143,9 +141,7 @@
 																value="${respuesta.getId()}" name="botonLike">
 																<i class="far fa-thumbs-up"></i>
 															</button>
-															<a class="verListadoLikes" data-toggle="modal"
-																href="#verListado" data-id="${comentario.getId()}">
-																${respuesta.getCantidadLikes()}</a>
+															<span>${respuesta.getCantidadLikes()}</span>
 														</div>
 													</form>
 

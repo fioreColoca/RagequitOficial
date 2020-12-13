@@ -45,8 +45,6 @@ public class Comentario implements Comparable<Comentario> {
 	
 	private ComentarioEstado estado;
 
-	private ComentarioTipo tipo;
-	
 	private Integer cantidadRespuesta;
 	
 	/* ---------- GETERS AND SETERS ---------- */
@@ -90,14 +88,6 @@ public class Comentario implements Comparable<Comentario> {
 
 	public void setCantidadLikes(Integer cantidadLikes) {
 		this.cantidadLikes = cantidadLikes;
-	}
-
-	public ComentarioTipo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(ComentarioTipo tipo) {
-		this.tipo = tipo;
 	}
 	
 	public Publicacion getPublicacion() {
