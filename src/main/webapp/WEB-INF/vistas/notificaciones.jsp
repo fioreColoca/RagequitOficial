@@ -11,7 +11,7 @@
                                     <c:if test="${notificacion.getTipo() == 'LIKEPUBLICACION'}">
 
                                         <p class="text-center">A <a href="perfil?usuarioNombre=${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}" class="nombreUsuarioPublicacion">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}</a> le ha gustado tu
-                                            <a href="#" class="nombreUsuarioPublicacion">publicacion</a>.</p>
+                                            <a href="publicacion?id=${notificacion.getPublicacion().getId()}" class="nombreUsuarioPublicacion">publicacion</a>.</p>
 
                                         <button type="button" class="btn btn-outline-naranja botonEditar" value="${notificacion.getId()}" id="notificacionNoVista${notificacion.getId()}">
 											<i class="fas fa-eye"></i>

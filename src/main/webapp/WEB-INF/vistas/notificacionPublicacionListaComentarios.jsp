@@ -1,5 +1,5 @@
 <c:if test="${not empty comentarios}">
-    <div class="collapse" id="collapseComentario${publicacionDelFor.getId()}">
+    <div class="collapse" id="collapseComentario${publicacion.getId()}">
         <c:forEach items="${comentarios}" var="comentario">
             <c:if test="${comentario.getPublicacion().getId() == publicacion.getId()}">
                 <div class="container p-3 bg-fondo border border-top-0 
