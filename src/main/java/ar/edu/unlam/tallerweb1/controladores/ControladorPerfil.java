@@ -66,13 +66,14 @@ public class ControladorPerfil {
 		List<Usuario> listaSeguidores = servicioSeguir.devolverListaDeSeguidores(usuarioPerfil);
 		List<Usuario> listaSeguidos = servicioSeguir.devolverListaDeSeguidos(usuarioPerfil);
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
+		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
 
 		Seguir verificarSeguimiento = null;
 		if (usuarioLogeado != null && usuarioPerfil != null) {
 			verificarSeguimiento = servicioSeguir.buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(usuarioLogeado,
 					usuarioPerfil);
 		}
-
+		modelo.put("seguimientos", seguimientos);
 		modelo.put("publicaciones", publicacioneHechasPorUnUsuario);
 		modelo.put("verificacionSeguir", verificarSeguimiento);
 		modelo.put("usuarioPerfil", usuarioPerfil);
