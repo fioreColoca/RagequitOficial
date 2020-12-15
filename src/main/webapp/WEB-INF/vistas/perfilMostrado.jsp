@@ -9,7 +9,7 @@
                 ${usuarioPerfil.getContadorSeguidores()}
             </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidores.jsp"%>
+        <%@ include file="perfilMostrarSeguidores.jsp" %>
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
         <h4 class="text-secondary ">Seguidos</h4>
@@ -18,7 +18,7 @@
                 ${usuarioPerfil.getContadorSeguidos() }
             </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidos.jsp"%>
+        <%@ include file="perfilMostrarSeguidos.jsp" %>
 
     </div>
 </section>

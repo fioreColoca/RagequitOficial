@@ -30,12 +30,10 @@
         </div>
         <div class="form-group">
             <label for="mensajePublicacion"><b>Mensaje Gamer para Gamers:</b></label>
-            <textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control"
-                rows="3"></textarea>
+            <textarea id="mensajePublicacion" name="mensajePublicacion" class="form-control" rows="3"></textarea>
         </div>
         <div class="form-row">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-image col-auto" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg" style="color:#f4a117">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-image col-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:#f4a117">
                 <path fill-rule="evenodd"
                     d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V2a1 1 0 0 0-1-1H4z" />
                 <path fill-rule="evenodd" d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
