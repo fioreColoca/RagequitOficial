@@ -118,17 +118,23 @@
                                 </div>
                             </div>
                             <div>
-                                <%@ include file="homeResponderPublicacion.jsp" %>
+                                <%@ include file="notificacionPublicacionResponderPublicacion.jsp" %>
                             </div>
                         </c:if>
                         <div>
-                            <%@ include file="homeListaComentarios.jsp" %>
+                            <%@ include file="notificacionPublicacionListaComentarios.jsp" %>
                         </div>
                     </div>
             </c:if>
         </div>
     </div>
+			    <div>
+			   		<%@ include file="homeComentariosModals.jsp" %>
+			    </div>
 			</article>
 		</section>
+		<section class="modals">
+            <%@ include file="homeModals.jsp" %>
+        </section>
 	</main>
 <%@ include file="footer.jsp" %>
