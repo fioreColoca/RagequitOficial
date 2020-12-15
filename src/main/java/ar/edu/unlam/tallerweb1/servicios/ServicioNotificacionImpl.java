@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
 import ar.edu.unlam.tallerweb1.modelo.NotificacionOrdenPorIDDescendente;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -36,6 +37,14 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 			Publicacion publicacion) {
 		Notificacion notificacion = repositorioNotificacion.obtenerNotificacionPorUsuario1Usuario2YPublicacion(usuario1,
 				usuario2, publicacion);
+		return notificacion;
+	}
+
+	@Override
+	public Notificacion obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(Usuario usuario1, Usuario usuario2,
+			NotificacionTipo tipoPublicacion) {
+		Notificacion notificacion = repositorioNotificacion
+				.obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(usuario1, usuario2, tipoPublicacion);
 		return notificacion;
 	}
 

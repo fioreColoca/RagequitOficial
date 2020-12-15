@@ -6,6 +6,7 @@ import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -14,6 +15,9 @@ public interface ServicioNotificacion {
 
 	Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1, Usuario usuario2,
 			Publicacion publicacion);
+
+	Notificacion obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(Usuario usuario1, Usuario usuario2,
+			NotificacionTipo tipoPublicacion);
 
 	void borrarNotificacionPorId(Long notificacionId);
 

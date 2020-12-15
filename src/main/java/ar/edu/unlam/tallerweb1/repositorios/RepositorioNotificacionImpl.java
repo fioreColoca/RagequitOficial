@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.LikePublicacion;
 import ar.edu.unlam.tallerweb1.modelo.Notificacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -37,6 +38,16 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 	}
 
 	@Override
+	public Notificacion obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(Usuario usuario1, Usuario usuario2,
+			NotificacionTipo tipoPublicacion) {
+		return (Notificacion) sessionFactory.getCurrentSession().createCriteria(Notificacion.class)
+				.add(Restrictions.and(Restrictions.eq("tipo", tipoPublicacion),
+						Restrictions.eq("usuarioOtorgadorNotifi", usuario1),
+						Restrictions.eq("usuarioRecibidorNotifi", usuario2)))
+				.uniqueResult();
+	}
+
+	@Override
 	public void borrarNotificacionPorId(Long notificacionId) {
 		Notificacion notificacion = obtenerNotificacionPorId(notificacionId);
 		sessionFactory.getCurrentSession().delete(notificacion);
@@ -53,4 +64,5 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 		return sessionFactory.getCurrentSession().createCriteria(Notificacion.class)
 				.add(Restrictions.eq("usuarioRecibidorNotifi", usuario)).list();
 	}
+
 }
