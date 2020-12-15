@@ -116,7 +116,7 @@ $(document).ready(function() {
             console.log("error al cargar AJAX ver notificacion");
         });
     });
-    /************************AJAX DE SEGUIR UN USUARIO**********************************/
+    /************************AJAX DE SEGUIR UN USUARIO*********************************
     $("form[id^='formSeguirUsuario']").submit(function(event) {
         event.preventDefault();
         var post_url = "seguir";
@@ -131,18 +131,17 @@ $(document).ready(function() {
         }).done(function(datos) {
             console.log(datos);
             if (datos.result == true) {
-                $("#contadorSeguidores").html(datos.seguidores);
-                $("form[id^='formSeguirUsuario']").removeClass("formSiguiendo");
-                $("form[id^='formDejarDeSeguirUsuario']").removeClass("formSeguir");
-                $("form[id^='formSeguirUsuario']").addClass("formSeguir");
-                $("form[id^='formDejarDeSeguirUsuario']").addClass("formSiguiendo");
+                $('#followDiv').replace(` 
+				<form action="dejarSeguir" id="formDejarDeSeguirUsuario" method="post" class="formSeguir">
+                	<button name="usuarioSeguido" value="" class="btn btn-outline-secondary" id="dejarDeSeguirPerfil">Siguiendo</button>
+            	</form>`)
 
             }
         }).fail(function(datos) {
             console.log(datos);
         });
-    });
-
+    });*/
+   
 
 });
 

@@ -27,39 +27,30 @@
 
                                         <c:if test="${usuarioLogeado.getId() != publicacionDelFor.getUsuario().getId()}">
 
+                                            <c:set var="validarSeguimiento" value="false"></c:set>
                                             <c:forEach items="${seguimientos}" var="seguidos">
                                                 <c:if test="${seguidos.getUsuarioSeguido().getId() == publicacionDelFor.getUsuario().getId()}">
 
                                                     <c:if test="${seguidos.getUsuarioSeguidor().getId() == usuarioLogeado.getId()}">
-                                                        <form action="dejarSeguir" method="post">
-                                                            <input type="hidden" name="usuarioSeguidoHome" value="home">
-                                                            <button name="usuarioSeguido" value="${publicacionDelFor.getUsuario().getNombreUsuario()}" class="btn btn-outline-secondary">Siguiendo</button>
-                                                        </form>
+
+                                                        <c:set var="validarSeguimiento" value="true"></c:set>
+
                                                     </c:if>
                                                 </c:if>
                                             </c:forEach>
-                                            <!--<c:forEach items="${seguimientos }" var="seguidos">
 
-												  <p>${ usuarioLogeado.getId()} ----- ${ seguidos.getUsuarioSeguidor().getId() }</p>
-
-												<c:if
-													test="${seguidos.getUsuarioSeguido().getId() != publicacionDelFor.getUsuario().getId()}">
-
-													<c:if
-														test="${seguidos.getUsuarioSeguidor().getId() == usuarioLogeado.getId()}">
-														<c:set var="noSeguimiento" value="true"></c:set>
-
-													</c:if>
-												</c:if>
-											</c:forEach>
-											<c:if test="${noSeguimiento}"> 
-                                            	<form action="seguir" method="post" id="h">
-                                                            <input type="hidden" name="usuarioSeguidoHome" value="home">
-                                                            <button name="usuarioSeguido"
-                                                                value="${publicacionDelFor.getUsuario().getNombreUsuario()}"
-                                                                class="btn btn btn-naranja">Seguir</button>
-                                                        </form>
-                                            </c:if>-->
+                                            <c:if test="${validarSeguimiento == true}">
+                                                <form action="dejarSeguir" method="post">
+                                                    <input type="hidden" name="usuarioSeguidoHome" value="1">
+                                                    <button name="usuarioSeguido" value="${publicacionDelFor.getUsuario().getNombreUsuario()}" class="btn btn-outline-secondary">Siguiendo</button>
+                                                </form>
+                                            </c:if>
+                                            <c:if test="${validarSeguimiento == false}">
+                                                <form action="seguir" method="post">
+                                                    <input type="hidden" name="usuarioSeguidoHome" value="1">
+                                                    <button name="usuarioSeguido" value="${publicacionDelFor.getUsuario().getNombreUsuario()}" class="btn btn-naranja">Seguir</button>
+                                                </form>
+                                            </c:if>
                                         </c:if>
 
                                     </c:if>

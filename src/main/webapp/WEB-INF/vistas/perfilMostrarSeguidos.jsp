@@ -15,7 +15,11 @@
 
                             <img src="${seguidos.getUrl_imagen()}" class=" rounded-circle img-seg">
 
-                            <p class="text-secondary mt-auto ml-2">${seguidos.getNombreUsuario() }</p>
+                            <p class="text-secondary mt-auto ml-2">
+                                <a class="nombreUsuarioPublicacion" href="perfil?usuarioNombre=${seguidos.getNombreUsuario() }">
+                                    ${seguidos.getNombreUsuario()}
+                                </a>
+                            </p>
 
                         </div>
                         <hr class="text-secondary">

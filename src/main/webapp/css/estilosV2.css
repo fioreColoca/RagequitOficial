@@ -175,7 +175,7 @@ main {
 }
 
 .ayudaComentario {
-    height: calc(1.5em + .75rem + 2px) !important;
+    height: 38px!important;
 }
 
 
@@ -611,12 +611,4 @@ hr {
 .carrusel img {
     width: 144px!important;
     height: 192px!important;
-}
-
-.formSeguir {
-    display: none;
-}
-
-.formSiguiendo {
-    display: block;
 }
