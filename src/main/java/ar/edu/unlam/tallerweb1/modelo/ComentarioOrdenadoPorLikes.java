@@ -9,11 +9,11 @@ public class ComentarioOrdenadoPorLikes implements Comparator<Comentario> {
 		int resultado = comentario2.getCantidadLikes().compareTo(comentario.getCantidadLikes());
 		if (resultado == 0) {
 			int resultadoComentario = comentario2.getCantidadLikes().compareTo(comentario.getCantidadLikes());
-		
-		if(resultadoComentario == 0) {
-			return comentario2.getFechaHora().compareTo(comentario.getFechaHora()); 
-		}else {
-			return resultadoComentario;
+
+			if (resultadoComentario == 0) {
+				return comentario2.getFechaHora().compareTo(comentario.getFechaHora());
+			} else {
+				return resultadoComentario;
 			}
 		}
 		return resultado;

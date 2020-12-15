@@ -8,7 +8,7 @@ import javax.persistence.Transient;
 
 @Entity
 public class Categoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -17,24 +17,27 @@ public class Categoria {
 	private String urlIcono;
 	private String descripcion;
 	private Integer contadorSeguidores;
-	
+
 	private CategoriaTipo tipoCategoria;
 	@Transient
 	private Integer tipoCategoriaNum;
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public CategoriaTipo getTipoCategoria() {
 		return tipoCategoria;
 	}
@@ -42,22 +45,27 @@ public class Categoria {
 	public void setTipoCategoria(CategoriaTipo tipo) {
 		this.tipoCategoria = tipo;
 	}
+
 	public String getUrlImagen() {
 		return urlImagen;
 	}
+
 	public void setUrlImagen(String urlImagen) {
 		this.urlImagen = urlImagen;
 	}
+
 	public String getUrlIcono() {
 		return urlIcono;
 	}
+
 	public void setUrlIcono(String urlIcono) {
 		this.urlIcono = urlIcono;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
@@ -65,15 +73,17 @@ public class Categoria {
 	public Integer getTipoCategoriaNum() {
 		return tipoCategoriaNum;
 	}
+
 	public void setTipoCategoriaNum(Integer tipoCategoriaNum) {
 		this.tipoCategoriaNum = tipoCategoriaNum;
 	}
+
 	public Integer getContadorSeguidores() {
 		return contadorSeguidores;
 	}
+
 	public void setContadorSeguidores(Integer contadorSeguidores) {
 		this.contadorSeguidores = contadorSeguidores;
 	}
-	
-	
+
 }

@@ -40,7 +40,6 @@ public class Usuario {
 	private String url_imagen;
 	private Integer telefono;
 	private Integer contadorNotificaciones;
-	
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -177,5 +176,5 @@ public class Usuario {
 	public void setContadorNotificaciones(Integer contadorNotificaciones) {
 		this.contadorNotificaciones = contadorNotificaciones;
 	}
-	
+
 }

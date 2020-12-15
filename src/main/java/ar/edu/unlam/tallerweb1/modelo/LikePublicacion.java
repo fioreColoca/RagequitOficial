@@ -11,7 +11,7 @@ public class LikePublicacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
 	private Publicacion publicacion;
 	@ManyToOne
