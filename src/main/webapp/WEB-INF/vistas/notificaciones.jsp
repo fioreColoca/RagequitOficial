@@ -47,9 +47,24 @@
                                         	 le ha gustado tu <a href="publicacion?id=${notificacion.getPublicacion().getId()}" class="nombreUsuarioPublicacion">publicacion</a>.
                                     	</p>
                                 	</c:if>
-                                	<c:if test="${notificacion.getTipo() == 'LIKECOMENTARIO'}"></c:if>
-                                	<c:if test="${notificacion.getTipo() == 'COMENTARIOPUBLICACION'}"></c:if>
-                                	<c:if test="${notificacion.getTipo() == 'COMENTARIOCOMENTARIO'}"></c:if>
+                                	<c:if test="${notificacion.getTipo() == 'LIKECOMENTARIO'}">
+                                	<p class="text-center">
+                                     <a href="perfil?usuarioNombre=${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}" class="nombreUsuarioPublicacion">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}</a>
+                                        	 le ha gustado tu <a href="#" class="nombreUsuarioPublicacion">comentario</a>.
+                                    </p>
+                                	</c:if>
+                                	<c:if test="${notificacion.getTipo() == 'COMENTARIOPUBLICACION'}">
+                                		<p class="text-center">
+                                     <a href="perfil?usuarioNombre=${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}" class="nombreUsuarioPublicacion">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}</a>
+                                        	  ha comentado tu <a href="#" class="nombreUsuarioPublicacion">publicacion</a>.
+                                    </p>
+                                    </c:if>
+                                	<c:if test="${notificacion.getTipo() == 'COMENTARIOCOMENTARIO'}">
+                                		<p class="text-center">
+                                     <a href="perfil?usuarioNombre=${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}" class="nombreUsuarioPublicacion">${notificacion.getUsuarioOtorgadorNotifi().getNombreUsuario()}</a>
+                                        	  ha respondido tu <a href="#" class="nombreUsuarioPublicacion">comentario</a>.
+                                    </p>
+                                    </c:if>
                                		<c:if test="${notificacion.getTipo() == 'SEGUIRUSUARIO'}"></c:if>
                                 </c:if>
                             </div>
