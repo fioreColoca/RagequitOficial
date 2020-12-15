@@ -15,7 +15,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
 @Service
 @Transactional
 public class ServicioCategoriaImp implements ServicioCategoria {
-	
+
 	@Inject
 	private RepositorioCategoria repositorioCategoria;
 
@@ -23,7 +23,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void guardarCategoria(Categoria categoria) {
 		repositorioCategoria.guardarCategoria(categoria);
 	}
-	
+
 	@Override
 	public Categoria mostrarCategoriaPorId(Long id) {
 		return repositorioCategoria.mostrarCategoriaPorId(id);
@@ -33,11 +33,11 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public List<Categoria> mostrarCategorias() {
 		return repositorioCategoria.mostrarCategorias();
 	}
-	
+
 	@Override
 	public void borrarCategoria(Long id) {
 		repositorioCategoria.borrarCategoria(id);
-		
+
 	}
 //	@Override
 //
@@ -60,7 +60,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	public void editarNombre(String nombre, Long id) {
 		Categoria categoria = repositorioCategoria.mostrarCategoriaPorId(id);
 		categoria.setNombre(nombre);
-		
+
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		} else {
 			categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 		}
-		
+
 	}
 
 	@Override
@@ -79,16 +79,14 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		Categoria categoriaAumentar = repositorioCategoria.mostrarCategoriaPorId(categoria.getId());
 		Integer seguidores = categoriaAumentar.getContadorSeguidores() + 1;
 		categoriaAumentar.setContadorSeguidores(seguidores);
-		
+
 	}
 
 	@Override
 	public void disminuirSeguidores(Categoria categoriaSeguida) {
 		Categoria categoriaDisminuir = repositorioCategoria.mostrarCategoriaPorId(categoriaSeguida.getId());
 		Integer seguidores = categoriaDisminuir.getContadorSeguidores() - 1;
-		categoriaDisminuir.setContadorSeguidores(seguidores);		
+		categoriaDisminuir.setContadorSeguidores(seguidores);
 	}
-	
-	
-	
+
 }

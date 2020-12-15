@@ -24,6 +24,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private RepositorioUsuario repositorioUsuario;
 	@Inject
 	private RepositorioSeguirCategoria repositorioSeguirCategoria;
+
 	@Override
 	public List<Usuario> listarUsuarios() {
 		return repositorioUsuario.listarUsuarios();
@@ -143,9 +144,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public List<Categoria> devolverListaDeCategoriasSeguidasPorUsuario(Usuario usuario) {
-		List<SeguirCategoria> seguirCategoriaPorUsuario= repositorioSeguirCategoria.devolverListaDeSeguirCategoriasPorUsuario(usuario);
+		List<SeguirCategoria> seguirCategoriaPorUsuario = repositorioSeguirCategoria
+				.devolverListaDeSeguirCategoriasPorUsuario(usuario);
 		List<Categoria> categoriasSeguidas = new ArrayList<Categoria>();
-		
+
 		for (SeguirCategoria seguirCategoria : seguirCategoriaPorUsuario) {
 			categoriasSeguidas.add(seguirCategoria.getCategoriaSeguida());
 		}
@@ -156,8 +158,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public void aumentarCantidadNotificacionesDeUsuario(Usuario usuario) {
 		Usuario usuarioAAumentarNotificaciones = repositorioUsuario.consultarUsuario(usuario);
 		Integer cantidadNotificaciones = usuarioAAumentarNotificaciones.getContadorNotificaciones() + 1;
-		
-		
+
 		usuarioAAumentarNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
 	}
 
@@ -165,8 +166,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public void disminuirCantidadNotificacionesDeUsuario(Usuario usuario) {
 		Usuario usuarioADisminuirNotificaciones = repositorioUsuario.consultarUsuario(usuario);
 		Integer cantidadNotificaciones = usuarioADisminuirNotificaciones.getContadorNotificaciones() - 1;
-		
-		
+
 		usuarioADisminuirNotificaciones.setContadorNotificaciones(cantidadNotificaciones);
 	}
 

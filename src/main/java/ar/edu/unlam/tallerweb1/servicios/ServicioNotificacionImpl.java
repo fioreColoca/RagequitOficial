@@ -20,22 +20,22 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 @Service
 @Transactional
 public class ServicioNotificacionImpl implements ServicioNotificacion {
-	
+
 	@Inject
 	private RepositorioNotificacion repositorioNotificacion;
 	@Inject
 	private RepositorioUsuario repositorioUsuario;
-	
+
 	@Override
 	public Long guardarNotificacion(Notificacion notificacion) {
 		return repositorioNotificacion.guardarNotificacion(notificacion);
 	}
 
 	@Override
-	public Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion
-	(Usuario usuario1,Usuario usuario2,Publicacion publicacion) {
-		Notificacion notificacion = repositorioNotificacion
-		.obtenerNotificacionPorUsuario1Usuario2YPublicacion(usuario1,usuario2,publicacion);
+	public Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1, Usuario usuario2,
+			Publicacion publicacion) {
+		Notificacion notificacion = repositorioNotificacion.obtenerNotificacionPorUsuario1Usuario2YPublicacion(usuario1,
+				usuario2, publicacion);
 		return notificacion;
 	}
 
@@ -46,13 +46,13 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 
 	@Override
 	public Notificacion obtenerNotificacionPorId(Long id) {
-		
+
 		return repositorioNotificacion.obtenerNotificacionPorId(id);
 	}
 
 	@Override
 	public List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario) {
-		
+
 		return repositorioNotificacion.obtenerListaDeNotificacionesDelUsuario(usuario);
 	}
 

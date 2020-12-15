@@ -7,9 +7,9 @@ import ar.edu.unlam.tallerweb1.modelo.SeguirCategoria;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioSeguirCategoria {
-	
+
 	void seguirCategoria(Usuario usuario, Categoria categoria);
-	
+
 	SeguirCategoria buscarSeguirCategoriaPorUsuarioYCategoria(Usuario usuario, Categoria categoria);
 
 	void dejarDeSeguirCategoria(Usuario usuarioLogeado, Categoria categoriaADejarDeSeguir);

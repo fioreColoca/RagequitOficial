@@ -69,7 +69,6 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		}
 	}
 
-
 	@Override
 	public List<Comentario> devolverComentarioPorPublicacion(Publicacion publicacion) {
 		return repositorioComentar.obtenerComentariosPorPublicacion(publicacion);
@@ -153,15 +152,14 @@ public class ServicioComentarioImpl implements ServicioComentario {
 	public void disminuirCantidadRespuestas(Comentario comentario) {
 		Comentario comentarioDisminuirRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadRespuesta = comentarioDisminuirRespuesta.getCantidadRespuesta() - 1;
-		comentarioDisminuirRespuesta.setCantidadRespuesta(cantidadRespuesta);		
+		comentarioDisminuirRespuesta.setCantidadRespuesta(cantidadRespuesta);
 	}
 
 	@Override
 	public void aumentarCantidadRespuestas(Comentario comentario) {
 		Comentario comentarioAumentarRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadRespuesta = comentarioAumentarRespuesta.getCantidadRespuesta() + 1;
-		comentarioAumentarRespuesta.setCantidadRespuesta(cantidadRespuesta);			
+		comentarioAumentarRespuesta.setCantidadRespuesta(cantidadRespuesta);
 	}
-
 
 }
