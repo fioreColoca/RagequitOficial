@@ -47,8 +47,7 @@ public class ControladorPublicacion {
 	private ServicioSeguir servicioSeguir;
 
 	@RequestMapping(path = "home")
-	public ModelAndView irAlHome(
-			@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
+	public ModelAndView irAlHome(@RequestParam(value = "categoriaAMostrar", required = false) Long categoriaAMostrar,
 			@RequestParam(value = "ordenPublicaciones", required = false) String ordenPublicaciones,
 			@RequestParam(value = "errorComentarioVacio", required = false) String errorComentarioVacio,
 			@RequestParam(value = "errorBorrarPublicacion", required = false) String errorBorrarPublicacion,
@@ -76,7 +75,7 @@ public class ControladorPublicacion {
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
 		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
-		
+
 		modelo.put("title", "RageQuit | Inicio");
 		modelo.put("publicaciones", publicaciones);
 		modelo.put("categorias", categorias);
@@ -91,17 +90,15 @@ public class ControladorPublicacion {
 
 		return new ModelAndView("home", modelo);
 	}
-	
+
 	@RequestMapping(path = "/guardarPublicacion", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public String guardarPublicacion(
-			@RequestParam(value = "categoriaId", required = false) Long categoriaId,
-			@RequestParam(value = "mensaje", required = false) String mensaje,
-			HttpServletRequest request) {
+	public String guardarPublicacion(@RequestParam(value = "categoriaId", required = false) Long categoriaId,
+			@RequestParam(value = "mensaje", required = false) String mensaje, HttpServletRequest request) {
 		Date fecha = new Date();
 		Gson gson = new Gson();
 		JsonObject json = new JsonObject();
-		
+
 		Publicacion publicacion = new Publicacion();
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
@@ -132,14 +129,14 @@ public class ControladorPublicacion {
 			json.addProperty("publicacion", gson.toJson(publicacion));
 			return gson.toJson(json);
 		}
-		
+
 		return gson.toJson(json);
 	}
 
 	@RequestMapping(path = "/borrarPublicacion", method = RequestMethod.POST)
 	public ModelAndView borrarPublicacion(@RequestParam(value = "botonBorrar", required = false) Long id,
 			HttpServletRequest request) {
-		Usuario UsuarioQuePidioBorrarPublicacion =(Usuario) request.getSession().getAttribute("USUARIO");
+		Usuario UsuarioQuePidioBorrarPublicacion = (Usuario) request.getSession().getAttribute("USUARIO");
 		Long idUsuarioQuePidioBorrarPublicacion = UsuarioQuePidioBorrarPublicacion.getId();
 		Publicacion publicacionABorrar = servicioPublicacion.obtenerPublicacionPorId(id);
 		Long idUsuarioQueCreoLaPublicacion = publicacionABorrar.getUsuario().getId();
@@ -170,17 +167,16 @@ public class ControladorPublicacion {
 
 	@RequestMapping(path = "/darLikePublicacion", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public String darLikePublicacion(
-			@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
+	public String darLikePublicacion(@RequestParam(value = "idPublicacionADarLike", required = false) Long id,
 			HttpServletRequest request) {
-		Gson gson= new Gson();
+		Gson gson = new Gson();
 		JsonObject json = new JsonObject();
 		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(id);
 		Usuario usuario = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		servicioLike.darLikeAPublicacion(publicacion, usuario);
-		
+
 		Publicacion publicacionQueCambioLosLikes = servicioPublicacion.obtenerPublicacionPorId(id);
 		Integer cantidadLikes = publicacionQueCambioLosLikes.getCantidadLikes();
 		json.addProperty("cantidadLikesPublicacion", cantidadLikes);

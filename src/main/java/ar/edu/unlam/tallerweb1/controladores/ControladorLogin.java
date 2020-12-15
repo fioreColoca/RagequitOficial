@@ -92,14 +92,14 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("USUARIO", usuarioBuscado);
 			request.getSession().setAttribute("CONTRASENIA", contrasenia);
-			
+
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
-			
-			return new ModelAndView("redirect:/login?errorLogin=true",model);
+
+			return new ModelAndView("redirect:/login?errorLogin=true", model);
 		}
-		
+
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.
@@ -134,7 +134,7 @@ public class ControladorLogin {
 
 	@RequestMapping(path = "/registrando", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario1,
-			@RequestParam(value = "fechaNacimiento",required = false) String date) {
+			@RequestParam(value = "fechaNacimiento", required = false) String date) {
 		ModelMap modelo = new ModelMap();
 		Date fecha = new Date();
 		usuario1.setContadorSuscriptores(0);

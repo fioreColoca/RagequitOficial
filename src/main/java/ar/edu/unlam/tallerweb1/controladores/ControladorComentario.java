@@ -40,7 +40,7 @@ public class ControladorComentario {
 
 	@Inject
 	private ServicioNotificacion servicioNotificacion;
-	
+
 	@Inject
 	private ServicioUsuario servicioUsuario;
 	/* ---------- Pagina para guardar comentarios ----------- */
@@ -120,7 +120,7 @@ public class ControladorComentario {
 		servicioNotificacion.guardarNotificacion(notificacion);
 		servicioLikesComentario.darLikeAComentario(comentario, usuario);
 		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
-		
+
 		return new ModelAndView("redirect:/home");
 	}
 

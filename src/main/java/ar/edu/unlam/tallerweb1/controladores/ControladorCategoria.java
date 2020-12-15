@@ -27,15 +27,14 @@ public class ControladorCategoria {
 
 	@RequestMapping("/categoria")
 	public ModelAndView categoria(@RequestParam(value = "errorNombre", required = false) String errorNombre,
-			@RequestParam(value = "errorTipo", required = false) String errorTipo,
-			HttpServletRequest request) {
+			@RequestParam(value = "errorTipo", required = false) String errorTipo, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
-				
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
-					? (Usuario) request.getSession().getAttribute("USUARIO")
-					: null;
-					
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+
 		modelo.put("categoria", categoria);
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
@@ -45,18 +44,23 @@ public class ControladorCategoria {
 		return new ModelAndView("categoria", modelo);
 	}
 
-	/*@RequestMapping(path = "/agregarCategoria", method = RequestMethod.GET)*/
-	/*public ModelAndView agregarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
-			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) {*/
+	/* @RequestMapping(path = "/agregarCategoria", method = RequestMethod.GET) */
+	/*
+	 * public ModelAndView agregarCategoria(@RequestParam(value = "categoria",
+	 * required = false) String tipoCategoria,
+	 * 
+	 * @RequestParam(value = "crearCategoria", required = false) String
+	 * nombreCategoria) {
+	 */
 	@RequestMapping(path = "/agregarCategoria", method = RequestMethod.POST)
 	public ModelAndView agregarCategoria(@ModelAttribute("categoria") Categoria categoria, HttpServletRequest request) {
 
-		/*ModelMap modelo = new ModelMap();*/
-		/*Categoria categoria = new Categoria();*/
-		
+		/* ModelMap modelo = new ModelMap(); */
+		/* Categoria categoria = new Categoria(); */
+
 		String errorNombre = null;
 		String errorTipo = null;
-		
+
 		if (categoria.getNombre().isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
@@ -72,43 +76,38 @@ public class ControladorCategoria {
 				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 			}
 		}
-		
+
 		categoria.setContadorSeguidores(0);
-		
+
 		if (errorNombre == null && errorTipo == null) {
 			servicioCategoria.guardarCategoria(categoria);
 			return new ModelAndView("redirect:/biblioteca");
 		}
 
 		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
-		
-		/*if (nombreCategoria.isEmpty()) {
-			errorNombre = "Falta elegir nombre a la categoria";
-		} else {
-			categoria.setNombre(nombreCategoria);
-		}
 
-		if (tipoCategoria == null) {
-			errorTipo = "Falta elegir categoria";
-		} else {
-			if (tipoCategoria.equals("Juegos")) {
-				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
-			} else {
-				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
-			}
-		}
-		
-		if (errorNombre == null && errorTipo == null) {
-			servicioCategoria.guardarCategoria(categoria);
-			return new ModelAndView("redirect:/biblioteca");
-		}
-
-		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);*/
+		/*
+		 * if (nombreCategoria.isEmpty()) { errorNombre =
+		 * "Falta elegir nombre a la categoria"; } else {
+		 * categoria.setNombre(nombreCategoria); }
+		 * 
+		 * if (tipoCategoria == null) { errorTipo = "Falta elegir categoria"; } else {
+		 * if (tipoCategoria.equals("Juegos")) {
+		 * categoria.setTipoCategoria(CategoriaTipo.JUEGOS); } else {
+		 * categoria.setTipoCategoria(CategoriaTipo.VARIOS); } }
+		 * 
+		 * if (errorNombre == null && errorTipo == null) {
+		 * servicioCategoria.guardarCategoria(categoria); return new
+		 * ModelAndView("redirect:/biblioteca"); }
+		 * 
+		 * return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre +
+		 * "&errorTipo=" + errorTipo);
+		 */
 	}
 
 	@RequestMapping("/irACategorias")
 	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
-			@RequestParam(value = "errorTipo", required = false) String errorTipo,HttpServletRequest request) {
+			@RequestParam(value = "errorTipo", required = false) String errorTipo, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
@@ -116,7 +115,7 @@ public class ControladorCategoria {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
 		modelo.put("categorias", categorias);
@@ -136,13 +135,12 @@ public class ControladorCategoria {
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
 	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) Integer tipoCategoria,
 			@RequestParam(value = "nombre", required = false) String nombreCategoria,
-			@RequestParam(value = "botonGuardar", required = false) Long id) 
-			{
-		
+			@RequestParam(value = "botonGuardar", required = false) Long id) {
+
 		String errorNombre = null;
 		String errorTipo = null;
 		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
-		
+
 		if (nombreCategoria.isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
@@ -154,15 +152,15 @@ public class ControladorCategoria {
 		} else {
 			servicioCategoria.editarTipo(tipoCategoria, id);
 		}
-		
+
 		if (errorNombre == null && errorTipo == null) {
 			return new ModelAndView("redirect:/biblioteca");
 		}
 
 		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
-		
+
 	}
-	
+
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;
 	}

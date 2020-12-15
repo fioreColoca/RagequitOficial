@@ -40,7 +40,8 @@ public class ControladorNotificaciones {
 			Usuario usuario = servicioUsuario.obtenerUsuarioPorId(usuarioLogeado.getId());
 			List<Notificacion> notificacionesUsuario = servicioNotificacion
 					.obtenerListaDeNotificacionesDelUsuario(usuarioLogeado);
-			TreeSet<Notificacion> notificacionesOrdenadas = servicioNotificacion.ordenarUnaListaDeNotificacionesPorFechaDesendencete(notificacionesUsuario);
+			TreeSet<Notificacion> notificacionesOrdenadas = servicioNotificacion
+					.ordenarUnaListaDeNotificacionesPorFechaDesendencete(notificacionesUsuario);
 
 			modelo.put("notificaciones", notificacionesOrdenadas);
 			modelo.put("usuarioLogeado", usuarioLogeado);
@@ -48,7 +49,7 @@ public class ControladorNotificaciones {
 		modelo.put("title", "RageQuit | Notificaciones");
 		return new ModelAndView("notificaciones", modelo);
 	}
-	
+
 	@RequestMapping(path = "/notificacionVer", produces = "application/json")
 	@ResponseBody
 	public String notificacionVer(@RequestParam(value = "notificacionId", required = false) Long notificacionId,
