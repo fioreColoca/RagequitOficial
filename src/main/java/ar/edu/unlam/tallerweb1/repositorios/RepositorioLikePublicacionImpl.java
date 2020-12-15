@@ -11,23 +11,22 @@ import ar.edu.unlam.tallerweb1.modelo.LikePublicacion;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
-
 @Repository
 public class RepositorioLikePublicacionImpl implements RepositorioLikePublicacion {
-	
+
 	@Inject
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public Long guardarLikePublicacion(LikePublicacion like) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Long)session.save(like);
+		return (Long) session.save(like);
 	}
 
 	@Override
 	public void borrarLikePublicacion(LikePublicacion like) {
 		sessionFactory.getCurrentSession().delete(like);
-		
+
 	}
 
 	@Override
@@ -43,15 +42,10 @@ public class RepositorioLikePublicacionImpl implements RepositorioLikePublicacio
 
 	@Override
 	public LikePublicacion obtenerLikePublicacionPorPublicacionYUsuario(Publicacion publicacion, Usuario usuario) {
-		return (LikePublicacion) sessionFactory.getCurrentSession()
-				.createCriteria(LikePublicacion.class)
-				.add(Restrictions.and(
-						Restrictions.eq("publicacion",publicacion),
-						Restrictions.eq("usuario", usuario))
-						).uniqueResult();
-				
-	}
+		return (LikePublicacion) sessionFactory.getCurrentSession().createCriteria(LikePublicacion.class)
+				.add(Restrictions.and(Restrictions.eq("publicacion", publicacion), Restrictions.eq("usuario", usuario)))
+				.uniqueResult();
 
-	
+	}
 
 }

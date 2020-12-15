@@ -10,10 +10,11 @@ public interface RepositorioNotificacion {
 
 	Long guardarNotificacion(Notificacion notificacion);
 
-	Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1, Usuario usuario2, Publicacion publicacion);
+	Notificacion obtenerNotificacionPorUsuario1Usuario2YPublicacion(Usuario usuario1, Usuario usuario2,
+			Publicacion publicacion);
 
 	void borrarNotificacionPorId(Long notificacionId);
-	
+
 	Notificacion obtenerNotificacionPorId(Long id);
 
 	List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario);

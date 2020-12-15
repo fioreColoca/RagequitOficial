@@ -19,11 +19,11 @@ public class RepositorioLikeComentarioImpl implements RepositorioLikeComentario 
 
 	@Inject
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public Long guardar(LikeComentario like) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Long)session.save(like);
+		return (Long) session.save(like);
 	}
 
 	@Override
@@ -36,15 +36,11 @@ public class RepositorioLikeComentarioImpl implements RepositorioLikeComentario 
 		return sessionFactory.getCurrentSession().get(LikeComentario.class, id);
 	}
 
-
 	@Override
 	public LikeComentario obtenerLikePorComentarioYUsuario(Comentario comentario, Usuario usuario) {
-		return (LikeComentario) sessionFactory.getCurrentSession()
-				.createCriteria(LikeComentario.class)
-				.add(Restrictions.and(
-						Restrictions.eq("comentario",comentario),
-						Restrictions.in("usuario", usuario))
-						).uniqueResult();
+		return (LikeComentario) sessionFactory.getCurrentSession().createCriteria(LikeComentario.class)
+				.add(Restrictions.and(Restrictions.eq("comentario", comentario), Restrictions.in("usuario", usuario)))
+				.uniqueResult();
 	}
 
 	@Override
@@ -52,8 +48,5 @@ public class RepositorioLikeComentarioImpl implements RepositorioLikeComentario 
 		return sessionFactory.getCurrentSession().createCriteria(LikeComentario.class).list();
 
 	}
-
-	
-	
 
 }

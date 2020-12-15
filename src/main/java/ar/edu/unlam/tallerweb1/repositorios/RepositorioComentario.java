@@ -6,17 +6,17 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 
 public interface RepositorioComentario {
-	
-	 Long enviarComentario(Comentario comentario);
 
-	 Comentario mostrarComentario(Long id);
+	Long enviarComentario(Comentario comentario);
 
-	 void borrarComentario(Long id);
-	 
-	 List<Comentario> obtenerComentariosPorPublicacion(Publicacion publicacion);
+	Comentario mostrarComentario(Long id);
 
-	 List<Comentario> mostrarTodosLosComentarios();
+	void borrarComentario(Long id);
 
-	 List<Comentario> respuestaListado(Comentario comentario); 
-	 	
+	List<Comentario> obtenerComentariosPorPublicacion(Publicacion publicacion);
+
+	List<Comentario> mostrarTodosLosComentarios();
+
+	List<Comentario> respuestaListado(Comentario comentario);
+
 }

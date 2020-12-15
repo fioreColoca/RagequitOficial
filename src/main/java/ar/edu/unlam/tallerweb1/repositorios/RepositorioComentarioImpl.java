@@ -29,13 +29,12 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		return sessionFactory.getCurrentSession().get(Comentario.class, id);
 	}
 
-	@Override 
+	@Override
 	public void borrarComentario(Long id) {
 		Comentario comentario = mostrarComentario(id);
-				Session session = sessionFactory.getCurrentSession();
-				session.delete(comentario);
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(comentario);
 	}
-
 
 	@Override
 	public List<Comentario> obtenerComentariosPorPublicacion(Publicacion publicacion) {
@@ -53,6 +52,5 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 		return sessionFactory.getCurrentSession().createCriteria(Comentario.class)
 				.add(Restrictions.eq("respuesta", comentario)).list();
 	}
-	
 
 }
