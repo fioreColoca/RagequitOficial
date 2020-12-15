@@ -36,7 +36,7 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
 			if (buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(seguidor, seguido) == null) {
-				
+
 				Notificacion notificacion = new Notificacion();
 				notificacion.setUsuarioOtorgadorNotifi(seguidor);
 				notificacion.setUsuarioRecibidorNotifi(seguido);
@@ -44,7 +44,7 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 				notificacion.setVisto(false);
 				servicioNotificacion.guardarNotificacion(notificacion);
 				servicioUsuario.aumentarCantidadNotificacionesDeUsuario(seguido);
-				
+
 				servicioUsuario.aumentarSeguidores(seguido);
 				servicioUsuario.aumentarSeguidos(seguidor);
 				repositorioSeguir.seguirUsuario(seguidor, seguido);
@@ -58,6 +58,14 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
+			Notificacion notificacion = servicioNotificacion.obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(
+					seguidor, seguido, NotificacionTipo.SEGUIRUSUARIO);
+
+			Boolean estado = notificacion.getVisto();
+			if (!estado) {
+				servicioUsuario.disminuirCantidadNotificacionesDeUsuario(seguido);
+			}
+			servicioNotificacion.borrarNotificacionPorId(notificacion.getId());
 			servicioUsuario.disminuirSeguidores(seguido);
 			servicioUsuario.disminuirSeguidos(seguidor);
 			repositorioSeguir.dejarDeSeguirUsuario(seguidor, seguido);
