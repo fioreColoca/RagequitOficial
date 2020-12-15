@@ -29,13 +29,16 @@
     <article class="col-12 col-md-4">
         <c:if test="${not empty usuarioLogeado }">
 
-            <form action="seguir" id="formSeguirUsuario${usuarioPerfil.getId()}" method="post" class="formSiguiendo">
-                <button name="usuarioSeguido" value="${usuarioPerfil.getNombreUsuario()}" class="btn btn-naranja" id="seguirUsuarioPerfil${usuarioPerfil.getId()}">Seguir</button>
-            </form>
-
-            <form action="dejarSeguir" id="formDejarDeSeguirUsuario${usuarioPerfil.getId()}" method="post" class="formSeguir">
-                <button name="usuarioSeguido" value="${usuarioPerfil.getNombreUsuario()}" class="btn btn-outline-secondary" id="dejarDeSeguirPerfil${usuarioPerfil.getId()}">Siguiendo</button>
-            </form>
+           <c:if test="${empty verificacionSeguir}">
+                <form action="seguir" method="post">
+                    <button name="usuarioSeguido" value="${usuarioPerfil.getNombreUsuario()}" class="btn btn-naranja">Seguir</button>
+                </form>
+            </c:if>
+            <c:if test="${not empty verificacionSeguir}">
+                <form action="dejarSeguir" method="post">
+                    <button name="usuarioSeguido" value="${usuarioPerfil.getNombreUsuario()}" class="btn btn-outline-secondary">Siguiendo</button>
+                </form>
+            </c:if>
         </c:if>
         <c:if test="${empty usuarioLogeado}">
             <a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>

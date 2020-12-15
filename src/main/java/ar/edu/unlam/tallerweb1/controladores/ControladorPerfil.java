@@ -28,6 +28,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPublicacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSeguir;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+import net.bytebuddy.asm.Advice.Exit;
 
 @Controller
 public class ControladorPerfil {
@@ -84,38 +85,36 @@ public class ControladorPerfil {
 		return new ModelAndView("perfil", modelo);
 	}
 
-	@RequestMapping(path = "/seguir", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	public String seguirUsuario(HttpServletRequest request,
+	@RequestMapping(path = "/seguir", method = RequestMethod.POST)
+	public ModelAndView seguirUsuario(HttpServletRequest request,
 			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido,
-			@RequestParam(value = "usuarioSeguidoHome", required = false) String usuarioSeguidoHome) {
-		Gson gson = new Gson();
-		JsonObject json = new JsonObject();
+			@RequestParam(value = "usuarioSeguidoHome", required = false) Integer usuarioSeguidoHome) {
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 
 		servicioSeguir.seguirUsuario(usuarioLogeado, usuarioSeguido1);
-		Usuario usuarioAux = servicioUsuario.obtenerUsuarioPorId(usuarioSeguido1.getId());
-		Integer seguidores = usuarioAux.getContadorSeguidores();
-		json.addProperty("seguidores", seguidores);
-		json.addProperty("result", true);
-		return gson.toJson(json);
+
+		if (usuarioSeguidoHome != null) {
+			return new ModelAndView("redirect:/home");
+		}
+		return new ModelAndView("redirect:/perfil?usuarioNombre=" + usuarioSeguido1.getNombreUsuario());
 
 	}
 
 	@RequestMapping(path = "/dejarSeguir", method = RequestMethod.POST)
 	public ModelAndView dejarDeSeguirUsuario(HttpServletRequest request,
 			@RequestParam(value = "usuarioSeguido", required = false) String usuarioSeguido,
-			@RequestParam(value = "usuarioSeguidoHome", required = false) String usuarioSeguidoHome) {
+			@RequestParam(value = "usuarioSeguidoHome", required = false) Integer usuarioSeguidoHome) {
 
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
 		Usuario usuarioSeguido1 = servicioUsuario.obtenerUsuarioPorNombreUsuario(usuarioSeguido);
 		servicioSeguir.dejarDeSeguirUsuario(usuarioLogeado, usuarioSeguido1);
-		if (usuarioSeguidoHome == "home") {
+		if (usuarioSeguidoHome != null) {
 			return new ModelAndView("redirect:/home");
 
 		}
