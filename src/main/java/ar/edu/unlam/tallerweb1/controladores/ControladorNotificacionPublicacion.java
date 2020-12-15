@@ -20,7 +20,7 @@ public class ControladorNotificacionPublicacion {
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
 	
-	@RequestMapping(path = "/notificacionPublicacion")
+	@RequestMapping(path = "/publicacion")
 	public ModelAndView irAlHome(@RequestParam(value = "id", required = false) Long id,
 			HttpServletRequest request) {
 		
