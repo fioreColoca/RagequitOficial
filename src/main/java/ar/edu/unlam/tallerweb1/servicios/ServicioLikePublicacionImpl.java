@@ -62,7 +62,11 @@ public class ServicioLikePublicacionImpl implements ServicioLikePublicacion {
 							publicacion);
 			Long notificacionId = notificacion.getId();
 			servicioNotificacionLikePublicacion.borrarNotificacionPorId(notificacionId);
-			servicioUsuario.disminuirCantidadNotificacionesDeUsuario(usuarioDeLaPublicacion);
+			
+			if(notificacion.getVisto() == false) {
+				servicioUsuario.disminuirCantidadNotificacionesDeUsuario(usuarioDeLaPublicacion);
+			}
+			
 			servicioPublicacion.disminuirCantidadLikesDePublicacion(publicacion);
 		}
 
