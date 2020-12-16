@@ -38,3 +38,4 @@ select * from publicacion;
 select * from comentario;
 select * from seguir;
 select * from criticaCategoria;
+select * from mensaje;

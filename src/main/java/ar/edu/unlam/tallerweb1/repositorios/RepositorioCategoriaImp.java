@@ -50,12 +50,8 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 
 	@Override
 	public List<Categoria> traerNombreCategoriasExistentes() {
-		
-		/*return sessionFactory.getCurrentSession().createCriteria(Categoria.class)
-				.add(Restrictions.eq("nombre", )).list();*/
 		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
-		
-		/*.createQuery("SELECT nombre FROM Categoria").getResultList();*/
+
 	}
 
 	

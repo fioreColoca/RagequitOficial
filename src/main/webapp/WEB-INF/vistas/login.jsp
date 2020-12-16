@@ -34,11 +34,11 @@
                             <form:form action="validar-login" method="POST" modelAttribute="usuario" class="form-signin">
 
                                 <div class="form-label-group">
-                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electr&oacute;nico" />
+                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electrónico" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contrase&ntilde;a" />
+                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contraseña" />
                                 </div>
 
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Iniciar
@@ -50,7 +50,7 @@
                             </form:form>
                         </div>
                         <p class="text-center text-white">
-                            ï¿½Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
+                            ¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
                         </p>
                     </div>
                 </div>

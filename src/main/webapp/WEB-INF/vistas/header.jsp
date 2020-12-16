@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1" %>
             <!DOCTYPE html>
             <html lang="es">
 
@@ -80,6 +80,15 @@
                                     <li class="nav-item ">
                                         <a class="nav-link text-center p-2" href="notificaciones">
                                             <i class="fas fa-bell"></i><span class="text-warning" id="headerCantidadNotificaciones">${usuarioLogeado.getContadorNotificaciones()}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="menu justify-content-end">
+                                <ul class="navbar-nav justify-content-end sub-menu">
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-center p-2" href="#">
+                                            <i class="fas fa-envelope"></i><span class="text-warning" id="headerCantidadNotificaciones">0</span>
                                         </a>
                                     </li>
                                 </ul>
