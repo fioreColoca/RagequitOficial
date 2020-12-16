@@ -1,14 +1,28 @@
 <%@ include file="header.jsp" %>
     <main>
         <c:if test="${not empty errorLogin}">
-            <h5 class="text-center text-danger">Usuario o clave incorrecta</h5>
+        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            	<strong>Usuario o clave incorrecta.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </c:if>
         <c:if test="${not empty errorAlSeguir}">
-            <h5 class="text-center text-danger">Primero debes iniciar sesion para seguir a un usuario</h5>
+        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            	<strong>Primero debes iniciar sesion para seguir a un usuario o categoria.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </c:if>
         <c:if test="${not empty errorLike}">
-            <h5 class="text-center text-danger">Primero debes iniciar sesion para likear a una publicacion o comentario
-            </h5>
+        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            	<strong>Primero debes iniciar sesion para likear a una publicacion o comentario.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </c:if>
         <div class="container" id="login">
             <div class="row">
