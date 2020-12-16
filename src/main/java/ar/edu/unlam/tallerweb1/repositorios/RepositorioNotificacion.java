@@ -22,4 +22,7 @@ public interface RepositorioNotificacion {
 	Notificacion obtenerNotificacionPorId(Long id);
 
 	List<Notificacion> obtenerListaDeNotificacionesDelUsuario(Usuario usuario);
+	
+	List<Notificacion> obtenerListaDeNotificacionPorTipo (NotificacionTipo tipo);
+
 }

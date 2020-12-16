@@ -89,4 +89,10 @@ public class ServicioNotificacionImpl implements ServicioNotificacion {
 		return ordenadoPorIDDescendente;
 	}
 
+	@Override
+	public List<Notificacion> obtenerListaDeNotificacionPorTipo(NotificacionTipo tipo) {
+		return repositorioNotificacion.obtenerListaDeNotificacionPorTipo(tipo);
+
+	}
+
 }

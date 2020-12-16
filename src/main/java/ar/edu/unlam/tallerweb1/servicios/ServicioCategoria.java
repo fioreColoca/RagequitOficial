@@ -7,18 +7,18 @@ import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioCategoria {
-
-	void guardarCategoria(Categoria categoria);
-
+	
+	Long guardarCategoria(Categoria categoria);
+	
 	Categoria mostrarCategoriaPorId(Long id);
-
+	
+	Categoria mostrarCategoriaPorNombre(String nombre);
+	
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
 
 	List<Categoria> mostrarCategorias();
 
 	void borrarCategoria(Long id);
-
-//	void editarCategoria(Categoria categoria);
 
 	void editarNombre(String nombre, Long id);
 
