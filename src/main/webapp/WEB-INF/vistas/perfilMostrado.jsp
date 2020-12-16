@@ -208,11 +208,20 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div>
+                                	<%@ include file="homeResponderPublicacion.jsp" %>
+                            	</div>
                             </c:if>
+                            <div>
+                            	<%@ include file="homeListaComentarios.jsp" %>
+                        	</div>
                         </div>
                     </c:forEach>
                 </c:if>
             </div>
         </div>
+        <div>
+        	<%@ include file="homeComentariosModals.jsp" %>
+    	</div>
     </article>
 </section>

@@ -85,11 +85,19 @@
 						<button class="btn btn-info btn-block" style="background-color: #f4a117; border-color: #04233b;">Crear Critica</button>
 					</div>
 					</form>
-			
 		</c:if>
+		<section>
+			<article class="col-12 col-md-8">
+				<%@ include file="homeListaPublicaciones.jsp" %>
+			</article>
+		</section>
+		<section class="modals">
+            <%@ include file="homeModals.jsp" %>
+        </section>
 		</article>
 		
 	</section>
+	
 
 </main>
 <%@ include file="footer.jsp"%>

@@ -67,6 +67,7 @@ public class ControladorPerfil {
 		List<Usuario> listaSeguidos = servicioSeguir.devolverListaDeSeguidos(usuarioPerfil);
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
 		List<Seguir> seguimientos = servicioSeguir.devolverListaDeSeguimientos();
+		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
 
 		Seguir verificarSeguimiento = null;
 		if (usuarioLogeado != null && usuarioPerfil != null) {
@@ -78,7 +79,9 @@ public class ControladorPerfil {
 		modelo.put("verificacionSeguir", verificarSeguimiento);
 		modelo.put("usuarioPerfil", usuarioPerfil);
 		modelo.put("categorias", categorias);
+		modelo.put("comentario", new Comentario());
 		modelo.put("comentarios", comentarios);
+		modelo.put("respuestas", respuestas);
 		modelo.put("usuarioLogeado", usuarioLogeado);
 		modelo.put("listaSeguidores", listaSeguidores);
 		modelo.put("listaSeguidos", listaSeguidos);

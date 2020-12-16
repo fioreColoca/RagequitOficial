@@ -3,7 +3,6 @@
         <img src="${usuarioPerfil.getUrl_imagen() }" alt="" class="rounded-circle border border-warning img-perfil">
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
-
         <h4 class="text-secondary ">Seguidores</h4>
         <h5 class="text-secondary ">
             <a class="link-seguidos" data-toggle="modal" data-target="#seguidores">
@@ -84,8 +83,6 @@
                                 </div>
                             </c:if>
                             <c:if test="${publicacionDelFor.getEstado() == 'ACTIVO'}">
-
-
                                 <div class="d-flex justify-content-between p-2 bg-fondo rounded-top">
                                     <div class="col-4">
                                         <h3><a href="perfil?usuarioNombre=${publicacionDelFor.getUsuario().getNombreUsuario() }" class="nombreUsuarioPublicacion">
@@ -129,7 +126,6 @@
                                                 </c:if>
                                                 -->
                                             </c:if>
-
                                         </c:if>
                                         <c:if test="${empty usuarioLogeado}">
                                             <a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
@@ -196,11 +192,23 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div>
+                                	<%@ include file="homeResponderPublicacion.jsp" %>
+                            	</div>
                             </c:if>
+                            <div>
+                            	<%@ include file="homeListaComentarios.jsp" %>
+                        	</div>
                         </div>
                     </c:forEach>
                 </c:if>
             </div>
         </div>
+        <div>
+        	<%@ include file="homeComentariosModals.jsp" %>
+    	</div>
     </article>
+</section>
+<section class="modals">
+	<%@ include file="homeModals.jsp" %>
 </section>
