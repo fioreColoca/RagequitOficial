@@ -17,4 +17,9 @@ public class RepositorioCriticaCategoriaImpl implements RepositorioCriticaCatego
 		sessionFactory.getCurrentSession().save(criticaCategoria);
 	}
 
+	@Override
+	public CriticaCategoria obtenerCriticaCategoriaPorId(Long id) {
+		return sessionFactory.getCurrentSession().get(CriticaCategoria.class, id);
+	}
+
 }

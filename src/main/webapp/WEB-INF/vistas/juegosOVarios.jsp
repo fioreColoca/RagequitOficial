@@ -31,6 +31,18 @@
                         <a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
                     </c:if>
             </article>
+            <c:if test="${not empty usuarioLogeado}">
+            <article class="container">
+            	<h3>Realizar Critica</h3>
+            	<form:form class="row" action="crearCriticaCategoria" method="POST" modelAttribute="criticaCategoria">
+            		<form:input class="col-12" path="usuarioCritico" type="hidden" value="${usuarioLogeado}"/>
+            		<form:input class="col-12" path="categoria" type="hidden" value="${juegosOVarios}"/>
+            		<form:input class="col-12" path="calificacion" type="number" />
+            		<form:textarea path="mensaje" />
+            		<form:button class="btn btn-info btn-block">Crear Critica</form:button>
+            	</form:form>
+            </article>
+             </c:if>
         </section>
 
     </main>

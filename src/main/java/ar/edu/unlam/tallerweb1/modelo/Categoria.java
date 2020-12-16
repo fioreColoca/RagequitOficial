@@ -17,6 +17,7 @@ public class Categoria {
 	private String urlIcono;
 	private String descripcion;
 	private Integer contadorSeguidores;
+	private Double calificacion;
 
 	private CategoriaTipo tipoCategoria;
 	@Transient
@@ -84,6 +85,14 @@ public class Categoria {
 
 	public void setContadorSeguidores(Integer contadorSeguidores) {
 		this.contadorSeguidores = contadorSeguidores;
+	}
+
+	public Double getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
 	}
 
 }

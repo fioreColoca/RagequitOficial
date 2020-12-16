@@ -13,8 +13,9 @@ public class CriticaCategoria {
 	private Long id;
 	private Double calificacion;
 	private String mensaje;
+
 	@ManyToOne
-	private Usuario usuario;
+	private Usuario usuarioCritico;
 
 	@ManyToOne
 	private Categoria categoria;
@@ -43,12 +44,12 @@ public class CriticaCategoria {
 		this.mensaje = mensaje;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getUsuarioCritico() {
+		return usuarioCritico;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuarioCritico(Usuario usuarioCritico) {
+		this.usuarioCritico = usuarioCritico;
 	}
 
 	public Categoria getCategoria() {
