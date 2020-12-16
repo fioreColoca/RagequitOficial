@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
@@ -18,9 +20,11 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void guardarCategoria(Categoria categoria) {
-		sessionFactory.getCurrentSession().save(categoria);
 
+	public Long guardarCategoria(Categoria categoria) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Long) session.save(categoria);
+		
 	}
 
 	@Override
@@ -39,21 +43,15 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 		sessionFactory.getCurrentSession().delete(categoria);
 	}
 
-//	@Override
-//	public void editarCategoria(Categoria categoria) {
-//		sessionFactory.getCurrentSession().save(categoria);
-//	}
-
-//	@Override
-//	public void editarNombre(Long id) {
-//		Categoria categoria = mostrarCategoriaPorId(id);
-//		sessionFactory.getCurrentSession().update(categoria);
-//	}
-
 	public List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria) {
 		return sessionFactory.getCurrentSession().createCriteria(Categoria.class)
 				.add(Restrictions.eq("tipoCategoria", tipoCategoria)).list();
 
+	}
+
+	@Override
+	public Categoria mostrarCategoriaPorNombre(String nombre) {
+		return sessionFactory.getCurrentSession().get(Categoria.class, nombre);
 	}
 
 }

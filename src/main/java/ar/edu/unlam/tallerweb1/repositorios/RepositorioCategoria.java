@@ -2,23 +2,25 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
 public interface RepositorioCategoria {
 
-	void guardarCategoria(Categoria categoria);
-
+	
+	Long guardarCategoria(Categoria categoria);
+	
 	Categoria mostrarCategoriaPorId(Long id);
-
+	
+	Categoria mostrarCategoriaPorNombre(String nombre);
+	
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
 
 	List<Categoria> mostrarCategorias();
 
 	void borrarCategoria(Long id);
 
-//	void editarCategoria(Categoria categoria);
-
-//	void editarNombre(Long id);
 
 }

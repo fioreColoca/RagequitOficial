@@ -61,14 +61,8 @@ public class ControladorJuegosOVarios {
 
 		return new ModelAndView("juegosOVarios", modelo);
 	}
-	/*
-	 * @RequestMapping(path = "crearCriticaCategoria", method = RequestMethod.POST)
-	 * public ModelAndView crearCriticaCategoria(@ModelAttribute("criticaCategoria")
-	 * CriticaCategoria criticaCategoria) {
-	 * System.out.println("******************************************");
-	 * servicioCriticaCategoria.crearUnaCriticaCategoria(criticaCategoria); return
-	 * new ModelAndView("redirect:/juegosOVarios?categoriaId=1"); }
-	 */
+
+	
 
 	@RequestMapping(path = "/seguirCategoria")
 	public ModelAndView seguirCategoria(HttpServletRequest request,

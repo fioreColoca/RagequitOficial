@@ -1,31 +1,41 @@
-<%@ include file="header.jsp" %>
-    <main>
-        <section>
 
-            <article class="">
-                <h3 class="border-bottom text-center mb-4">Categorias</h3>
-                <p> Estas categorias fueron creadas: </p>
+<%@ include file="header.jsp"%>
+<main>
+    <section>
 
-                <div class="row justify-content-center">
-                    <c:if test="${not empty categorias}">
-                        <c:forEach items="${categorias}" var="categoria">
+        <article class="">
+            <h3 class="border-bottom text-center mb-4">Categorias Creadas</h3>
+            <p> Estas categorias fueron creadas: </p>
 
-                            <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
-                                <div class="d-flex flex-wrap justify-content-around">
-                                    <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
-                                    <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
-                                    <div class="d-flex flex-wrap justify-content-end p-3">
-                                        <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal" data-target="#editarCategoria" data-id="${categoria.getId()}">
-                                            <i class="far fa-edit"></i>
-                                        </button>
+            <div class="row justify-content-center">
+                <c:if test="${not empty categorias}">
+                    <c:forEach items="${categorias}" var="categoria">
 
-                                        <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal" data-target="#borrarCategoria" data-id="${categoria.getId()}">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
+					<c:if test="${categoria.getEstado() == 'ACTIVO'}">
+                        <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                        	
+                        	
+                            <div class="d-flex flex-wrap justify-content-around">
+                                <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
+                                <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
+                                <div class="d-flex flex-wrap justify-content-end p-3">
+                                
+                                    <button type="button" class="btn btn-outline-naranja botonEditar"
+                                        data-toggle="modal" data-target="#editarCategoria"
+                                        data-id="${categoria.getId()}">
+                                        <i class="far fa-edit"></i>
+                                    </button>
 
-                                    </div>
+                                    <button type="button" class="btn btn-outline-naranja botonBorrar"
+                                        data-toggle="modal" data-target="#borrarCategoria"
+                                        data-id="${categoria.getId()}">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+
                                 </div>
                             </div>
+                        </div>
+                      </c:if>
 
                         </c:forEach>
                     </c:if>
@@ -55,7 +65,7 @@
                                     </select>
                                 </div>
 
-                                <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen o video</label>
+                                <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen</label>
                                 <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
 
                                 <div class="text-right modal-footer">
@@ -99,13 +109,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right subirDiv">
-                    <a href="categoria" class="btn btn-outline-naranja volverACategoria">Crear una nueva categoria</a>
-                </div>
-            </article>
+            <div class="text-right subirDiv mt-2">
+                <a href="categoria" class="btn btn-outline-naranja volverACategoria">Crear una nueva categoria</a>
+            </div>
+        </article>
+        
+        <article class="">
+            <h3 class="border-bottom text-center mb-4">Categorias Eliminadas</h3>
+            <p> Estas categorias fueron eliminadas: </p>
 
-        </section>
-    </main>
-    <%@ include file="footer.jsp" %>
+            <div class="row justify-content-center">
+                <c:if test="${not empty categorias}">
+                    <c:forEach items="${categorias}" var="categoria">
 
-        <!--Tipo: ${categoriaCreada.getTipoCategoria()} Nombre: ${categoriaCreada.getNombre()}-->
+					<c:if test="${categoria.getEstado() == 'INACTIVO'}">
+                        <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                        	
+                        	
+                            <div class="d-flex flex-wrap justify-content-around">
+                                <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
+                                <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
+                                <div class="d-flex flex-wrap justify-content-end p-3">
+
+                                </div>
+                            </div>
+                        </div>
+                      </c:if>
+
+                    </c:forEach>
+                </c:if>
+            </div>           
+            
+        </article>
+
+    </section>
+</main>
+<%@ include file="footer.jsp"%>
