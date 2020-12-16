@@ -8,10 +8,14 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaEstado;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
+import ar.edu.unlam.tallerweb1.modelo.Publicacion;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCategoria;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPublicacion;
 
 @Service
 @Transactional
@@ -19,10 +23,13 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	
 	@Inject
 	private RepositorioCategoria repositorioCategoria;
+	
+	@Inject
+	private RepositorioPublicacion repositorioPublicacion;
 
 	@Override
-	public void guardarCategoria(Categoria categoria) {
-		repositorioCategoria.guardarCategoria(categoria);
+	public Long guardarCategoria(Categoria categoria) {
+		return repositorioCategoria.guardarCategoria(categoria);
 	}
 	
 	@Override
@@ -37,8 +44,16 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	
 	@Override
 	public void borrarCategoria(Long id) {
-		repositorioCategoria.borrarCategoria(id);
+		Categoria categoriaABorrar = repositorioCategoria.mostrarCategoriaPorId(id);
 		
+		List<Publicacion> publicacionesConCategoriaABorrar= repositorioPublicacion.buscarPublicacionesPorCategoria(categoriaABorrar);
+		
+		if (publicacionesConCategoriaABorrar != null) {
+			categoriaABorrar.setEstado(CategoriaEstado.INACTIVO);
+		} else {
+			repositorioCategoria.borrarCategoria(id);
+		}
+			
 	}
 //	@Override
 //
@@ -88,6 +103,11 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		Categoria categoriaDisminuir = repositorioCategoria.mostrarCategoriaPorId(categoriaSeguida.getId());
 		Integer seguidores = categoriaDisminuir.getContadorSeguidores() - 1;
 		categoriaDisminuir.setContadorSeguidores(seguidores);		
+	}
+
+	@Override
+	public Categoria mostrarCategoriaPorNombre(String nombre) {
+		return repositorioCategoria.mostrarCategoriaPorNombre(nombre);
 	}
 	
 	

@@ -18,7 +18,13 @@
         <property name="suffix" value=".jsp" />
         <!--De esta manera al devolver home como nombre de vista, resuelve /WEB-INF/vistas/home.jsp-->
     </bean>
-
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+		<!--<property name="uploadTempDir" ref="uploadDirResource" />-->
+	</bean>
+    
     <!--Excluye de las URL validas para Spring MVC los recursos estáticos de la aplicación Web: estilos, java script y fuentes-->
     <!--Si se agregaran, por ejemplo, imagenes, es; es necesario agregar ese path acá-->
     <mvc:resources mapping="/css/**" location="/css/" />
@@ -29,4 +35,5 @@
     <mvc:resources mapping="/OwlCarousel2-2.3.4/dist/**" location="/OwlCarousel2-2.3.4/dist/" />
     <mvc:resources mapping="/OwlCarousel2-2.3.4/dist/assets/**" location="/OwlCarousel2-2.3.4/dist/assets/" />
     <mvc:resources mapping="/img/imgUsuario/**" location="/img/imgUsuario/" />
+    <mvc:resources mapping="/img/categoriasImg/**" location="/img/categoriasImg/" />
 </beans>

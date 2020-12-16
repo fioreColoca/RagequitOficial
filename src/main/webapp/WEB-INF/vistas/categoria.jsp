@@ -15,7 +15,7 @@
                 </div>
                 <div class="anchoCategoria pad-2">
 
-                <form:form action="agregarCategoria" method="POST" modelAttribute="categoria">
+                <form:form action="agregarCategoria"  method="POST" modelAttribute="categoria" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nombre">Elija el nombre de la categoria:</label>
                             <form:input path="nombre" class="form-control" id="nombre" 
@@ -31,9 +31,9 @@
                             </form:select>
                         </div>
 
-                        <label class="pt-3" for="archivoImagenVideo">Subir imagen o video</label>
-                        <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo"
-                            id="archivoImagenVideo">
+                        <label class="pt-3" for="subida">Subir imagen</label>
+                        <input type="file" class="form-control-file col-md-2" name="subida"
+                            id="subida">        
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>

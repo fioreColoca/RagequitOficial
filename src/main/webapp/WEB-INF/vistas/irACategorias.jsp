@@ -3,14 +3,17 @@
     <section>
 
         <article class="">
-            <h3 class="border-bottom text-center mb-4">Categorias</h3>
+            <h3 class="border-bottom text-center mb-4">Categorias Creadas</h3>
             <p> Estas categorias fueron creadas: </p>
 
             <div class="row justify-content-center">
                 <c:if test="${not empty categorias}">
                     <c:forEach items="${categorias}" var="categoria">
 
+					<c:if test="${categoria.getEstado() == 'ACTIVO'}">
                         <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                        	
+                        	
                             <div class="d-flex flex-wrap justify-content-around">
                                 <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
                                 <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
@@ -30,6 +33,7 @@
                                 </div>
                             </div>
                         </div>
+                      </c:if>
 
                     </c:forEach>
                 </c:if>
@@ -107,13 +111,39 @@
                     </div>
                 </div>
             </div>
-            <div class="text-right subirDiv">
+            <div class="text-right subirDiv mt-2">
                 <a href="categoria" class="btn btn-outline-naranja volverACategoria">Crear una nueva categoria</a>
             </div>
+        </article>
+        
+        <article class="">
+            <h3 class="border-bottom text-center mb-4">Categorias Eliminadas</h3>
+            <p> Estas categorias fueron eliminadas: </p>
+
+            <div class="row justify-content-center">
+                <c:if test="${not empty categorias}">
+                    <c:forEach items="${categorias}" var="categoria">
+
+					<c:if test="${categoria.getEstado() == 'INACTIVO'}">
+                        <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                        	
+                        	
+                            <div class="d-flex flex-wrap justify-content-around">
+                                <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
+                                <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()} </p>
+                                <div class="d-flex flex-wrap justify-content-end p-3">
+
+                                </div>
+                            </div>
+                        </div>
+                      </c:if>
+
+                    </c:forEach>
+                </c:if>
+            </div>           
+            
         </article>
 
     </section>
 </main>
 <%@ include file="footer.jsp"%>
-
-<!--Tipo: ${categoriaCreada.getTipoCategoria()} Nombre: ${categoriaCreada.getNombre()}-->

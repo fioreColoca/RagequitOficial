@@ -1,5 +1,12 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,9 +18,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
+import ar.edu.unlam.tallerweb1.modelo.CategoriaEstado;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -28,6 +39,7 @@ public class ControladorCategoria {
 	@RequestMapping("/categoria")
 	public ModelAndView categoria(@RequestParam(value = "errorNombre", required = false) String errorNombre,
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
+			@RequestParam(value = "errorImagen", required = false) String errorImagen,
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
@@ -44,21 +56,21 @@ public class ControladorCategoria {
 
 		return new ModelAndView("categoria", modelo);
 	}
+	
 
-	/*@RequestMapping(path = "/agregarCategoria", method = RequestMethod.GET)*/
-	/*public ModelAndView agregarCategoria(@RequestParam(value = "categoria", required = false) String tipoCategoria,
-			@RequestParam(value = "crearCategoria", required = false) String nombreCategoria) {*/
 	@RequestMapping(path = "/agregarCategoria", method = RequestMethod.POST)
-	public ModelAndView agregarCategoria(@ModelAttribute("categoria") Categoria categoria, HttpServletRequest request) {
-
-		/*ModelMap modelo = new ModelMap();*/
-		/*Categoria categoria = new Categoria();*/
+	public ModelAndView agregarCategoria(@ModelAttribute("categoria") Categoria categoria,
+			@RequestParam("subida") MultipartFile subida, RedirectAttributes attributes,
+					HttpServletRequest request) throws IOException {
 		
 		String errorNombre = null;
 		String errorTipo = null;
+		String errorImagen = null;
 		
 		if (categoria.getNombre().isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
+		} else if (categoria.getNombre() == categoria.getNombre()){
+			errorNombre = "Ya existe una categoria con ese nombre";
 		} else {
 			categoria.setNombre(categoria.getNombre());
 		}
@@ -73,42 +85,39 @@ public class ControladorCategoria {
 			}
 		}
 		
+		if (categoria.getSubida().isEmpty()) {
+			errorNombre = "Falta elegir la imagen a la categoria";
+		} else {
+			StringBuilder builder = new StringBuilder();
+			builder.append(System.getProperty("user.home"));
+			builder.append(File.separator);
+			builder.append("/categoriaImg");
+			builder.append(File.separator);
+			builder.append(subida.getOriginalFilename());
+
+			byte[] subidaBytes = subida.getBytes();
+			Path path = Paths.get(builder.toString());
+			Files.write(path, subidaBytes);
+		}
+		
 		categoria.setContadorSeguidores(0);
 		
-		if (errorNombre == null && errorTipo == null) {
+		
+		if (errorNombre == null && errorTipo == null && errorImagen == null) {
 			servicioCategoria.guardarCategoria(categoria);
+			categoria.setEstado(CategoriaEstado.ACTIVO);
 			return new ModelAndView("redirect:/biblioteca");
 		}
 
-		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
-		
-		/*if (nombreCategoria.isEmpty()) {
-			errorNombre = "Falta elegir nombre a la categoria";
-		} else {
-			categoria.setNombre(nombreCategoria);
-		}
-
-		if (tipoCategoria == null) {
-			errorTipo = "Falta elegir categoria";
-		} else {
-			if (tipoCategoria.equals("Juegos")) {
-				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
-			} else {
-				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
-			}
-		}
-		
-		if (errorNombre == null && errorTipo == null) {
-			servicioCategoria.guardarCategoria(categoria);
-			return new ModelAndView("redirect:/biblioteca");
-		}
-
-		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);*/
+		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo + "&errorImagen" + errorImagen);
+				
 	}
+	
 
 	@RequestMapping("/irACategorias")
 	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
-			@RequestParam(value = "errorTipo", required = false) String errorTipo,HttpServletRequest request) {
+			@RequestParam(value = "errorTipo", required = false) String errorTipo,
+			@RequestParam(value = "errorImagen", required = false) String errorImagen, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
@@ -119,6 +128,7 @@ public class ControladorCategoria {
 				
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
+		modelo.put("errorImagen", errorImagen);
 		modelo.put("categorias", categorias);
 		modelo.put("title", "RageQuit | Categoria Creadas");
 		modelo.put("usuarioLogeado", usuarioLogeado);
@@ -128,6 +138,7 @@ public class ControladorCategoria {
 
 	@RequestMapping(path = "/borrarCategoria", method = RequestMethod.GET)
 	public ModelAndView borrarCategoria(@RequestParam(value = "botonBorrar", required = false) Long id) {
+		Categoria categoriaABorrar = servicioCategoria.mostrarCategoriaPorId(id); 
 		servicioCategoria.borrarCategoria(id);
 
 		return new ModelAndView("redirect:/irACategorias");

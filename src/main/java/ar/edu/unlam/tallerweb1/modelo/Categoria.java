@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 @Entity
 public class Categoria {
 	
@@ -18,7 +20,12 @@ public class Categoria {
 	private String descripcion;
 	private Integer contadorSeguidores;
 	
+	private CommonsMultipartFile subida;
+	
 	private CategoriaTipo tipoCategoria;
+	
+	private CategoriaEstado estado;
+	
 	@Transient
 	private Integer tipoCategoriaNum;
 	
@@ -74,6 +81,20 @@ public class Categoria {
 	public void setContadorSeguidores(Integer contadorSeguidores) {
 		this.contadorSeguidores = contadorSeguidores;
 	}
+	public CommonsMultipartFile getSubida() {
+		return subida;
+	}
+	public void setSubida(CommonsMultipartFile subida) {
+		this.subida = subida;
+	}
+	public CategoriaEstado getEstado() {
+		return estado;
+	}
+	public void setEstado(CategoriaEstado estado) {
+		this.estado = estado;
+	}
 	
+	
+
 	
 }
