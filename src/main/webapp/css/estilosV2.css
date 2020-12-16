@@ -101,6 +101,29 @@ main {
     text-align: center;
 }
 
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
 @media screen and (max-width:992px) {
     .buscador {
         display: none !important;
