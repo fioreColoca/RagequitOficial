@@ -12,16 +12,20 @@
                     <optgroup label="Juegos">
                         <c:forEach items="${categorias}" var="categoriaDelFor">
                             <c:if test="${categoriaDelFor.getTipoCategoria() == 'JUEGOS'}">
-                                <option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}
-                                </option>
+                            	<c:if test="${categoriaDelFor.getEstado() == 'ACTIVO'}">
+                            		<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}
+                                	</option>
+                            	</c:if>
                             </c:if>
                         </c:forEach>
                     </optgroup>
                     <optgroup label="Otros">
                         <c:forEach items="${categorias}" var="categoriaDelFor">
                             <c:if test="${categoriaDelFor.getTipoCategoria() == 'VARIOS'}">
-                                <option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}
-                                </option>
+                            	<c:if test="${categoriaDelFor.getEstado() == 'ACTIVO'}">
+                                	<option value="${categoriaDelFor.getId()}">${categoriaDelFor.getNombre()}
+                                	</option>
+                                </c:if>
                             </c:if>
                         </c:forEach>
                     </optgroup>
