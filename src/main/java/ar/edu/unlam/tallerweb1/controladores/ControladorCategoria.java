@@ -39,7 +39,7 @@ public class ControladorCategoria {
 	@RequestMapping("/categoria")
 	public ModelAndView categoria(@RequestParam(value = "errorNombre", required = false) String errorNombre,
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
-			@RequestParam(value = "errorImagen", required = false) String errorImagen,
+			/* @RequestParam(value = "errorImagen", required = false) String errorImagen, */
 			HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
@@ -52,32 +52,43 @@ public class ControladorCategoria {
 		modelo.put("categoria", categoria);
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
+		/* modelo.put("errorImagen", errorImagen); */
 		modelo.put("title", "RageQuit | Categoria");
 		modelo.put("usuarioLogeado", usuarioLogeado);
 
 		return new ModelAndView("categoria", modelo);
 	}
-	
 
 	@RequestMapping(path = "/agregarCategoria", method = RequestMethod.POST)
 	public ModelAndView agregarCategoria(@ModelAttribute("categoria") Categoria categoria,
-			@RequestParam("subida") MultipartFile subida, RedirectAttributes attributes,
-					HttpServletRequest request) throws IOException {
-		
+			/*
+			 * @RequestParam("subida") MultipartFile subida, RedirectAttributes attributes,
+			 */
+			HttpServletRequest request) /* throws IOException */ {
+
 		String errorNombre = null;
 		String errorTipo = null;
-		String errorImagen = null;
-
+		/* String errorImagen = null; */
+		
+		List<String> nombres = servicioCategoria.traerNombreCategoriasExistentes();
 		if (categoria.getNombre().isEmpty()) {
-			errorNombre = "Falta elegir nombre a la categoria";
-		} else if (categoria.getNombre() == categoria.getNombre()){
-			errorNombre = "Ya existe una categoria con ese nombre";
+			errorNombre = "Falta elegir el nombre a la categoria";
 		} else {
-			categoria.setNombre(categoria.getNombre());
+			Boolean existe = false;
+			for (String string : nombres) {
+				if (string.equals(categoria.getNombre())) {
+					existe = true;
+					errorNombre = "Ya existe una categoria con ese nombre";
+				}
+			}
+			if (!existe) {
+				categoria.setNombre(categoria.getNombre());
+			}
 		}
 
+
 		if (categoria.getTipoCategoriaNum() == null) {
-			errorTipo = "Falta elegir categoria";
+			errorTipo = "Falta elegir el tipo de categoria (JUEGOS o VARIOS)";
 		} else {
 			if (categoria.getTipoCategoriaNum().equals(0)) {
 				categoria.setTipoCategoria(CategoriaTipo.JUEGOS);
@@ -85,36 +96,28 @@ public class ControladorCategoria {
 				categoria.setTipoCategoria(CategoriaTipo.VARIOS);
 			}
 		}
-		
-		if (categoria.getSubida().isEmpty()) {
-			errorImagen = "Falta elegir la imagen a la categoria";
-		} else {
-			StringBuilder builder = new StringBuilder();
-			builder.append(System.getProperty("user.home"));
-			builder.append(File.separator);
-			builder.append("/categoriaImg");
-			builder.append(File.separator);
-			builder.append(subida.getOriginalFilename());
 
-			byte[] subidaBytes = subida.getBytes();
-			Path path = Paths.get(builder.toString());
-			Files.write(path, subidaBytes);
-		}
-		
+		/*
+		 * if (categoria.getSubida().isEmpty()) { errorImagen =
+		 * "Falta elegir la imagen a la categoria"; } else { StringBuilder builder = new
+		 * StringBuilder(); builder.append(System.getProperty("user.home"));
+		 * builder.append(File.separator); builder.append("/categoriaImg");
+		 * builder.append(File.separator); builder.append(subida.getOriginalFilename());
+		 * 
+		 * byte[] subidaBytes = subida.getBytes(); Path path =
+		 * Paths.get(builder.toString()); Files.write(path, subidaBytes); }
+		 */
+
 		categoria.setContadorSeguidores(0);
-		
-		
-		if (errorNombre == null && errorTipo == null && errorImagen == null) {
+
+		if (errorNombre == null && errorTipo == null) {
 			servicioCategoria.guardarCategoria(categoria);
-			categoria.setEstado(CategoriaEstado.ACTIVO);
-			return new ModelAndView("redirect:/biblioteca");
+			return new ModelAndView("redirect:/irACategorias");
 		}
 
-		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo + "&errorImagen" + errorImagen);
-				
+		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
 
 	}
-	
 
 	@RequestMapping("/irACategorias")
 	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
@@ -141,7 +144,7 @@ public class ControladorCategoria {
 
 	@RequestMapping(path = "/borrarCategoria", method = RequestMethod.GET)
 	public ModelAndView borrarCategoria(@RequestParam(value = "botonBorrar", required = false) Long id) {
-		Categoria categoriaABorrar = servicioCategoria.mostrarCategoriaPorId(id); 
+		Categoria categoriaABorrar = servicioCategoria.mostrarCategoriaPorId(id);
 		servicioCategoria.borrarCategoria(id);
 
 		return new ModelAndView("redirect:/irACategorias");

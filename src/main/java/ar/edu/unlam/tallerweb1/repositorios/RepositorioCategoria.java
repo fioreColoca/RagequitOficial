@@ -10,11 +10,11 @@ import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 public interface RepositorioCategoria {
 
 	
-	Long guardarCategoria(Categoria categoria);
+	void guardarCategoria(Categoria categoria);
 	
 	Categoria mostrarCategoriaPorId(Long id);
 	
-	Categoria mostrarCategoriaPorNombre(String nombre);
+	List<Categoria> traerNombreCategoriasExistentes(); 
 	
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
 
