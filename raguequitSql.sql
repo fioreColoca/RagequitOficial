@@ -1,9 +1,3 @@
-select * from usuario;
-select * from categoria;
-select * from publicacion;
-select * from comentario;
-select * from seguir;
-
 use ragequit;
 
 insert into categoria(id, contadorSeguidores, descripcion, nombre, tipoCategoria, urlIcono, urlImagen)
@@ -40,6 +34,8 @@ value(1, 0, 0, 0, 20200512,"Aguante LoL ", 3, 4),
 (4, 0, 0, 0, 20200614,"Soy el mejor Zeus", 6, 2),
 (5, 0, 0, 0, 20200801,"Estoy chikita", 4, 5);
 
-
-
-select * from seguircategoria;
+select * from usuario;
+select * from categoria;
+select * from publicacion;
+select * from comentario;
+select * from seguir;
