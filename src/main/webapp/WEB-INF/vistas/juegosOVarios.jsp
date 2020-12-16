@@ -60,6 +60,13 @@
                 </article>
             </c:if>
         </section>
-
+		<section>
+			<article class="col-12 col-md-8">
+				<%@ include file="homeListaPublicaciones.jsp" %>
+			</article>
+		</section>
+		<section class="modals">
+            <%@ include file="homeModals.jsp" %>
+        </section>
     </main>
     <%@ include file="footer.jsp" %>
