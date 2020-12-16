@@ -27,6 +27,8 @@
 			<c:if test="${empty usuarioLogeado}">
 				<a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
 			</c:if>
+			<br>
+			<h5>Valoracion General:</h5>
 			
 		</article>
 		<article class="col-12 col-md-9 p-4" style="background-color: #04233b;  border-left-style: solid; border-left-color: #0A4573;">
@@ -87,7 +89,7 @@
 					</form>
 		</c:if>
 		<section>
-			<article class="col-12 col-md-8">
+			<article class="col-12">
 				<%@ include file="homeListaPublicaciones.jsp" %>
 			</article>
 		</section>
