@@ -84,6 +84,15 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="menu justify-content-end">
+                                <ul class="navbar-nav justify-content-end sub-menu">
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-center p-2" href="#">
+                                            <i class="fas fa-envelope"></i><span class="text-warning" id="headerCantidadNotificaciones">0</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="dropdown d-flex flex-wrap">
                                 <img alt="" src="${usuarioLogeado.getUrl_imagen()}" class="m-auto">
                                 <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white "><span>
