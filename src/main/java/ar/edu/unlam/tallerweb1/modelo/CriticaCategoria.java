@@ -11,7 +11,7 @@ public class CriticaCategoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Double calificacion;
+	private Integer calificacion;
 	private String mensaje;
 
 	@ManyToOne
@@ -28,11 +28,11 @@ public class CriticaCategoria {
 		this.id = id;
 	}
 
-	public Double getCalificacion() {
+	public Integer getCalificacion() {
 		return calificacion;
 	}
 
-	public void setCalificacion(Double calificacion) {
+	public void setCalificacion(Integer calificacion) {
 		this.calificacion = calificacion;
 	}
 
