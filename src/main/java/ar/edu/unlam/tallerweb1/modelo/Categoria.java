@@ -21,7 +21,7 @@ public class Categoria {
 	private Integer contadorSeguidores;
 
 	
-	private CommonsMultipartFile subida;
+	/*private CommonsMultipartFile subida;*/
 	
 
 	private Double calificacion;
@@ -98,12 +98,12 @@ public class Categoria {
 		this.contadorSeguidores = contadorSeguidores;
 	}
 
-	public CommonsMultipartFile getSubida() {
+	/*public CommonsMultipartFile getSubida() {
 		return subida;
 	}
 	public void setSubida(CommonsMultipartFile subida) {
 		this.subida = subida;
-	}
+	}*/
 	public CategoriaEstado getEstado() {
 		return estado;
 	}

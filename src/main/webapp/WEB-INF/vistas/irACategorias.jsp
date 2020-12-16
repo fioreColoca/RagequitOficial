@@ -45,7 +45,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content p-3 m-1">
                             <div class="modal-header">
-                                <h5 class="modal-title text-dark">Editar categorï¿½a</h5>
+                                <h5 class="modal-title text-dark">Editar categoria</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -59,7 +59,7 @@
                                 <div class="text-dark">
                                     <label for="filtro">Tipo de categoria</label>
                                     <select name="categoria" id="categoria" class="custom-select">
-                                        <option disabled selected>Seleccione una opciï¿½n</option>
+                                        <option disabled selected>Seleccione una opción</option>
                                         <option value="0">Juegos</option>
                                         <option value="1">Varios</option>
                                     </select>
@@ -97,7 +97,7 @@
                                 </button>
                             </div>
                             <div class="modal-body text-dark">
-                                <p>ï¿½Seguro que deseas borrar la categoria?</p>
+                                <p>¿Seguro que deseas borrar la categoria?</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -114,7 +114,7 @@
             </div>
         </article>
         
-        <article class="">
+        <article class="m-3">
             <h3 class="border-bottom text-center mb-4">Categorias Eliminadas</h3>
             <p> Estas categorias fueron eliminadas: </p>
 

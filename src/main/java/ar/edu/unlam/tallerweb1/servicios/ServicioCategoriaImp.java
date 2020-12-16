@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,13 +25,14 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 
 	@Inject
 	private RepositorioCategoria repositorioCategoria;
-	
+
 	@Inject
 	private RepositorioPublicacion repositorioPublicacion;
 
 	@Override
-	public Long guardarCategoria(Categoria categoria) {
-		return repositorioCategoria.guardarCategoria(categoria);
+	public void guardarCategoria(Categoria categoria) {
+		categoria.setEstado(CategoriaEstado.ACTIVO);
+		repositorioCategoria.guardarCategoria(categoria);
 	}
 
 	@Override
@@ -46,9 +48,10 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	@Override
 	public void borrarCategoria(Long id) {
 		Categoria categoriaABorrar = repositorioCategoria.mostrarCategoriaPorId(id);
-		
-		List<Publicacion> publicacionesConCategoriaABorrar= repositorioPublicacion.buscarPublicacionesPorCategoria(categoriaABorrar);
-		
+
+		List<Publicacion> publicacionesConCategoriaABorrar = repositorioPublicacion
+				.buscarPublicacionesPorCategoria(categoriaABorrar);
+
 		if (publicacionesConCategoriaABorrar != null) {
 			categoriaABorrar.setEstado(CategoriaEstado.INACTIVO);
 		} else {
@@ -61,7 +64,6 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 
 	}
-
 
 	@Override
 	public void editarNombre(String nombre, Long id) {
@@ -97,8 +99,14 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	}
 
 	@Override
-	public Categoria mostrarCategoriaPorNombre(String nombre) {
-		return repositorioCategoria.mostrarCategoriaPorNombre(nombre);
+	public List<String> traerNombreCategoriasExistentes() {
+		List<Categoria> categorias = repositorioCategoria.mostrarCategorias();
+		List<String> nombres = new ArrayList<String>();
+		for (Categoria categoria : categorias) {
+			nombres.add(categoria.getNombre());
+		}
+		return nombres;
+
 	}
 
 }
