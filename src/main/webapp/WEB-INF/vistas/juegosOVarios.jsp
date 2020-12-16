@@ -60,8 +60,14 @@
                 </article>
             </c:if>
         </section>
+        <hr>
 		<section>
 			<article class="col-12 col-md-8">
+				<div class="text-center d-flex mt-4 border-bottom">
+					<h4><a href="#" class="nombreUsuarioPublicacion"> Publicaciones</a></h4>
+					<h4> | | </h4>
+					<h4><a href="#" class="nombreUsuarioPublicacion"> Criticas</a></h4>
+				</div>
 				<%@ include file="homeListaPublicaciones.jsp" %>
 			</article>
 		</section>
