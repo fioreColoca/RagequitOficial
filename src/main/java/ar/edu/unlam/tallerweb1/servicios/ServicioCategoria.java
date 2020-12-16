@@ -7,12 +7,12 @@ import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioCategoria {
-
-	Long guardarCategoria(Categoria categoria);
-
+	
+	void guardarCategoria(Categoria categoria);
+	
 	Categoria mostrarCategoriaPorId(Long id);
-
-	Categoria mostrarCategoriaPorNombre(String nombre);
+	
+	List<String> traerNombreCategoriasExistentes();
 
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
 

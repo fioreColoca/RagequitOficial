@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,8 +32,9 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	private ServicioCriticaCategoria servicioCriticaCategoria;
 
 	@Override
-	public Long guardarCategoria(Categoria categoria) {
-		return repositorioCategoria.guardarCategoria(categoria);
+	public void guardarCategoria(Categoria categoria) {
+		categoria.setEstado(CategoriaEstado.ACTIVO);
+		repositorioCategoria.guardarCategoria(categoria);
 	}
 
 	@Override
@@ -99,8 +101,14 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	}
 
 	@Override
-	public Categoria mostrarCategoriaPorNombre(String nombre) {
-		return repositorioCategoria.mostrarCategoriaPorNombre(nombre);
+	public List<String> traerNombreCategoriasExistentes() {
+		List<Categoria> categorias = repositorioCategoria.mostrarCategorias();
+		List<String> nombres = new ArrayList<String>();
+		for (Categoria categoria : categorias) {
+			nombres.add(categoria.getNombre());
+		}
+		return nombres;
+
 	}
 
 	@Override

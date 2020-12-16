@@ -21,9 +21,8 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 
 	@Override
 
-	public Long guardarCategoria(Categoria categoria) {
-		Session session = sessionFactory.getCurrentSession();
-		return (Long) session.save(categoria);
+	public void guardarCategoria(Categoria categoria) {
+		sessionFactory.getCurrentSession().save(categoria);
 		
 	}
 
@@ -50,8 +49,12 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 	}
 
 	@Override
-	public Categoria mostrarCategoriaPorNombre(String nombre) {
-		return sessionFactory.getCurrentSession().get(Categoria.class, nombre);
+	public List<Categoria> traerNombreCategoriasExistentes() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
+		
 	}
+
+	
 
 }
