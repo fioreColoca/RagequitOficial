@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaEstado;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
-
+import ar.edu.unlam.tallerweb1.modelo.CriticaCategoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 
@@ -24,9 +24,11 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 
 	@Inject
 	private RepositorioCategoria repositorioCategoria;
-	
+
 	@Inject
 	private RepositorioPublicacion repositorioPublicacion;
+	@Inject
+	private ServicioCriticaCategoria servicioCriticaCategoria;
 
 	@Override
 	public Long guardarCategoria(Categoria categoria) {
@@ -46,9 +48,10 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	@Override
 	public void borrarCategoria(Long id) {
 		Categoria categoriaABorrar = repositorioCategoria.mostrarCategoriaPorId(id);
-		
-		List<Publicacion> publicacionesConCategoriaABorrar= repositorioPublicacion.buscarPublicacionesPorCategoria(categoriaABorrar);
-		
+
+		List<Publicacion> publicacionesConCategoriaABorrar = repositorioPublicacion
+				.buscarPublicacionesPorCategoria(categoriaABorrar);
+
 		if (publicacionesConCategoriaABorrar != null) {
 			categoriaABorrar.setEstado(CategoriaEstado.INACTIVO);
 		} else {
@@ -61,7 +64,6 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 
 	}
-
 
 	@Override
 	public void editarNombre(String nombre, Long id) {
@@ -99,6 +101,19 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	@Override
 	public Categoria mostrarCategoriaPorNombre(String nombre) {
 		return repositorioCategoria.mostrarCategoriaPorNombre(nombre);
+	}
+
+	@Override
+	public void calcularCalificacionDeCategoria(Categoria categoria) {
+		List<CriticaCategoria> criticas = servicioCriticaCategoria.obtenerListaCriticasPorMismaCategoria(categoria);
+		Categoria categoria1 = repositorioCategoria.mostrarCategoriaPorId(categoria.getId());
+		Double calificacion = 0.0;
+		for (CriticaCategoria criticaCategoria : criticas) {
+			calificacion += criticaCategoria.getCalificacion();
+		}
+		calificacion = calificacion / (double) criticas.size();
+
+		categoria1.setCalificacion(calificacion);
 	}
 
 }
