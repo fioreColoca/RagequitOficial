@@ -14,7 +14,7 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
-import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorLikeYComentario;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
@@ -58,15 +58,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	@Override
 	public void borrarPublicacion(Long id) {
 		Publicacion publicacionABorrar = repositorioPublicacion.obtenerPublicacionPorId(id);
-
-		List<Comentario> comentariosEnPublicacionABorrar = repositorioComentario
-				.obtenerComentariosPorPublicacion(publicacionABorrar);
-
-		if (comentariosEnPublicacionABorrar != null) {
-			publicacionABorrar.setEstado(PublicacionEstado.INACTIVO);
-		} else {
-			repositorioPublicacion.borrarPublicacion(id);
-		}
+		publicacionABorrar.setEstado(PublicacionEstado.INACTIVO);
 
 	}
 
@@ -75,7 +67,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 		List<Publicacion> publicaciones = this.buscarPublicaciones();
 
-		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha();
+		PublicacionOrdenPorFechaDescendente ordenFechaRecienteAAntigua = new PublicacionOrdenPorFechaDescendente();
 
 		TreeSet<Publicacion> ordenadoPorFechaRecienteAAntigua = new TreeSet<Publicacion>(ordenFechaRecienteAAntigua);
 
@@ -104,7 +96,7 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 	public TreeSet<Publicacion> devolverYOrdenarUnaListaDePublicacionesPorFechaRecienteAAntigua(
 			List listaPublicaciones) {
 
-		PublicacionOrdenPorFecha ordenFechaRecienteAAntigua = new PublicacionOrdenPorFecha();
+		PublicacionOrdenPorFechaDescendente ordenFechaRecienteAAntigua = new PublicacionOrdenPorFechaDescendente();
 
 		TreeSet<Publicacion> ordenadoPorFechaRecienteAAntigua = new TreeSet<Publicacion>(ordenFechaRecienteAAntigua);
 

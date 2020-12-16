@@ -11,6 +11,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Notificacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionTipo;
 import ar.edu.unlam.tallerweb1.modelo.Seguir;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioSeguir;
@@ -25,6 +27,8 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 	private RepositorioUsuario repositorioUsuario;
 	@Inject
 	private ServicioUsuario servicioUsuario;
+	@Inject
+	private ServicioNotificacion servicioNotificacion;
 
 	@Override
 	public void seguirUsuario(Usuario usuarioSeguidor, Usuario usuarioSeguido) {
@@ -32,6 +36,15 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
 			if (buscarSeguirPorUsuarioSeguidorYUsuarioSeguido(seguidor, seguido) == null) {
+
+				Notificacion notificacion = new Notificacion();
+				notificacion.setUsuarioOtorgadorNotifi(seguidor);
+				notificacion.setUsuarioRecibidorNotifi(seguido);
+				notificacion.setTipo(NotificacionTipo.SEGUIRUSUARIO);
+				notificacion.setVisto(false);
+				servicioNotificacion.guardarNotificacion(notificacion);
+				servicioUsuario.aumentarCantidadNotificacionesDeUsuario(seguido);
+
 				servicioUsuario.aumentarSeguidores(seguido);
 				servicioUsuario.aumentarSeguidos(seguidor);
 				repositorioSeguir.seguirUsuario(seguidor, seguido);
@@ -45,6 +58,14 @@ public class ServicioSeguirImpl implements ServicioSeguir {
 		Usuario seguidor = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguidor.getId());
 		Usuario seguido = repositorioUsuario.obtenerUsuarioPorId(usuarioSeguido.getId());
 		if (seguidor != null && seguido != null) {
+			Notificacion notificacion = servicioNotificacion.obtenerNotificacionPorUsuario1Usuario2YTipoPublicacion(
+					seguidor, seguido, NotificacionTipo.SEGUIRUSUARIO);
+
+			Boolean estado = notificacion.getVisto();
+			if (!estado) {
+				servicioUsuario.disminuirCantidadNotificacionesDeUsuario(seguido);
+			}
+			servicioNotificacion.borrarNotificacionPorId(notificacion.getId());
 			servicioUsuario.disminuirSeguidores(seguido);
 			servicioUsuario.disminuirSeguidos(seguidor);
 			repositorioSeguir.dejarDeSeguirUsuario(seguidor, seguido);

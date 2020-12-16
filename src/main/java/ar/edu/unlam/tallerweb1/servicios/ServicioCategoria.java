@@ -15,21 +15,17 @@ public interface ServicioCategoria {
 	Categoria mostrarCategoriaPorNombre(String nombre);
 	
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
-	
-	List<Categoria>mostrarCategorias();
-	
+
+	List<Categoria> mostrarCategorias();
+
 	void borrarCategoria(Long id);
-	
-//	void editarCategoria(Categoria categoria);
-	
+
 	void editarNombre(String nombre, Long id);
-	
+
 	void editarTipo(Integer tipoCategoria, Long id);
 
 	void aumentarSeguidores(Categoria categoriaSeguida);
 
 	void disminuirSeguidores(Categoria categoriaSeguida);
-
-
 
 }

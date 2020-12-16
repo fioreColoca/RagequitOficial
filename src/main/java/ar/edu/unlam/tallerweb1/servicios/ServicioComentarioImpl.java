@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
-import ar.edu.unlam.tallerweb1.modelo.ComentarioTipo;
 import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
-import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFecha;
+import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComentarioImpl;
@@ -67,20 +66,6 @@ public class ServicioComentarioImpl implements ServicioComentario {
 			repositorioComentar.borrarComentario(id);
 		} else {
 			comentario.setEstado(ComentarioEstado.INACTIVO);
-		}
-	}
-
-	@Override
-	public void tipoComentario(String boton, Comentario comentario) {
-		switch (boton) {
-		case "comun":
-			comentario.setTipo(ComentarioTipo.COMUN);
-			break;
-		case "premium":
-			comentario.setTipo(ComentarioTipo.SUSCRIPTOR);
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -167,15 +152,14 @@ public class ServicioComentarioImpl implements ServicioComentario {
 	public void disminuirCantidadRespuestas(Comentario comentario) {
 		Comentario comentarioDisminuirRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadRespuesta = comentarioDisminuirRespuesta.getCantidadRespuesta() - 1;
-		comentarioDisminuirRespuesta.setCantidadRespuesta(cantidadRespuesta);		
+		comentarioDisminuirRespuesta.setCantidadRespuesta(cantidadRespuesta);
 	}
 
 	@Override
 	public void aumentarCantidadRespuestas(Comentario comentario) {
 		Comentario comentarioAumentarRespuesta = repositorioComentar.mostrarComentario(comentario.getId());
 		Integer cantidadRespuesta = comentarioAumentarRespuesta.getCantidadRespuesta() + 1;
-		comentarioAumentarRespuesta.setCantidadRespuesta(cantidadRespuesta);			
+		comentarioAumentarRespuesta.setCantidadRespuesta(cantidadRespuesta);
 	}
-
 
 }

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body text-dark">
-                <p>¿Seguro que deseas borrar el comentario?.</p>
+                <p>ï¿½Seguro que deseas borrar el comentario?.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -33,37 +33,17 @@
             <div class="modal-headerp-3 pt-3">
                 <form:form action="responderComentario" class="container" method="POST" modelAttribute="comentario">
                     <div>
-                        <form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar" class="form-control "
-                            rows="3" />
+                        <form:textarea path="mensaje" id="comentarioMandar" name="comentarioMandar" class="form-control " rows="3" />
                     </div>
                     <br>
                     <div class="row responderComent" id="">
                         <!--<label class="sr-only" name="boton" value="comun">-->
                         <div class="col-6 mt-6 mb-3">
-                            <form:input type="hidden" name="idComentario" path="comentarioAResponderId"
-                                id="responderComentario" />
+                            <form:input type="hidden" name="idComentario" path="comentarioAResponderId" id="responderComentario" />
                             <button type="submit" class="btn btn-naranja" name="boton">Responder</button>
                         </div>
                     </div>
                 </form:form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="verListado" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content bg-fondo">
-            <div class="modal-header">
-                <h5 class="modal-title text-white">Marcado como Me gusta por:</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-header bg-fondo p-3 container">
-
             </div>
         </div>
     </div>

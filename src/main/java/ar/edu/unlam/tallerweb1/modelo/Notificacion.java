@@ -7,22 +7,31 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Notificacion {
+public class Notificacion implements Comparable<Notificacion> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
 	private Usuario usuarioOtorgadorNotifi;
-	
+
 	@ManyToOne
 	private Usuario usuarioRecibidorNotifi;
-	
+
 	@ManyToOne
 	private Publicacion publicacion;
-	
+
+	@ManyToOne
+	private Publicacion comentarioDePublicacion;
+
+	@ManyToOne
+	private Comentario comentarioLike;
+
+	@ManyToOne
+	private Comentario respuestaDeComentario;
+
 	private NotificacionTipo tipo;
-	
+
 	private Boolean visto;
 
 	public Boolean getVisto() {
@@ -72,4 +81,34 @@ public class Notificacion {
 	public void setTipo(NotificacionTipo tipo) {
 		this.tipo = tipo;
 	}
+
+	@Override
+	public int compareTo(Notificacion notificacion) {
+		return this.id.compareTo(notificacion.getId());
+	}
+
+	public Comentario getComentarioLike() {
+		return comentarioLike;
+	}
+
+	public void setComentarioLike(Comentario comentarioLike) {
+		this.comentarioLike = comentarioLike;
+	}
+
+	public Publicacion getComentarioDePublicacion() {
+		return comentarioDePublicacion;
+	}
+
+	public void setComentarioDePublicacion(Publicacion comentarioDePublicacion) {
+		this.comentarioDePublicacion = comentarioDePublicacion;
+	}
+
+	public Comentario getRespuestaDeComentario() {
+		return respuestaDeComentario;
+	}
+
+	public void setRespuestaDeComentario(Comentario respuestaDeComentario) {
+		this.respuestaDeComentario = respuestaDeComentario;
+	}
+
 }

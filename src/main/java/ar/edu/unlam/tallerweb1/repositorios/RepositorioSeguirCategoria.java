@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.SeguirCategoria;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface RepositorioSeguirCategoria {
-	
+
 	public void seguirCategoria(Usuario usuario, Categoria categoria);
 
 	public SeguirCategoria buscarSeguirCategoriaPorUsuarioYCategoria(Usuario seguidor, Categoria categoriaSeguida);
@@ -15,7 +15,7 @@ public interface RepositorioSeguirCategoria {
 	public void dejarSeguirCategoria(Usuario seguidor, Categoria categoriaSeguida);
 
 	public List<SeguirCategoria> devolverListaDeSeguidores(Categoria juegosOVarios);
-	
+
 	List<SeguirCategoria> devolverListaDeSeguirCategoriasPorUsuario(Usuario usuario);
 
 }

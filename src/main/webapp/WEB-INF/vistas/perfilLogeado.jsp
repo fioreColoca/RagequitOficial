@@ -10,7 +10,7 @@
                 ${usuarioPerfil.getContadorSeguidores()}
             </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidores.jsp"%>
+        <%@ include file="perfilMostrarSeguidores.jsp" %>
 
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
@@ -20,7 +20,7 @@
                 ${usuarioPerfil.getContadorSeguidos() }
             </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidos.jsp"%>
+        <%@ include file="perfilMostrarSeguidos.jsp" %>
 
     </div>
 </section>
@@ -36,11 +36,10 @@
         <h4 class="text-center">Categorias seguidas por ${usuarioPerfil.getNombreUsuario()}</h4>
         <div class="carrusel">
             <c:if test="${empty categorias}">
-                <p class="text-danger text-center bg-dark p-2">No sigues a ninguna Categoria!</p>
-                <a href="biblioteca" class="link_perfil">
-                    <p class="text-danger text-center bg-dark p-2 mt-0">Visita aqui nuestra Biblioteca de Categorias
-                    </p>
-                </a>
+
+                <div class="alert alert-warning p-2 text-center" role="alert">
+                    No sigues a ninguna Categoria! <a href="biblioteca" class="alert-link">Visita aqui nuestra Biblioteca de Categorias</a>.
+                </div>
             </c:if>
             <c:if test="${not empty categorias}">
                 <c:if test="${categorias.size() > 3}">

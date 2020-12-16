@@ -66,13 +66,16 @@ $(document).ready(function() {
             $("#categoriaVacia").html("");
             $("#creacionPublicacionExitosa").html("");
             if (datosPublicacion.mensajeVacio == true) {
-                $("#mensajeVacio").html("<span>Debe escribir un mensaje</span>");
+                $("#mensajeVacio")
+                .html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"><strong>Debe escribir un mensaje.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
             if (datosPublicacion.categoriaVacia == true) {
-                $("#categoriaVacia").html("<span>Debe elegir una categoria</span>");
+                $("#categoriaVacia")
+                .html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Debe elegir una categoria.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
             if (datosPublicacion.mensajeVacio == false && datosPublicacion.categoriaVacia == false) {
-                $("#creacionPublicacionExitosa").html("<span>Se creo la publicacion con exito!</span>");
+                $("#creacionPublicacionExitosa")
+                .html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Se creo la publicacion con exito!</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
         }).fail(function() {
             console.log("error al cargar AJAX publicacion");
@@ -116,7 +119,7 @@ $(document).ready(function() {
             console.log("error al cargar AJAX ver notificacion");
         });
     });
-    /************************AJAX DE SEGUIR UN USUARIO**********************************/
+    /************************AJAX DE SEGUIR UN USUARIO*********************************
     $("form[id^='formSeguirUsuario']").submit(function(event) {
         event.preventDefault();
         var post_url = "seguir";
@@ -131,18 +134,17 @@ $(document).ready(function() {
         }).done(function(datos) {
             console.log(datos);
             if (datos.result == true) {
-                $("#contadorSeguidores").html(datos.seguidores);
-                $("form[id^='formSeguirUsuario']").removeClass("formSiguiendo");
-                $("form[id^='formDejarDeSeguirUsuario']").removeClass("formSeguir");
-                $("form[id^='formSeguirUsuario']").addClass("formSeguir");
-                $("form[id^='formDejarDeSeguirUsuario']").addClass("formSiguiendo");
+                $('#followDiv').replace(` 
+				<form action="dejarSeguir" id="formDejarDeSeguirUsuario" method="post" class="formSeguir">
+                	<button name="usuarioSeguido" value="" class="btn btn-outline-secondary" id="dejarDeSeguirPerfil">Siguiendo</button>
+            	</form>`)
 
             }
         }).fail(function(datos) {
             console.log(datos);
         });
-    });
-
+    });*/
+   
 
 });
 

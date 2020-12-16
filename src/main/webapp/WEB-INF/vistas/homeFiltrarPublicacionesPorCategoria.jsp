@@ -3,9 +3,8 @@
         <div class="form-inline justify-content-sm-end">
             <label class="my-1 mr-2" for="filtarPublicacionCategoria"><b>Filtrar publicaciones por
                     categorias</b></label>
-                    <input type="hidden" name="ordenPublicaciones" id="ordenPublicaciones" value="${ordenPublicaciones}"/>
-            <select class="custom-select my-1 mr-sm-2" name="filtarPublicacionCategoria" id="filtarPublicacionCategoria"
-                required>
+            <input type="hidden" name="ordenPublicaciones" id="ordenPublicaciones" value="${ordenPublicaciones}" />
+            <select class="custom-select my-1 mr-sm-2" name="filtarPublicacionCategoria" id="filtarPublicacionCategoria" required>
                 <option value="-1" selected>Todas</option>
                 <c:if test="${not empty categorias}">
                     <optgroup label="Juegos">

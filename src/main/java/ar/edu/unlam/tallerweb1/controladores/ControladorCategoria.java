@@ -41,13 +41,14 @@ public class ControladorCategoria {
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
 			@RequestParam(value = "errorImagen", required = false) String errorImagen,
 			HttpServletRequest request) {
+
 		ModelMap modelo = new ModelMap();
 		Categoria categoria = new Categoria();
-				
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
-					? (Usuario) request.getSession().getAttribute("USUARIO")
-					: null;
-					
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+
 		modelo.put("categoria", categoria);
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
@@ -66,7 +67,7 @@ public class ControladorCategoria {
 		String errorNombre = null;
 		String errorTipo = null;
 		String errorImagen = null;
-		
+
 		if (categoria.getNombre().isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
 		} else if (categoria.getNombre() == categoria.getNombre()){
@@ -86,7 +87,7 @@ public class ControladorCategoria {
 		}
 		
 		if (categoria.getSubida().isEmpty()) {
-			errorNombre = "Falta elegir la imagen a la categoria";
+			errorImagen = "Falta elegir la imagen a la categoria";
 		} else {
 			StringBuilder builder = new StringBuilder();
 			builder.append(System.getProperty("user.home"));
@@ -111,6 +112,7 @@ public class ControladorCategoria {
 
 		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo + "&errorImagen" + errorImagen);
 				
+
 	}
 	
 
@@ -118,6 +120,7 @@ public class ControladorCategoria {
 	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
 			@RequestParam(value = "errorImagen", required = false) String errorImagen, HttpServletRequest request) {
+
 		ModelMap modelo = new ModelMap();
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
@@ -125,7 +128,7 @@ public class ControladorCategoria {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
 		modelo.put("errorImagen", errorImagen);
@@ -147,13 +150,12 @@ public class ControladorCategoria {
 	@RequestMapping(path = "/editarCategoria", method = RequestMethod.GET)
 	public ModelAndView editarCategoria(@RequestParam(value = "categoria", required = false) Integer tipoCategoria,
 			@RequestParam(value = "nombre", required = false) String nombreCategoria,
-			@RequestParam(value = "botonGuardar", required = false) Long id) 
-			{
-		
+			@RequestParam(value = "botonGuardar", required = false) Long id) {
+
 		String errorNombre = null;
 		String errorTipo = null;
 		Categoria categoria = servicioCategoria.mostrarCategoriaPorId(id);
-		
+
 		if (nombreCategoria.isEmpty()) {
 			errorNombre = "Falta elegir nombre a la categoria";
 		} else {
@@ -165,15 +167,15 @@ public class ControladorCategoria {
 		} else {
 			servicioCategoria.editarTipo(tipoCategoria, id);
 		}
-		
+
 		if (errorNombre == null && errorTipo == null) {
 			return new ModelAndView("redirect:/biblioteca");
 		}
 
 		return new ModelAndView("redirect:/irACategorias?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
-		
+
 	}
-	
+
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;
 	}

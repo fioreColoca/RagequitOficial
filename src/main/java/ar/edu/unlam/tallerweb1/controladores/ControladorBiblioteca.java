@@ -34,7 +34,6 @@ public class ControladorBiblioteca {
 		ModelMap modelo = new ModelMap();
 
 		Long idbiblioteca = servicioBiblioteca.crearBiblioteca(biblioteca);
-		
 
 		List<Categoria> categorias = servicioCategoria.mostrarCategorias();
 
@@ -46,13 +45,12 @@ public class ControladorBiblioteca {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+
 		modelo.put("categorias", categorias);
 		modelo.put("idBiblioteca", idbiblioteca);
 		modelo.put("biblioteca", biblioteca);
 		modelo.put("title", "RageQuit | Biblioteca");
 		modelo.put("usuarioLogeado", usuarioLogeado);
-
 
 		return new ModelAndView("biblioteca", modelo);
 	}
@@ -66,15 +64,15 @@ public class ControladorBiblioteca {
 
 		return new ModelAndView("redirect:/biblioteca");
 	}
-	
+
 	public ServicioBiblioteca getServicioBiblioteca() {
 		return servicioBiblioteca;
 	}
-	
+
 	public void setServicioBiblioteca(ServicioBiblioteca servicioBiblioteca) {
 		this.servicioBiblioteca = servicioBiblioteca;
-	}	
-	
+	}
+
 	public ServicioCategoria getServicioCategoria() {
 		return servicioCategoria;
 	}

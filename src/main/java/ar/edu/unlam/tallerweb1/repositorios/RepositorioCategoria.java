@@ -8,6 +8,7 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
 public interface RepositorioCategoria {
+
 	
 	Long guardarCategoria(Categoria categoria);
 	
@@ -16,15 +17,10 @@ public interface RepositorioCategoria {
 	Categoria mostrarCategoriaPorNombre(String nombre);
 	
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
-	
+
 	List<Categoria> mostrarCategorias();
-	
-	void borrarCategoria (Long id);
-	
-//	void editarCategoria(Categoria categoria);
 
-//	void editarNombre(Long id);
-
+	void borrarCategoria(Long id);
 
 
 }

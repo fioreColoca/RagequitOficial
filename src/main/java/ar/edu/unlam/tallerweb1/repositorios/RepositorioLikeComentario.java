@@ -11,11 +11,11 @@ public interface RepositorioLikeComentario {
 	Long guardar(LikeComentario like);
 
 	void borrar(LikeComentario like);
-	
+
 	LikeComentario obtenerLikePorId(Long id);
 
 	LikeComentario obtenerLikePorComentarioYUsuario(Comentario comentario, Usuario usuario);
-	
-	List <Usuario> obtenerListaLikes();
+
+	List<Usuario> obtenerListaLikes();
 
 }
