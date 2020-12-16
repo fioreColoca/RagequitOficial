@@ -6,7 +6,12 @@
             </section>
             <section>
                 <c:if test="${errorCambiarRol == 'true'}">
-                    <h5 class="text-danger">Ocurrio un error al cambiar rol</h5>
+                	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                		<strong>Ocurrio un error al cambiar rol.</strong>
+                    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    		<span aria-hidden="true">&times;</span>
+                    	</button>
+                	</div>
                 </c:if>
                 <div class="row">
                     <c:forEach items="${listaUsuarios}" var="usuario">

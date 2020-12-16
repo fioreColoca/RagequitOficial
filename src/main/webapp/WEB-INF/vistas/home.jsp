@@ -14,13 +14,28 @@
         </section>
         <section class="listaPublicaciones">
             <c:if test="${not empty errorComentarioVacio == 'true'}">
-                <h5 class="text-danger text-center">No puede enviar un comentario vacio.</h5>
+            	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                	<strong>No puede enviar un comentario vacio.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </c:if>
             <c:if test="${errorBorrarPublicacion == 'true'}">
-                <h5 class="text-danger text-center">Ocurrio un error al borrar la publicacion.</h5>
+            	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                	<strong>Ocurrio un error al borrar la publicacion.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </c:if>
             <c:if test="${errorBorrarPublicacion == 'false'}">
-                <h5 class="text-success text-center">Se borro la publicacion con exito.</h5>
+            	<div class="alert alert-success alert-dismissible fade show" role="alert">
+                	<strong>Se borro la publicacion con exito.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </c:if>
             <%@ include file="homeListaPublicaciones.jsp" %>
         </section>
