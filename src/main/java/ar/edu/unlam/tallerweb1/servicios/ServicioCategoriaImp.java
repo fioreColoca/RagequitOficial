@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaEstado;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
-
+import ar.edu.unlam.tallerweb1.modelo.CriticaCategoria;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionEstado;
 
@@ -24,13 +25,16 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 
 	@Inject
 	private RepositorioCategoria repositorioCategoria;
-	
+
 	@Inject
 	private RepositorioPublicacion repositorioPublicacion;
+	@Inject
+	private ServicioCriticaCategoria servicioCriticaCategoria;
 
 	@Override
-	public Long guardarCategoria(Categoria categoria) {
-		return repositorioCategoria.guardarCategoria(categoria);
+	public void guardarCategoria(Categoria categoria) {
+		categoria.setEstado(CategoriaEstado.ACTIVO);
+		repositorioCategoria.guardarCategoria(categoria);
 	}
 
 	@Override
@@ -46,9 +50,10 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	@Override
 	public void borrarCategoria(Long id) {
 		Categoria categoriaABorrar = repositorioCategoria.mostrarCategoriaPorId(id);
-		
-		List<Publicacion> publicacionesConCategoriaABorrar= repositorioPublicacion.buscarPublicacionesPorCategoria(categoriaABorrar);
-		
+
+		List<Publicacion> publicacionesConCategoriaABorrar = repositorioPublicacion
+				.buscarPublicacionesPorCategoria(categoriaABorrar);
+
 		if (publicacionesConCategoriaABorrar != null) {
 			categoriaABorrar.setEstado(CategoriaEstado.INACTIVO);
 		} else {
@@ -61,7 +66,6 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 		return repositorioCategoria.mostrarCategoriaPorTipo(categoriaTipo);
 
 	}
-
 
 	@Override
 	public void editarNombre(String nombre, Long id) {
@@ -97,8 +101,27 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 	}
 
 	@Override
-	public Categoria mostrarCategoriaPorNombre(String nombre) {
-		return repositorioCategoria.mostrarCategoriaPorNombre(nombre);
+	public List<String> traerNombreCategoriasExistentes() {
+		List<Categoria> categorias = repositorioCategoria.mostrarCategorias();
+		List<String> nombres = new ArrayList<String>();
+		for (Categoria categoria : categorias) {
+			nombres.add(categoria.getNombre());
+		}
+		return nombres;
+
+	}
+
+	@Override
+	public void calcularCalificacionDeCategoria(Categoria categoria) {
+		List<CriticaCategoria> criticas = servicioCriticaCategoria.obtenerListaCriticasPorMismaCategoria(categoria);
+		Categoria categoria1 = repositorioCategoria.mostrarCategoriaPorId(categoria.getId());
+		Double calificacion = 0.0;
+		for (CriticaCategoria criticaCategoria : criticas) {
+			calificacion += criticaCategoria.getCalificacion();
+		}
+		calificacion = calificacion / (double) criticas.size();
+
+		categoria1.setCalificacion(calificacion);
 	}
 
 }

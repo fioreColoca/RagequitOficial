@@ -20,12 +20,9 @@ public class Categoria {
 	private String descripcion;
 	private Integer contadorSeguidores;
 
-	
 	private CommonsMultipartFile subida;
 	
-
 	private Double calificacion;
-
 
 	private CategoriaTipo tipoCategoria;
 	

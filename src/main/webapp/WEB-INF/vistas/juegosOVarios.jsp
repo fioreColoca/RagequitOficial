@@ -30,7 +30,7 @@
 				<a href="login?errorSeguir=true" class="btn btn-naranja">Seguir</a>
 			</c:if>
 			<br>
-			<h5>Valoracion General:</h5>
+			<h5>Valoracion General: ${juegosOVarios.getCalificacion()}</h5>
 
 		</article>
 		<article class="col-12 col-md-9 p-4"
@@ -47,7 +47,7 @@
 
 			<c:if test="${not empty usuarioLogeado}">
 
-				<h3>ï¿½Que piensas del ${juegosOVarios.getNombre()} ?</h3>
+				<h3>¿Que piensas del ${juegosOVarios.getNombre()} ?</h3>
 
 				<form class="" action="crearCriticaCategoria" method="POST">
 					<div class="form-group">
