@@ -77,7 +77,6 @@
 									<button type="button" value="mostrar"
 										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
 										data-id="${comentario.getId()}" data-toggle="collapse"
-										onclick="cambiarNombreBotonRespuesta()"
 										data-target="#collapseComentarios">
 										<p id="botonResponder${comentario.getId()}"
 											style="float: left">Ver respuestas</p>
