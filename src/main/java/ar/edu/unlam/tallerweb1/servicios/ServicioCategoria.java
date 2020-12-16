@@ -13,7 +13,7 @@ public interface ServicioCategoria {
 	Categoria mostrarCategoriaPorId(Long id);
 	
 	List<String> traerNombreCategoriasExistentes();
-	
+
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo categoriaTipo);
 
 	List<Categoria> mostrarCategorias();
@@ -27,5 +27,7 @@ public interface ServicioCategoria {
 	void aumentarSeguidores(Categoria categoriaSeguida);
 
 	void disminuirSeguidores(Categoria categoriaSeguida);
+
+	void calcularCalificacionDeCategoria(Categoria categoria);
 
 }
