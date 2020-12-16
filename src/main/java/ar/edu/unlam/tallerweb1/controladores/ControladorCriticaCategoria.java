@@ -44,8 +44,8 @@ public class ControladorCriticaCategoria {
 		criticaCategoria.setCalificacion(calificacion);
 		criticaCategoria.setMensaje(mensaje);
 		servicioCriticaCategoria.crearUnaCriticaCategoria(criticaCategoria);
-		
-		return new ModelAndView("redirect:/home");
+
+		return new ModelAndView("redirect:/juegosOVarios?categoriaId=" + idCategoria);
 	}
 
 }
