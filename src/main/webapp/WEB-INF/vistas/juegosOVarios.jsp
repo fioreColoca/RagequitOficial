@@ -34,25 +34,29 @@
             <c:if test="${not empty usuarioLogeado}">
                 <article class="container">
                     <h3>Realizar Critica</h3>
-                    <form:form class="" action="crearCriticaCategoria" method="POST" modelAttribute="criticaCategoria">
+
+                    <form class="" action="crearCriticaCategoria" method="POST">
                         <div class="form-group">
-                            <form:input class="col-12 form-control" path="usuarioCritico" type="hidden" value="${usuarioLogeado}" />
-                            <form:input class="col-12 form-control" path="categoria" type="hidden" value="${juegosOVarios}" />
+                            <input class="col-12 form-control" name="usuarioCritico" type="hidden" value="${usuarioLogeado.getId()}" />
+                            <input class="col-12 form-control" name="categoria" type="hidden" value="${juegosOVarios.getId()}" />
                         </div>
                         <div class="form-group">
                             <label for="">Calificacion</label>
-                            <form:input class="col-12 form-control" path="calificacion" type="number" />
+                            <input class="col-12 form-control" name="calificacion" type="number" />
                         </div>
                         <div class="form-group">
                             <label for="">Mensaje de critica</label>
-                            <form:textarea path="mensaje" class="form-control" rows="3" />
+                            <textarea name="mensaje" class="form-control" rows="3"></textarea>
 
                         </div>
                         <div class="form-group">
 
-                            <form:button class="btn btn-info btn-block">Crear Critica</form:button>
+                            <button class="btn btn-info btn-block">Crear Critica</button>
                         </div>
-                    </form:form>
+                        <form>
+                        <form action="fagliano" method="post">
+                            <button type="submit">sadasdas</button>
+                        </form>
                 </article>
             </c:if>
         </section>

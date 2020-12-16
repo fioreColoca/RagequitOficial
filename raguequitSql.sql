@@ -39,3 +39,4 @@ select * from categoria;
 select * from publicacion;
 select * from comentario;
 select * from seguir;
+select * from criticaCategoria;

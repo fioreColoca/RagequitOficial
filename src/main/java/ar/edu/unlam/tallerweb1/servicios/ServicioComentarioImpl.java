@@ -13,6 +13,8 @@ import ar.edu.unlam.tallerweb1.modelo.Comentario;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioEstado;
 import ar.edu.unlam.tallerweb1.modelo.ComentarioOrdenadoPorLikes;
 import ar.edu.unlam.tallerweb1.modelo.LikeComentario;
+import ar.edu.unlam.tallerweb1.modelo.Notificacion;
+import ar.edu.unlam.tallerweb1.modelo.NotificacionTipo;
 import ar.edu.unlam.tallerweb1.modelo.Publicacion;
 import ar.edu.unlam.tallerweb1.modelo.PublicacionOrdenPorFechaDescendente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -30,6 +32,10 @@ public class ServicioComentarioImpl implements ServicioComentario {
 	ServicioPublicacion servicioPublicacion;
 	@Inject
 	private RepositorioLikeComentario repositorioLikeComentario;
+	@Inject
+	ServicioUsuario servicioUsuario;
+	@Inject
+	ServicioNotificacion servicioNotificacion;
 
 	@Override
 	public Long guardarComentario(Comentario comentario) {
@@ -52,6 +58,10 @@ public class ServicioComentarioImpl implements ServicioComentario {
 	public void borrarComentario(Long id) {
 		Comentario comentario = mostrarComentario(id);
 		List<Comentario> respuesta = respuestaListado(comentario);
+		List<Notificacion> notificaciones = servicioNotificacion
+				.obtenerListaDeNotificacionPorTipo(NotificacionTipo.COMENTARIOPUBLICACION);
+		List<Notificacion> notificacionesRespuesta = servicioNotificacion
+				.obtenerListaDeNotificacionPorTipo(NotificacionTipo.COMENTARIOCOMENTARIO);
 
 		if (comentario.getRespuesta() == null) {
 			Publicacion publicacion = comentario.getPublicacion();
@@ -62,10 +72,38 @@ public class ServicioComentarioImpl implements ServicioComentario {
 			servicioPublicacion.disminuirCantidadComentariosDePublicacion(publicacion);
 		}
 
-		if ((respuesta == null || respuesta.size() == 0) && comentario.getCantidadLikes() == 0) {
-			repositorioComentar.borrarComentario(id);
+		if (comentario.getRespuesta() == null) {
+
+			for (Notificacion notificacion : notificaciones) {
+				if (notificacion.getComentario().getId() == id) {
+					if (notificacion.getVisto() == false) {
+						servicioUsuario
+								.disminuirCantidadNotificacionesDeUsuario(notificacion.getUsuarioRecibidorNotifi());
+						servicioNotificacion.borrarNotificacionPorId(notificacion.getId());
+						comentario.setEstado(ComentarioEstado.INACTIVO);
+						break;
+					} else {
+						comentario.setEstado(ComentarioEstado.INACTIVO);
+						break;
+					}
+				}
+			}
 		} else {
-			comentario.setEstado(ComentarioEstado.INACTIVO);
+			for (Notificacion notificacionRespuesta : notificacionesRespuesta) {
+				if (notificacionRespuesta.getComentario().getId() == id) {
+					if (notificacionRespuesta.getVisto() == false) {
+						servicioUsuario
+								.disminuirCantidadNotificacionesDeUsuario(notificacionRespuesta.getUsuarioRecibidorNotifi());
+						servicioNotificacion.borrarNotificacionPorId(notificacionRespuesta.getId());
+						comentario.setEstado(ComentarioEstado.INACTIVO);
+						break;
+					} else {
+						comentario.setEstado(ComentarioEstado.INACTIVO);
+						break;
+					}
+				}
+			}
+
 		}
 	}
 

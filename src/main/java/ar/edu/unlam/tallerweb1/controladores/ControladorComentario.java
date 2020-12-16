@@ -62,20 +62,22 @@ public class ControladorComentario {
 		Publicacion publicacion = servicioPublicacion.obtenerPublicacionPorId(comentario.getPublicacionId());
 		comentario.setPublicacion(publicacion);
 
+		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
+			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
+		}
+
+		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(publicacion.getUsuario());
+		servicioComentario.guardarComentario(comentario);
+		
 		Notificacion notificacion = new Notificacion();
 		notificacion.setComentarioDePublicacion(publicacion);
 		notificacion.setUsuarioOtorgadorNotifi(usuario);
 		notificacion.setUsuarioRecibidorNotifi(publicacion.getUsuario());
 		notificacion.setTipo(NotificacionTipo.COMENTARIOPUBLICACION);
+		notificacion.setComentario(comentario);
 		notificacion.setVisto(false);
-
-		if (comentario.getMensaje().isEmpty() || comentario.getMensaje().substring(0, 1).equals(" ")) {
-			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
-		}
-
 		servicioNotificacion.guardarNotificacion(notificacion);
-		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(publicacion.getUsuario());
-		servicioComentario.guardarComentario(comentario);
+
 		return new ModelAndView("redirect:/home");
 
 	}
@@ -143,19 +145,23 @@ public class ControladorComentario {
 		Comentario comentario = servicioComentario.mostrarComentario(respuesta.getComentarioAResponderId());
 		respuesta.setRespuesta(comentario);
 
+	
+
+		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
+			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
+		}
+		
+		servicioComentario.guardarComentario(respuesta);
+		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
 		Notificacion notificacion = new Notificacion();
 		notificacion.setRespuestaDeComentario(comentario);
 		notificacion.setUsuarioOtorgadorNotifi(usuario);
 		notificacion.setUsuarioRecibidorNotifi(comentario.getUsuario());
 		notificacion.setTipo(NotificacionTipo.COMENTARIOCOMENTARIO);
 		notificacion.setVisto(false);
-
-		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
-			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
-		}
+		notificacion.setComentario(respuesta);
 		servicioNotificacion.guardarNotificacion(notificacion);
-		servicioComentario.guardarComentario(respuesta);
-		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
+
 
 		return new ModelAndView("redirect:/home");
 	}

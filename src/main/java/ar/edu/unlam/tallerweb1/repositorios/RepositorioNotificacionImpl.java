@@ -65,4 +65,10 @@ public class RepositorioNotificacionImpl implements RepositorioNotificacion {
 				.add(Restrictions.eq("usuarioRecibidorNotifi", usuario)).list();
 	}
 
+	@Override
+	public List<Notificacion> obtenerListaDeNotificacionPorTipo(NotificacionTipo tipo) {
+		return sessionFactory.getCurrentSession().createCriteria(Notificacion.class)
+				.add(Restrictions.eq("tipo", tipo)).list();
+	}
+
 }
