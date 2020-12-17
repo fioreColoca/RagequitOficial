@@ -4,7 +4,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Usuario o clave incorrecta.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
@@ -12,7 +12,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Primero debes iniciar sesion para seguir a un usuario o categoria.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
@@ -20,7 +20,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Primero debes iniciar sesion para likear a una publicacion o comentario.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>

@@ -13,25 +13,23 @@
                     </div>
                     <div class="anchoCategoria pad-2">
 
-                <form:form action="agregarCategoria"  method="POST" modelAttribute="categoria" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="nombre">Elija el nombre de la categoria:</label>
-                            <form:input path="nombre" class="form-control" id="nombre" 
-                                placeholder="Valorant, Anime, Musica ..."/>
-                        </div>
-                        <div>
-                            <label for="tipoCategoriaNum">Elegir el tipo de categoria</label>
-                            <form:select path="tipoCategoriaNum" name="tipoCategoriaNum" class="custom-select" id="tipoCategoriaNum">
-                                <option disabled selected>Seleccione una opci&oacute;n</option>
-                                <option value="0">Juegos</option>
-                                <option value="1">Varios</option>
-                                
-                            </form:select>
-                        </div>
+                        <form:form action="agregarCategoria" method="POST" modelAttribute="categoria" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="nombre">Elija el nombre de la categoria:</label>
+                                <form:input path="nombre" class="form-control" id="nombre" placeholder="Valorant, Anime, Musica ..." />
+                            </div>
+                            <div>
+                                <label for="tipoCategoriaNum">Elegir el tipo de categoria</label>
+                                <form:select path="tipoCategoriaNum" name="tipoCategoriaNum" class="custom-select" id="tipoCategoriaNum">
+                                    <option disabled selected>Seleccione una opci&oacute;n</option>
+                                    <option value="0">Juegos</option>
+                                    <option value="1">Varios</option>
 
-                        <label class="pt-3" for="subida">Subir imagen</label>
-                        <input type="file" class="form-control-file col-md-2" name="subida"
-                            id="subida">        
+                                </form:select>
+                            </div>
+
+                            <label class="pt-3" for="subida">Subir imagen</label>
+                            <input type="file" class="form-control-file col-md-2" name="subida" id="subida">
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>

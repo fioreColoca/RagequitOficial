@@ -68,7 +68,7 @@ public class ControladorComentario {
 
 		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(publicacion.getUsuario());
 		servicioComentario.guardarComentario(comentario);
-		
+
 		Notificacion notificacion = new Notificacion();
 		notificacion.setComentarioDePublicacion(publicacion);
 		notificacion.setUsuarioOtorgadorNotifi(usuario);
@@ -145,12 +145,10 @@ public class ControladorComentario {
 		Comentario comentario = servicioComentario.mostrarComentario(respuesta.getComentarioAResponderId());
 		respuesta.setRespuesta(comentario);
 
-	
-
 		if (respuesta.getMensaje().isEmpty() || respuesta.getMensaje().substring(0, 1).equals(" ")) {
 			return new ModelAndView("redirect:/home?errorComentarioVacio=true");
 		}
-		
+
 		servicioComentario.guardarComentario(respuesta);
 		servicioUsuario.aumentarCantidadNotificacionesDeUsuario(comentario.getUsuario());
 		Notificacion notificacion = new Notificacion();
@@ -161,7 +159,6 @@ public class ControladorComentario {
 		notificacion.setVisto(false);
 		notificacion.setComentario(respuesta);
 		servicioNotificacion.guardarNotificacion(notificacion);
-
 
 		return new ModelAndView("redirect:/home");
 	}

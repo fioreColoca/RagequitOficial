@@ -13,36 +13,36 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 public class AdministrarRolTest {
 	private ServicioUsuario servicioUsuario;
 	private RepositorioUsuario repositorioUsuarioMock;
-	
+
 	@Before
 	public void init() {
 		repositorioUsuarioMock = mock(RepositorioUsuario.class);
 
 		servicioUsuario.setRepositorioUsuario(repositorioUsuarioMock);
-		//when(mockRepository.findById(1L)).thenReturn(Optional.of(book));
+		// when(mockRepository.findById(1L)).thenReturn(Optional.of(book));
 	}
-	
+
 	@Test
 	public void testDeQueSeLeCambieElRolAUnUsuario() {
 		Usuario usuario = new Usuario();
-		
+
 		usuario.setRol("usuario");
 		usuario.setId(1L);
-		
+
 		Long idUsuario = usuario.getId();
-	
+
 		String usuarioRol = usuario.getRol();
-		
+
 		assertThat(usuarioRol).isEqualTo("usuario");
-		
+
 //		servicioUsuario.setRepositorioUsuario(repositorioUsuarioMock);
 //		when(repositorioUsuarioMock.obtenerUsuarioPorId(1L)).thenReturn(usuario);
-		//persistir usuario
-		
+		// persistir usuario
+
 		servicioUsuario.cambiarRol(idUsuario, "admin");
-		
+
 		String usuarioRolCambiado = usuario.getRol();
-		
+
 		assertThat(usuarioRolCambiado).isEqualTo("admin");
 	}
 }

@@ -27,7 +27,7 @@ public class ControladorMensajes {
 	private ServicioUsuario servicioUsuario;
 	@Inject
 	private ServicioMensaje servicioMensaje;
-	
+
 	@RequestMapping(path = "/verMensaje")
 	public ModelAndView verMensaje(HttpServletRequest request) {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
@@ -35,37 +35,34 @@ public class ControladorMensajes {
 				: null;
 		ModelMap modelo = new ModelMap();
 		modelo.put("title", "RageQuit | Mensajes");
-		
+
 		return new ModelAndView("mensaje", modelo);
 	}
-	
-	
+
 	@RequestMapping(path = "/crearMensaje", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public String crearMensaje(
-			@RequestParam(value = "mensajeAMandarAUsuario") String mensaje,
+	public String crearMensaje(@RequestParam(value = "mensajeAMandarAUsuario") String mensaje,
 			@RequestParam(value = "idUsuarioEnviaMensaje") Long idUsuarioEnviaMensaje,
-			@RequestParam(value = "idUsuarioRecibeMensaje") Long idUsuarioRecibeMensaje,
-			HttpServletRequest request) {
+			@RequestParam(value = "idUsuarioRecibeMensaje") Long idUsuarioRecibeMensaje, HttpServletRequest request) {
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-		
+
 		Gson gson = new Gson();
 		JsonObject json = new JsonObject();
-		json.addProperty("errorEnviarMensaje", false);		
-		if(usuarioLogeado!=null) {
+		json.addProperty("errorEnviarMensaje", false);
+		if (usuarioLogeado != null) {
 			Date fecha = new Date();
-			Usuario usuarioEnviaMensaje= servicioUsuario.obtenerUsuarioPorId(idUsuarioEnviaMensaje);
-			Usuario usuarioRecibeMensaje= servicioUsuario.obtenerUsuarioPorId(idUsuarioRecibeMensaje);
-			
+			Usuario usuarioEnviaMensaje = servicioUsuario.obtenerUsuarioPorId(idUsuarioEnviaMensaje);
+			Usuario usuarioRecibeMensaje = servicioUsuario.obtenerUsuarioPorId(idUsuarioRecibeMensaje);
+
 			Mensaje nuevoMensaje = new Mensaje();
-			
+
 			nuevoMensaje.setMensaje(mensaje);
 			nuevoMensaje.setFecha(fecha);
 			nuevoMensaje.setUsuarioEnviaMensaje(usuarioEnviaMensaje);
 			nuevoMensaje.setUsuarioRecibeMensaje(usuarioRecibeMensaje);
-			
+
 			servicioMensaje.crearMensaje(nuevoMensaje);
 			return gson.toJson(json);
 		}

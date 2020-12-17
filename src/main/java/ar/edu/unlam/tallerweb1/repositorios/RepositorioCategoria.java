@@ -9,18 +9,16 @@ import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
 public interface RepositorioCategoria {
 
-	
 	void guardarCategoria(Categoria categoria);
-	
+
 	Categoria mostrarCategoriaPorId(Long id);
-	
-	List<Categoria> traerNombreCategoriasExistentes(); 
-	
+
+	List<Categoria> traerNombreCategoriasExistentes();
+
 	List<Categoria> mostrarCategoriaPorTipo(CategoriaTipo tipoCategoria);
 
 	List<Categoria> mostrarCategorias();
 
 	void borrarCategoria(Long id);
-
 
 }

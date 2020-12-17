@@ -26,8 +26,7 @@ public class ComentarioTest {
 	private String tipoComentario;
 	private Publicacion publicacion;
 	private ServicioPublicacion servicioPublicacion;
-	
-	
+
 	@Before
 	public void init() {
 		comentario = mock(Comentario.class);
@@ -39,31 +38,30 @@ public class ComentarioTest {
 		servicioPublicacion = mock(ServicioPublicacion.class);
 	}
 
-	
 	@Test
 	public void testEnviarComentario() {
-		
+
 		when(comentario.getId()).thenReturn(1L);
 		when(comentario.getMensaje()).thenReturn("hola");
-		
+
 		comentarioControlador.setServicioComentario(servicioComentario);
 		comentarioControlador.setServicioPublicacion(servicioPublicacion);
-		
-		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario ,requestMock);	
-		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home"); 
+
+		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario, requestMock);
+		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home");
 
 	}
-	
-	@Test 
+
+	@Test
 	public void testNoEnviarMensajeVacio() {
 		when(comentario.getId()).thenReturn(1L);
 		when(comentario.getMensaje()).thenReturn(" ");
-		
+
 		comentarioControlador.setServicioComentario(servicioComentario);
 		comentarioControlador.setServicioPublicacion(servicioPublicacion);
-		
-		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario, requestMock);	
-		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorComentarioVacio=true"); 
+
+		ModelAndView modelAndView = comentarioControlador.enviarComentario(comentario, requestMock);
+		assertThat(modelAndView.getViewName()).isEqualTo("redirect:/home?errorComentarioVacio=true");
 	}
-	
+
 }

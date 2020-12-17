@@ -6,17 +6,17 @@
         <h4 class="text-secondary ">Seguidores</h4>
         <h5 class="text-secondary ">
             <a class="link-seguidos" data-toggle="modal" data-target="#seguidores" id="contadorSeguidores">
-				${usuarioPerfil.getContadorSeguidores()} </a>
+                ${usuarioPerfil.getContadorSeguidores()} </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidores.jsp"%>
+        <%@ include file="perfilMostrarSeguidores.jsp" %>
     </div>
     <div class="col-6 col-md-4 d-flex flex-column">
         <h4 class="text-secondary ">Seguidos</h4>
         <h5 class="text-secondary ">
             <a class="link-seguidos" data-toggle="modal" data-target="#seguidoss">
-				${usuarioPerfil.getContadorSeguidos() } </a>
+                ${usuarioPerfil.getContadorSeguidos() } </a>
         </h5>
-        <%@ include file="perfilMostrarSeguidos.jsp"%>
+        <%@ include file="perfilMostrarSeguidos.jsp" %>
 
     </div>
 </section>
@@ -106,8 +106,7 @@
                                 <div class="hoverIcons bg-fondo p-2 rounded-bottom border border-top-0 
                                 border-right-0 border-left-0 border-warning">
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" class="btn btn-outline-naranja botonCollapseComentarios" data-id="${publicacionDelFor.getId()}" data-toggle="collapse" href="#collapseComentarios"><i
-											class="far fa-comment-dots"></i></a>
+                                        <a type="button" class="btn btn-outline-naranja botonCollapseComentarios" data-id="${publicacionDelFor.getId()}" data-toggle="collapse" href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
                                         <p>${publicacionDelFor.getCantidadComentarios()}</p>
                                     </div>
                                 </div>
@@ -119,7 +118,7 @@
                                     <div class="col-4">
                                         <h3>
                                             <a href="perfil?usuarioNombre=${publicacionDelFor.getUsuario().getNombreUsuario() }" class="nombreUsuarioPublicacion">
-												${publicacionDelFor.getUsuario().getNombreUsuario()} </a>
+                                                ${publicacionDelFor.getUsuario().getNombreUsuario()} </a>
                                         </h3>
                                         <c:if test="${not empty usuarioLogeado}">
 
@@ -170,8 +169,8 @@
                                         </p>
                                         <c:if test="${publicacionDelFor.getUsuario().getId() == usuarioLogeado.getId()}">
                                             <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal" data-target="#borrarPublicacion" data-id="${publicacionDelFor.getId()}">
-												<i class="far fa-trash-alt"></i>
-											</button>
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
                                         </c:if>
                                     </div>
                                 </div>
@@ -186,8 +185,8 @@
                                     <c:if test="${not empty usuarioLogeado}">
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono" value="${publicacionDelFor.getId()}" name="idPublicacionADarLike${publicacionDelFor.getId()}" id="idPublicacionADarLike${publicacionDelFor.getId()}">
-												<i class="far fa-thumbs-up"></i>
-											</button>
+                                                <i class="far fa-thumbs-up"></i>
+                                            </button>
                                             <p class="text-secondary" id="cantidadLikesPublicacion${publicacionDelFor.getId()}">
                                                 ${publicacionDelFor.getCantidadLikes()}</p>
                                         </div>
@@ -200,27 +199,26 @@
                                         </div>
                                     </c:if>
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" class="btn btn-outline-naranja botonCollapseComentarios hoverIconsBotonIcono" data-id="${publicacionDelFor.getId()}" data-toggle="collapse" href="#collapseComentarios"><i
-											class="far fa-comment-dots"></i></a>
+                                        <a type="button" class="btn btn-outline-naranja botonCollapseComentarios hoverIconsBotonIcono" data-id="${publicacionDelFor.getId()}" data-toggle="collapse" href="#collapseComentarios"><i class="far fa-comment-dots"></i></a>
                                         <p class="text-secondary">${publicacionDelFor.getCantidadComentarios()}</p>
                                     </div>
                                     <div>
                                         <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono">
-											<i class="fab fa-gg"></i>
-										</button>
+                                            <i class="fab fa-gg"></i>
+                                        </button>
                                     </div>
                                     <div>
                                         <button type="submit" class="btn btn-outline-naranja hoverIconsBotonIcono">
-											<i class="fas fa-share-alt"></i>
-										</button>
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div>
-                                    <%@ include file="homeResponderPublicacion.jsp"%>
+                                    <%@ include file="homeResponderPublicacion.jsp" %>
                                 </div>
                             </c:if>
                             <div>
-                                <%@ include file="homeListaComentarios.jsp"%>
+                                <%@ include file="homeListaComentarios.jsp" %>
                             </div>
                         </div>
                     </c:forEach>
@@ -228,15 +226,15 @@
             </div>
         </div>
         <div>
-            <%@ include file="homeComentariosModals.jsp"%>
+            <%@ include file="homeComentariosModals.jsp" %>
                 <div class="modal fade" id="enviarMensaje" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-fondo ">
                             <div class="modal-header">
                                 <h5 class="modal-title text-white">Enviar mensaje a <span id="nombreUsuarioRecibeMensajeModal"></span></h5>
                                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <br>
                             <div class="modal-headerp-3 pt-3">
@@ -248,7 +246,7 @@
                                         <input class="col-12 form-control" type="hidden" name="idUsuarioEnviaMensaje" id="idUsuarioEnviaMensaje" />
                                         <input class="col-12 form-control" id="idUsuarioRecibeMensaje" type="hidden" name="idUsuarioRecibeMensaje" />
                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
-                                	</button>
+                                        </button>
                                         <button type="submit" class="btn btn-naranja botonMandarMensajeUsuarioModal" id="botonMandarMensajeUsuarioModal" name="botonMandarMensajeUsuarioModal">Enviar mensaje</button>
                                     </div>
                                 </form>

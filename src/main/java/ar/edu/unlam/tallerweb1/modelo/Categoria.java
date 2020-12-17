@@ -21,13 +21,13 @@ public class Categoria {
 	private Integer contadorSeguidores;
 
 	private CommonsMultipartFile subida;
-	
+
 	private Double calificacion;
 
 	private CategoriaTipo tipoCategoria;
-	
+
 	private CategoriaEstado estado;
-	
+
 	@Transient
 	private Integer tipoCategoriaNum;
 
@@ -98,16 +98,18 @@ public class Categoria {
 	public CommonsMultipartFile getSubida() {
 		return subida;
 	}
+
 	public void setSubida(CommonsMultipartFile subida) {
 		this.subida = subida;
 	}
+
 	public CategoriaEstado getEstado() {
 		return estado;
 	}
+
 	public void setEstado(CategoriaEstado estado) {
 		this.estado = estado;
 	}
-	
 
 	public Double getCalificacion() {
 		return calificacion;

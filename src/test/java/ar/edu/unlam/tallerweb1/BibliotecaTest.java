@@ -17,7 +17,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioBiblioteca;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 
 public class BibliotecaTest extends SpringTest {
-	
+
 	private ControladorBiblioteca controladorBiblioteca = new ControladorBiblioteca();
 	private Categoria categoria;
 	private Biblioteca biblioteca;
@@ -25,7 +25,7 @@ public class BibliotecaTest extends SpringTest {
 	private ServicioCategoria servicioCategoria;
 	private HttpServletRequest requestMock;
 	private HttpSession sessionMock;
-	
+
 	@Before
 	public void init() {
 		categoria = mock(Categoria.class);
@@ -35,12 +35,12 @@ public class BibliotecaTest extends SpringTest {
 		requestMock = mock(HttpServletRequest.class);
 		sessionMock = mock(HttpSession.class);
 		when(requestMock.getSession()).thenReturn(sessionMock);
-		
+
 	}
-	
+
 	@Test
 	public void testQueSeGuardeUnaCategoria() {
-		
+
 //		controladorBiblioteca.setServicioBiblioteca(servicioBiblioteca);
 //		controladorBiblioteca.setServicioCategoria(servicioCategoria);
 //		
@@ -52,7 +52,7 @@ public class BibliotecaTest extends SpringTest {
 //		Categoria categoria2 = servicioCategoria.mostrarCategoriaPorId(1L);
 //		
 //		assertThat(categoria2.getId()).isEqualTo(1L);
-		
+
 	}
 
 }

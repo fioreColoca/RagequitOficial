@@ -7,8 +7,8 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioMensaje {
 	Long crearMensaje(Mensaje mensaje);
-	
+
 	Mensaje obtenerMensajePorId(Long id);
-	
+
 	List<Mensaje> obtenerListaMensajesPorUsuario(Usuario usuario);
 }

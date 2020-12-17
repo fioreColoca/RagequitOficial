@@ -9,7 +9,7 @@
                             <h1 style="color: #f4a117">RageQuit</h1>
                         </div>
                         <p class="card-text">
-                            Bienvenido a la p&aacute;gina oficial de RageQuit, una p&aacute;gina donde encontraras diversi&oacute;n gamer por donde lo veas. ¡Que lo disfrutes!
+                            Bienvenido a la p&aacute;gina oficial de RageQuit, una p&aacute;gina donde encontraras diversi&oacute;n gamer por donde lo veas. ï¿½Que lo disfrutes!
                         </p>
                         <div class="social mt-2 mb-3">
                             <a><i class="fab fa-facebook"></i></a>

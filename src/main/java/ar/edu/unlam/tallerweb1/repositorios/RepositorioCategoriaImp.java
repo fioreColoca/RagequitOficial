@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 import ar.edu.unlam.tallerweb1.modelo.CategoriaTipo;
 
@@ -23,7 +22,7 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 
 	public void guardarCategoria(Categoria categoria) {
 		sessionFactory.getCurrentSession().save(categoria);
-		
+
 	}
 
 	@Override
@@ -50,11 +49,9 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 
 	@Override
 	public List<Categoria> traerNombreCategoriasExistentes() {
-		
-		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
-		
-	}
 
-	
+		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
+
+	}
 
 }

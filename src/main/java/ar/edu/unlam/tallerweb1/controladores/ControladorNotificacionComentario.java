@@ -24,84 +24,82 @@ public class ControladorNotificacionComentario {
 	private ServicioComentario servicioComentario;
 	@Inject
 	private ServicioNotificacion servicioNotificacion;
-	
+
 	@RequestMapping(path = "/comentario")
-	public ModelAndView comentario(@RequestParam(value = "id", required = false) Long id,
-			HttpServletRequest request) {
-		
+	public ModelAndView comentario(@RequestParam(value = "id", required = false) Long id, HttpServletRequest request) {
+
 		ModelMap modelo = new ModelMap();
-		
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-	
+
 		Notificacion notificacion = servicioNotificacion.obtenerNotificacionPorId(id);
-		if( notificacion == null) {
+		if (notificacion == null) {
 			return new ModelAndView("redirect:/home", modelo);
 		}
 		Comentario comentario = servicioComentario.mostrarComentario(notificacion.getComentario().getId());
-		
-		if(comentario == null) {
+
+		if (comentario == null) {
 			return new ModelAndView("redirect:/home", modelo);
 		}
-		
-		if(notificacion.getUsuarioRecibidorNotifi().getId() != usuarioLogeado.getId()) {
+
+		if (notificacion.getUsuarioRecibidorNotifi().getId() != usuarioLogeado.getId()) {
 			return new ModelAndView("redirect:/home", modelo);
 		}
-		 if(notificacion.getRespuestaDeComentario() == null) {
-			 TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
-				
-				modelo.put("title", "RageQuit | Comentario");
-				modelo.put("comentario", comentario);
-				modelo.put("usuarioLogeado", usuarioLogeado);
-				modelo.put("respuestas", respuestas);
-				
-				return new ModelAndView("notificacionComentario", modelo);
-		 } else {
-				Comentario respuesta = notificacion.getRespuestaDeComentario();
-				modelo.put("title", "RageQuit | Respuesta");
-				modelo.put("respuesta", comentario);
-				modelo.put("usuarioLogeado", usuarioLogeado);
-				modelo.put("comentario", respuesta);
-				return new ModelAndView("notificacionRespuesta", modelo);
-		 }
-		
+		if (notificacion.getRespuestaDeComentario() == null) {
+			TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
+
+			modelo.put("title", "RageQuit | Comentario");
+			modelo.put("comentario", comentario);
+			modelo.put("usuarioLogeado", usuarioLogeado);
+			modelo.put("respuestas", respuestas);
+
+			return new ModelAndView("notificacionComentario", modelo);
+		} else {
+			Comentario respuesta = notificacion.getRespuestaDeComentario();
+			modelo.put("title", "RageQuit | Respuesta");
+			modelo.put("respuesta", comentario);
+			modelo.put("usuarioLogeado", usuarioLogeado);
+			modelo.put("comentario", respuesta);
+			return new ModelAndView("notificacionRespuesta", modelo);
+		}
+
 	}
-	
+
 	@RequestMapping(path = "/comentarioLike")
 	public ModelAndView comentarioLike(@RequestParam(value = "id", required = false) Long id,
 			HttpServletRequest request) {
-		
+
 		ModelMap modelo = new ModelMap();
-		
+
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-	
+
 		Notificacion notificacion = servicioNotificacion.obtenerNotificacionPorId(id);
-		if( notificacion == null) {
+		if (notificacion == null) {
 			return new ModelAndView("redirect:/home", modelo);
 		}
 		Comentario comentario = servicioComentario.mostrarComentario(notificacion.getComentarioLike().getId());
-		
-		if(comentario == null) {
-			return new ModelAndView("redirect:/home", modelo);
-		}
-		
-		if(notificacion.getUsuarioRecibidorNotifi().getId() != usuarioLogeado.getId()) {
+
+		if (comentario == null) {
 			return new ModelAndView("redirect:/home", modelo);
 		}
 
-			 TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
-				
-				modelo.put("title", "RageQuit | Comentario");
-				modelo.put("comentario", comentario);
-				modelo.put("usuarioLogeado", usuarioLogeado);
-				modelo.put("respuestas", respuestas);
-				
-				return new ModelAndView("notificacionComentario", modelo);
-	
+		if (notificacion.getUsuarioRecibidorNotifi().getId() != usuarioLogeado.getId()) {
+			return new ModelAndView("redirect:/home", modelo);
+		}
+
+		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
+
+		modelo.put("title", "RageQuit | Comentario");
+		modelo.put("comentario", comentario);
+		modelo.put("usuarioLogeado", usuarioLogeado);
+		modelo.put("respuestas", respuestas);
+
+		return new ModelAndView("notificacionComentario", modelo);
+
 	}
-	
-}
 
+}

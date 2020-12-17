@@ -39,12 +39,13 @@ public class ControladorJuegosOVarios {
 
 	@Inject
 	private ServicioCriticaCategoria servicioCriticaCategoria;
-	
+
 	@Inject
 	private ServicioPublicacion servicioPublicacion;
-	
+
 	@Inject
 	private ServicioComentario servicioComentario;
+
 	@RequestMapping(path = "/juegosOVarios")
 	public ModelAndView juegosOvarios(@RequestParam(value = "categoriaId", required = false) Long categoriaId,
 			HttpServletRequest request) {
@@ -52,13 +53,13 @@ public class ControladorJuegosOVarios {
 		CriticaCategoria critica = new CriticaCategoria();
 		Categoria juegosOVarios = servicioCategoria.mostrarCategoriaPorId(categoriaId);
 		TreeSet<Publicacion> publicaciones = new TreeSet<>();
-		
+
 		String ordenPublicaciones = "ordenFechaRecienteAAntigua";
 
 		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
 				? (Usuario) request.getSession().getAttribute("USUARIO")
 				: null;
-				
+
 		if (categoriaId == null) {
 			publicaciones = servicioPublicacion.devolverPublicacionesOrdenadasPor(ordenPublicaciones, usuarioLogeado);
 		} else if (!(categoriaId == null)) {
@@ -66,19 +67,19 @@ public class ControladorJuegosOVarios {
 			List publicacionesList = servicioPublicacion.buscarPublicacionesPorCategoria(categoria);
 
 			publicaciones = servicioPublicacion.ordenarUnaListaDePublicacionesPor(ordenPublicaciones, publicacionesList,
-							usuarioLogeado);
-			}		
+					usuarioLogeado);
+		}
 
 		SeguirCategoria verificarSeguimientoCategoria = null;
 		if (usuarioLogeado != null && juegosOVarios != null) {
 			verificarSeguimientoCategoria = servicioSeguirCategoria
 					.buscarSeguirCategoriaPorUsuarioYCategoria(usuarioLogeado, juegosOVarios);
 		}
-		
+
 		TreeSet<Comentario> comentarios = servicioComentario.devolverListaComentarioPorMasLikes();
 		TreeSet<Comentario> respuestas = servicioComentario.devolverListaRespuestaPorMasLikes();
 		List<Usuario> listaSeguidores = servicioSeguirCategoria.devolverListaDeSeguidores(juegosOVarios);
-		
+
 		modelo.put("criticaCategoria", critica);
 		modelo.put("listaSeguidores", listaSeguidores);
 		modelo.put("verificarSeguimientoCategoria", verificarSeguimientoCategoria);
@@ -91,8 +92,6 @@ public class ControladorJuegosOVarios {
 
 		return new ModelAndView("juegosOVarios", modelo);
 	}
-
-	
 
 	@RequestMapping(path = "/seguirCategoria")
 	public ModelAndView seguirCategoria(HttpServletRequest request,

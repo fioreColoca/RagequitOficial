@@ -15,7 +15,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioMensaje;
 @Service
 @Transactional
 public class ServicioMensajeImpl implements ServicioMensaje {
-	
+
 	@Inject
 	private RepositorioMensaje repositorioMensaje;
 
