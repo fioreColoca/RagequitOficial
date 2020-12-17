@@ -41,7 +41,7 @@
                             <span class="input-group-text"> <i class="fa fa-phone"></i>
 							</span>
                         </div>
-                        <form:input path="telefono" id="telefono" class="form-control" placeholder="Teléfono Móvil" type="text" />
+                        <form:input path="telefono" id="telefono" class="form-control" placeholder="Telï¿½fono Mï¿½vil" type="text" />
                     </div>
 
                     <!-- form-group// -->
@@ -67,7 +67,7 @@
                             <span class="input-group-text"> <i class="fa fa-lock"></i>
 							</span>
                         </div>
-                        <form:input path="password" id="" class="form-control" placeholder="Contraseña" type="password" />
+                        <form:input path="password" id="" class="form-control" placeholder="Contraseï¿½a" type="password" />
                     </div>
 
                     <!-- form-group// -->
@@ -78,7 +78,7 @@
 
                     <!-- form-group// -->
                     <p class="text-center text-white">
-                        ¿Ya tienes una cuenta? <a href="login" class="login">Iniciar
+                        Â¿Ya tienes una cuenta? <a href="login" class="login">Iniciar
 							Sesi&oacute;n</a>
                     </p>
 

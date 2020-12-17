@@ -129,7 +129,7 @@
                             4<span>0</span>4
                         </h1>
                     </div>
-                    <p>Es posible que la página que estés buscando se haya eliminado, no esté disponible temporalmente o no tienes acceso a ella.</p>
+                    <p>Es posible que la p&aacute;gina que est&aacute; buscando se haya eliminado, no est&aacute; disponible temporalmente o no tienes acceso a ella.</p>
                     <a href=" home" class="btn btn-outline-naranja">Ir al inicio</a>
                 </div>
             </div>
