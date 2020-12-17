@@ -92,8 +92,8 @@ public class ServicioComentarioImpl implements ServicioComentario {
 			for (Notificacion notificacionRespuesta : notificacionesRespuesta) {
 				if (notificacionRespuesta.getComentario().getId() == id) {
 					if (notificacionRespuesta.getVisto() == false) {
-						servicioUsuario
-								.disminuirCantidadNotificacionesDeUsuario(notificacionRespuesta.getUsuarioRecibidorNotifi());
+						servicioUsuario.disminuirCantidadNotificacionesDeUsuario(
+								notificacionRespuesta.getUsuarioRecibidorNotifi());
 						servicioNotificacion.borrarNotificacionPorId(notificacionRespuesta.getId());
 						comentario.setEstado(ComentarioEstado.INACTIVO);
 						break;

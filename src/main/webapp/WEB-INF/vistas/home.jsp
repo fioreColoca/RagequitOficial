@@ -14,26 +14,26 @@
         </section>
         <section class="listaPublicaciones">
             <c:if test="${not empty errorComentarioVacio == 'true'}">
-            	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                	<strong>No puede enviar un comentario vacio.</strong>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>No puede enviar un comentario vacio.</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </c:if>
             <c:if test="${errorBorrarPublicacion == 'true'}">
-            	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                	<strong>Ocurrio un error al borrar la publicacion.</strong>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Ocurrio un error al borrar la publicacion.</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </c:if>
             <c:if test="${errorBorrarPublicacion == 'false'}">
-            	<div class="alert alert-success alert-dismissible fade show" role="alert">
-                	<strong>Se borro la publicacion con exito.</strong>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Se borro la publicacion con exito.</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </c:if>

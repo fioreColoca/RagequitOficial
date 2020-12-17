@@ -17,10 +17,10 @@
 
                             <c:if test="${estadoComentario=='ACTIVO'}">
                                 <small class="text-white-50">
-									${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
-									hs ${comentario.getFechaHora().getDate()} /
-									${comentario.getFechaHora().getMonth()} /
-									${comentario.getFechaHora().getYear()+ 1900} </small>
+                                    ${comentario.getFechaHora().getHours()}:${comentario.getFechaHora().getMinutes()}
+                                    hs ${comentario.getFechaHora().getDate()} /
+                                    ${comentario.getFechaHora().getMonth()} /
+                                    ${comentario.getFechaHora().getYear()+ 1900} </small>
 
 
                                 <div class="container colorComentario rounded bg-light">
@@ -32,15 +32,15 @@
                                         <form action="meGustaComentario">
                                             <div>
                                                 <button class="btn btn-outline-naranja hoverIconsBotonIcono" value="${comentario.getId()}" name="botonLike">
-													<i class="far fa-thumbs-up"></i>
-												</button>
+                                                    <i class="far fa-thumbs-up"></i>
+                                                </button>
                                                 <span>${comentario.getCantidadLikes()}</span>
                                             </div>
                                         </form>
                                         <div class="ml-3">
                                             <button type="button" class="btn btn-outline-naranja responderComentario hoverIconsBotonIcono" data-toggle="modal" data-target="#responderComentario" data-id="${comentario.getId()}">
-												<i class="far fa-comment-dots"></i>
-											</button>
+                                                <i class="far fa-comment-dots"></i>
+                                            </button>
                                         </div>
                                         <c:set var="idUsuario" value="${comentario.getUsuario().getId()}">
                                         </c:set>
@@ -50,19 +50,19 @@
                                             <form action="borrarComentario">
                                                 <div>
                                                     <button type="button" class="btn btn-outline-naranja botonBorrar hoverIconsBotonIcono" data-toggle="modal" data-target="#borrarComentario" data-id="${comentario.getId()}">
-														<i class="far fa-trash-alt"></i>
-													</button>
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
                                                 </div>
                                             </form>
                                         </c:if>
                                     </div>
                                 </c:if>
                                 <c:if test="${comentario.getCantidadRespuesta() != 0}">
-                                    <button type="button" value="mostrar" class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono" data-id="${comentario.getId()}" data-toggle="collapse" onclick="cambiarNombreBotonRespuesta()" data-target="#collapseComentarios">
-										<p id="botonResponder${comentario.getId()}" style="float: left">Ver respuestas
-										</p>
-										<p style="float:right" class="ml-2"> (${comentario.getCantidadRespuesta()})</p>
-									</button>
+                                    <button type="button" value="mostrar" class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono" data-id="${comentario.getId()}" data-toggle="collapse" data-target="#collapseComentarios">
+                                        <p id="botonResponder${comentario.getId()}" style="float: left">Ver respuestas
+                                        </p>
+                                        <p style="float:right" class="ml-2"> (${comentario.getCantidadRespuesta()})</p>
+                                    </button>
                                 </c:if>
 
                             </c:if>
@@ -94,12 +94,12 @@
 
                                         <c:if test="${estadoRespuesta=='ACTIVO'}">
                                             <small class="text-white-50">
-												${comentario.getFechaHora().getHours()}:${respuesta.getFechaHora().getMinutes()}
-												hs ${respuesta.getFechaHora().getDate()} /
-												${respuesta.getFechaHora().getMonth()} /
-												${respuesta.getFechaHora().getYear()+
-												1900}
-											</small>
+                                                ${comentario.getFechaHora().getHours()}:${respuesta.getFechaHora().getMinutes()}
+                                                hs ${respuesta.getFechaHora().getDate()} /
+                                                ${respuesta.getFechaHora().getMonth()} /
+                                                ${respuesta.getFechaHora().getYear()+
+                                                1900}
+                                            </small>
                                             <c:set var="respuestaRespuesta" value="${respuesta.getRespuesta()}">
                                             </c:set>
                                             <p>En respuesta a: ${respuestaRespuesta.getUsuario().getNombreUsuario()}
@@ -113,8 +113,8 @@
                                                     <form action="meGustaComentario">
                                                         <div>
                                                             <button class="btn btn-outline-naranja hoverIconsBotonIcono" value="${respuesta.getId()}" name="botonLike">
-																<i class="far fa-thumbs-up"></i>
-															</button>
+                                                                <i class="far fa-thumbs-up"></i>
+                                                            </button>
                                                             <span>${respuesta.getCantidadLikes()}</span>
                                                         </div>
                                                     </form>
@@ -128,8 +128,8 @@
                                                         <form action="borrarComentario">
                                                             <div>
                                                                 <button type="button" class="btn btn-outline-naranja hoverIconsBotonIcono botonBorrar" data-toggle="modal" data-target="#borrarComentario" data-id="${respuesta.getId()}">
-																	<i class="far fa-trash-alt"></i>
-																</button>
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </button>
                                                             </div>
                                                         </form>
                                                     </c:if>

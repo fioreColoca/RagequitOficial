@@ -37,7 +37,8 @@
             <c:if test="${empty categorias}">
 
                 <div class="alert alert-warning p-2 text-center" role="alert">
-                    No sigues a ninguna Categoria! <a href="biblioteca" class="alert-link">Visita aqui nuestra Biblioteca de Categorias</a>.
+                    No sigues a ninguna Categoria! <a href="biblioteca" class="alert-link">Visita aqui nuestra
+                        Biblioteca de Categorias</a>.
                 </div>
             </c:if>
             <c:if test="${not empty categorias}">
@@ -193,22 +194,22 @@
                                     </div>
                                 </div>
                                 <div>
-                                	<%@ include file="homeResponderPublicacion.jsp" %>
-                            	</div>
+                                    <%@ include file="homeResponderPublicacion.jsp" %>
+                                </div>
                             </c:if>
                             <div>
-                            	<%@ include file="homeListaComentarios.jsp" %>
-                        	</div>
+                                <%@ include file="homeListaComentarios.jsp" %>
+                            </div>
                         </div>
                     </c:forEach>
                 </c:if>
             </div>
         </div>
         <div>
-        	<%@ include file="homeComentariosModals.jsp" %>
-    	</div>
+            <%@ include file="homeComentariosModals.jsp" %>
+        </div>
     </article>
 </section>
 <section class="modals">
-	<%@ include file="homeModals.jsp" %>
+    <%@ include file="homeModals.jsp" %>
 </section>

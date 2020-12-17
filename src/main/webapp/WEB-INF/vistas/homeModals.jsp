@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body text-dark">
-                <p>¿Seguro que deseas borrar la publicacion?.</p>
+                <p>Â¿Seguro que deseas borrar la publicacion?.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

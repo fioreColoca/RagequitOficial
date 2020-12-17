@@ -30,7 +30,7 @@ public interface ServicioNotificacion {
 	void setearCantidadNotificacionesEnLaSessionDeUnUsuario(Usuario usuario, HttpServletRequest request);
 
 	TreeSet<Notificacion> ordenarUnaListaDeNotificacionesPorFechaDesendencete(List<Notificacion> notificaciones);
-	
-	List<Notificacion> obtenerListaDeNotificacionPorTipo (NotificacionTipo tipo);
+
+	List<Notificacion> obtenerListaDeNotificacionPorTipo(NotificacionTipo tipo);
 
 }

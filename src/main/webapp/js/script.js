@@ -67,15 +67,15 @@ $(document).ready(function() {
             $("#creacionPublicacionExitosa").html("");
             if (datosPublicacion.mensajeVacio == true) {
                 $("#mensajeVacio")
-                .html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"><strong>Debe escribir un mensaje.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    .html('<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"><strong>Debe escribir un mensaje.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
             if (datosPublicacion.categoriaVacia == true) {
                 $("#categoriaVacia")
-                .html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Debe elegir una categoria.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    .html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Debe elegir una categoria.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
             if (datosPublicacion.mensajeVacio == false && datosPublicacion.categoriaVacia == false) {
                 $("#creacionPublicacionExitosa")
-                .html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Se creo la publicacion con exito!</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    .html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Se creo la publicacion con exito!</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
         }).fail(function() {
             console.log("error al cargar AJAX publicacion");
@@ -119,51 +119,35 @@ $(document).ready(function() {
             console.log("error al cargar AJAX ver notificacion");
         });
     });
-    /************************AJAX DE SEGUIR UN USUARIO*********************************
-    $("form[id^='formSeguirUsuario']").submit(function(event) {
-        event.preventDefault();
-        var post_url = "seguir";
-        var datos = $("button[id^='seguirUsuarioPerfil']").val();
+    /************************Tabla de roles**********************************/
 
-        $.ajax({
-            type: 'POST',
-            url: post_url,
-            data: {
-                usuarioSeguido: datos
-            }
-        }).done(function(datos) {
-            console.log(datos);
-            if (datos.result == true) {
-                $('#followDiv').replace(` 
-				<form action="dejarSeguir" id="formDejarDeSeguirUsuario" method="post" class="formSeguir">
-                	<button name="usuarioSeguido" value="" class="btn btn-outline-secondary" id="dejarDeSeguirPerfil">Siguiendo</button>
-            	</form>`)
+    $('#mydatatableUsuarios').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
 
-            }
-        }).fail(function(datos) {
-            console.log(datos);
-        });
-    });*/
-     /************************AJAX ENVIAR DATOS A MODAL ENVIAR MENSAJE USUARIO*********************************/
-     $('#enviarMensajeAUsuarioBoton').click(function() {
+    });
+
+    /************************AJAX ENVIAR DATOS A MODAL ENVIAR MENSAJE USUARIO*********************************/
+    $('#enviarMensajeAUsuarioBoton').click(function() {
         var idUsuarioEnviaMensaje = $('#idUsuarioEnviaMensaje').val();
         var idUsuarioRecibeMensaje = $('#idUsuarioRecibeMensaje').val();
         var nombreUsuarioRecibeMensaje = $('#nombreUsuarioRecibeMensaje').val();
-        
+
 
         $('.modal-footer #idUsuarioEnviaMensaje').val(idUsuarioEnviaMensaje);
         $('.modal-footer #idUsuarioRecibeMensaje').val(idUsuarioRecibeMensaje);
         $('#nombreUsuarioRecibeMensajeModal').html(nombreUsuarioRecibeMensaje);
-     });
-    
-      /************************AJAX ENVIAR MENSAJE USUARIO*********************************/
-      $("#mandarMensajeUsuarioFormulario").submit(function(event) {
+    });
+
+    /************************AJAX ENVIAR MENSAJE USUARIO*********************************/
+    $("#mandarMensajeUsuarioFormulario").submit(function(event) {
         event.preventDefault();
         var post_url = $(this).attr("action");
         var idUsuarioRecibeMensaje = $("#idUsuarioRecibeMensaje").val();
         var idUsuarioEnviaMensaje = $("#idUsuarioEnviaMensaje").val();
         var mensaje = $("#mensajeAMandarAUsuario").val();
-        console.log(idUsuarioRecibeMensaje +"-"+ idUsuarioEnviaMensaje +"-" + mensaje + "-" + post_url);
+        console.log(idUsuarioRecibeMensaje + "-" + idUsuarioEnviaMensaje + "-" + mensaje + "-" + post_url);
         $.ajax({
             type: 'POST',
             url: post_url,
@@ -175,11 +159,12 @@ $(document).ready(function() {
         }).done(function(datos) {
             console.log(datos);
 
-            if(datos.errorEnviarMensaje == true){
+            if (datos.errorEnviarMensaje == true) {
                 $('#resultadoEnviarMensaje').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Ocurrio un error al enviar el mensaje.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
 
-            if(datos.errorEnviarMensaje == false){
+
+            if (datos.errorEnviarMensaje == false) {
                 $('#resultadoEnviarMensaje').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Se envio el mensaje correctamente.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
         }).fail(function() {

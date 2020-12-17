@@ -69,7 +69,7 @@ public class ControladorCategoria {
 		String errorNombre = null;
 		String errorTipo = null;
 		/* String errorImagen = null; */
-		
+
 		List<String> nombres = servicioCategoria.traerNombreCategoriasExistentes();
 		if (categoria.getNombre().isEmpty()) {
 			errorNombre = "Falta elegir el nombre a la categoria";
@@ -85,7 +85,6 @@ public class ControladorCategoria {
 				categoria.setNombre(categoria.getNombre());
 			}
 		}
-
 
 		if (categoria.getTipoCategoriaNum() == null) {
 			errorTipo = "Falta elegir el tipo de categoria (JUEGOS o VARIOS)";

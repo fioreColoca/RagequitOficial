@@ -4,7 +4,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Usuario o clave incorrecta.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
@@ -12,7 +12,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Primero debes iniciar sesion para seguir a un usuario o categoria.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
@@ -20,7 +20,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Primero debes iniciar sesion para likear a una publicacion o comentario.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
@@ -34,11 +34,11 @@
                             <form:form action="validar-login" method="POST" modelAttribute="usuario" class="form-signin">
 
                                 <div class="form-label-group">
-                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electrónico" />
+                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electrï¿½nico" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contraseña" />
+                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contraseï¿½a" />
                                 </div>
 
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Iniciar
@@ -50,7 +50,7 @@
                             </form:form>
                         </div>
                         <p class="text-center text-white">
-                            ¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
+                            Â¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
                         </p>
                     </div>
                 </div>

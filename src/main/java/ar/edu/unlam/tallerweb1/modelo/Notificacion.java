@@ -20,11 +20,9 @@ public class Notificacion implements Comparable<Notificacion> {
 
 	@ManyToOne
 	private Publicacion publicacion;
-	
 
 	@ManyToOne
 	private Comentario comentario;
-
 
 	@ManyToOne
 	private Publicacion comentarioDePublicacion;
@@ -123,6 +121,5 @@ public class Notificacion implements Comparable<Notificacion> {
 	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
 	}
-	
 
 }

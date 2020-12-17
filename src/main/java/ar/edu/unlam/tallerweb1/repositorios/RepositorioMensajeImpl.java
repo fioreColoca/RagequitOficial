@@ -14,10 +14,10 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository
 public class RepositorioMensajeImpl implements RepositorioMensaje {
-	
+
 	@Inject
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public Long crearMensaje(Mensaje mensaje) {
 		Session session = sessionFactory.getCurrentSession();
