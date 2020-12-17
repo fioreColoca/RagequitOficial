@@ -72,26 +72,13 @@
 										</c:if>
 									</div>
 								</c:if>
-								
-							 	<c:if test="${comentario.getCantidadRespuesta() != null}">
-									<button type="button" value="mostrar"
-										class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono"
-										data-id="${comentario.getId()}" data-toggle="collapse"
-										data-target="#collapseComentarios">
-										<p id="botonResponder${comentario.getId()}"
-											style="float: left">Ver respuestas</p>
-										<p style="float: right" class="ml-2">
-											(${comentario.getCantidadRespuesta()})</p>
-									</button>
-								</c:if>  
 
 							</c:if>
 						</div>
 					</div>
 				</div>
-				      <div class="ml-5 collapse" id="collapseRespuesta${comentario.getId()}">
                             <div class="container p-3 bg-fondo border border-top-0 
-                                                    	border-right-0 border-left-0 border-warning text-white">
+                                                    	border-right-0 border-left-0 border-warning text-white" style=" box-shadow: 0px 0px 20px orange;">
                                 <div class="row mb-4">
 
                                     <div class="d-flex flex-row user-info mb-3 col-md-2 col-lg-1 justify-content-center">
@@ -156,7 +143,7 @@
                                 </div>
                             </div>
                         </c:if>
-                </div>
+                
 
 		</article>
 	</section>
