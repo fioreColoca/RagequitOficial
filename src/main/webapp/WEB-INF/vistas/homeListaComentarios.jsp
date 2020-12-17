@@ -58,7 +58,7 @@
                                     </div>
                                 </c:if>
                                 <c:if test="${comentario.getCantidadRespuesta() != 0}">
-                                    <button type="button" value="mostrar" class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono" data-id="${comentario.getId()}" data-toggle="collapse" onclick="cambiarNombreBotonRespuesta()" data-target="#collapseComentarios">
+                                    <button type="button" value="mostrar" class="btn btn-outline-naranja botonCollapseRespuesta hoverIconsBotonIcono" data-id="${comentario.getId()}" data-toggle="collapse"  data-target="#collapseComentarios">
 										<p id="botonResponder${comentario.getId()}" style="float: left">Ver respuestas
 										</p>
 										<p style="float:right" class="ml-2"> (${comentario.getCantidadRespuesta()})</p>
