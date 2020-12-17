@@ -110,10 +110,11 @@
                                         <a href="administrar" class="dropdown-item text-secondary"><i
                                                 class="fas fa-trophy"></i>
                                             Roles</a>
+                                        <a href="categoria" class="dropdown-item text-secondary"><i
+                                                class="fas fa-gamepad"></i>
+                                            Categoria</a>
                                     </c:if>
-                                    <a href="categoria" class="dropdown-item text-secondary"><i
-                                            class="fas fa-gamepad"></i>
-                                        Categoria</a>
+
                                     <div class="divider dropdown-divider"></div>
                                     <a href="cerrarSesion" class="dropdown-item text-secondary"><i
                                             class="fas fa-power-off"></i>
