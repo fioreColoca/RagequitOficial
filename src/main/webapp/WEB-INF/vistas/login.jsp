@@ -1,24 +1,24 @@
 <%@ include file="header.jsp" %>
     <main>
         <c:if test="${not empty errorLogin}">
-        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            	<strong>Usuario o clave incorrecta.</strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Usuario o clave incorrecta.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 	<span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
         <c:if test="${not empty errorAlSeguir}">
-        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            	<strong>Primero debes iniciar sesion para seguir a un usuario o categoria.</strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Primero debes iniciar sesion para seguir a un usuario o categoria.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 	<span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </c:if>
         <c:if test="${not empty errorLike}">
-        	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            	<strong>Primero debes iniciar sesion para likear a una publicacion o comentario.</strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Primero debes iniciar sesion para likear a una publicacion o comentario.</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 	<span aria-hidden="true">&times;</span>
                 </button>
@@ -34,11 +34,11 @@
                             <form:form action="validar-login" method="POST" modelAttribute="usuario" class="form-signin">
 
                                 <div class="form-label-group">
-                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electrï¿½nico" />
+                                    <form:input path="email" id="email" type="email" class="form-control" placeholder="Correo electrónico" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contraseï¿½a" />
+                                    <form:input path="password" type="password" id="password" class="form-control" placeholder="Contraseña" />
                                 </div>
 
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Iniciar
@@ -50,7 +50,7 @@
                             </form:form>
                         </div>
                         <p class="text-center text-white">
-                            ï¿½Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
+                            ¿Todavia no tienes una cuenta? <a href="registrar" class="login">Registrate</a>
                         </p>
                     </div>
                 </div>
