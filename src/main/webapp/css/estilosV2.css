@@ -1,5 +1,6 @@
 /*@charset "ISO-8859-1";*/
 
+
 /***********GENERAL***********/
 
 body {
@@ -19,6 +20,10 @@ main {
 
 .bg-fondo {
     background-color: #04233b;
+}
+
+.bg-fondo-dos {
+    background-color: #052d4bc4!important;
 }
 
 .btn-naranja {
@@ -101,27 +106,26 @@ main {
     text-align: center;
 }
 
-
 input[type="radio"] {
-  display: none;
+    display: none;
 }
 
 label {
-  color: grey;
+    color: grey;
 }
 
 .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
+    direction: rtl;
+    unicode-bidi: bidi-override;
 }
 
 label:hover,
-label:hover ~ label {
-  color: orange;
+label:hover~label {
+    color: orange;
 }
 
-input[type="radio"]:checked ~ label {
-  color: orange;
+input[type="radio"]:checked~label {
+    color: orange;
 }
 
 @media screen and (max-width:992px) {
