@@ -108,8 +108,8 @@ public class ServicioCategoriaImp implements ServicioCategoria {
 			nombres.add(categoria.getNombre());
 		}
 		return nombres;
-
 	}
+
 
 	@Override
 	public void calcularCalificacionDeCategoria(Categoria categoria) {

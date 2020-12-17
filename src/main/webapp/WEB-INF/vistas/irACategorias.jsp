@@ -6,19 +6,25 @@
                 <h3 class="border-bottom text-center mb-4">Categorias Creadas</h3>
                 <p> Estas categorias fueron creadas: </p>
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center m-2">
                     <c:if test="${not empty categorias}">
                         <c:forEach items="${categorias}" var="categoria">
 
                             <c:if test="${categoria.getEstado() == 'ACTIVO'}">
-                                <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                                <div class="col-12 col-md-6 p-3 m-3 bg-fondo ajustarIrCategoria rounded-pill">
 
 
                                     <div class="d-flex flex-wrap justify-content-around">
+                                    
+                                    <div class="mt-4">
                                         <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
-                                        <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()}
+                                    </div>
+                                     	<div class="m-3">
+                                        <h5>${categoria.getNombre()}</h5><p> ${categoria.getTipoCategoria()}
                                         </p>
+                                        </div>
                                         <div class="d-flex flex-wrap justify-content-end p-3">
+                                        <div class="p-3">
 
                                             <button type="button" class="btn btn-outline-naranja botonEditar" data-toggle="modal" data-target="#editarCategoria" data-id="${categoria.getId()}">
                                                 <i class="far fa-edit"></i>
@@ -27,6 +33,7 @@
                                             <button type="button" class="btn btn-outline-naranja botonBorrar" data-toggle="modal" data-target="#borrarCategoria" data-id="${categoria.getId()}">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -48,10 +55,15 @@
                             </div>
 
                             <form action="editarCategoria">
-                                <div class="text-dark form-group">
+                                <div class="text-dark form-group mt-2">
                                     <label for="nombre">Nombre de la categoria:</label>
                                     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Valorant, Anime, Musica ...">
                                 </div>
+                                
+                                <c:if test="${errorNombre != 'null'}">
+			                        <h6 class="text-danger"><span>${errorNombre}</span></h6>
+	                    		</c:if>
+	                    		
                                 <div class="text-dark">
                                     <label for="filtro">Tipo de categoria</label>
                                     <select name="categoria" id="categoria" class="custom-select">
@@ -60,25 +72,18 @@
                                         <option value="1">Varios</option>
                                     </select>
                                 </div>
+                                
+                                <c:if test="${errorTipo != 'null'}">
+			                        <h6 class="text-danger mt-3"><span>${errorTipo}</span></h6>
+			                    </c:if>	
 
-                                <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen</label>
+                                <!-- <label class="text-dark pt-3" for="archivoImagenVideo">Subir imagen</label>
                                 <input type="file" class="form-control-file col-md-2" name="archivoImagenVideo" id="archivoImagenVideo">
-
+ -->
                                 <div class="text-right modal-footer">
                                     <button type="submit" class="btn btn-naranja mt-3 botonBloque" name="botonGuardar" id="botonGuardar">GUARDAR</button>
                                 </div>
                             </form>
-
-                            <c:if test="${errorNombre != 'null'}">
-                                <h4 class="text-danger"><span>${errorNombre}</span></h4>
-                                <br>
-                            </c:if>
-
-                            <c:if test="${errorTipo != 'null'}">
-                                <h4 class="text-danger"><span>${errorTipo}</span></h4>
-                                <br>
-                            </c:if>
-
                         </div>
                     </div>
                 </div>
@@ -116,20 +121,21 @@
                 <p> Estas categorias fueron eliminadas: </p>
 
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center m-2">
                     <c:if test="${not empty categorias}">
                         <c:forEach items="${categorias}" var="categoria">
 
                             <c:if test="${categoria.getEstado() == 'INACTIVO'}">
-                                <div class="col-12 col-md-6 p-3 m-1 bg-fondo ajustarIrCategoria rounded-pill">
+                                <div class="col-12 col-md-6 p-3 m-3 bg-fondo ajustarIrCategoria rounded-pill">
 
 
                                     <div class="d-flex flex-wrap justify-content-around">
+                                        <div class="mt-4">
                                         <img alt="logo" class="categoria-icon" src="${categoria.getUrlIcono()}">
-                                        <p>Nombre: ${categoria.getNombre()} <br> Tipo: ${categoria.getTipoCategoria()}
+                                    </div>
+                                     	<div class="m-3">
+                                        <h5>${categoria.getNombre()}</h5><p> ${categoria.getTipoCategoria()}
                                         </p>
-                                        <div class="d-flex flex-wrap justify-content-end p-3">
-
                                         </div>
                                     </div>
                                 </div>

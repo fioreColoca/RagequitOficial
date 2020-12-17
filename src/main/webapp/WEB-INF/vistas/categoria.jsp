@@ -8,29 +8,36 @@
                     </div>
                     <div class="text-center ">
                         <p class="pl-3 text-justify text-size-categoria">
-                            Dentro de esta secci&oacute;n podr&aacute;s crear categor&iacute;as para los distintos tipos de Videojuegos, M&uacute;sica, Anime, entre otras.
+                            Dentro de esta secci&oacute;n, podr&aacute;s crear categor&iacute;as para los distintos tipos de JUEGOS y VARIOS.
                         </p>
                     </div>
-                    <div class="anchoCategoria pad-2 bg-fondo">
+                    <div class="anchoCategoria pad-2 bg-fondo" style= "border-radius: 1em;">
 
-                        <form:form action="agregarCategoria" method="POST" modelAttribute="categoria" enctype="multipart/form-data">
+                        <form:form action="agregarCategoria" method="POST" modelAttribute="categoria">
                             <div class="form-group">
                                 <label for="nombre">Elija el nombre de la categoria:</label>
                                 <form:input path="nombre" class="form-control" id="nombre" placeholder="Valorant, Anime, Musica ..." />
                             </div>
+                            
+                            <c:if test="${errorNombre != 'null'}">
+		                        <h6 class="text-danger"><span>${errorNombre}</span></h6>
+                    		</c:if>
+                    		
                             <div>
                                 <label for="tipoCategoriaNum">Elegir el tipo de categoria</label>
                                 <form:select path="tipoCategoriaNum" name="tipoCategoriaNum" class="custom-select" id="tipoCategoriaNum">
                                     <option disabled selected>Seleccione una opci&oacute;n</option>
                                     <option value="0">Juegos</option>
                                     <option value="1">Varios</option>
-
                                 </form:select>
                             </div>
+                            
+                            <c:if test="${errorTipo != 'null'}">
+		                        <h6 class="text-danger mt-3"><span>${errorTipo}</span></h6>
+		                    </c:if>	
 
-                            <label class="pt-3" for="subida">Subir imagen</label>
-                            <input type="file" class="form-control-file col-md-2" name="subida" id="subida">
->>>>>>> develop
+                            <!--  <label class="pt-3" for="subida">Subir imagen</label>
+                            <input type="file" class="form-control-file col-md-2" name="subida" id="subida">-->
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
@@ -40,7 +47,7 @@
                     </div>
 
                 </article>
-                <div class="text-right subirDiv">
+                <div class="text-right subirDiv mt-4">
                         <a href="irACategorias" class="btn btn-outline-naranja irACategorias volverACategoria">Ver
                             categorias creadas</a>
                     </div>

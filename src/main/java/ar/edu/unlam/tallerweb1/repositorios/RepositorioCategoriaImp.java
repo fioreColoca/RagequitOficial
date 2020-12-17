@@ -49,6 +49,7 @@ public class RepositorioCategoriaImp implements RepositorioCategoria {
 
 	@Override
 	public List<Categoria> traerNombreCategoriasExistentes() {
+
 		return sessionFactory.getCurrentSession().createCriteria(Categoria.class).list();
 
 	}

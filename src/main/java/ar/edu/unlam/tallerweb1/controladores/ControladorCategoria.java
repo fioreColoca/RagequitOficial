@@ -111,7 +111,7 @@ public class ControladorCategoria {
 
 		if (errorNombre == null && errorTipo == null) {
 			servicioCategoria.guardarCategoria(categoria);
-			return new ModelAndView("redirect:/irACategorias");
+			return new ModelAndView("redirect:/biblioteca");
 		}
 
 		return new ModelAndView("redirect:/categoria?errorNombre=" + errorNombre + "&errorTipo=" + errorTipo);
@@ -121,7 +121,7 @@ public class ControladorCategoria {
 	@RequestMapping("/irACategorias")
 	public ModelAndView irACategorias(@RequestParam(value = "errorNombre", required = false) String errorNombre,
 			@RequestParam(value = "errorTipo", required = false) String errorTipo,
-			@RequestParam(value = "errorImagen", required = false) String errorImagen, HttpServletRequest request) {
+			/*@RequestParam(value = "errorImagen", required = false) String errorImagen,*/ HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
@@ -133,7 +133,7 @@ public class ControladorCategoria {
 
 		modelo.put("errorNombre", errorNombre);
 		modelo.put("errorTipo", errorTipo);
-		modelo.put("errorImagen", errorImagen);
+		/*modelo.put("errorImagen", errorImagen);*/
 		modelo.put("categorias", categorias);
 		modelo.put("title", "RageQuit | Categoria Creadas");
 		modelo.put("usuarioLogeado", usuarioLogeado);

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+/*import org.springframework.web.multipart.commons.CommonsMultipartFile;*/
 
 @Entity
 public class Categoria {
@@ -21,7 +21,7 @@ public class Categoria {
 	private Integer contadorSeguidores;
 
 
-	private CommonsMultipartFile subida;
+	/*private CommonsMultipartFile subida;*/
 
 
 	private Double calificacion;
@@ -97,13 +97,13 @@ public class Categoria {
 		this.contadorSeguidores = contadorSeguidores;
 	}
 
-	public CommonsMultipartFile getSubida() {
+	/*public CommonsMultipartFile getSubida() {
 		return subida;
 	}
 
 	public void setSubida(CommonsMultipartFile subida) {
 		this.subida = subida;
-	}
+	}*/
 
 	public CategoriaEstado getEstado() {
 		return estado;
