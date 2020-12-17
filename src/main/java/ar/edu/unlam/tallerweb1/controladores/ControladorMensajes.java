@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,18 @@ public class ControladorMensajes {
 	private ServicioUsuario servicioUsuario;
 	@Inject
 	private ServicioMensaje servicioMensaje;
+	
+	@RequestMapping(path = "/verMensaje")
+	public ModelAndView verMensaje(HttpServletRequest request) {
+		Usuario usuarioLogeado = request.getSession().getAttribute("USUARIO") != null
+				? (Usuario) request.getSession().getAttribute("USUARIO")
+				: null;
+		ModelMap modelo = new ModelMap();
+		modelo.put("title", "RageQuit | Mensajes");
+		
+		return new ModelAndView("mensaje", modelo);
+	}
+	
 	
 	@RequestMapping(path = "/crearMensaje", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
