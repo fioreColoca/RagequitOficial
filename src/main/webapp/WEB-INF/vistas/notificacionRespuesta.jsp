@@ -90,11 +90,6 @@
 					</div>
 				</div>
 				      <div class="ml-5 collapse" id="collapseRespuesta${comentario.getId()}">
-                    <c:forEach items="${respuestas}" var="respuesta">
-                        <!--  RESPUESTA COMUN  -->
-                        <c:set var="RespuestaDe" value="${respuesta.getRespuesta().getId()}"></c:set>
-                        <c:set var="comentarioId" value="${comentario.getId()}"></c:set>
-                        <c:if test="${RespuestaDe==comentarioId}">
                             <div class="container p-3 bg-fondo border border-top-0 
                                                     	border-right-0 border-left-0 border-warning text-white">
                                 <div class="row mb-4">
@@ -161,10 +156,7 @@
                                 </div>
                             </div>
                         </c:if>
-                        <!--  COMUN  -->
-                    </c:forEach>
                 </div>
-                </c:if>
 
 		</article>
 	</section>
