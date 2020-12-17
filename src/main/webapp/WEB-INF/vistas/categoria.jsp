@@ -16,7 +16,7 @@
                         <form:form action="agregarCategoria" method="POST" modelAttribute="categoria" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="nombre">Elija el nombre de la categoria:</label>
-                                <form:input path="nombre" class="form-control" id="nombre" placeholder="Valorant, Anime, M&uacute;sica ..." />
+                                <form:input path="nombre" class="form-control" id="nombre" placeholder="Valorant, Anime, Musica ..." />
                             </div>
                             <div>
                                 <label for="tipoCategoriaNum">Elegir el tipo de categoria</label>
@@ -30,6 +30,7 @@
 
                             <label class="pt-3" for="subida">Subir imagen</label>
                             <input type="file" class="form-control-file col-md-2" name="subida" id="subida">
+>>>>>>> develop
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-naranja mt-3 botonBloque">Crear</button>
